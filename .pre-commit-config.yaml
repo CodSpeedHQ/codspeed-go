@@ -1,0 +1,64 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: go-fmt-import-cli
+        name: go-fmt-import-cli
+        entry: bash -c "cd codspeed-cli && go fmt ./... && goimports -w ."
+        language: system
+        files: '^codspeed-cli/.*\.go$'
+        pass_filenames: false
+      - id: go-vet-cli
+        name: go-vet-cli
+        entry: bash -c "cd codspeed-cli && go vet ./..."
+        language: system
+        files: '^codspeed-cli/.*\.go$'
+        pass_filenames: false
+      - id: go-test-cli
+        name: go-test-cli
+        entry: bash -c "cd codspeed-cli && go test ./..."
+        language: system
+        files: '^codspeed-cli/.*\.go$'
+        pass_filenames: false
+      - id: go-fmt-import-example
+        name: go-fmt-import-example
+        entry: bash -c "cd example && go fmt ./..."
+        language: system
+        files: '^example/.*\.go$'
+        pass_filenames: false
+      - id: go-vet-example
+        name: go-vet-example
+        entry: bash -c "cd example && go vet ./..."
+        language: system
+        files: '^example/.*\.go$'
+        pass_filenames: false
+      - id: go-test-example
+        name: go-test-example
+        entry: bash -c "cd example && go test ./..."
+        language: system
+        files: '^example/.*\.go$'
+        pass_filenames: false
+
+  - repo: local
+    hooks:
+      - id: go-build-cli
+        name: go-build-cli
+        entry: bash -c "cd codspeed-cli && go build -o codspeed-cli ."
+        language: system
+        files: '^codspeed-cli/.*\.go$'
+        pass_filenames: false
+      - id: go-build-example
+        name: go-build-example
+        entry: bash -c "cd example && go build ."
+        language: system
+        files: '^example/.*\.go$'
+        pass_filenames: false
