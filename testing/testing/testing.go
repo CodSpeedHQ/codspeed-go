@@ -666,6 +666,9 @@ type common struct {
 
 	ctx       context.Context
 	cancelCtx context.CancelFunc
+
+	codspeedTimePerRoundNs []time.Duration
+	codspeedItersPerRound  []int64
 }
 
 // Short reports whether the -test.short flag is set.
