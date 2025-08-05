@@ -1,0 +1,15 @@
+---
+source: src/builder/patcher.rs
+expression: result
+---
+package main
+
+import (
+    "fmt"
+    testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+    "strings"
+)
+
+func TestExample(t *testing.T) {
+    // test code
+}
