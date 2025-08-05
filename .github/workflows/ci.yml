@@ -10,16 +10,53 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
       - uses: actions/setup-go@v5
+      - uses: moonrepo/setup-rust@v1
+        with:
+          components: rustfmt, clippy
       - uses: pre-commit/action@v3.0.1
         with:
           extra_args: --all-files
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: true
+      - uses: moonrepo/setup-rust@v1
+      - run: |
+          cd go-runner
+          cargo test --all
+
+
+  compat-integration-test-walltime:
+    runs-on: codspeed-macro
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-go@v5
+      - uses: moonrepo/setup-rust@v1
+        with:
+          cache-target: release
+
+      - name: Run the benchmarks
+        uses: CodSpeedHQ/action@main
+        with:
+          working-directory: example
+          run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
 
   check:
     runs-on: ubuntu-latest
     if: always()
     needs:
       - lint
+      - tests
+      - compat-integration-test-walltime
     steps:
       - uses: re-actors/alls-green@release/v1
         with:
