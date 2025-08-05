@@ -6,6 +6,7 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-json
+        exclude: ^go-runner/testdata/
       - id: check-merge-conflict
       - id: check-added-large-files
 
@@ -14,3 +15,31 @@ repos:
     hooks:
     -   id: go-mod-tidy
     -   id: go-fmt
+        exclude: ^go-runner/src/builder/template\.go$
+
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+        args: [--all, --]
+        files: ^go-runner/
+        pass_filenames: false
+        additional_dependencies: []
+        entry: bash -c 'cd go-runner && cargo fmt --all'
+        language: system
+
+      - id: cargo-check
+        args: [--all-targets]
+        files: ^go-runner/
+        pass_filenames: false
+        additional_dependencies: []
+        entry: bash -c 'cd go-runner && cargo check --all-targets'
+        language: system
+
+      - id: clippy
+        args: [--all-targets, --, -D, warnings]
+        files: ^go-runner/
+        pass_filenames: false
+        additional_dependencies: []
+        entry: bash -c 'cd go-runner && cargo clippy --all-targets -- -D warnings'
+        language: system
