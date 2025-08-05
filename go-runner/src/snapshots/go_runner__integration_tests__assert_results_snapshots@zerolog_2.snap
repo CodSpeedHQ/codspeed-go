@@ -1,0 +1,676 @@
+---
+source: src/integration_tests.rs
+expression: content
+---
+{
+  "creator": {
+    "name": "codspeed-go",
+    "version": "0.1.0",
+    "pid": "[pid]"
+  },
+  "instrument": {
+    "type": "walltime"
+  },
+  "benchmarks": [
+    {
+      "name": "BenchmarkContextAppend",
+      "uri": "benchmark_test.go::BenchmarkContextAppend",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Bool",
+      "uri": "unknown::BenchmarkContextFieldType::Bool",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Bools",
+      "uri": "unknown::BenchmarkContextFieldType::Bools",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Ctx",
+      "uri": "unknown::BenchmarkContextFieldType::Ctx",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Dur",
+      "uri": "unknown::BenchmarkContextFieldType::Dur",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Durs",
+      "uri": "unknown::BenchmarkContextFieldType::Durs",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Err",
+      "uri": "unknown::BenchmarkContextFieldType::Err",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Errs",
+      "uri": "unknown::BenchmarkContextFieldType::Errs",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Float",
+      "uri": "unknown::BenchmarkContextFieldType::Float",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Floats",
+      "uri": "unknown::BenchmarkContextFieldType::Floats",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Int",
+      "uri": "unknown::BenchmarkContextFieldType::Int",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Interface",
+      "uri": "unknown::BenchmarkContextFieldType::Interface",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Interface(Object)",
+      "uri": "unknown::BenchmarkContextFieldType::Interface(Object)",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Interface(Objects)",
+      "uri": "unknown::BenchmarkContextFieldType::Interface(Objects)",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Interfaces",
+      "uri": "unknown::BenchmarkContextFieldType::Interfaces",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Ints",
+      "uri": "unknown::BenchmarkContextFieldType::Ints",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Object",
+      "uri": "unknown::BenchmarkContextFieldType::Object",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Str",
+      "uri": "unknown::BenchmarkContextFieldType::Str",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Stringer",
+      "uri": "unknown::BenchmarkContextFieldType::Stringer",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Strs",
+      "uri": "unknown::BenchmarkContextFieldType::Strs",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Time",
+      "uri": "unknown::BenchmarkContextFieldType::Time",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Times",
+      "uri": "unknown::BenchmarkContextFieldType::Times",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFieldType::Timestamp",
+      "uri": "unknown::BenchmarkContextFieldType::Timestamp",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkContextFields",
+      "uri": "benchmark_test.go::BenchmarkContextFields",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkDisabled",
+      "uri": "benchmark_test.go::BenchmarkDisabled",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkHooks::Nop/Multi",
+      "uri": "unknown::BenchmarkHooks::Nop/Multi",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkHooks::Nop/Single",
+      "uri": "unknown::BenchmarkHooks::Nop/Single",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkHooks::Simple",
+      "uri": "unknown::BenchmarkHooks::Simple",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkInfo",
+      "uri": "benchmark_test.go::BenchmarkInfo",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogArrayObject",
+      "uri": "benchmark_test.go::BenchmarkLogArrayObject",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogEmpty",
+      "uri": "benchmark_test.go::BenchmarkLogEmpty",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Bool",
+      "uri": "unknown::BenchmarkLogFieldType::Bool",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Bools",
+      "uri": "unknown::BenchmarkLogFieldType::Bools",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Ctx",
+      "uri": "unknown::BenchmarkLogFieldType::Ctx",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Dur",
+      "uri": "unknown::BenchmarkLogFieldType::Dur",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Durs",
+      "uri": "unknown::BenchmarkLogFieldType::Durs",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Err",
+      "uri": "unknown::BenchmarkLogFieldType::Err",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Errs",
+      "uri": "unknown::BenchmarkLogFieldType::Errs",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Float",
+      "uri": "unknown::BenchmarkLogFieldType::Float",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Floats",
+      "uri": "unknown::BenchmarkLogFieldType::Floats",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Int",
+      "uri": "unknown::BenchmarkLogFieldType::Int",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Interface",
+      "uri": "unknown::BenchmarkLogFieldType::Interface",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Interface(Object)",
+      "uri": "unknown::BenchmarkLogFieldType::Interface(Object)",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Interface(Objects)",
+      "uri": "unknown::BenchmarkLogFieldType::Interface(Objects)",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Interfaces",
+      "uri": "unknown::BenchmarkLogFieldType::Interfaces",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Ints",
+      "uri": "unknown::BenchmarkLogFieldType::Ints",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Object",
+      "uri": "unknown::BenchmarkLogFieldType::Object",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Str",
+      "uri": "unknown::BenchmarkLogFieldType::Str",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Strs",
+      "uri": "unknown::BenchmarkLogFieldType::Strs",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Time",
+      "uri": "unknown::BenchmarkLogFieldType::Time",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFieldType::Times",
+      "uri": "unknown::BenchmarkLogFieldType::Times",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkLogFields",
+      "uri": "benchmark_test.go::BenchmarkLogFields",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::BasicSampler_0",
+      "uri": "unknown::BenchmarkSamplers::BasicSampler_0",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::BasicSampler_1",
+      "uri": "unknown::BenchmarkSamplers::BasicSampler_1",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::BasicSampler_5",
+      "uri": "unknown::BenchmarkSamplers::BasicSampler_5",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::BurstSampler",
+      "uri": "unknown::BenchmarkSamplers::BurstSampler",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::BurstSamplerNext",
+      "uri": "unknown::BenchmarkSamplers::BurstSamplerNext",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::BurstSampler_0",
+      "uri": "unknown::BenchmarkSamplers::BurstSampler_0",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::RandomSampler",
+      "uri": "unknown::BenchmarkSamplers::RandomSampler",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkSamplers::RandomSampler_0",
+      "uri": "unknown::BenchmarkSamplers::RandomSampler_0",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    }
+  ]
+}

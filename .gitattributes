@@ -1,0 +1,1 @@
+go-runner/testdata/raw_results/*.json filter=lfs diff=lfs merge=lfs -text

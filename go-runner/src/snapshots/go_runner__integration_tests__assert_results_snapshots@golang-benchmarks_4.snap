@@ -1,0 +1,49 @@
+---
+source: src/integration_tests.rs
+expression: content
+---
+{
+  "creator": {
+    "name": "codspeed-go",
+    "version": "0.1.0",
+    "pid": "[pid]"
+  },
+  "instrument": {
+    "type": "walltime"
+  },
+  "benchmarks": [
+    {
+      "name": "BenchmarkEmbed",
+      "uri": "embed/embed_test.go::BenchmarkEmbed",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkIoutilReadFile",
+      "uri": "embed/embed_test.go::BenchmarkIoutilReadFile",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkReadFile",
+      "uri": "embed/embed_test.go::BenchmarkReadFile",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    }
+  ]
+}
