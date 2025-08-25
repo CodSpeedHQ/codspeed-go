@@ -6,11 +6,15 @@ package testing
 
 import (
 	"context"
+	"crypto/rand"
+	"encoding/hex"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
 	"math"
 	"os"
+	"path/filepath"
 	"runtime"
 	"slices"
 	"strconv"
@@ -138,12 +142,12 @@ type B struct {
 // a call to [B.StopTimer].
 func (b *B) StartTimer() {
 	if !b.timerOn {
-		runtime.ReadMemStats(&memStats)
-		b.startAllocs = memStats.Mallocs
-		b.startBytes = memStats.TotalAlloc
+		// runtime.ReadMemStats(&memStats)
+		// b.startAllocs = memStats.Mallocs
+		// b.startBytes = memStats.TotalAlloc
 		b.start = highPrecisionTimeNow()
 		b.timerOn = true
-		b.loop.i &^= loopPoisonTimer
+		// b.loop.i &^= loopPoisonTimer
 	}
 }
 
@@ -151,13 +155,14 @@ func (b *B) StartTimer() {
 // while performing steps that you don't want to measure.
 func (b *B) StopTimer() {
 	if b.timerOn {
+		b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, highPrecisionTimeSince(b.start))
 		b.duration += highPrecisionTimeSince(b.start)
-		runtime.ReadMemStats(&memStats)
-		b.netAllocs += memStats.Mallocs - b.startAllocs
-		b.netBytes += memStats.TotalAlloc - b.startBytes
+		// runtime.ReadMemStats(&memStats)
+		// b.netAllocs += memStats.Mallocs - b.startAllocs
+		// b.netBytes += memStats.TotalAlloc - b.startBytes
 		b.timerOn = false
 		// If we hit B.Loop with the timer stopped, fail.
-		b.loop.i |= loopPoisonTimer
+		// b.loop.i |= loopPoisonTimer
 	}
 }
 
@@ -222,6 +227,8 @@ func (b *B) runN(n int) {
 	b.previousN = n
 	b.previousDuration = b.duration
 
+	b.codspeedItersPerRound = append(b.codspeedItersPerRound, int64(n))
+
 	if b.loop.n > 0 && !b.loop.done && !b.failed {
 		b.Error("benchmark function returned without B.Loop() == false (break or return in loop?)")
 	}
@@ -275,6 +282,8 @@ var labelsOnce sync.Once
 // subbenchmarks. b must not have subbenchmarks.
 func (b *B) run() {
 	labelsOnce.Do(func() {
+		fmt.Fprintf(b.w, "Running with CodSpeed instrumentation\n")
+
 		fmt.Fprintf(b.w, "goos: %s\n", runtime.GOOS)
 		fmt.Fprintf(b.w, "goarch: %s\n", runtime.GOARCH)
 		if b.importPath != "" {
@@ -345,18 +354,46 @@ func (b *B) launch() {
 				b.runN(b.benchTime.n)
 			}
 		} else {
-			d := b.benchTime.d
-			for n := int64(1); !b.failed && b.duration < d && n < 1e9; {
+			warmupD := time.Millisecond * 500
+			warmupN := int64(1)
+			for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
 				last := n
 				// Predict required iterations.
-				goalns := d.Nanoseconds()
+				goalns := warmupD.Nanoseconds()
 				prevIters := int64(b.N)
 				n = int64(predictN(goalns, prevIters, b.duration.Nanoseconds(), last))
 				b.runN(int(n))
+				warmupN = n
+			}
+
+			// Reset the fields from the warmup run
+			b.codspeedItersPerRound = make([]int64, 0)
+			b.codspeedTimePerRoundNs = make([]time.Duration, 0)
+
+			// Final run:
+			benchD := time.Second * b.benchTime.d
+			benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
+
+			// When we have a very slow benchmark (e.g. taking 500ms), we have to:
+			// 1. Reduce the number of rounds to not slow down the process (e.g. by executing a 1s bench 100 times)
+			// 2. Not end up with roundN of 0 when dividing benchN (which can be < 100) by rounds
+			const minRounds = 100
+			var rounds int
+			var roundN int
+			if benchN < minRounds {
+				rounds = benchN
+				roundN = 1
+			} else {
+				rounds = minRounds
+				roundN = benchN / int(rounds)
+			}
+
+			for range rounds {
+				b.runN(int(roundN))
 			}
 		}
 	}
-	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.extra}
+	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.codspeedTimePerRoundNs, b.codspeedItersPerRound, b.extra}
 }
 
 // Elapsed returns the measured elapsed time of the benchmark.
@@ -409,14 +446,16 @@ func (b *B) stopOrScaleBLoop() bool {
 		panic("loop iteration target overflow")
 	}
 	b.loop.i++
+
+	b.StartTimer()
 	return true
 }
 
 func (b *B) loopSlowPath() bool {
 	// Consistency checks
-	if !b.timerOn {
-		b.Fatal("B.Loop called with timer stopped")
-	}
+	// if !b.timerOn {
+	// 	b.Fatal("B.Loop called with timer stopped")
+	// }
 	if b.loop.i&loopPoisonMask != 0 {
 		panic(fmt.Sprintf("unknown loop stop condition: %#x", b.loop.i))
 	}
@@ -429,7 +468,12 @@ func (b *B) loopSlowPath() bool {
 		// Within a b.Loop loop, we don't use b.N (to avoid confusion).
 		b.N = 0
 		b.loop.i++
+
+		b.codspeedItersPerRound = make([]int64, 0)
+		b.codspeedTimePerRoundNs = make([]time.Duration, 0)
+
 		b.ResetTimer()
+		b.StartTimer()
 		return true
 	}
 	// Handles fixed iterations case
@@ -437,6 +481,8 @@ func (b *B) loopSlowPath() bool {
 		if b.loop.n < uint64(b.benchTime.n) {
 			b.loop.n = uint64(b.benchTime.n)
 			b.loop.i++
+			b.ResetTimer()
+			b.StartTimer()
 			return true
 		}
 		b.StopTimer()
@@ -483,6 +529,7 @@ func (b *B) loopSlowPath() bool {
 // whereas b.N-based benchmarks must run the benchmark function (and any
 // associated setup and cleanup) several times.
 func (b *B) Loop() bool {
+	b.StopTimer()
 	// This is written such that the fast path is as fast as possible and can be
 	// inlined.
 	//
@@ -497,6 +544,7 @@ func (b *B) Loop() bool {
 	//   path can do consistency checks and fail.
 	if b.loop.i < b.loop.n {
 		b.loop.i++
+		b.StartTimer()
 		return true
 	}
 	return b.loopSlowPath()
@@ -522,6 +570,9 @@ type BenchmarkResult struct {
 	Bytes     int64         // Bytes processed in one iteration.
 	MemAllocs uint64        // The total number of memory allocations.
 	MemBytes  uint64        // The total number of bytes allocated.
+
+	CodspeedTimePerRoundNs []time.Duration
+	CodspeedItersPerRound  []int64
 
 	// Extra records additional metrics reported by ReportMetric.
 	Extra map[string]float64
@@ -754,6 +805,79 @@ func (s *benchState) processBench(b *B) {
 				continue
 			}
 			results := r.String()
+
+			// ############################################################################################
+			// START CODSPEED
+			type RawResults struct {
+				BenchmarkName          string          `json:"benchmark_name"`
+				Pid                    int             `json:"pid"`
+				CodspeedTimePerRoundNs []time.Duration `json:"codspeed_time_per_round_ns"`
+				CodspeedItersPerRound  []int64         `json:"codspeed_iters_per_round"`
+			}
+
+			// Build custom bench name with :: separator
+			var nameParts []string
+			current := &b.common
+			for current.parent != nil {
+				// Extract the sub-benchmark part by removing parent prefix
+				parentName := current.parent.name
+				if strings.HasPrefix(current.name, parentName+"/") {
+					subName := strings.TrimPrefix(current.name, parentName+"/")
+					nameParts = append([]string{subName}, nameParts...)
+				} else {
+					nameParts = append([]string{current.name}, nameParts...)
+				}
+
+				if current.parent.name == "Main" {
+					break
+				}
+				current = current.parent
+			}
+			customBenchName := strings.Join(nameParts, "::")
+
+			rawResults := RawResults{
+				BenchmarkName:          customBenchName,
+				Pid:                    os.Getpid(),
+				CodspeedTimePerRoundNs: r.CodspeedTimePerRoundNs,
+				CodspeedItersPerRound:  r.CodspeedItersPerRound,
+			}
+
+			codspeedProfileFolder := os.Getenv("CODSPEED_PROFILE_FOLDER")
+			if codspeedProfileFolder == "" {
+				panic("CODSPEED_PROFILE_FOLDER environment variable is not set")
+			}
+			if err := os.MkdirAll(filepath.Join(codspeedProfileFolder, "raw_results"), 0755); err != nil {
+				fmt.Fprintf(os.Stderr, "failed to create raw results directory: %v\n", err)
+				continue
+			}
+			// Generate random filename to avoid any overwrites
+			randomBytes := make([]byte, 16)
+			if _, err := rand.Read(randomBytes); err != nil {
+				fmt.Fprintf(os.Stderr, "failed to generate random filename: %v\n", err)
+				continue
+			}
+			rawResultsFile := filepath.Join(codspeedProfileFolder, "raw_results", fmt.Sprintf("%s.json", hex.EncodeToString(randomBytes)))
+			file, err := os.Create(rawResultsFile)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to create raw results file: %v\n", err)
+				continue
+			}
+			output, err := json.MarshalIndent(rawResults, "", "  ")
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to marshal raw results: %v\n", err)
+				file.Close()
+				continue
+			}
+			// FIXME: Don't overwrite the file if it already exists
+			if _, err := file.Write(output); err != nil {
+				fmt.Fprintf(os.Stderr, "failed to write raw results: %v\n", err)
+				file.Close()
+				continue
+			}
+			defer file.Close()
+			// END CODSPEED
+			// ############################################################################################
+
 			if b.chatty != nil {
 				fmt.Fprintf(b.w, "%-*s\t", s.maxLen, benchName)
 			}
