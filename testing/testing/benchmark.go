@@ -373,10 +373,20 @@ func (b *B) launch() {
 			// Final run:
 			benchD := time.Second * b.benchTime.d
 			benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
-			rounds := 100 // TODO: Compute the rounds in a better way
-			// Ensure roundN is at least 1 to prevent division by zero in BenchmarkResult printing
-			// when very slow benchmarks can't complete even 1 iteration per round
-			roundN := max(benchN/int(rounds), 1)
+
+			// When we have a very slow benchmark (e.g. taking 500ms), we have to:
+			// 1. Reduce the number of rounds to not slow down the process (e.g. by executing a 1s bench 100 times)
+			// 2. Not end up with roundN of 0 when dividing benchN (which can be < 100) by rounds
+			const minRounds = 100
+			var rounds int
+			var roundN int
+			if benchN < minRounds {
+				rounds = benchN
+				roundN = 1
+			} else {
+				rounds = minRounds
+				roundN = benchN / int(rounds)
+			}
 
 			for range rounds {
 				b.runN(int(roundN))
