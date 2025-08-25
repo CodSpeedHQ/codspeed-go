@@ -1,0 +1,24 @@
+[submodule "go-runner/testdata/projects/fzf"]
+	path = go-runner/testdata/projects/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "go-runner/testdata/projects/opentelemetry-go"]
+	path = go-runner/testdata/projects/opentelemetry-go
+	url = https://github.com/open-telemetry/opentelemetry-go.git
+[submodule "go-runner/testdata/projects/golang-benchmarks"]
+	path = go-runner/testdata/projects/golang-benchmarks
+	url = https://github.com/SimonWaldherr/golang-benchmarks
+[submodule "go-runner/testdata/projects/fuego"]
+	path = go-runner/testdata/projects/fuego
+	url = https://github.com/go-fuego/fuego
+[submodule "go-runner/testdata/projects/hugo"]
+	path = go-runner/testdata/projects/hugo
+	url = https://github.com/gohugoio/hugo.git
+[submodule "go-runner/testdata/projects/zerolog"]
+	path = go-runner/testdata/projects/zerolog
+	url = https://github.com/rs/zerolog
+[submodule "go-runner/testdata/projects/zap"]
+	path = go-runner/testdata/projects/zap
+	url = https://github.com/uber-go/zap
+[submodule "go-runner/testdata/projects/cli-runtime"]
+	path = go-runner/testdata/projects/cli-runtime
+	url = https://github.com/kubernetes/cli-runtime.git
