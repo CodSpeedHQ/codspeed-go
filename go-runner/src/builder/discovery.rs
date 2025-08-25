@@ -9,6 +9,7 @@ use std::{
 
 use crate::builder::verifier;
 use crate::prelude::*;
+use itertools::Itertools;
 use serde::{Deserialize, Serialize};
 
 /// Represents a Go package, deserialized from `go list -json` output.
@@ -78,7 +79,7 @@ impl GoPackage {
         };
 
         let mut benchmarks = Vec::new();
-        'file_loop: for file in test_go_files {
+        'file_loop: for file in test_go_files.iter().sorted() {
             assert!(file.ends_with("_test.go"));
 
             let file_path = self.dir.join(file);
@@ -166,7 +167,7 @@ impl GoPackage {
                 continue;
             }
 
-            for func in valid_benchmarks {
+            for func in valid_benchmarks.into_iter().sorted() {
                 benchmarks.push(GoBenchmark::new(
                     package_import_path.clone(),
                     func,

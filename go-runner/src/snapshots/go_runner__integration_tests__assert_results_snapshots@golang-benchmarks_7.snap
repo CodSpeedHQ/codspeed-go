@@ -1,0 +1,60 @@
+---
+source: src/integration_tests.rs
+expression: content
+---
+{
+  "creator": {
+    "name": "codspeed-go",
+    "version": "0.1.0",
+    "pid": "[pid]"
+  },
+  "instrument": {
+    "type": "walltime"
+  },
+  "benchmarks": [
+    {
+      "name": "BenchmarkFulltextParse",
+      "uri": "between/between_test.go::BenchmarkFulltextParse",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkFulltextRegEx",
+      "uri": "between/between_test.go::BenchmarkFulltextRegEx",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkNumberParse",
+      "uri": "between/between_test.go::BenchmarkNumberParse",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkNumberRegEx",
+      "uri": "between/between_test.go::BenchmarkNumberRegEx",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    }
+  ]
+}
