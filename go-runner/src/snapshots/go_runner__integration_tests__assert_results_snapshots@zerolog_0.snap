@@ -1,0 +1,192 @@
+---
+source: src/integration_tests.rs
+expression: content
+---
+{
+  "creator": {
+    "name": "codspeed-go",
+    "version": "0.1.0",
+    "pid": "[pid]"
+  },
+  "instrument": {
+    "type": "walltime"
+  },
+  "benchmarks": [
+    {
+      "name": "BenchmarkAppendBytes::EncodingFirst",
+      "uri": "unknown::BenchmarkAppendBytes::EncodingFirst",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendBytes::EncodingLast",
+      "uri": "unknown::BenchmarkAppendBytes::EncodingLast",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendBytes::EncodingMiddle",
+      "uri": "unknown::BenchmarkAppendBytes::EncodingMiddle",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendBytes::MultiBytesFirst",
+      "uri": "unknown::BenchmarkAppendBytes::MultiBytesFirst",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendBytes::MultiBytesLast",
+      "uri": "unknown::BenchmarkAppendBytes::MultiBytesLast",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendBytes::MultiBytesMiddle",
+      "uri": "unknown::BenchmarkAppendBytes::MultiBytesMiddle",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendBytes::NoEncoding",
+      "uri": "unknown::BenchmarkAppendBytes::NoEncoding",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::EncodingFirst",
+      "uri": "unknown::BenchmarkAppendString::EncodingFirst",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::EncodingLast",
+      "uri": "unknown::BenchmarkAppendString::EncodingLast",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::EncodingMiddle",
+      "uri": "unknown::BenchmarkAppendString::EncodingMiddle",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::MultiBytesFirst",
+      "uri": "unknown::BenchmarkAppendString::MultiBytesFirst",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::MultiBytesLast",
+      "uri": "unknown::BenchmarkAppendString::MultiBytesLast",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::MultiBytesMiddle",
+      "uri": "unknown::BenchmarkAppendString::MultiBytesMiddle",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkAppendString::NoEncoding",
+      "uri": "unknown::BenchmarkAppendString::NoEncoding",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkEncoder_AppendFloat32",
+      "uri": "internal/json/types_test.go::BenchmarkEncoder_AppendFloat32",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    },
+    {
+      "name": "BenchmarkEncoder_AppendFloat64",
+      "uri": "internal/json/types_test.go::BenchmarkEncoder_AppendFloat64",
+      "config": {
+        "warmup_time_ns": null,
+        "min_round_time_ns": null,
+        "max_time_ns": null,
+        "max_rounds": null
+      },
+      "stats": "[stats]"
+    }
+  ]
+}

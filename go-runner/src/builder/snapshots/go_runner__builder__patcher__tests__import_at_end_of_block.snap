@@ -1,0 +1,11 @@
+---
+source: src/builder/patcher.rs
+expression: result
+---
+package main
+
+import (
+    "fmt"
+    "strings"
+    testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+)

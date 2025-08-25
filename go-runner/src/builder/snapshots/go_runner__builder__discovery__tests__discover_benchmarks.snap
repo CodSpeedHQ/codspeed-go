@@ -1,0 +1,781 @@
+---
+source: src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "base64",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/base64 [github.com/SimonWaldherr/golang-benchmarks/base64.test]",
+      "TestGoFiles": [
+        "base64_test.go"
+      ],
+      "TestImports": [
+        "encoding/base64",
+        "regexp",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "base64_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkBase64decode",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/base64",
+        "import_alias": "benchmarkbase64decode_572990626",
+        "qualified_name": "benchmarkbase64decode_572990626.BenchmarkBase64decode",
+        "file_path": "base64/base64_test.go"
+      },
+      {
+        "name": "BenchmarkBase64regex",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/base64",
+        "import_alias": "benchmarkbase64regex_572990626",
+        "qualified_name": "benchmarkbase64regex_572990626.BenchmarkBase64regex",
+        "file_path": "base64/base64_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "between",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/between [github.com/SimonWaldherr/golang-benchmarks/between.test]",
+      "TestGoFiles": [
+        "between_test.go"
+      ],
+      "TestImports": [
+        "regexp",
+        "simonwaldherr.de/go/golibs/as",
+        "simonwaldherr.de/go/ranger",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "between_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkNumberRegEx",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/between",
+        "import_alias": "benchmarknumberregex_572990626",
+        "qualified_name": "benchmarknumberregex_572990626.BenchmarkNumberRegEx",
+        "file_path": "between/between_test.go"
+      },
+      {
+        "name": "BenchmarkFulltextRegEx",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/between",
+        "import_alias": "benchmarkfulltextregex_572990626",
+        "qualified_name": "benchmarkfulltextregex_572990626.BenchmarkFulltextRegEx",
+        "file_path": "between/between_test.go"
+      },
+      {
+        "name": "BenchmarkNumberParse",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/between",
+        "import_alias": "benchmarknumberparse_572990626",
+        "qualified_name": "benchmarknumberparse_572990626.BenchmarkNumberParse",
+        "file_path": "between/between_test.go"
+      },
+      {
+        "name": "BenchmarkFulltextParse",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/between",
+        "import_alias": "benchmarkfulltextparse_572990626",
+        "qualified_name": "benchmarkfulltextparse_572990626.BenchmarkFulltextParse",
+        "file_path": "between/between_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "trim",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/caseinsensitivecompare [github.com/SimonWaldherr/golang-benchmarks/caseinsensitivecompare.test]",
+      "TestGoFiles": [
+        "caseinsensitivecompare_test.go"
+      ],
+      "TestImports": [
+        "strings",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "caseinsensitivecompare_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkEqualFold",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/caseinsensitivecompare",
+        "import_alias": "benchmarkequalfold_572990626",
+        "qualified_name": "benchmarkequalfold_572990626.BenchmarkEqualFold",
+        "file_path": "caseinsensitivecompare/caseinsensitivecompare_test.go"
+      },
+      {
+        "name": "BenchmarkToUpper",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/caseinsensitivecompare",
+        "import_alias": "benchmarktoupper_572990626",
+        "qualified_name": "benchmarktoupper_572990626.BenchmarkToUpper",
+        "file_path": "caseinsensitivecompare/caseinsensitivecompare_test.go"
+      },
+      {
+        "name": "BenchmarkToLower",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/caseinsensitivecompare",
+        "import_alias": "benchmarktolower_572990626",
+        "qualified_name": "benchmarktolower_572990626.BenchmarkToLower",
+        "file_path": "caseinsensitivecompare/caseinsensitivecompare_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "concat",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/concat [github.com/SimonWaldherr/golang-benchmarks/concat.test]",
+      "TestGoFiles": [
+        "concat_test.go"
+      ],
+      "TestImports": [
+        "bytes",
+        "strings",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "concat_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkConcatString",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/concat",
+        "import_alias": "benchmarkconcatstring_572990626",
+        "qualified_name": "benchmarkconcatstring_572990626.BenchmarkConcatString",
+        "file_path": "concat/concat_test.go"
+      },
+      {
+        "name": "BenchmarkConcatBuffer",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/concat",
+        "import_alias": "benchmarkconcatbuffer_572990626",
+        "qualified_name": "benchmarkconcatbuffer_572990626.BenchmarkConcatBuffer",
+        "file_path": "concat/concat_test.go"
+      },
+      {
+        "name": "BenchmarkConcatBuilder",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/concat",
+        "import_alias": "benchmarkconcatbuilder_572990626",
+        "qualified_name": "benchmarkconcatbuilder_572990626.BenchmarkConcatBuilder",
+        "file_path": "concat/concat_test.go"
+      },
+      {
+        "name": "BenchmarkConcat",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/concat",
+        "import_alias": "benchmarkconcat_572990626",
+        "qualified_name": "benchmarkconcat_572990626.BenchmarkConcat",
+        "file_path": "concat/concat_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "contains",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/contains [github.com/SimonWaldherr/golang-benchmarks/contains.test]",
+      "TestGoFiles": [
+        "contains_test.go"
+      ],
+      "TestImports": [
+        "bytes",
+        "regexp",
+        "strings",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "contains_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkContains",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcontains_572990626",
+        "qualified_name": "benchmarkcontains_572990626.BenchmarkContains",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkContainsNot",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcontainsnot_572990626",
+        "qualified_name": "benchmarkcontainsnot_572990626.BenchmarkContainsNot",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkContainsBytes",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcontainsbytes_572990626",
+        "qualified_name": "benchmarkcontainsbytes_572990626.BenchmarkContainsBytes",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkContainsBytesNot",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcontainsbytesnot_572990626",
+        "qualified_name": "benchmarkcontainsbytesnot_572990626.BenchmarkContainsBytesNot",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkCompileMatch",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcompilematch_572990626",
+        "qualified_name": "benchmarkcompilematch_572990626.BenchmarkCompileMatch",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkCompileMatchNot",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcompilematchnot_572990626",
+        "qualified_name": "benchmarkcompilematchnot_572990626.BenchmarkCompileMatchNot",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkMatch",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkmatch_572990626",
+        "qualified_name": "benchmarkmatch_572990626.BenchmarkMatch",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkMatchNot",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkmatchnot_572990626",
+        "qualified_name": "benchmarkmatchnot_572990626.BenchmarkMatchNot",
+        "file_path": "contains/contains_test.go"
+      },
+      {
+        "name": "BenchmarkContainsMethods",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/contains",
+        "import_alias": "benchmarkcontainsmethods_572990626",
+        "qualified_name": "benchmarkcontainsmethods_572990626.BenchmarkContainsMethods",
+        "file_path": "contains/contains_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "embed",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/embed [github.com/SimonWaldherr/golang-benchmarks/embed.test]",
+      "TestGoFiles": [
+        "embed_test.go"
+      ],
+      "TestImports": [
+        "embed",
+        "io/ioutil",
+        "os",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "embed_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkEmbed",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/embed",
+        "import_alias": "benchmarkembed_572990626",
+        "qualified_name": "benchmarkembed_572990626.BenchmarkEmbed",
+        "file_path": "embed/embed_test.go"
+      },
+      {
+        "name": "BenchmarkReadFile",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/embed",
+        "import_alias": "benchmarkreadfile_572990626",
+        "qualified_name": "benchmarkreadfile_572990626.BenchmarkReadFile",
+        "file_path": "embed/embed_test.go"
+      },
+      {
+        "name": "BenchmarkIoutilReadFile",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/embed",
+        "import_alias": "benchmarkioutilreadfile_572990626",
+        "qualified_name": "benchmarkioutilreadfile_572990626.BenchmarkIoutilReadFile",
+        "file_path": "embed/embed_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "foreach",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/foreach [github.com/SimonWaldherr/golang-benchmarks/foreach.test]",
+      "TestGoFiles": [
+        "foreach_test.go"
+      ],
+      "TestImports": [
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "foreach_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkForMap",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/foreach",
+        "import_alias": "benchmarkformap_572990626",
+        "qualified_name": "benchmarkformap_572990626.BenchmarkForMap",
+        "file_path": "foreach/foreach_test.go"
+      },
+      {
+        "name": "BenchmarkRangeMap",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/foreach",
+        "import_alias": "benchmarkrangemap_572990626",
+        "qualified_name": "benchmarkrangemap_572990626.BenchmarkRangeMap",
+        "file_path": "foreach/foreach_test.go"
+      },
+      {
+        "name": "BenchmarkRangeSlice",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/foreach",
+        "import_alias": "benchmarkrangeslice_572990626",
+        "qualified_name": "benchmarkrangeslice_572990626.BenchmarkRangeSlice",
+        "file_path": "foreach/foreach_test.go"
+      },
+      {
+        "name": "BenchmarkRangeSliceKey",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/foreach",
+        "import_alias": "benchmarkrangeslicekey_572990626",
+        "qualified_name": "benchmarkrangeslicekey_572990626.BenchmarkRangeSliceKey",
+        "file_path": "foreach/foreach_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "index",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/index [github.com/SimonWaldherr/golang-benchmarks/index.test]",
+      "TestGoFiles": [
+        "index_test.go"
+      ],
+      "TestImports": [
+        "math/rand",
+        "strconv",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "index_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkMapStringKeys",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/index",
+        "import_alias": "benchmarkmapstringkeys_572990626",
+        "qualified_name": "benchmarkmapstringkeys_572990626.BenchmarkMapStringKeys",
+        "file_path": "index/index_test.go"
+      },
+      {
+        "name": "BenchmarkMapIntKeys",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/index",
+        "import_alias": "benchmarkmapintkeys_572990626",
+        "qualified_name": "benchmarkmapintkeys_572990626.BenchmarkMapIntKeys",
+        "file_path": "index/index_test.go"
+      },
+      {
+        "name": "BenchmarkMapStringIndex",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/index",
+        "import_alias": "benchmarkmapstringindex_572990626",
+        "qualified_name": "benchmarkmapstringindex_572990626.BenchmarkMapStringIndex",
+        "file_path": "index/index_test.go"
+      },
+      {
+        "name": "BenchmarkMapIntIndex",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/index",
+        "import_alias": "benchmarkmapintindex_572990626",
+        "qualified_name": "benchmarkmapintindex_572990626.BenchmarkMapIntIndex",
+        "file_path": "index/index_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "json",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/json [github.com/SimonWaldherr/golang-benchmarks/json.test]",
+      "TestGoFiles": [
+        "json_test.go"
+      ],
+      "TestImports": [
+        "encoding/json",
+        "math",
+        "math/big",
+        "testing",
+        "time"
+      ],
+      "CompiledGoFiles": [
+        "json_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkJsonMarshal",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/json",
+        "import_alias": "benchmarkjsonmarshal_572990626",
+        "qualified_name": "benchmarkjsonmarshal_572990626.BenchmarkJsonMarshal",
+        "file_path": "json/json_test.go"
+      },
+      {
+        "name": "BenchmarkJsonUnmarshal",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/json",
+        "import_alias": "benchmarkjsonunmarshal_572990626",
+        "qualified_name": "benchmarkjsonunmarshal_572990626.BenchmarkJsonUnmarshal",
+        "file_path": "json/json_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "math",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/math [github.com/SimonWaldherr/golang-benchmarks/math.test]",
+      "TestGoFiles": [
+        "math_test.go"
+      ],
+      "TestImports": [
+        "sync",
+        "sync/atomic",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "math_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkMathInt8",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathint8_572990626",
+        "qualified_name": "benchmarkmathint8_572990626.BenchmarkMathInt8",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathInt32",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathint32_572990626",
+        "qualified_name": "benchmarkmathint32_572990626.BenchmarkMathInt32",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathInt64",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathint64_572990626",
+        "qualified_name": "benchmarkmathint64_572990626.BenchmarkMathInt64",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathAtomicInt32",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathatomicint32_572990626",
+        "qualified_name": "benchmarkmathatomicint32_572990626.BenchmarkMathAtomicInt32",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathAtomicInt64",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathatomicint64_572990626",
+        "qualified_name": "benchmarkmathatomicint64_572990626.BenchmarkMathAtomicInt64",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathMutexInt",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathmutexint_572990626",
+        "qualified_name": "benchmarkmathmutexint_572990626.BenchmarkMathMutexInt",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathFloat32",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathfloat32_572990626",
+        "qualified_name": "benchmarkmathfloat32_572990626.BenchmarkMathFloat32",
+        "file_path": "math/math_test.go"
+      },
+      {
+        "name": "BenchmarkMathFloat64",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/math",
+        "import_alias": "benchmarkmathfloat64_572990626",
+        "qualified_name": "benchmarkmathfloat64_572990626.BenchmarkMathFloat64",
+        "file_path": "math/math_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "parse",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/parse [github.com/SimonWaldherr/golang-benchmarks/parse.test]",
+      "TestGoFiles": [
+        "parse_test.go"
+      ],
+      "TestImports": [
+        "strconv",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "parse_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkParseBool",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/parse",
+        "import_alias": "benchmarkparsebool_572990626",
+        "qualified_name": "benchmarkparsebool_572990626.BenchmarkParseBool",
+        "file_path": "parse/parse_test.go"
+      },
+      {
+        "name": "BenchmarkParseInt",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/parse",
+        "import_alias": "benchmarkparseint_572990626",
+        "qualified_name": "benchmarkparseint_572990626.BenchmarkParseInt",
+        "file_path": "parse/parse_test.go"
+      },
+      {
+        "name": "BenchmarkParseFloat",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/parse",
+        "import_alias": "benchmarkparsefloat_572990626",
+        "qualified_name": "benchmarkparsefloat_572990626.BenchmarkParseFloat",
+        "file_path": "parse/parse_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "random",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/random [github.com/SimonWaldherr/golang-benchmarks/random.test]",
+      "TestGoFiles": [
+        "random_test.go"
+      ],
+      "TestImports": [
+        "crypto/rand",
+        "encoding/base64",
+        "math/big",
+        "math/rand",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "random_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkMathRand",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/random",
+        "import_alias": "benchmarkmathrand_572990626",
+        "qualified_name": "benchmarkmathrand_572990626.BenchmarkMathRand",
+        "file_path": "random/random_test.go"
+      },
+      {
+        "name": "BenchmarkCryptoRand",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/random",
+        "import_alias": "benchmarkcryptorand_572990626",
+        "qualified_name": "benchmarkcryptorand_572990626.BenchmarkCryptoRand",
+        "file_path": "random/random_test.go"
+      },
+      {
+        "name": "BenchmarkCryptoRandString",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/random",
+        "import_alias": "benchmarkcryptorandstring_572990626",
+        "qualified_name": "benchmarkcryptorandstring_572990626.BenchmarkCryptoRandString",
+        "file_path": "random/random_test.go"
+      },
+      {
+        "name": "BenchmarkCryptoRandBytes",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/random",
+        "import_alias": "benchmarkcryptorandbytes_572990626",
+        "qualified_name": "benchmarkcryptorandbytes_572990626.BenchmarkCryptoRandBytes",
+        "file_path": "random/random_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "regexp",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/regexp [github.com/SimonWaldherr/golang-benchmarks/regexp.test]",
+      "TestGoFiles": [
+        "regexp_test.go"
+      ],
+      "TestImports": [
+        "regexp",
+        "simonwaldherr.de/go/golibs/regex",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "regexp_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkMatchString",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/regexp",
+        "import_alias": "benchmarkmatchstring_572990626",
+        "qualified_name": "benchmarkmatchstring_572990626.BenchmarkMatchString",
+        "file_path": "regexp/regexp_test.go"
+      },
+      {
+        "name": "BenchmarkMatchStringCompiled",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/regexp",
+        "import_alias": "benchmarkmatchstringcompiled_572990626",
+        "qualified_name": "benchmarkmatchstringcompiled_572990626.BenchmarkMatchStringCompiled",
+        "file_path": "regexp/regexp_test.go"
+      },
+      {
+        "name": "BenchmarkMatchStringGolibs",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/regexp",
+        "import_alias": "benchmarkmatchstringgolibs_572990626",
+        "qualified_name": "benchmarkmatchstringgolibs_572990626.BenchmarkMatchStringGolibs",
+        "file_path": "regexp/regexp_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "template",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/template [github.com/SimonWaldherr/golang-benchmarks/template.test]",
+      "TestGoFiles": [
+        "template_test.go"
+      ],
+      "TestImports": [
+        "bytes",
+        "html/template",
+        "regexp",
+        "testing",
+        "text/template"
+      ],
+      "CompiledGoFiles": [
+        "template_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkTextTemplate",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/template",
+        "import_alias": "benchmarktexttemplate_572990626",
+        "qualified_name": "benchmarktexttemplate_572990626.BenchmarkTextTemplate",
+        "file_path": "template/template_test.go"
+      },
+      {
+        "name": "BenchmarkHTMLTemplate",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/template",
+        "import_alias": "benchmarkhtmltemplate_572990626",
+        "qualified_name": "benchmarkhtmltemplate_572990626.BenchmarkHTMLTemplate",
+        "file_path": "template/template_test.go"
+      },
+      {
+        "name": "BenchmarkRegExp",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/template",
+        "import_alias": "benchmarkregexp_572990626",
+        "qualified_name": "benchmarkregexp_572990626.BenchmarkRegExp",
+        "file_path": "template/template_test.go"
+      }
+    ]
+  }
+]
