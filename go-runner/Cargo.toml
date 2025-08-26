@@ -2,6 +2,8 @@
 name = "go-runner"
 version = "0.1.0"
 edition = "2024"
+repository = "https://github.com/CodSpeedHQ/codspeed-go"
+publish = false
 
 [dependencies]
 anyhow = "1.0"
@@ -22,3 +24,8 @@ tempfile = "3.14"
 [dev-dependencies]
 insta = { version = "1.43", features = ["json", "redactions"] }
 rstest = "0.26"
+
+[profile.dist]
+inherits = "release"
+lto = "thin"
+strip = true
