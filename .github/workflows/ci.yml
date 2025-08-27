@@ -46,6 +46,8 @@ jobs:
 
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@main
+        env:
+          CODSPEED_PERF_ENABLED: true
         with:
           working-directory: example
           run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
