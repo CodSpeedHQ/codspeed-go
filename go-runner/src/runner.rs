@@ -13,11 +13,20 @@ pub fn run<P: AsRef<Path>>(runner_go_path: P, run_args: &[&str]) -> anyhow::Resu
         module_root
     );
 
-    // Run go run -tags=codspeed <path> {args}
+    // Set the integration version in our testing library
+    let ldflags = format!(
+        "-X github.com/CodSpeedHQ/codspeed-go/testing/capi.integrationVersion={}",
+        env!("CARGO_PKG_VERSION")
+    );
+    let args = vec![
+        "run",
+        "-tags=codspeed",
+        "-ldflags",
+        &ldflags,
+        relative_path.to_str().unwrap(),
+    ];
     let output = Command::new("go")
-        .arg("run")
-        .arg("-tags=codspeed")
-        .arg(relative_path)
+        .args(&args)
         .args(run_args)
         .current_dir(module_root)
         .stdout(std::process::Stdio::inherit())
