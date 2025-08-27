@@ -24,6 +24,7 @@ import (
 	"time"
 	"unicode"
 
+	"github.com/CodSpeedHQ/codspeed-go/testing/capi"
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/sysinfo"
 )
 
@@ -83,6 +84,13 @@ type InternalBenchmark struct {
 	F    func(b *B)
 }
 
+type codspeed struct {
+	instrument_hooks *capi.InstrumentHooks
+
+	codspeedTimePerRoundNs []time.Duration
+	codspeedItersPerRound  []int64
+}
+
 // B is a type passed to [Benchmark] functions to manage benchmark
 // timing and control the number of iterations.
 //
@@ -98,6 +106,7 @@ type InternalBenchmark struct {
 // affecting benchmark results.
 type B struct {
 	common
+	codspeed
 	importPath       string // import path of the package containing the benchmark
 	bstate           *benchState
 	N                int
@@ -388,9 +397,11 @@ func (b *B) launch() {
 				roundN = benchN / int(rounds)
 			}
 
+			b.codspeed.instrument_hooks.StartBenchmark()
 			for range rounds {
 				b.runN(int(roundN))
 			}
+			b.codspeed.instrument_hooks.StopBenchmark()
 		}
 	}
 	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.codspeedTimePerRoundNs, b.codspeedItersPerRound, b.extra}
@@ -431,6 +442,7 @@ func (b *B) stopOrScaleBLoop() bool {
 	if t >= b.benchTime.d {
 		// Stop the timer so we don't count cleanup time
 		b.StopTimer()
+		b.codspeed.instrument_hooks.StopBenchmark()
 		// Commit iteration count
 		b.N = int(b.loop.n)
 		b.loop.done = true
@@ -472,6 +484,7 @@ func (b *B) loopSlowPath() bool {
 		b.codspeedItersPerRound = make([]int64, 0)
 		b.codspeedTimePerRoundNs = make([]time.Duration, 0)
 
+		b.codspeed.instrument_hooks.StartBenchmark()
 		b.ResetTimer()
 		b.StartTimer()
 		return true
@@ -486,6 +499,7 @@ func (b *B) loopSlowPath() bool {
 			return true
 		}
 		b.StopTimer()
+		b.codspeed.instrument_hooks.StopBenchmark()
 		// Commit iteration count
 		b.N = int(b.loop.n)
 		b.loop.done = true
@@ -754,6 +768,9 @@ func runBenchmarks(importPath string, matchString func(pat, str string) (bool, e
 			w:     os.Stdout,
 			bench: true,
 		},
+		codspeed: codspeed{
+			instrument_hooks: capi.NewInstrumentHooks(),
+		},
 		importPath: importPath,
 		benchFunc: func(b *B) {
 			for _, Benchmark := range bs {
@@ -763,6 +780,8 @@ func runBenchmarks(importPath string, matchString func(pat, str string) (bool, e
 		benchTime: benchTime,
 		bstate:    bstate,
 	}
+	defer main.codspeed.instrument_hooks.Close()
+
 	if Verbose() {
 		main.chatty = newChattyPrinter(main.w)
 	}
@@ -791,6 +810,7 @@ func (s *benchState) processBench(b *B) {
 						chatty: b.chatty,
 						bench:  true,
 					},
+					codspeed:  b.codspeed,
 					benchFunc: b.benchFunc,
 					benchTime: b.benchTime,
 				}
@@ -875,6 +895,10 @@ func (s *benchState) processBench(b *B) {
 				continue
 			}
 			defer file.Close()
+
+			// Send pid and executed benchmark to the runner
+			b.codspeed.instrument_hooks.SetExecutedBenchmark(uint32(os.Getpid()), customBenchName)
+
 			// END CODSPEED
 			// ############################################################################################
 
@@ -938,6 +962,7 @@ func (b *B) Run(name string, f func(b *B)) bool {
 			chatty:  b.chatty,
 			bench:   true,
 		},
+		codspeed:   b.codspeed,
 		importPath: b.importPath,
 		benchFunc:  f,
 		benchTime:  b.benchTime,
