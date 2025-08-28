@@ -37,10 +37,13 @@ pub fn run_benchmarks(project_dir: &Path, bench: &str) -> anyhow::Result<()> {
         info!("Found {name:30} in {path:?}");
     }
 
-    // 2. Generate codspeed runners and execute them
+    // 2. Generate codspeed runners, build binaries, and execute them
     for package in &packages {
         info!("Generating custom runner for package: {}", package.name);
         let (_target_dir, runner_path) = builder::templater::run(package)?;
+
+        info!("Building binary for package: {}", package.name);
+        let binary_path = builder::build_binary(&runner_path)?;
 
         let args = [
             "-test.bench",
@@ -55,7 +58,7 @@ pub fn run_benchmarks(project_dir: &Path, bench: &str) -> anyhow::Result<()> {
         ];
 
         info!("Running benchmarks for package: {}", package.name);
-        runner::run(&runner_path, &args)?;
+        runner::run(&binary_path, &args)?;
     }
 
     // 3. Collect the results
