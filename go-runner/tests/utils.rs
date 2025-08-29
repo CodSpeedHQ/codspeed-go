@@ -1,8 +1,18 @@
 use codspeed_go_runner::{builder, builder::BenchmarkPackage, cli::Cli, runner};
 use std::path::Path;
+use std::sync::Mutex;
+use tempfile::TempDir;
 
 /// Helper function to run a single package with arguments
 pub fn run_package_with_args(package: &BenchmarkPackage, args: &[&str]) -> anyhow::Result<String> {
+    // Mutex to prevent concurrent tests from interfering with CODSPEED_PROFILE_FOLDER env var
+    static ENV_MUTEX: Mutex<()> = Mutex::new(());
+    let _env_guard = ENV_MUTEX.lock().unwrap_or_else(|e| e.into_inner());
+
+    let temp_dir = TempDir::new()?;
+    let profile_dir = temp_dir.path().join("profile");
+    unsafe { std::env::set_var("CODSPEED_PROFILE_FOLDER", &profile_dir) };
+
     let (_dir, runner_path) = builder::templater::run(package)?;
     let binary_path = builder::build_binary(&runner_path)?;
     runner::run_with_stdout(&binary_path, args)

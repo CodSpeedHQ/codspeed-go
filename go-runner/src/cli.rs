@@ -10,6 +10,22 @@ pub enum CliExit {
 pub struct Cli {
     /// Run only benchmarks matching regexp
     pub bench: String,
+
+    /// Run each benchmark for duration d (e.g., '3s')
+    pub benchtime: String,
+
+    /// Package patterns to run benchmarks for
+    pub packages: Vec<String>,
+}
+
+impl Default for Cli {
+    fn default() -> Self {
+        Self {
+            bench: ".".into(),
+            benchtime: "3s".into(),
+            packages: vec!["./...".into()],
+        }
+    }
 }
 
 impl Cli {
@@ -24,7 +40,7 @@ impl Cli {
     }
 
     fn parse_args(mut args: impl Iterator<Item = String>) -> Result<Self, CliExit> {
-        let mut bench = ".".to_string();
+        let mut instance = Self::default();
 
         // We currently only support the `test` subcommand.
         let cmd = args.next();
@@ -41,12 +57,19 @@ impl Cli {
 The Codspeed Go Benchmark Runner
 
 USAGE:
-    go-runner test [OPTIONS]
+    go-runner test [OPTIONS] [PACKAGES...]
 
 OPTIONS:
     -bench <pattern>     Run only benchmarks matching regexp (defaults to '.')
+    -benchtime <duration> Run each benchmark for duration d (defaults to '3s')
     -h, --help           Print help information
-    -V, --version        Print version information"
+    -V, --version        Print version information
+
+SUPPORTED FLAGS:
+    -bench, -benchtime
+
+UNSUPPORTED FLAGS (will be warned about):
+    -benchmem, -count, -cpu, -cpuprofile, -memprofile, -trace, etc."
                     );
                     return Err(CliExit::Help);
                 }
@@ -55,35 +78,40 @@ OPTIONS:
                     return Err(CliExit::Version);
                 }
                 "-bench" => {
-                    bench = args.next().ok_or_else(|| {
+                    instance.bench = args.next().ok_or_else(|| {
                         eprintln!("error: `-bench` requires a pattern");
                         CliExit::MissingArgument
                     })?;
                 }
                 s if s.starts_with("-bench=") => {
-                    bench = s.split_once('=').unwrap().1.to_string();
+                    instance.bench = s.split_once('=').unwrap().1.to_string();
                 }
-
+                "-benchtime" => {
+                    instance.benchtime = args.next().ok_or_else(|| {
+                        eprintln!("error: `-benchtime` requires a duration");
+                        CliExit::MissingArgument
+                    })?;
+                }
+                s if s.starts_with("-benchtime=") => {
+                    instance.benchtime = s.split_once('=').unwrap().1.to_string();
+                }
                 s if s.starts_with('-') => {
-                    eprintln!("Unknown flag: {s}");
-                    return Err(CliExit::UnknownFlag);
-                }
-
-                _ => {
                     eprintln!(
-                        "warning: package arguments are not currently supported, ignoring '{arg}'"
+                        "warning: flag '{s}' is not supported by CodSpeed Go runner, ignoring"
                     );
-                    // Consume and ignore all remaining arguments
-                    for remaining_arg in args {
-                        eprintln!(
-                            "warning: package arguments are not currently supported, ignoring '{remaining_arg}'"
-                        );
-                    }
+                }
+                _ => {
+                    // Collect package arguments for filtering
+                    instance.packages = {
+                        let mut packages = vec![arg];
+                        packages.extend(args);
+                        packages
+                    };
                     break;
                 }
             }
         }
-        Ok(Self { bench })
+        Ok(instance)
     }
 }
 
@@ -107,6 +135,8 @@ mod tests {
     fn test_cli_parse_defaults() {
         let cli = str_to_iter("go-runner test").unwrap();
         assert_eq!(cli.bench, ".");
+        assert_eq!(cli.benchtime, Cli::default().benchtime);
+        assert_eq!(cli.packages, Cli::default().packages);
     }
 
     #[test]
@@ -119,9 +149,30 @@ mod tests {
     }
 
     #[test]
-    fn test_cli_parse_ignores_packages() {
+    fn test_cli_parse_with_benchtime_flag() {
+        let cli = str_to_iter("go-runner test -benchtime 3s").unwrap();
+        assert_eq!(cli.benchtime, "3s".to_string());
+
+        let cli = str_to_iter("go-runner test -benchtime=10x").unwrap();
+        assert_eq!(cli.benchtime, "10x".to_string());
+    }
+
+    #[test]
+    fn test_cli_parse_with_packages() {
         let cli = str_to_iter("go-runner test package1 package2").unwrap();
         assert_eq!(cli.bench, ".");
+        assert_eq!(
+            cli.packages,
+            vec!["package1".to_string(), "package2".to_string()]
+        );
+    }
+
+    #[test]
+    fn test_cli_parse_combined_flags() {
+        let cli = str_to_iter("go-runner test -bench=BenchmarkFoo -benchtime 5s ./pkg").unwrap();
+        assert_eq!(cli.bench, "BenchmarkFoo");
+        assert_eq!(cli.benchtime, "5s".to_string());
+        assert_eq!(cli.packages, vec!["./pkg".to_string()]);
     }
 
     #[test]
@@ -147,7 +198,11 @@ mod tests {
         let result = str_to_iter("go-runner test -bench");
         assert!(matches!(result, Err(CliExit::MissingArgument)));
 
+        let result = str_to_iter("go-runner test -benchtime");
+        assert!(matches!(result, Err(CliExit::MissingArgument)));
+
+        // Unknown flags now generate warnings but don't cause errors
         let result = str_to_iter("go-runner test -unknown");
-        assert!(matches!(result, Err(CliExit::UnknownFlag)));
+        assert!(result.is_ok());
     }
 }
