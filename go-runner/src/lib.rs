@@ -14,17 +14,14 @@ pub(crate) mod utils;
 #[cfg(test)]
 mod integration_tests;
 
-/// Builds and runs the specified Go project benchmarks, writing results to the .codspeed folder.
-pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Result<()> {
-    let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER")
-        .context("CODSPEED_PROFILE_FOLDER env var not set")?;
-    std::fs::remove_dir_all(&profile_dir).ok();
-
-    // 1. Build phase - Benchmark and package discovery
+pub fn filtered_packages_from_project(
+    project_dir: &Path,
+    pkg_filter: &[String],
+) -> anyhow::Result<Vec<BenchmarkPackage>> {
     let packages = BenchmarkPackage::from_project(project_dir)?
         .into_iter()
         .filter(|pkg| {
-            cli.packages.iter().any(|pattern| {
+            pkg_filter.iter().any(|pattern| {
                 // Support both exact matches and pattern matching
                 pkg.name == *pattern
                     || pkg.name.contains(pattern)
@@ -35,6 +32,18 @@ pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Resu
         .collect::<Vec<_>>();
 
     info!("Discovered {} packages", packages.len());
+
+    Ok(packages)
+}
+
+/// Builds and runs the specified Go project benchmarks, writing results to the .codspeed folder.
+pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Result<()> {
+    let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER")
+        .context("CODSPEED_PROFILE_FOLDER env var not set")?;
+    std::fs::remove_dir_all(&profile_dir).ok();
+
+    // 1. Build phase - Benchmark and package discovery
+    let packages = filtered_packages_from_project(project_dir, &cli.packages)?;
 
     let mut bench_name_to_path = HashMap::new();
     for package in &packages {

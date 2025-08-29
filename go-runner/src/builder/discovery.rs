@@ -297,6 +297,7 @@ impl BenchmarkPackage {
         Ok(packages)
     }
 
+    // TODO: PASS THE CLI PACKAGE ARG HERE THEN CHECK FOR MATCHES!!!
     fn run_go_list(go_project_path: &Path) -> anyhow::Result<Vec<GoPackage>> {
         // Execute 'go list -test -compiled -json ./...' to get package information
         let output = Command::new("go")
