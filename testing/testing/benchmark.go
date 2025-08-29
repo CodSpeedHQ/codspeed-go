@@ -296,7 +296,7 @@ var labelsOnce sync.Once
 // subbenchmarks. b must not have subbenchmarks.
 func (b *B) run() {
 	labelsOnce.Do(func() {
-		fmt.Fprintf(b.w, "Running with CodSpeed instrumentation\n")
+		fmt.Fprintf(b.w, "Running with CodSpeed (mode: walltime)\n")
 
 		fmt.Fprintf(b.w, "goos: %s\n", runtime.GOOS)
 		fmt.Fprintf(b.w, "goarch: %s\n", runtime.GOARCH)
