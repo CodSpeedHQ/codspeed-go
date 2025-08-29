@@ -210,6 +210,11 @@ func (b *B) ReportAllocs() {
 
 // runN runs a single benchmark for the specified number of iterations.
 func (b *B) runN(n int) {
+	b.__codspeed_root_frame__runN(n)
+}
+
+//go:noinline
+func (b *B) __codspeed_root_frame__runN(n int) {
 	benchmarkLock.Lock()
 	defer benchmarkLock.Unlock()
 	ctx, cancelCtx := context.WithCancel(context.Background())
