@@ -9,7 +9,7 @@ fn main() -> anyhow::Result<()> {
         .init();
 
     let cli = Cli::parse();
-    go_runner::run_benchmarks(Path::new("."), &cli.bench)?;
+    go_runner::run_benchmarks(Path::new("."), &cli)?;
 
     Ok(())
 }

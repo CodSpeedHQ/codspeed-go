@@ -81,7 +81,11 @@ fn test_build_and_run(#[case] project_name: &str) {
 
     let profile_dir = temp_dir.path().join("profile");
     unsafe { std::env::set_var("CODSPEED_PROFILE_FOLDER", &profile_dir) };
-    if let Err(error) = crate::run_benchmarks(temp_dir.path(), ".") {
+    let cli = crate::cli::Cli {
+        benchtime: "1x".into(),
+        ..Default::default()
+    };
+    if let Err(error) = crate::run_benchmarks(temp_dir.path(), &cli) {
         panic!("Benchmarks couldn't run: {error}");
     }
 

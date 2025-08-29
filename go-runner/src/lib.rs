@@ -15,13 +15,25 @@ pub(crate) mod utils;
 mod integration_tests;
 
 /// Builds and runs the specified Go project benchmarks, writing results to the .codspeed folder.
-pub fn run_benchmarks(project_dir: &Path, bench: &str) -> anyhow::Result<()> {
+pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Result<()> {
     let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER")
         .context("CODSPEED_PROFILE_FOLDER env var not set")?;
     std::fs::remove_dir_all(&profile_dir).ok();
 
     // 1. Build phase - Benchmark and package discovery
-    let packages = BenchmarkPackage::from_project(project_dir)?;
+    let packages = BenchmarkPackage::from_project(project_dir)?
+        .into_iter()
+        .filter(|pkg| {
+            cli.packages.iter().any(|pattern| {
+                // Support both exact matches and pattern matching
+                pkg.name == *pattern
+                    || pkg.name.contains(pattern)
+                    || pattern == "./..."
+                    || pattern == "."
+            })
+        })
+        .collect::<Vec<_>>();
+
     info!("Discovered {} packages", packages.len());
 
     let mut bench_name_to_path = HashMap::new();
@@ -42,20 +54,11 @@ pub fn run_benchmarks(project_dir: &Path, bench: &str) -> anyhow::Result<()> {
         info!("Generating custom runner for package: {}", package.name);
         let (_target_dir, runner_path) = builder::templater::run(package)?;
 
-        let args = [
-            "-test.bench",
-            bench,
-            // Use a single iteration in tests to speed up execution, otherwise use 5 seconds
-            "-test.benchtime",
-            if cfg!(test) || std::env::var("CODSPEED_ENV").is_err() {
-                "1x"
-            } else {
-                "5s"
-            },
-        ];
-
         info!("Running benchmarks for package: {}", package.name);
-        runner::run(&runner_path, &args)?;
+        runner::run(
+            &runner_path,
+            &["-test.bench", &cli.bench, "-test.benchtime", &cli.benchtime],
+        )?;
     }
 
     // 3. Collect the results
