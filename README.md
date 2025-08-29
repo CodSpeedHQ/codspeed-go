@@ -38,7 +38,7 @@ $ go-runner test -bench=.
 [INFO  go_runner] Found BenchmarkFibonacci20_Loop      in "fib_test.go"
 [INFO  go_runner] Generating custom runner for package: example
 [INFO  go_runner] Running benchmarks for package: example
-Running with CodSpeed instrumentation
+Running with CodSpeed (mode: walltime)
 goos: linux
 goarch: amd64
 cpu: 12th Gen Intel(R) Core(TM) i7-1260P @ 1672.130MHz
