@@ -5,6 +5,16 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
+fn codspeed_go_version() -> anyhow::Result<String> {
+    // When running in Github Actions, we always want to use the latest
+    // codspeed-go package. For this, we have to use the current branch.
+    if std::env::var("GITHUB_ACTIONS").is_ok() {
+        std::env::var("GITHUB_SHA").context("Couldn't find GITHUB_SHA")
+    } else {
+        Ok(format!("v{}", env!("CARGO_PKG_VERSION")))
+    }
+}
+
 pub fn patch_imports<P: AsRef<Path>>(
     folder: P,
     files_to_patch: Vec<PathBuf>,
@@ -31,8 +41,10 @@ pub fn patch_imports<P: AsRef<Path>>(
     debug!("Patched {patched_files} files");
 
     // 2. Update the go module to use the codspeed package
-    let version = env!("CARGO_PKG_VERSION");
-    let pkg = format!("github.com/CodSpeedHQ/codspeed-go@v{version}");
+    let pkg = format!(
+        "github.com/CodSpeedHQ/codspeed-go@{}",
+        codspeed_go_version()?
+    );
     debug!("Installing {pkg}");
 
     let mut cmd: Command = Command::new("go");
