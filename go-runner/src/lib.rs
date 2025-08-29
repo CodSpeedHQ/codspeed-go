@@ -4,11 +4,11 @@ use std::{
     path::{Path, PathBuf},
 };
 
-mod builder;
+pub mod builder;
 pub mod cli;
 pub mod prelude;
 mod results;
-mod runner;
+pub mod runner;
 pub(crate) mod utils;
 
 #[cfg(test)]

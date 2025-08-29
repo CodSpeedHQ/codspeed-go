@@ -1,7 +1,7 @@
 use crate::prelude::*;
 use std::{path::Path, process::Command};
 
-pub fn run<P: AsRef<Path>>(runner_go_path: P, run_args: &[&str]) -> anyhow::Result<()> {
+fn run_cmd<P: AsRef<Path>>(runner_go_path: P, run_args: &[&str]) -> anyhow::Result<Command> {
     // Extract the directory containing runner.go to use as working directory
     let runner_go_path = runner_go_path.as_ref();
     let file_dir = runner_go_path.parent().unwrap();
@@ -14,17 +14,17 @@ pub fn run<P: AsRef<Path>>(runner_go_path: P, run_args: &[&str]) -> anyhow::Resu
     );
 
     // Run go run -tags=codspeed <path> {args}
-    let output = Command::new("go")
-        .arg("run")
+    let mut cmd = Command::new("go");
+    cmd.arg("run")
         .arg("-tags=codspeed")
         .arg(relative_path)
         .args(run_args)
-        .current_dir(module_root)
-        .stdout(std::process::Stdio::inherit())
-        .stderr(std::process::Stdio::inherit())
-        .output()
-        .context("Failed to execute go build command")?;
+        .current_dir(module_root);
 
+    Ok(cmd)
+}
+
+fn check_success(output: &std::process::Output) -> anyhow::Result<String> {
     if !output.status.success() {
         let stdout = String::from_utf8_lossy(&output.stdout);
         let stderr = String::from_utf8_lossy(&output.stderr);
@@ -34,6 +34,27 @@ pub fn run<P: AsRef<Path>>(runner_go_path: P, run_args: &[&str]) -> anyhow::Resu
 
         bail!("Failed to run benchmark. Exit status: {}", output.status);
     }
+    Ok(String::from_utf8_lossy(&output.stdout).to_string())
+}
 
-    Ok(())
+/// Runs the cmd and returns the output.
+pub fn run_with_stdout<P: AsRef<Path>>(
+    runner_go_path: P,
+    run_args: &[&str],
+) -> anyhow::Result<String> {
+    let mut cmd = run_cmd(runner_go_path, run_args)?;
+    let output = cmd.output().context("Failed to execute go build command")?;
+    check_success(&output)
+}
+
+/// Runs the cmd and forwards the output to stdout/stderr.
+pub fn run<P: AsRef<Path>>(runner_go_path: P, run_args: &[&str]) -> anyhow::Result<()> {
+    let mut cmd = run_cmd(runner_go_path, run_args)?;
+    let output = cmd
+        .stdout(std::process::Stdio::inherit())
+        .stderr(std::process::Stdio::inherit())
+        .output()
+        .context("Failed to execute go build command")?;
+
+    check_success(&output).map(|_| ())
 }
