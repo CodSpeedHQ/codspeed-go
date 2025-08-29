@@ -1,5 +1,5 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
@@ -69,7 +69,7 @@ expression: content
     },
     {
       "name": "BenchmarkContainsMethods::Bytes.Contains",
-      "uri": "unknown::BenchmarkContainsMethods::Bytes.Contains",
+      "uri": "contains/contains_test.go::BenchmarkContainsMethods::Bytes.Contains",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -80,7 +80,7 @@ expression: content
     },
     {
       "name": "BenchmarkContainsMethods::RegexMatch",
-      "uri": "unknown::BenchmarkContainsMethods::RegexMatch",
+      "uri": "contains/contains_test.go::BenchmarkContainsMethods::RegexMatch",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -91,7 +91,7 @@ expression: content
     },
     {
       "name": "BenchmarkContainsMethods::RegexMatchString",
-      "uri": "unknown::BenchmarkContainsMethods::RegexMatchString",
+      "uri": "contains/contains_test.go::BenchmarkContainsMethods::RegexMatchString",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -102,7 +102,7 @@ expression: content
     },
     {
       "name": "BenchmarkContainsMethods::Strings.Contains",
-      "uri": "unknown::BenchmarkContainsMethods::Strings.Contains",
+      "uri": "contains/contains_test.go::BenchmarkContainsMethods::Strings.Contains",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,

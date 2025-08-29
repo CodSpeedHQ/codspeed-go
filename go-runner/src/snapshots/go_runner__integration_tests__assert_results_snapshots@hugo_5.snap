@@ -1,5 +1,5 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
@@ -36,7 +36,7 @@ expression: content
     },
     {
       "name": "BenchmarkWhereOps::eq",
-      "uri": "unknown::BenchmarkWhereOps::eq",
+      "uri": "tpl/collections/where_test.go::BenchmarkWhereOps::eq",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -47,7 +47,7 @@ expression: content
     },
     {
       "name": "BenchmarkWhereOps::like",
-      "uri": "unknown::BenchmarkWhereOps::like",
+      "uri": "tpl/collections/where_test.go::BenchmarkWhereOps::like",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -58,7 +58,7 @@ expression: content
     },
     {
       "name": "BenchmarkWhereOps::ne",
-      "uri": "unknown::BenchmarkWhereOps::ne",
+      "uri": "tpl/collections/where_test.go::BenchmarkWhereOps::ne",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,

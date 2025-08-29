@@ -75,8 +75,14 @@ fn collect_walltime_results(bench_name_to_path: HashMap<String, PathBuf>) -> any
     let mut benchmarks_by_pid: HashMap<u32, Vec<results::walltime_results::WalltimeBenchmark>> =
         HashMap::new();
     for raw in raw_results {
+        // We only parse the `func Benchmark*` name which is the first part of the URI
+        let func_name = raw
+            .benchmark_name
+            .split("::")
+            .next()
+            .unwrap_or(&raw.benchmark_name);
         let file_path = bench_name_to_path
-            .get(&raw.benchmark_name)
+            .get(func_name)
             .map(|p| p.to_string_lossy().to_string());
         benchmarks_by_pid
             .entry(raw.pid)

@@ -1,5 +1,5 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
@@ -14,7 +14,7 @@ expression: content
   "benchmarks": [
     {
       "name": "BenchmarkConcat::Buffer",
-      "uri": "unknown::BenchmarkConcat::Buffer",
+      "uri": "concat/concat_test.go::BenchmarkConcat::Buffer",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -25,7 +25,7 @@ expression: content
     },
     {
       "name": "BenchmarkConcat::Builder",
-      "uri": "unknown::BenchmarkConcat::Builder",
+      "uri": "concat/concat_test.go::BenchmarkConcat::Builder",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -36,7 +36,7 @@ expression: content
     },
     {
       "name": "BenchmarkConcat::String",
-      "uri": "unknown::BenchmarkConcat::String",
+      "uri": "concat/concat_test.go::BenchmarkConcat::String",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,

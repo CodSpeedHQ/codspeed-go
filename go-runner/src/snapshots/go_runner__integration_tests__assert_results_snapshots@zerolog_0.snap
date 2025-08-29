@@ -1,5 +1,5 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
@@ -14,7 +14,7 @@ expression: content
   "benchmarks": [
     {
       "name": "BenchmarkAppendBytes::EncodingFirst",
-      "uri": "unknown::BenchmarkAppendBytes::EncodingFirst",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingFirst",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -25,7 +25,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendBytes::EncodingLast",
-      "uri": "unknown::BenchmarkAppendBytes::EncodingLast",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingLast",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -36,7 +36,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendBytes::EncodingMiddle",
-      "uri": "unknown::BenchmarkAppendBytes::EncodingMiddle",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingMiddle",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -47,7 +47,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendBytes::MultiBytesFirst",
-      "uri": "unknown::BenchmarkAppendBytes::MultiBytesFirst",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::MultiBytesFirst",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -58,7 +58,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendBytes::MultiBytesLast",
-      "uri": "unknown::BenchmarkAppendBytes::MultiBytesLast",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::MultiBytesLast",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -69,7 +69,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendBytes::MultiBytesMiddle",
-      "uri": "unknown::BenchmarkAppendBytes::MultiBytesMiddle",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::MultiBytesMiddle",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -80,7 +80,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendBytes::NoEncoding",
-      "uri": "unknown::BenchmarkAppendBytes::NoEncoding",
+      "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::NoEncoding",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -91,7 +91,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::EncodingFirst",
-      "uri": "unknown::BenchmarkAppendString::EncodingFirst",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingFirst",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -102,7 +102,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::EncodingLast",
-      "uri": "unknown::BenchmarkAppendString::EncodingLast",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingLast",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -113,7 +113,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::EncodingMiddle",
-      "uri": "unknown::BenchmarkAppendString::EncodingMiddle",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingMiddle",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -124,7 +124,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::MultiBytesFirst",
-      "uri": "unknown::BenchmarkAppendString::MultiBytesFirst",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesFirst",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -135,7 +135,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::MultiBytesLast",
-      "uri": "unknown::BenchmarkAppendString::MultiBytesLast",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesLast",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -146,7 +146,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::MultiBytesMiddle",
-      "uri": "unknown::BenchmarkAppendString::MultiBytesMiddle",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesMiddle",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -157,7 +157,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::NoEncoding",
-      "uri": "unknown::BenchmarkAppendString::NoEncoding",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::NoEncoding",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,

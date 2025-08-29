@@ -1,5 +1,5 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
@@ -14,7 +14,7 @@ expression: content
   "benchmarks": [
     {
       "name": "BenchmarkAppendFloat::Float32",
-      "uri": "unknown::BenchmarkAppendFloat::Float32",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendFloat::Float32",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -25,7 +25,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendFloat::Float64",
-      "uri": "unknown::BenchmarkAppendFloat::Float64",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendFloat::Float64",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -36,7 +36,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::int-Negative",
-      "uri": "unknown::BenchmarkAppendInt::int-Negative",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int-Negative",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -47,7 +47,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::int-Positive",
-      "uri": "unknown::BenchmarkAppendInt::int-Positive",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int-Positive",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -58,7 +58,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::int16",
-      "uri": "unknown::BenchmarkAppendInt::int16",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int16",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -69,7 +69,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::int32",
-      "uri": "unknown::BenchmarkAppendInt::int32",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int32",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -80,7 +80,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::int64",
-      "uri": "unknown::BenchmarkAppendInt::int64",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int64",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -91,7 +91,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::int8",
-      "uri": "unknown::BenchmarkAppendInt::int8",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int8",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -102,7 +102,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::uint16",
-      "uri": "unknown::BenchmarkAppendInt::uint16",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint16",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -113,7 +113,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::uint32",
-      "uri": "unknown::BenchmarkAppendInt::uint32",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint32",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -124,7 +124,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::uint64",
-      "uri": "unknown::BenchmarkAppendInt::uint64",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint64",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -135,7 +135,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendInt::uint8",
-      "uri": "unknown::BenchmarkAppendInt::uint8",
+      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint8",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -146,7 +146,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::EncodingFirst",
-      "uri": "unknown::BenchmarkAppendString::EncodingFirst",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingFirst",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -157,7 +157,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::EncodingLast",
-      "uri": "unknown::BenchmarkAppendString::EncodingLast",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingLast",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -168,7 +168,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::EncodingMiddle",
-      "uri": "unknown::BenchmarkAppendString::EncodingMiddle",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingMiddle",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -179,7 +179,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::MultiBytesFirst",
-      "uri": "unknown::BenchmarkAppendString::MultiBytesFirst",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesFirst",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -190,7 +190,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::MultiBytesLast",
-      "uri": "unknown::BenchmarkAppendString::MultiBytesLast",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesLast",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -201,7 +201,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::MultiBytesMiddle",
-      "uri": "unknown::BenchmarkAppendString::MultiBytesMiddle",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesMiddle",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -212,7 +212,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendString::NoEncoding",
-      "uri": "unknown::BenchmarkAppendString::NoEncoding",
+      "uri": "internal/json/string_test.go::BenchmarkAppendString::NoEncoding",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -223,7 +223,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendTime::Float",
-      "uri": "unknown::BenchmarkAppendTime::Float",
+      "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Float",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -234,7 +234,7 @@ expression: content
     },
     {
       "name": "BenchmarkAppendTime::Integer",
-      "uri": "unknown::BenchmarkAppendTime::Integer",
+      "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Integer",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,

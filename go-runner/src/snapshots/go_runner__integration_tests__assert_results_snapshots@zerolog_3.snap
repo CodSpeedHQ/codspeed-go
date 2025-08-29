@@ -1,5 +1,5 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
@@ -25,7 +25,7 @@ expression: content
     },
     {
       "name": "BenchmarkHandlers::Combined",
-      "uri": "unknown::BenchmarkHandlers::Combined",
+      "uri": "hlog/hlog_test.go::BenchmarkHandlers::Combined",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -36,7 +36,7 @@ expression: content
     },
     {
       "name": "BenchmarkHandlers::CombinedDisabled",
-      "uri": "unknown::BenchmarkHandlers::CombinedDisabled",
+      "uri": "hlog/hlog_test.go::BenchmarkHandlers::CombinedDisabled",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -47,7 +47,7 @@ expression: content
     },
     {
       "name": "BenchmarkHandlers::Single",
-      "uri": "unknown::BenchmarkHandlers::Single",
+      "uri": "hlog/hlog_test.go::BenchmarkHandlers::Single",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -58,7 +58,7 @@ expression: content
     },
     {
       "name": "BenchmarkHandlers::SingleDisabled",
-      "uri": "unknown::BenchmarkHandlers::SingleDisabled",
+      "uri": "hlog/hlog_test.go::BenchmarkHandlers::SingleDisabled",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
