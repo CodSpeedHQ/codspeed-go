@@ -5,11 +5,29 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
+// Find the branch name via git
+fn current_git_branch() -> anyhow::Result<String> {
+    let output = Command::new("git")
+        .args(["rev-parse", "--abbrev-ref", "HEAD"])
+        .output()
+        .context("Failed to execute git command to get current branch")?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        bail!("Git command failed: {}", stderr);
+    }
+
+    Ok(String::from_utf8(output.stdout)
+        .context("Failed to parse git output as UTF-8")?
+        .trim()
+        .to_string())
+}
+
 fn codspeed_go_version() -> anyhow::Result<String> {
     // When running in Github Actions, we always want to use the latest
     // codspeed-go package. For this, we have to use the current branch.
     if std::env::var("GITHUB_ACTIONS").is_ok() {
-        std::env::var("GITHUB_SHA").context("Couldn't find GITHUB_SHA")
+        current_git_branch()
     } else {
         Ok(format!("v{}", env!("CARGO_PKG_VERSION")))
     }
