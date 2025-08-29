@@ -811,6 +811,11 @@ func (c *common) decorate(s string, skip int) string {
 		} else if index := strings.LastIndexAny(file, `/\`); index >= 0 {
 			file = file[index+1:]
 		}
+
+		// Replace _codspeed.go with _test.go for better user experience
+		if strings.HasSuffix(file, "_codspeed.go") {
+			file = strings.TrimSuffix(file, "_codspeed.go") + "_test.go"
+		}
 	} else {
 		file = "???"
 	}
