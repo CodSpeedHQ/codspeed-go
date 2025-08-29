@@ -233,8 +233,11 @@ impl BenchmarkPackage {
         }
     }
 
-    pub fn from_project(go_project_path: &Path) -> anyhow::Result<Vec<BenchmarkPackage>> {
-        let raw_packages = Self::run_go_list(go_project_path)?;
+    pub fn from_project(
+        go_project_path: &Path,
+        packages: &[String],
+    ) -> anyhow::Result<Vec<BenchmarkPackage>> {
+        let raw_packages = Self::run_go_list(go_project_path, packages)?;
         let has_test_files =
             |files: &Vec<String>| files.iter().any(|name| name.ends_with("_test.go"));
         let has_test_imports = |imports: &Vec<String>| {
@@ -297,10 +300,13 @@ impl BenchmarkPackage {
         Ok(packages)
     }
 
-    fn run_go_list(go_project_path: &Path) -> anyhow::Result<Vec<GoPackage>> {
-        // Execute 'go list -test -compiled -json ./...' to get package information
+    fn run_go_list(go_project_path: &Path, packages: &[String]) -> anyhow::Result<Vec<GoPackage>> {
+        // Execute 'go list -test -compiled -json <packages>' to get package information
+        let mut args = vec!["list", "-test", "-compiled", "-json"];
+        args.extend(packages.iter().map(|s| s.as_str()));
+
         let output = Command::new("go")
-            .args(["list", "-test", "-compiled", "-json", "./..."])
+            .args(args)
             .current_dir(go_project_path)
             .output()?;
 
@@ -333,9 +339,11 @@ mod tests {
 
     #[test]
     fn test_discover_benchmarks() {
-        let packages =
-            BenchmarkPackage::from_project(Path::new("testdata/projects/golang-benchmarks"))
-                .unwrap();
+        let packages = BenchmarkPackage::from_project(
+            Path::new("testdata/projects/golang-benchmarks"),
+            &["./...".to_string()],
+        )
+        .unwrap();
 
         insta::assert_json_snapshot!(packages, {
             ".**[\"Dir\"]" => "[package_dir]",

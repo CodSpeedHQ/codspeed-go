@@ -9,7 +9,7 @@ fn main() -> anyhow::Result<()> {
         .init();
 
     let cli = Cli::parse();
-    codspeed_go_runner::run_benchmarks(Path::new("."), &cli.bench)?;
+    codspeed_go_runner::run_benchmarks(Path::new("."), &cli)?;
 
     Ok(())
 }
