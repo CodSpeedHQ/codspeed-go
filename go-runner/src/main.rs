@@ -1,4 +1,4 @@
-use go_runner::cli::Cli;
+use codspeed_go_runner::cli::Cli;
 use std::path::Path;
 
 fn main() -> anyhow::Result<()> {
@@ -9,7 +9,7 @@ fn main() -> anyhow::Result<()> {
         .init();
 
     let cli = Cli::parse();
-    go_runner::run_benchmarks(Path::new("."), &cli.bench)?;
+    codspeed_go_runner::run_benchmarks(Path::new("."), &cli.bench)?;
 
     Ok(())
 }
