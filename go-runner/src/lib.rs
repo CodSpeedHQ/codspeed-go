@@ -24,20 +24,13 @@ pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Resu
     let packages = BenchmarkPackage::from_project(project_dir, &cli.packages)?;
     info!("Discovered {} packages", packages.len());
 
-    let mut bench_name_to_path = HashMap::new();
-    for package in &packages {
-        for benchmark in &package.benchmarks {
-            // Create absolute path and immediately convert to git-relative path
-            let abs_path = package.module.dir.join(&benchmark.file_path);
-            let git_relative_path = crate::utils::get_git_relative_path(&abs_path);
-            bench_name_to_path.insert(benchmark.name.clone(), git_relative_path);
-        }
-    }
-
     let total_benchmarks: usize = packages.iter().map(|p| p.benchmarks.len()).sum();
     info!("Total benchmarks discovered: {total_benchmarks}");
-    for (name, path) in &bench_name_to_path {
-        info!("Found {name:30} in {path:?}");
+
+    for package in &packages {
+        for benchmark in &package.benchmarks {
+            info!("Found {:30} in {:?}", benchmark.name, benchmark.file_path);
+        }
     }
 
     // 2. Generate codspeed runners, build binaries, and execute them
@@ -55,13 +48,13 @@ pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Resu
     }
 
     // 3. Collect the results
-    collect_walltime_results(bench_name_to_path)?;
+    collect_walltime_results()?;
 
     Ok(())
 }
 
 // TODO: This should be merged with codspeed-rust/codspeed/walltime_results.rs
-fn collect_walltime_results(bench_name_to_path: HashMap<String, PathBuf>) -> anyhow::Result<()> {
+fn collect_walltime_results() -> anyhow::Result<()> {
     let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER")
         .context("CODSPEED_PROFILE_FOLDER env var not set")?;
     let profile_dir = PathBuf::from(&profile_dir);
@@ -71,19 +64,10 @@ fn collect_walltime_results(bench_name_to_path: HashMap<String, PathBuf>) -> any
     let mut benchmarks_by_pid: HashMap<u32, Vec<results::walltime_results::WalltimeBenchmark>> =
         HashMap::new();
     for raw in raw_results {
-        // We only parse the `func Benchmark*` name which is the first part of the URI
-        let func_name = raw
-            .benchmark_name
-            .split("::")
-            .next()
-            .unwrap_or(&raw.benchmark_name);
-        let file_path = bench_name_to_path
-            .get(func_name)
-            .map(|p| p.to_string_lossy().to_string());
         benchmarks_by_pid
             .entry(raw.pid)
             .or_default()
-            .push(raw.into_walltime_benchmark(file_path));
+            .push(raw.into_walltime_benchmark());
     }
 
     for (pid, walltime_benchmarks) in benchmarks_by_pid {

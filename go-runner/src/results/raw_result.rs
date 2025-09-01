@@ -7,7 +7,8 @@ use crate::results::walltime_results::WalltimeBenchmark;
 // WARN: Keep in sync with Golang "testing" fork (benchmark.go)
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RawResult {
-    pub benchmark_name: String,
+    pub name: String,
+    pub uri: String,
     pub pid: u32,
     pub codspeed_time_per_round_ns: Vec<u64>,
 
@@ -32,12 +33,7 @@ impl RawResult {
             .collect())
     }
 
-    pub fn into_walltime_benchmark(self, file_path: Option<String>) -> WalltimeBenchmark {
-        let name = self.benchmark_name;
-
-        let file = file_path.as_deref().unwrap_or("unknown");
-        let uri = format!("{file}::{name}");
-
+    pub fn into_walltime_benchmark(self) -> WalltimeBenchmark {
         let times_per_round_ns = self
             .codspeed_time_per_round_ns
             .iter()
@@ -52,7 +48,13 @@ impl RawResult {
                 .collect()
         };
 
-        WalltimeBenchmark::from_runtime_data(name, uri, iters_per_round, times_per_round_ns, None)
+        WalltimeBenchmark::from_runtime_data(
+            self.name,
+            self.uri,
+            iters_per_round,
+            times_per_round_ns,
+            None,
+        )
     }
 }
 
@@ -63,33 +65,16 @@ mod tests {
     #[test]
     fn test_raw_result_deserialization() {
         let json_data = r#"{
-    "benchmark_name": "BenchmarkFibonacci20-16",
+    "name": "BenchmarkFibonacci20-16",
+    "uri": "pkg/foo/fib_test.go::BenchmarkFibonacci20-16",
     "pid": 777767,
     "codspeed_time_per_round_ns": [1000, 2000, 3000]
 }"#;
         let result: RawResult = serde_json::from_str(json_data).unwrap();
 
-        assert_eq!(result.benchmark_name, "BenchmarkFibonacci20-16");
+        assert_eq!(result.name, "BenchmarkFibonacci20-16");
         assert_eq!(result.pid, 777767);
         assert_eq!(result.codspeed_time_per_round_ns.len(), 3);
         assert_eq!(result.codspeed_iters_per_round.len(), 0); // Default: 1 per round
-    }
-
-    #[test]
-    fn test_into_walltime_benchmark_with_file_path() {
-        let raw_result = RawResult {
-            benchmark_name: "BenchmarkFibonacci20-16".to_string(),
-            pid: 777767,
-            codspeed_time_per_round_ns: vec![1000, 2000, 3000],
-            codspeed_iters_per_round: vec![],
-        };
-
-        // Test with file path - should not panic and create successfully
-        let _walltime_bench = raw_result
-            .clone()
-            .into_walltime_benchmark(Some("pkg/foo/fib_test.go".to_string()));
-
-        // Test without file path (should default to TODO) - should not panic and create successfully
-        let _walltime_bench_no_path = raw_result.into_walltime_benchmark(None);
     }
 }
