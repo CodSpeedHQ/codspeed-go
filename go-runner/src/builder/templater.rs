@@ -21,7 +21,10 @@ struct TemplateData {
     module_name: String,
 }
 
-pub fn run(package: &BenchmarkPackage) -> anyhow::Result<(TempDir, PathBuf)> {
+pub fn run<P: AsRef<Path>>(
+    package: &BenchmarkPackage,
+    profile_dir: P,
+) -> anyhow::Result<(TempDir, PathBuf)> {
     // 1. Copy the whole module to a build directory
     let target_dir = TempDir::new()?;
     std::fs::create_dir_all(&target_dir).context("Failed to create target directory")?;
@@ -41,7 +44,7 @@ pub fn run(package: &BenchmarkPackage) -> anyhow::Result<(TempDir, PathBuf)> {
     debug!("Relative package path: {relative_package_path}");
 
     let metadata = GoRunnerMetadata {
-        profile_folder: std::env::var("CODSPEED_PROFILE_FOLDER").unwrap_or("/tmp".into()),
+        profile_folder: profile_dir.as_ref().to_string_lossy().into(),
         relative_package_path,
     };
     fs::write(

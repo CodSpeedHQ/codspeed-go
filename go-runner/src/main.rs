@@ -9,7 +9,8 @@ fn main() -> anyhow::Result<()> {
         .init();
 
     let cli = Cli::parse();
-    codspeed_go_runner::run_benchmarks(Path::new("."), &cli)?;
+    let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER").unwrap_or("/tmp".into());
+    codspeed_go_runner::run_benchmarks(profile_dir, Path::new("."), &cli)?;
 
     Ok(())
 }

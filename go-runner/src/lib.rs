@@ -1,8 +1,5 @@
 use crate::{builder::BenchmarkPackage, prelude::*};
-use std::{
-    collections::HashMap,
-    path::{Path, PathBuf},
-};
+use std::{collections::HashMap, path::Path};
 
 pub mod builder;
 pub mod cli;
@@ -15,9 +12,11 @@ pub(crate) mod utils;
 mod integration_tests;
 
 /// Builds and runs the specified Go project benchmarks, writing results to the .codspeed folder.
-pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Result<()> {
-    let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER")
-        .context("CODSPEED_PROFILE_FOLDER env var not set")?;
+pub fn run_benchmarks<P: AsRef<Path>>(
+    profile_dir: P,
+    project_dir: &Path,
+    cli: &crate::cli::Cli,
+) -> anyhow::Result<()> {
     std::fs::remove_dir_all(&profile_dir).ok();
 
     // 1. Build phase - Benchmark and package discovery
@@ -36,7 +35,7 @@ pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Resu
     // 2. Generate codspeed runners, build binaries, and execute them
     for package in &packages {
         info!("Generating custom runner for package: {}", package.name);
-        let (_target_dir, runner_path) = builder::templater::run(package)?;
+        let (_target_dir, runner_path) = builder::templater::run(package, &profile_dir)?;
 
         info!("Building binary for package: {}", package.name);
         let binary_path = builder::build_binary(&runner_path)?;
@@ -48,17 +47,14 @@ pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Resu
     }
 
     // 3. Collect the results
-    collect_walltime_results()?;
+    collect_walltime_results(profile_dir.as_ref())?;
 
     Ok(())
 }
 
 // TODO: This should be merged with codspeed-rust/codspeed/walltime_results.rs
-fn collect_walltime_results() -> anyhow::Result<()> {
-    let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER")
-        .context("CODSPEED_PROFILE_FOLDER env var not set")?;
-    let profile_dir = PathBuf::from(&profile_dir);
-    let raw_results = results::raw_result::RawResult::parse_folder(&profile_dir)?;
+fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
+    let raw_results = results::raw_result::RawResult::parse_folder(profile_dir)?;
     info!("Parsed {} raw results", raw_results.len());
 
     let mut benchmarks_by_pid: HashMap<u32, Vec<results::walltime_results::WalltimeBenchmark>> =
