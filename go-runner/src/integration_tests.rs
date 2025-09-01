@@ -6,18 +6,6 @@ use tempfile::TempDir;
 
 use crate::results::walltime_results::WalltimeResults;
 
-fn setup_test_project(project_name: &str) -> anyhow::Result<TempDir> {
-    let project_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .join("testdata/projects")
-        .join(project_name);
-    println!("Project path: {project_path:?}");
-
-    let temp_dir = TempDir::new()?;
-    crate::utils::copy_dir_recursively(&project_path, &temp_dir)?;
-
-    Ok(temp_dir)
-}
-
 fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
     let glob_pattern = profile_dir.join("results");
     if !glob_pattern.exists() {
@@ -73,19 +61,22 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::fuego("fuego")]
 #[case::cli_runtime("cli-runtime")]
 fn test_build_and_run(#[case] project_name: &str) {
-    let temp_dir = setup_test_project(project_name).unwrap();
+    let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("testdata/projects")
+        .join(project_name);
 
     // Mutex to prevent concurrent tests from interfering with CODSPEED_PROFILE_FOLDER env var
     static ENV_MUTEX: Mutex<()> = Mutex::new(());
     let _env_guard = ENV_MUTEX.lock().unwrap_or_else(|e| e.into_inner());
 
+    let temp_dir = TempDir::new().unwrap();
     let profile_dir = temp_dir.path().join("profile");
     unsafe { std::env::set_var("CODSPEED_PROFILE_FOLDER", &profile_dir) };
     let cli = crate::cli::Cli {
         benchtime: "1x".into(),
         ..Default::default()
     };
-    if let Err(error) = crate::run_benchmarks(temp_dir.path(), &cli) {
+    if let Err(error) = crate::run_benchmarks(project_dir.as_path(), &cli) {
         panic!("Benchmarks couldn't run: {error}");
     }
 
