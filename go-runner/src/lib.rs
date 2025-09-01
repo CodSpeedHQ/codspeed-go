@@ -27,7 +27,10 @@ pub fn run_benchmarks(project_dir: &Path, cli: &crate::cli::Cli) -> anyhow::Resu
     let mut bench_name_to_path = HashMap::new();
     for package in &packages {
         for benchmark in &package.benchmarks {
-            bench_name_to_path.insert(benchmark.name.clone(), benchmark.file_path.clone());
+            // Create absolute path and immediately convert to git-relative path
+            let abs_path = package.module.dir.join(&benchmark.file_path);
+            let git_relative_path = crate::utils::get_git_relative_path(&abs_path);
+            bench_name_to_path.insert(benchmark.name.clone(), git_relative_path);
         }
     }
 
