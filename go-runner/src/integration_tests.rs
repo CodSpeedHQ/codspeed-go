@@ -1,7 +1,6 @@
 use itertools::Itertools;
 use rstest::rstest;
 use std::path::{Path, PathBuf};
-use std::sync::Mutex;
 use tempfile::TempDir;
 
 use crate::results::walltime_results::WalltimeResults;
@@ -66,18 +65,13 @@ fn test_build_and_run(#[case] project_name: &str) {
         .join("testdata/projects")
         .join(project_name);
 
-    // Mutex to prevent concurrent tests from interfering with CODSPEED_PROFILE_FOLDER env var
-    static ENV_MUTEX: Mutex<()> = Mutex::new(());
-    let _env_guard = ENV_MUTEX.lock().unwrap_or_else(|e| e.into_inner());
-
     let temp_dir = TempDir::new().unwrap();
     let profile_dir = temp_dir.path().join("profile");
-    unsafe { std::env::set_var("CODSPEED_PROFILE_FOLDER", &profile_dir) };
     let cli = crate::cli::Cli {
         benchtime: "1x".into(),
         ..Default::default()
     };
-    if let Err(error) = crate::run_benchmarks(project_dir.as_path(), &cli) {
+    if let Err(error) = crate::run_benchmarks(&profile_dir, project_dir.as_path(), &cli) {
         panic!("Benchmarks couldn't run: {error}");
     }
 
