@@ -9,6 +9,12 @@ use crate::builder::{BenchmarkPackage, GoBenchmark};
 use crate::utils;
 use crate::{builder::patcher, prelude::*};
 
+#[derive(Debug, Serialize)]
+struct GoRunnerMetadata {
+    profile_folder: String,
+    relative_package_path: String,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 struct TemplateData {
     benchmarks: Vec<GoBenchmark>,
@@ -20,6 +26,29 @@ pub fn run(package: &BenchmarkPackage) -> anyhow::Result<(TempDir, PathBuf)> {
     let target_dir = TempDir::new()?;
     std::fs::create_dir_all(&target_dir).context("Failed to create target directory")?;
     utils::copy_dir_recursively(&package.module.dir, &target_dir)?;
+
+    // Create a new go-runner.metadata file in the root of the project
+    //
+    // The package path will be prepended to the URI. The benchmark will
+    // find the path relative to the root of the `target_dir`.
+    //
+    // This is needed because we could execute a Go project that is a sub-folder
+    // within a Git repository, then we won't copy the .git folder. Therefore, we
+    // have to resolve the .git relative path in go-runner and then combine it.
+    let relative_package_path = utils::get_git_relative_path(&package.dir)
+        .to_string_lossy()
+        .into();
+    debug!("Relative package path: {relative_package_path}");
+
+    let metadata = GoRunnerMetadata {
+        profile_folder: std::env::var("CODSPEED_PROFILE_FOLDER").unwrap_or("/tmp".into()),
+        relative_package_path,
+    };
+    fs::write(
+        target_dir.path().join("go-runner.metadata"),
+        serde_json::to_string_pretty(&metadata)?,
+    )
+    .context("Failed to write go-runner.metadata file")?;
 
     // Get files that need to be renamed first
     let files = package

@@ -19,8 +19,6 @@ pub fn copy_dir_recursively(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io:
     Ok(())
 }
 
-// WARN: Git-related helper functions have been taken from codspeed-rust. Keep in sync!
-
 fn get_parent_git_repo_path(abs_path: &Path) -> io::Result<PathBuf> {
     if abs_path.join(".git").exists() {
         Ok(abs_path.to_path_buf())

@@ -15,6 +15,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"reflect"
 	"runtime"
 	"slices"
 	"strconv"
@@ -834,10 +835,35 @@ func (s *benchState) processBench(b *B) {
 			// ############################################################################################
 			// START CODSPEED
 			type RawResults struct {
-				BenchmarkName          string          `json:"benchmark_name"`
+				Name                   string          `json:"name"`
+				Uri                    string          `json:"uri"`
 				Pid                    int             `json:"pid"`
 				CodspeedTimePerRoundNs []time.Duration `json:"codspeed_time_per_round_ns"`
 				CodspeedItersPerRound  []int64         `json:"codspeed_iters_per_round"`
+			}
+
+			// Find the filename of the benchmark file
+			var benchFile string
+			if b.benchFunc != nil {
+				pc := reflect.ValueOf(b.benchFunc).Pointer()
+				fn := runtime.FuncForPC(pc)
+				if fn == nil {
+					continue
+				}
+
+				file, _ := fn.FileLine(pc)
+				if strings.HasSuffix(file, "_codspeed.go") {
+					benchFile = file
+				}
+			}
+
+			if benchFile == "" {
+				panic("Could not determine benchmark file name")
+			}
+
+			relativeBenchFile := getGitRelativePath(benchFile)
+			if strings.HasSuffix(relativeBenchFile, "_codspeed.go") {
+				relativeBenchFile = strings.TrimSuffix(relativeBenchFile, "_codspeed.go") + "_test.go"
 			}
 
 			// Build custom bench name with :: separator
@@ -858,20 +884,23 @@ func (s *benchState) processBench(b *B) {
 				}
 				current = current.parent
 			}
-			customBenchName := strings.Join(nameParts, "::")
+			benchName = strings.Join(nameParts, "::")
+			benchUri := fmt.Sprintf("%s::%s", relativeBenchFile, benchName)
 
 			rawResults := RawResults{
-				BenchmarkName:          customBenchName,
+				Name:                   benchName,
+				Uri:                    benchUri,
 				Pid:                    os.Getpid(),
 				CodspeedTimePerRoundNs: r.CodspeedTimePerRoundNs,
 				CodspeedItersPerRound:  r.CodspeedItersPerRound,
 			}
 
-			codspeedProfileFolder := os.Getenv("CODSPEED_PROFILE_FOLDER")
-			if codspeedProfileFolder == "" {
-				panic("CODSPEED_PROFILE_FOLDER environment variable is not set")
+			goRunnerMetadata, err := findGoRunnerMetadata()
+			if err != nil {
+				panic(fmt.Sprintf("failed to get go runner metadata: %v", err))
 			}
-			if err := os.MkdirAll(filepath.Join(codspeedProfileFolder, "raw_results"), 0755); err != nil {
+
+			if err := os.MkdirAll(filepath.Join(goRunnerMetadata.ProfileFolder, "raw_results"), 0755); err != nil {
 				fmt.Fprintf(os.Stderr, "failed to create raw results directory: %v\n", err)
 				continue
 			}
@@ -881,7 +910,7 @@ func (s *benchState) processBench(b *B) {
 				fmt.Fprintf(os.Stderr, "failed to generate random filename: %v\n", err)
 				continue
 			}
-			rawResultsFile := filepath.Join(codspeedProfileFolder, "raw_results", fmt.Sprintf("%s.json", hex.EncodeToString(randomBytes)))
+			rawResultsFile := filepath.Join(goRunnerMetadata.ProfileFolder, "raw_results", fmt.Sprintf("%s.json", hex.EncodeToString(randomBytes)))
 			file, err := os.Create(rawResultsFile)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "failed to create raw results file: %v\n", err)
@@ -902,7 +931,7 @@ func (s *benchState) processBench(b *B) {
 			defer file.Close()
 
 			// Send pid and executed benchmark to the runner
-			b.codspeed.instrument_hooks.SetExecutedBenchmark(uint32(os.Getpid()), customBenchName)
+			b.codspeed.instrument_hooks.SetExecutedBenchmark(uint32(os.Getpid()), benchUri)
 
 			// END CODSPEED
 			// ############################################################################################

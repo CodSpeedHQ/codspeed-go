@@ -13,8 +13,8 @@ expression: content
   },
   "benchmarks": [
     {
-      "name": "BenchmarkAppendFloat::Float32",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendFloat::Float32",
+      "name": "BenchmarkFibonacci10::fibonacci(10)::fibonacci(10)",
+      "uri": "example/fib_test.go::BenchmarkFibonacci10::fibonacci(10)::fibonacci(10)",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -24,8 +24,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendFloat::Float64",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendFloat::Float64",
+      "name": "BenchmarkFibonacci20_Loop",
+      "uri": "example/fib_test.go::BenchmarkFibonacci20_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -35,8 +35,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::int-Negative",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int-Negative",
+      "name": "BenchmarkFibonacci20_bN",
+      "uri": "example/fib_test.go::BenchmarkFibonacci20_bN",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -46,8 +46,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::int-Positive",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int-Positive",
+      "name": "BenchmarkSleep100ns",
+      "uri": "example/sleep_test.go::BenchmarkSleep100ns",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -57,8 +57,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::int16",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int16",
+      "name": "BenchmarkSleep100ns_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep100ns_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -68,8 +68,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::int32",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int32",
+      "name": "BenchmarkSleep100us",
+      "uri": "example/sleep_test.go::BenchmarkSleep100us",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -79,8 +79,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::int64",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int64",
+      "name": "BenchmarkSleep100us_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep100us_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -90,8 +90,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::int8",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int8",
+      "name": "BenchmarkSleep10ms",
+      "uri": "example/sleep_test.go::BenchmarkSleep10ms",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -101,8 +101,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::uint16",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint16",
+      "name": "BenchmarkSleep10ms_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep10ms_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -112,8 +112,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::uint32",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint32",
+      "name": "BenchmarkSleep10us",
+      "uri": "example/sleep_test.go::BenchmarkSleep10us",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -123,8 +123,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::uint64",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint64",
+      "name": "BenchmarkSleep10us_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep10us_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -134,8 +134,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendInt::uint8",
-      "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint8",
+      "name": "BenchmarkSleep1ms",
+      "uri": "example/sleep_test.go::BenchmarkSleep1ms",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -145,8 +145,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendString::EncodingFirst",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::EncodingFirst",
+      "name": "BenchmarkSleep1ms_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep1ms_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -156,8 +156,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendString::EncodingLast",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::EncodingLast",
+      "name": "BenchmarkSleep1us",
+      "uri": "example/sleep_test.go::BenchmarkSleep1us",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -167,8 +167,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendString::EncodingMiddle",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::EncodingMiddle",
+      "name": "BenchmarkSleep1us_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep1us_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -178,8 +178,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendString::MultiBytesFirst",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::MultiBytesFirst",
+      "name": "BenchmarkSleep50ms",
+      "uri": "example/sleep_test.go::BenchmarkSleep50ms",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
@@ -189,52 +189,8 @@ expression: content
       "stats": "[stats]"
     },
     {
-      "name": "BenchmarkAppendString::MultiBytesLast",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::MultiBytesLast",
-      "config": {
-        "warmup_time_ns": null,
-        "min_round_time_ns": null,
-        "max_time_ns": null,
-        "max_rounds": null
-      },
-      "stats": "[stats]"
-    },
-    {
-      "name": "BenchmarkAppendString::MultiBytesMiddle",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::MultiBytesMiddle",
-      "config": {
-        "warmup_time_ns": null,
-        "min_round_time_ns": null,
-        "max_time_ns": null,
-        "max_rounds": null
-      },
-      "stats": "[stats]"
-    },
-    {
-      "name": "BenchmarkAppendString::NoEncoding",
-      "uri": "internal/cbor/string_test.go::BenchmarkAppendString::NoEncoding",
-      "config": {
-        "warmup_time_ns": null,
-        "min_round_time_ns": null,
-        "max_time_ns": null,
-        "max_rounds": null
-      },
-      "stats": "[stats]"
-    },
-    {
-      "name": "BenchmarkAppendTime::Float",
-      "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Float",
-      "config": {
-        "warmup_time_ns": null,
-        "min_round_time_ns": null,
-        "max_time_ns": null,
-        "max_rounds": null
-      },
-      "stats": "[stats]"
-    },
-    {
-      "name": "BenchmarkAppendTime::Integer",
-      "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Integer",
+      "name": "BenchmarkSleep50ms_Loop",
+      "uri": "example/sleep_test.go::BenchmarkSleep50ms_Loop",
       "config": {
         "warmup_time_ns": null,
         "min_round_time_ns": null,
