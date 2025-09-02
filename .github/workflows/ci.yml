@@ -49,6 +49,7 @@ jobs:
         env:
           CODSPEED_PERF_ENABLED: true
         with:
+          mode: walltime
           working-directory: example
           run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
 
