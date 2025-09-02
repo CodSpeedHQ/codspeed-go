@@ -47,6 +47,7 @@ jobs:
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@main
         with:
+          mode: walltime
           working-directory: example
           run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
 
