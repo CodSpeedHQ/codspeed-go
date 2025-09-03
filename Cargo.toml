@@ -1,3 +1,8 @@
 [workspace]
 resolver = "3"
 members = ["go-runner"]
+
+[profile.dist]
+inherits = "release"
+lto = "thin"
+strip = true
