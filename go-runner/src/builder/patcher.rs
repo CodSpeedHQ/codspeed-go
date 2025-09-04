@@ -77,7 +77,7 @@ pub fn patch_imports<P: AsRef<Path>>(
 
     // Ensure we have the latest codspeed-go package installed. Just
     // use the local one which might contain uncommitted changes.
-    if std::env::var("GITHUB_ACTIONS").is_ok() || cfg!(test) {
+    if std::env::var("CODSPEED_LOCAL_GO_PKG").is_ok() || cfg!(test) {
         replace_pkg(folder)?;
     }
 

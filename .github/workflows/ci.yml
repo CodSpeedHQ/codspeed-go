@@ -28,6 +28,8 @@ jobs:
           lfs: true
           submodules: true
       - uses: moonrepo/setup-rust@v1
+        env:
+          CODSPEED_LOCAL_GO_PKG: true
       - run: |
           cd go-runner
           cargo test --all
@@ -46,6 +48,8 @@ jobs:
 
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@main
+        env:
+          CODSPEED_LOCAL_GO_PKG: true
         with:
           mode: walltime
           working-directory: example
