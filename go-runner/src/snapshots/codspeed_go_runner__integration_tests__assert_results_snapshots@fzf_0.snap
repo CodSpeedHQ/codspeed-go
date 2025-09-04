@@ -1,11 +1,11 @@
 ---
-source: src/integration_tests.rs
+source: go-runner/src/integration_tests.rs
 expression: content
 ---
 {
   "creator": {
     "name": "codspeed-go",
-    "version": "0.1.0",
+    "version": "[version]",
     "pid": "[pid]"
   },
   "instrument": {

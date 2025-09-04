@@ -43,6 +43,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 
         insta::assert_json_snapshot!(content, {
             ".creator.pid" => "[pid]",
+            ".creator.version" => "[version]",
             ".benchmarks[].stats" => "[stats]",
         });
     }
