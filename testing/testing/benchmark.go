@@ -1112,6 +1112,8 @@ func (pb *PB) Next() bool {
 // RunParallel reports ns/op values as wall time for the benchmark as a whole,
 // not the sum of wall time or CPU time over each parallel goroutine.
 func (b *B) RunParallel(body func(*PB)) {
+	fmt.Println("RunParallel is currently unsupported when running with CodSpeed. Continuing without measurements...")
+
 	if b.N == 0 {
 		return // Nothing to do when probing.
 	}
