@@ -86,22 +86,36 @@ pub fn patch_imports<P: AsRef<Path>>(
 
 /// Internal function to apply import patterns to Go source code
 pub fn patch_go_source(source: &str) -> anyhow::Result<String> {
-    let parsed = gosyn::parse_source(source)?;
+    let replace_import =
+        |mut source: String, import_path: &str, replacement: &str| -> anyhow::Result<String> {
+            let parsed = gosyn::parse_source(&source)?;
 
-    let mut modified_content = source.to_string();
-    if let Some(import) = parsed
-        .imports
-        .iter()
-        .find(|import| import.path.value == "\"testing\"")
-    {
-        let start_pos = import.path.pos;
-        let end_pos = start_pos + import.path.value.len();
+            if let Some(import) = parsed
+                .imports
+                .iter()
+                .find(|import| import.path.value == format!("\"{import_path}\""))
+            {
+                let start_pos = import.path.pos;
+                let end_pos = start_pos + import.path.value.len();
 
-        let replacement = "testing \"github.com/CodSpeedHQ/codspeed-go/compat/testing\"";
-        modified_content.replace_range(start_pos..end_pos, replacement);
-    }
+                source.replace_range(start_pos..end_pos, replacement);
+            }
 
-    Ok(modified_content)
+            Ok(source)
+        };
+
+    let source = replace_import(
+        source.to_string(),
+        "testing",
+        "testing \"github.com/CodSpeedHQ/codspeed-go/compat/testing\"",
+    )?;
+    let source = replace_import(
+        source,
+        "github.com/thejerf/slogassert",
+        "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
+    )?;
+
+    Ok(source)
 }
 
 #[cfg(test)]
@@ -209,6 +223,14 @@ func TestExample(t *testing.T) {
 }
 "#;
 
+    const IMPORT_TESTING_AND_SLOGASSERT: &str = r#"package main
+import (
+    "testing"
+    "fmt"
+    "github.com/thejerf/slogassert"
+)
+"#;
+
     #[rstest]
     #[case("single_import_replacement", SINGLE_IMPORT)]
     #[case("multiline_import_replacement", MULTILINE_IMPORT)]
@@ -219,6 +241,7 @@ func TestExample(t *testing.T) {
     #[case("import_at_end_of_block", IMPORT_AT_END_OF_BLOCK)]
     #[case("import_with_extra_whitespace", IMPORT_WITH_EXTRA_WHITESPACE)]
     #[case("import_with_testing_string", IMPORT_WITH_TESTING_STRING)]
+    #[case("import_testing_and_slogassert", IMPORT_TESTING_AND_SLOGASSERT)]
     #[case(
         "multiline_import_with_testing_string",
         MULTILINE_IMPORT_WITH_TESTING_STRING

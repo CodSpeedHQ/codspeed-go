@@ -13,6 +13,7 @@ import (
 
 	// Import parent package containing the benchmarks
 	example "example"
+	compat "example/compat"
 )
 
 // TestDeps is an implementation of the testing.testDeps interface,
@@ -82,6 +83,10 @@ func main() {
 		{
 			Name: "BenchmarkFibonacci20",
 			F:    example.BenchmarkFibonacci20,
+		},
+		{
+			Name: "BenchmarkWithSlogAssert",
+			F:    compat.BenchmarkWithSlogAssert,
 		},
 	}
 

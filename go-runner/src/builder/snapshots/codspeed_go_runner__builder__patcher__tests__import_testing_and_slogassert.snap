@@ -1,0 +1,10 @@
+---
+source: go-runner/src/builder/patcher.rs
+expression: result
+---
+package main
+import (
+    testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+    "fmt"
+    "github.com/CodSpeedHQ/codspeed-go/pkg/slogassert"
+)

@@ -1,13 +1,13 @@
 package slogassert
 
 import (
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
 	"log/slog"
 	"reflect"
 	"strings"
 	"time"
 
-	"testing/slogtest"
+	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	slogtest "github.com/CodSpeedHQ/codspeed-go/compat/testing/slogtest"
 )
 
 const (

@@ -14,31 +14,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkExample",
-        "uri": "example/very/nested/module/example_test.go::BenchmarkExample",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkFibonacci10::fibonacci(10)::fibonacci(10)",
-        "uri": "example/fib_test.go::BenchmarkFibonacci10::fibonacci(10)::fibonacci(10)",
+        "name": "BenchmarkCamelToHuman::camelToHuman",
+        "uri": "net_http_mux_test.go::BenchmarkCamelToHuman::camelToHuman",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -48,8 +25,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkFibonacci20_Loop",
-        "uri": "example/fib_test.go::BenchmarkFibonacci20_Loop",
+        "name": "BenchmarkContext_Body::invalid_JSON_body",
+        "uri": "ctx_test.go::BenchmarkContext_Body::invalid_JSON_body",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -59,8 +36,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkFibonacci20_bN",
-        "uri": "example/fib_test.go::BenchmarkFibonacci20_bN",
+        "name": "BenchmarkContext_Body::string_body",
+        "uri": "ctx_test.go::BenchmarkContext_Body::string_body",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -70,8 +47,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep100ns",
-        "uri": "example/sleep_test.go::BenchmarkSleep100ns",
+        "name": "BenchmarkContext_Body::valid_JSON_body",
+        "uri": "ctx_test.go::BenchmarkContext_Body::valid_JSON_body",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -81,8 +58,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep100ns_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep100ns_Loop",
+        "name": "BenchmarkContext_Body::valid_JSON_body_cache",
+        "uri": "ctx_test.go::BenchmarkContext_Body::valid_JSON_body_cache",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -92,8 +69,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep100us",
-        "uri": "example/sleep_test.go::BenchmarkSleep100us",
+        "name": "BenchmarkHTTPError_PublicError",
+        "uri": "errors_test.go::BenchmarkHTTPError_PublicError",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -103,8 +80,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep100us_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep100us_Loop",
+        "name": "BenchmarkOutTransform::pointer_to_nil",
+        "uri": "serialization_test.go::BenchmarkOutTransform::pointer_to_nil",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -114,8 +91,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep10ms",
-        "uri": "example/sleep_test.go::BenchmarkSleep10ms",
+        "name": "BenchmarkOutTransform::pointer_to_value",
+        "uri": "serialization_test.go::BenchmarkOutTransform::pointer_to_value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -125,8 +102,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep10ms_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep10ms_Loop",
+        "name": "BenchmarkOutTransform::value",
+        "uri": "serialization_test.go::BenchmarkOutTransform::value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -136,8 +113,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep10us",
-        "uri": "example/sleep_test.go::BenchmarkSleep10us",
+        "name": "BenchmarkParsePathParams::empty",
+        "uri": "params_test.go::BenchmarkParsePathParams::empty",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -147,8 +124,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep10us_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep10us_Loop",
+        "name": "BenchmarkParsePathParams::several_path_params",
+        "uri": "params_test.go::BenchmarkParsePathParams::several_path_params",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -158,8 +135,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep1ms",
-        "uri": "example/sleep_test.go::BenchmarkSleep1ms",
+        "name": "BenchmarkReadJSON",
+        "uri": "deserialization_test.go::BenchmarkReadJSON",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -169,8 +146,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep1ms_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep1ms_Loop",
+        "name": "BenchmarkReadString",
+        "uri": "deserialization_test.go::BenchmarkReadString",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -180,8 +157,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep1us",
-        "uri": "example/sleep_test.go::BenchmarkSleep1us",
+        "name": "BenchmarkRender",
+        "uri": "html_test.go::BenchmarkRender",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -191,8 +168,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep1us_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep1us_Loop",
+        "name": "BenchmarkRequest::fuego_server_and_fuego_post",
+        "uri": "net_http_mux_test.go::BenchmarkRequest::fuego_server_and_fuego_post",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -202,8 +179,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep50ms",
-        "uri": "example/sleep_test.go::BenchmarkSleep50ms",
+        "name": "BenchmarkRequest::fuego_server_and_std_post",
+        "uri": "net_http_mux_test.go::BenchmarkRequest::fuego_server_and_std_post",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -213,31 +190,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep50ms_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep50ms_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkTestifyWithNew",
-        "uri": "example/compat/testify_test.go::BenchmarkTestifyWithNew",
+        "name": "BenchmarkRequest::std_server_and_std_post",
+        "uri": "net_http_mux_test.go::BenchmarkRequest::std_server_and_std_post",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -247,8 +201,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkTestifyWithT",
-        "uri": "example/compat/testify_test.go::BenchmarkTestifyWithT",
+        "name": "BenchmarkRoutesRegistration",
+        "uri": "openapi_test.go::BenchmarkRoutesRegistration",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -258,8 +212,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkWithSlogAssert",
-        "uri": "example/compat/slogassert_test.go::BenchmarkWithSlogAssert",
+        "name": "BenchmarkServer_generateOpenAPI",
+        "uri": "openapi_test.go::BenchmarkServer_generateOpenAPI",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
