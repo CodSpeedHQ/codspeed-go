@@ -94,10 +94,8 @@ impl GoPackage {
             };
 
             // Check for unsupported imports
-            const UNSUPPORTED_IMPORTS: &[(&str, &str)] = &[
-                ("github.com/frankban/quicktest", "quicktest"),
-                ("github.com/stretchr/testify", "testify"),
-            ];
+            const UNSUPPORTED_IMPORTS: &[(&str, &str)] =
+                &[("github.com/frankban/quicktest", "quicktest")];
             for (import_path, import_name) in UNSUPPORTED_IMPORTS {
                 if file
                     .imports

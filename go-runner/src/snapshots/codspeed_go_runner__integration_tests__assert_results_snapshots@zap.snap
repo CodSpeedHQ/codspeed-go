@@ -14,8 +14,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "Benchmark100Fields",
-        "uri": "logger_bench_test.go::Benchmark100Fields",
+        "name": "BenchmarkBufferedWriteSyncer::write_file_with_buffer",
+        "uri": "zapcore/buffered_write_syncer_bench_test.go::BenchmarkBufferedWriteSyncer::write_file_with_buffer",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -25,8 +25,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "Benchmark10Fields",
-        "uri": "logger_bench_test.go::Benchmark10Fields",
+        "name": "BenchmarkMultiWriteSyncer::2_discarder",
+        "uri": "zapcore/write_syncer_bench_test.go::BenchmarkMultiWriteSyncer::2_discarder",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -36,8 +36,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "Benchmark5WithLazysNotUsed",
-        "uri": "logger_bench_test.go::Benchmark5WithLazysNotUsed",
+        "name": "BenchmarkMultiWriteSyncer::4_discarder",
+        "uri": "zapcore/write_syncer_bench_test.go::BenchmarkMultiWriteSyncer::4_discarder",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -47,8 +47,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "Benchmark5WithLazysUsed",
-        "uri": "logger_bench_test.go::Benchmark5WithLazysUsed",
+        "name": "BenchmarkMultiWriteSyncer::4_discarder_with_buffer",
+        "uri": "zapcore/write_syncer_bench_test.go::BenchmarkMultiWriteSyncer::4_discarder_with_buffer",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -58,8 +58,31 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "Benchmark5WithsNotUsed",
-        "uri": "logger_bench_test.go::Benchmark5WithsNotUsed",
+        "name": "BenchmarkWriteSyncer::write_file_with_no_buffer",
+        "uri": "zapcore/write_syncer_bench_test.go::BenchmarkWriteSyncer::write_file_with_no_buffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkBuffers::ByteSlice",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::ByteSlice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -69,8 +92,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "Benchmark5WithsUsed",
-        "uri": "logger_bench_test.go::Benchmark5WithsUsed",
+        "name": "BenchmarkBuffers::BytesBuffer",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::BytesBuffer",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -80,8 +103,54 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkAddCallerAndStacktrace",
-        "uri": "logger_bench_test.go::BenchmarkAddCallerAndStacktrace",
+        "name": "BenchmarkBuffers::CustomBuffer",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::CustomBuffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkTake",
+        "uri": "internal/stacktrace/stack_test.go::BenchmarkTake",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkWriter::single",
+        "uri": "zapio/writer_test.go::BenchmarkWriter::single",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -91,305 +160,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkAddCallerHook",
-        "uri": "logger_bench_test.go::BenchmarkAddCallerHook",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::string::field-only::any",
-        "uri": "logger_bench_test.go::BenchmarkAny::string::field-only::any",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::string::field-only::typed",
-        "uri": "logger_bench_test.go::BenchmarkAny::string::field-only::typed",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::string::log-go::any",
-        "uri": "logger_bench_test.go::BenchmarkAny::string::log-go::any",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::string::log-go::typed",
-        "uri": "logger_bench_test.go::BenchmarkAny::string::log-go::typed",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::string::log::any",
-        "uri": "logger_bench_test.go::BenchmarkAny::string::log::any",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::string::log::typed",
-        "uri": "logger_bench_test.go::BenchmarkAny::string::log::typed",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::stringer::field-only::any",
-        "uri": "logger_bench_test.go::BenchmarkAny::stringer::field-only::any",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::stringer::field-only::typed",
-        "uri": "logger_bench_test.go::BenchmarkAny::stringer::field-only::typed",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::stringer::log-go::any",
-        "uri": "logger_bench_test.go::BenchmarkAny::stringer::log-go::any",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::stringer::log-go::typed",
-        "uri": "logger_bench_test.go::BenchmarkAny::stringer::log-go::typed",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::stringer::log::any",
-        "uri": "logger_bench_test.go::BenchmarkAny::stringer::log::any",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkAny::stringer::log::typed",
-        "uri": "logger_bench_test.go::BenchmarkAny::stringer::log::typed",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkBoolField",
-        "uri": "logger_bench_test.go::BenchmarkBoolField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkByteStringField",
-        "uri": "logger_bench_test.go::BenchmarkByteStringField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkDurationField",
-        "uri": "logger_bench_test.go::BenchmarkDurationField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkErrorField",
-        "uri": "logger_bench_test.go::BenchmarkErrorField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkErrorsField",
-        "uri": "logger_bench_test.go::BenchmarkErrorsField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkFloat64Field",
-        "uri": "logger_bench_test.go::BenchmarkFloat64Field",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkInt64Field",
-        "uri": "logger_bench_test.go::BenchmarkInt64Field",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkIntField",
-        "uri": "logger_bench_test.go::BenchmarkIntField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkNoContext",
-        "uri": "logger_bench_test.go::BenchmarkNoContext",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkObjectField",
-        "uri": "logger_bench_test.go::BenchmarkObjectField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkReflectField",
-        "uri": "logger_bench_test.go::BenchmarkReflectField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkStackField",
-        "uri": "logger_bench_test.go::BenchmarkStackField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkStringField",
-        "uri": "logger_bench_test.go::BenchmarkStringField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkStringerField",
-        "uri": "logger_bench_test.go::BenchmarkStringerField",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkTimeField",
-        "uri": "logger_bench_test.go::BenchmarkTimeField",
+        "name": "BenchmarkWriter::splits",
+        "uri": "zapio/writer_test.go::BenchmarkWriter::splits",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
