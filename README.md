@@ -16,7 +16,7 @@ This repo contains the integration libraries for using CodSpeed in Go:
 
 Integrating CodSpeed into your Go codebase requires **no modification**. You can continue using `go test` and the `testing` package as you normally would. When running your benchmarks in CI with CodSpeed, we will manually build and run the benchmarks and report the results to CodSpeed.
 
-For information on how to integrate it, see the [CodSpeed documentation](https://codspeed.io/docs/benchmarks/golang). If you need further information to integrate CodSpeed to your project, please feel free to open an issue or ask for help on our discord server.
+For information on how to integrate it, see the [CodSpeed documentation](https://codspeed.io/docs/benchmarks/go). If you need further information to integrate CodSpeed to your project, please feel free to open an issue or ask for help on our discord server.
 
 
 ## Manual Usage
