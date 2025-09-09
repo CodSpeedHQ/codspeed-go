@@ -379,8 +379,948 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkCollator::Para",
+        "uri": "langs/language_test.go::BenchmarkCollator::Para",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkCollator::Single",
+        "uri": "langs/language_test.go::BenchmarkCollator::Single",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkCompareDescriptors",
+        "uri": "tpl/tplimpl/templatedescriptor_test.go::BenchmarkCompareDescriptors",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkCompileRegexp",
+        "uri": "common/hstrings/strings_test.go::BenchmarkCompileRegexp",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkGetOrCompileRegexp",
+        "uri": "common/hstrings/strings_test.go::BenchmarkGetOrCompileRegexp",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkDecodeExif",
+        "uri": "resources/images/exif/exif_test.go::BenchmarkDecodeExif",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkDecodeYAMLToMap",
+        "uri": "parser/metadecoders/decoder_test.go::BenchmarkDecodeYAMLToMap",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringifyMapKeysIntegers",
+        "uri": "parser/metadecoders/decoder_test.go::BenchmarkStringifyMapKeysIntegers",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringifyMapKeysStringsOnlyInterfaceMaps",
+        "uri": "parser/metadecoders/decoder_test.go::BenchmarkStringifyMapKeysStringsOnlyInterfaceMaps",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringifyMapKeysStringsOnlyStringMaps",
+        "uri": "parser/metadecoders/decoder_test.go::BenchmarkStringifyMapKeysStringsOnlyStringMaps",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkDefaultConfigProvider::Custom",
+        "uri": "config/defaultConfigProvider_test.go::BenchmarkDefaultConfigProvider::Custom",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkElementsCollectorWriter",
+        "uri": "publisher/htmlElementsCollector_test.go::BenchmarkElementsCollectorWriter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkElementsCollectorWriterPre",
+        "uri": "publisher/htmlElementsCollector_test.go::BenchmarkElementsCollectorWriterPre",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkExecuteGreet",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkExecuteGreet",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExecuteGreetPara",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkExecuteGreetPara",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExecuteKatex",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkExecuteKatex",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExecuteKatexPara::PoolSize1",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkExecuteKatexPara::PoolSize1",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExecuteKatexPara::PoolSize16",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkExecuteKatexPara::PoolSize16",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExecuteKatexPara::PoolSize8",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkExecuteKatexPara::PoolSize8",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkKatexStartStop::PoolSize1",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkKatexStartStop::PoolSize1",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkKatexStartStop::PoolSize16",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkKatexStartStop::PoolSize16",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkKatexStartStop::PoolSize8",
+        "uri": "internal/warpc/warpc_test.go::BenchmarkKatexStartStop::PoolSize8",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkGetGlob::Default_cache",
+        "uri": "hugofs/glob/glob_test.go::BenchmarkGetGlob::Default_cache",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkGetGlob::Filenames_cache,_lowercase_searches",
+        "uri": "hugofs/glob/glob_test.go::BenchmarkGetGlob::Filenames_cache,_lowercase_searches",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkGetGlob::Filenames_cache,_mixed_case_searches",
+        "uri": "hugofs/glob/glob_test.go::BenchmarkGetGlob::Filenames_cache,_mixed_case_searches",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkGetGlob::GetGlob",
+        "uri": "hugofs/glob/glob_test.go::BenchmarkGetGlob::GetGlob",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkGetMethodByName",
+        "uri": "common/hreflect/helpers_test.go::BenchmarkGetMethodByName",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkGetMethodByNamePara",
+        "uri": "common/hreflect/helpers_test.go::BenchmarkGetMethodByNamePara",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIsContextType::background",
+        "uri": "common/hreflect/helpers_test.go::BenchmarkIsContextType::background",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIsContextType::value",
+        "uri": "common/hreflect/helpers_test.go::BenchmarkIsContextType::value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIsTruthFul",
+        "uri": "common/hreflect/helpers_test.go::BenchmarkIsTruthFul",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHasShortcode::Match",
+        "uri": "parser/pageparser/pageparser_test.go::BenchmarkHasShortcode::Match",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHasShortcode::NoMatch",
+        "uri": "parser/pageparser/pageparser_test.go::BenchmarkHasShortcode::NoMatch",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParse",
+        "uri": "parser/pageparser/pageparser_test.go::BenchmarkParse",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkShortcodeLexer",
+        "uri": "parser/pageparser/pageparser_shortcode_test.go::BenchmarkShortcodeLexer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkHash",
         "uri": "hugolib/pagesfromdata/pagesfromgotmpl_test.go::BenchmarkHash",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHashImage",
+        "uri": "resources/resource_test.go::BenchmarkHashImage",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHashMap",
+        "uri": "common/hashing/hashing_test.go::BenchmarkHashMap",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHashString::n112",
+        "uri": "common/hashing/hashing_test.go::BenchmarkHashString::n112",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHashString::n1792",
+        "uri": "common/hashing/hashing_test.go::BenchmarkHashString::n1792",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHashString::n28",
+        "uri": "common/hashing/hashing_test.go::BenchmarkHashString::n28",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHashString::n448",
+        "uri": "common/hashing/hashing_test.go::BenchmarkHashString::n448",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHashString::n7168",
+        "uri": "common/hashing/hashing_test.go::BenchmarkHashString::n7168",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXXHashFromReader",
+        "uri": "common/hashing/hashing_test.go::BenchmarkXXHashFromReader",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXXHashFromString",
+        "uri": "common/hashing/hashing_test.go::BenchmarkXXHashFromString",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXXHashFromStringHexEncoded",
+        "uri": "common/hashing/hashing_test.go::BenchmarkXXHashFromStringHexEncoded",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHashingFs",
+        "uri": "hugofs/hashing_fs_test.go::BenchmarkHashingFs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk",
+        "uri": "hugofs/walk_test.go::BenchmarkWalk",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHowSimilar",
+        "uri": "metrics/metrics_test.go::BenchmarkHowSimilar",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkI18nTranslate::all-present",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::all-present",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::argument-float",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::argument-float",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::context-provided",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::context-provided",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::dotted-bare-key",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::dotted-bare-key",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::file-missing",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::file-missing",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::known-language-missing-plural",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::known-language-missing-plural",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::lang-with-hyphen",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::lang-with-hyphen",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::missing",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::missing",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::present-in-current",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::present-in-current",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::present-in-default",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::present-in-default",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::readingTime-many",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::readingTime-many",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::readingTime-many-dot",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::readingTime-many-dot",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::readingTime-map-many",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::readingTime-map-many",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::readingTime-map-one",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::readingTime-map-one",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::readingTime-one",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::readingTime-one",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::readingTime-string-one",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::readingTime-string-one",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::same-id-and-translation",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::same-id-and-translation",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::same-id-and-translation-default",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::same-id-and-translation-default",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::unknown-language-code",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::unknown-language-code",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkI18nTranslate::unknown-language-codes",
+        "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::unknown-language-codes",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -447,6 +1387,29 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkLiveReloadInject",
+        "uri": "transform/livereloadinject/livereloadinject_test.go::BenchmarkLiveReloadInject",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkLoad",
         "uri": "config/allconfig/load_test.go::BenchmarkLoad",
         "config": {
@@ -469,6 +1432,50 @@ expression: results
       "type": "walltime"
     },
     "benchmarks": [
+      {
+        "name": "BenchmarkMerge",
+        "uri": "tpl/collections/merge_test.go::BenchmarkMerge",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkQuerify",
+        "uri": "tpl/collections/querify_test.go::BenchmarkQuerify",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkQuerifyMap",
+        "uri": "tpl/collections/querify_test.go::BenchmarkQuerifyMap",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkQuerifySlice",
+        "uri": "tpl/collections/querify_test.go::BenchmarkQuerifySlice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
       {
         "name": "BenchmarkSortMap",
         "uri": "tpl/collections/sort_test.go::BenchmarkSortMap",
@@ -537,6 +1544,709 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkPageCache",
+        "uri": "resources/page/pages_cache_test.go::BenchmarkPageCache",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkPermalinkExpand",
+        "uri": "resources/page/permalinks_test.go::BenchmarkPermalinkExpand",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByDate-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByDate-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByDate-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByDate-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByDate-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByDate-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByDate-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByDate-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByPublishDate-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByPublishDate-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByPublishDate-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByPublishDate-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByPublishDate-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByPublishDate-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByPublishDate-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByPublishDate-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle_Linear-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle_Linear-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle_Linear-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle_Linear-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle_Linear-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle_Linear-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByTitle_Linear-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByTitle_Linear-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight.Reverse-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight.Reverse-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight.Reverse-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight.Reverse-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight.Reverse-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight.Reverse-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::ByWeight.Reverse-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::ByWeight.Reverse-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::Shuffled-100",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::Shuffled-100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::Shuffled-1000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::Shuffled-1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::Shuffled-500",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::Shuffled-500",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSearchPage::Shuffled-5000",
+        "uri": "resources/page/pages_sort_search_test.go::BenchmarkSearchPage::Shuffled-5000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSortByWeightAndReverse",
+        "uri": "resources/page/pages_sort_test.go::BenchmarkSortByWeightAndReverse",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSummaryFromHTML",
+        "uri": "resources/page/page_markup_test.go::BenchmarkSummaryFromHTML",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSummaryFromHTMLWithDivider",
+        "uri": "resources/page/page_markup_test.go::BenchmarkSummaryFromHTMLWithDivider",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkParseIdentity",
+        "uri": "common/paths/pathparser_test.go::BenchmarkParseIdentity",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSanitize::All_allowed",
+        "uri": "common/paths/path_test.go::BenchmarkSanitize::All_allowed",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSanitize::Spaces",
+        "uri": "common/paths/path_test.go::BenchmarkSanitize::Spaces",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkPoller::Check_for_changes_in_dir",
+        "uri": "watcher/filenotify/poller_test.go::BenchmarkPoller::Check_for_changes_in_dir",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkPoller::Check_for_changes_in_file",
+        "uri": "watcher/filenotify/poller_test.go::BenchmarkPoller::Check_for_changes_in_file",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkRelatedMatchesIn",
+        "uri": "related/inverted_index_test.go::BenchmarkRelatedMatchesIn",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkRelatedNewIndex::all",
+        "uri": "related/inverted_index_test.go::BenchmarkRelatedNewIndex::all",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkRelatedNewIndex::singles",
+        "uri": "related/inverted_index_test.go::BenchmarkRelatedNewIndex::singles",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkSanitizeAnchorName",
+        "uri": "markup/goldmark/autoid_test.go::BenchmarkSanitizeAnchorName",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSanitizeAnchorNameAsciiOnly",
+        "uri": "markup/goldmark/autoid_test.go::BenchmarkSanitizeAnchorNameAsciiOnly",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSanitizeAnchorNameBlackfriday",
+        "uri": "markup/goldmark/autoid_test.go::BenchmarkSanitizeAnchorNameBlackfriday",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSanitizeAnchorNameString",
+        "uri": "markup/goldmark/autoid_test.go::BenchmarkSanitizeAnchorNameString",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkScratchGet",
+        "uri": "common/maps/scratch_test.go::BenchmarkScratchGet",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkSegmentsMatch",
+        "uri": "hugolib/segments/segments_test.go::BenchmarkSegmentsMatch",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkStringSort::LessStrings",
+        "uri": "compare/compare_strings_test.go::BenchmarkStringSort::LessStrings",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkTimeFormatter::Localized",
+        "uri": "common/htime/time_test.go::BenchmarkTimeFormatter::Localized",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTimeFormatter::Localized_Custom",
+        "uri": "common/htime/time_test.go::BenchmarkTimeFormatter::Localized_Custom",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTimeFormatter::Native",
+        "uri": "common/htime/time_test.go::BenchmarkTimeFormatter::Native",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkToc::Build",
+        "uri": "markup/tableofcontents/tableofcontents_test.go::BenchmarkToc::Build",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkToc::ToHTML",
+        "uri": "markup/tableofcontents/tableofcontents_test.go::BenchmarkToc::ToHTML",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkTruncate::Plain_text",
         "uri": "tpl/strings/truncate_test.go::BenchmarkTruncate::Plain_text",
         "config": {
@@ -550,6 +2260,153 @@ expression: results
       {
         "name": "BenchmarkTruncate::With_link",
         "uri": "tpl/strings/truncate_test.go::BenchmarkTruncate::With_link",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkTypeOps",
+        "uri": "media/mediaType_test.go::BenchmarkTypeOps",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkVisitLinesAfter",
+        "uri": "common/text/transform_test.go::BenchmarkVisitLinesAfter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkWrap",
+        "uri": "markup/goldmark/hugocontext/hugocontext_test.go::BenchmarkWrap",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkXxHash::fnv32a_43",
+        "uri": "tpl/hash/hash_test.go::BenchmarkXxHash::fnv32a_43",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXxHash::fnv32a_4300",
+        "uri": "tpl/hash/hash_test.go::BenchmarkXxHash::fnv32a_4300",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXxHash::mdb5_43",
+        "uri": "tpl/hash/hash_test.go::BenchmarkXxHash::mdb5_43",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXxHash::mdb5_4300",
+        "uri": "tpl/hash/hash_test.go::BenchmarkXxHash::mdb5_4300",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXxHash::xxHash_43",
+        "uri": "tpl/hash/hash_test.go::BenchmarkXxHash::xxHash_43",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkXxHash::xxHash_4300",
+        "uri": "tpl/hash/hash_test.go::BenchmarkXxHash::xxHash_4300",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

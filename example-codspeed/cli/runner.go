@@ -87,6 +87,9 @@ func main() {
 		{
 			Name: "BenchmarkWithSlogAssert",
 			F:    compat.BenchmarkWithSlogAssert,
+		}, {
+			Name: "BenchmarkQuicktest",
+			F:    compat.BenchmarkQuicktest,
 		},
 	}
 
