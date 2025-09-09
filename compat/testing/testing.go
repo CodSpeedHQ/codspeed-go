@@ -68,3 +68,7 @@ func Testing() bool {
 func Verbose() bool {
 	return codspeed_testing.Verbose()
 }
+
+func Benchmark(f func(b *B)) BenchmarkResult {
+	return codspeed_testing.Benchmark(f)
+}

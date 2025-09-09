@@ -68,3 +68,7 @@ func Testing() bool {
 func Verbose() bool {
 	return stdtesting.Verbose()
 }
+
+func Benchmark(f func(b *B)) BenchmarkResult {
+	return stdtesting.Benchmark(f)
+}
