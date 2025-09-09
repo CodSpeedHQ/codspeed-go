@@ -237,7 +237,11 @@ impl BenchmarkPackage {
         go_project_path: &Path,
         packages: &[String],
     ) -> anyhow::Result<Vec<BenchmarkPackage>> {
-        let raw_packages = Self::run_go_list(go_project_path, packages)?;
+        let mut raw_packages = Self::run_go_list(go_project_path, packages)?;
+
+        // Sort packages by import path to ensure deterministic order
+        raw_packages.sort_by(|a, b| a.import_path.cmp(&b.import_path));
+
         let has_test_files =
             |files: &Vec<String>| files.iter().any(|name| name.ends_with("_test.go"));
         let has_test_imports = |imports: &Vec<String>| {

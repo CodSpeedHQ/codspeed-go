@@ -1,0 +1,1199 @@
+---
+source: go-runner/src/integration_tests.rs
+expression: results
+---
+[
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkAppendBytes::EncodingFirst",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingFirst",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendBytes::EncodingLast",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingLast",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendBytes::EncodingMiddle",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingMiddle",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendBytes::MultiBytesFirst",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::MultiBytesFirst",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendBytes::MultiBytesLast",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::MultiBytesLast",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendBytes::MultiBytesMiddle",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::MultiBytesMiddle",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendBytes::NoEncoding",
+        "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::NoEncoding",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::EncodingFirst",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingFirst",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::EncodingLast",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingLast",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::EncodingMiddle",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::EncodingMiddle",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::MultiBytesFirst",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesFirst",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::MultiBytesLast",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesLast",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::MultiBytesMiddle",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::MultiBytesMiddle",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::NoEncoding",
+        "uri": "internal/json/string_test.go::BenchmarkAppendString::NoEncoding",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEncoder_AppendFloat32",
+        "uri": "internal/json/types_test.go::BenchmarkEncoder_AppendFloat32",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEncoder_AppendFloat64",
+        "uri": "internal/json/types_test.go::BenchmarkEncoder_AppendFloat64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkAppendFloat::Float32",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendFloat::Float32",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendFloat::Float64",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendFloat::Float64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::int-Negative",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int-Negative",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::int-Positive",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int-Positive",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::int16",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int16",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::int32",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int32",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::int64",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::int8",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::int8",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::uint16",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint16",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::uint32",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint32",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::uint64",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendInt::uint8",
+        "uri": "internal/cbor/types_test.go::BenchmarkAppendInt::uint8",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::EncodingFirst",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::EncodingFirst",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::EncodingLast",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::EncodingLast",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::EncodingMiddle",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::EncodingMiddle",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::MultiBytesFirst",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::MultiBytesFirst",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::MultiBytesLast",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::MultiBytesLast",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::MultiBytesMiddle",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::MultiBytesMiddle",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendString::NoEncoding",
+        "uri": "internal/cbor/string_test.go::BenchmarkAppendString::NoEncoding",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendTime::Float",
+        "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Float",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendTime::Integer",
+        "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Integer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkContextAppend",
+        "uri": "benchmark_test.go::BenchmarkContextAppend",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Bool",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Bool",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Bools",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Bools",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Ctx",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Ctx",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Dur",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Dur",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Durs",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Durs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Err",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Err",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Errs",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Errs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Float",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Float",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Floats",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Floats",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Int",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Int",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Interface",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Interface",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Interface(Object)",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Interface(Object)",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Interface(Objects)",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Interface(Objects)",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Interfaces",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Interfaces",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Ints",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Ints",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Object",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Object",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Str",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Str",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Stringer",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Stringer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Strs",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Strs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Time",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Time",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Times",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Times",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFieldType::Timestamp",
+        "uri": "benchmark_test.go::BenchmarkContextFieldType::Timestamp",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkContextFields",
+        "uri": "benchmark_test.go::BenchmarkContextFields",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkDisabled",
+        "uri": "benchmark_test.go::BenchmarkDisabled",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHooks::Nop/Multi",
+        "uri": "hook_test.go::BenchmarkHooks::Nop/Multi",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHooks::Nop/Single",
+        "uri": "hook_test.go::BenchmarkHooks::Nop/Single",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHooks::Simple",
+        "uri": "hook_test.go::BenchmarkHooks::Simple",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInfo",
+        "uri": "benchmark_test.go::BenchmarkInfo",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogArrayObject",
+        "uri": "benchmark_test.go::BenchmarkLogArrayObject",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogEmpty",
+        "uri": "benchmark_test.go::BenchmarkLogEmpty",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Bool",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Bool",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Bools",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Bools",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Ctx",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Ctx",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Dur",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Dur",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Durs",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Durs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Err",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Err",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Errs",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Errs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Float",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Float",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Floats",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Floats",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Int",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Int",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Interface",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Interface",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Interface(Object)",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Interface(Object)",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Interface(Objects)",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Interface(Objects)",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Interfaces",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Interfaces",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Ints",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Ints",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Object",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Object",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Str",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Str",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Strs",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Strs",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Time",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Time",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFieldType::Times",
+        "uri": "benchmark_test.go::BenchmarkLogFieldType::Times",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLogFields",
+        "uri": "benchmark_test.go::BenchmarkLogFields",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::BasicSampler_0",
+        "uri": "sampler_test.go::BenchmarkSamplers::BasicSampler_0",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::BasicSampler_1",
+        "uri": "sampler_test.go::BenchmarkSamplers::BasicSampler_1",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::BasicSampler_5",
+        "uri": "sampler_test.go::BenchmarkSamplers::BasicSampler_5",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::BurstSampler",
+        "uri": "sampler_test.go::BenchmarkSamplers::BurstSampler",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::BurstSamplerNext",
+        "uri": "sampler_test.go::BenchmarkSamplers::BurstSamplerNext",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::BurstSampler_0",
+        "uri": "sampler_test.go::BenchmarkSamplers::BurstSampler_0",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::RandomSampler",
+        "uri": "sampler_test.go::BenchmarkSamplers::RandomSampler",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSamplers::RandomSampler_0",
+        "uri": "sampler_test.go::BenchmarkSamplers::RandomSampler_0",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkDataRace",
+        "uri": "hlog/hlog_test.go::BenchmarkDataRace",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHandlers::Combined",
+        "uri": "hlog/hlog_test.go::BenchmarkHandlers::Combined",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHandlers::CombinedDisabled",
+        "uri": "hlog/hlog_test.go::BenchmarkHandlers::CombinedDisabled",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHandlers::Single",
+        "uri": "hlog/hlog_test.go::BenchmarkHandlers::Single",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHandlers::SingleDisabled",
+        "uri": "hlog/hlog_test.go::BenchmarkHandlers::SingleDisabled",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkLogStack",
+        "uri": "pkgerrors/stacktrace_test.go::BenchmarkLogStack",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  }
+]

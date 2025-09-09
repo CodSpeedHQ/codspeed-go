@@ -30,23 +30,36 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
         })
         .collect::<Vec<_>>();
 
-    for (i, mut content) in files.into_iter().enumerate() {
-        content
-            .benchmarks
-            .sort_by_cached_key(|b| b.metadata.name.clone());
+    let mut results = files
+        .into_iter()
+        .map(|mut content| {
+            content
+                .benchmarks
+                .sort_by_cached_key(|b| b.metadata.name.clone());
+            content
+        })
+        .collect::<Vec<_>>();
 
-        let _guard = {
-            let mut settings = insta::Settings::clone_current();
-            settings.set_snapshot_suffix(format!("{project_name}_{i}"));
-            settings.bind_to_scope()
-        };
+    // Sort all results to ensure deterministic snapshot order
+    results.sort_by_cached_key(|r| {
+        r.benchmarks
+            .iter()
+            .map(|b| b.metadata.name.clone())
+            .sorted()
+            .join(";")
+    });
 
-        insta::assert_json_snapshot!(content, {
-            ".creator.pid" => "[pid]",
-            ".creator.version" => "[version]",
-            ".benchmarks[].stats" => "[stats]",
-        });
-    }
+    let _guard = {
+        let mut settings = insta::Settings::clone_current();
+        settings.set_snapshot_suffix(project_name.to_string());
+        settings.bind_to_scope()
+    };
+
+    insta::assert_json_snapshot!(results, {
+        "[].creator.pid" => "[pid]",
+        "[].creator.version" => "[version]",
+        "[].benchmarks[].stats" => "[stats]",
+    });
 }
 
 #[rstest]
