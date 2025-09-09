@@ -7,7 +7,6 @@ use std::{
     process::Command,
 };
 
-use crate::builder::verifier;
 use crate::prelude::*;
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
@@ -147,27 +146,7 @@ impl GoPackage {
                 format!("Couldn't strip the module dir from file path: {file_path:?}"),
             )?;
 
-            let valid_benchmarks =
-                verifier::FuncVisitor::verify_source_code(&content, &found_benchmarks)?;
-            if valid_benchmarks.len() != found_benchmarks.len() {
-                warn!(
-                    "Only {} out of {} are valid, skipping file",
-                    valid_benchmarks.len(),
-                    found_benchmarks.len()
-                );
-                warn!("Valid benchmarks: {valid_benchmarks:?}");
-                warn!(
-                    "Invalid benchmarks: {:?}",
-                    found_benchmarks
-                        .iter()
-                        .filter(|f| !valid_benchmarks.contains(f))
-                        .collect::<Vec<_>>()
-                );
-
-                continue;
-            }
-
-            for func in valid_benchmarks.into_iter().sorted() {
+            for func in found_benchmarks.into_iter().sorted() {
                 benchmarks.push(GoBenchmark::new(
                     package_import_path.clone(),
                     func,

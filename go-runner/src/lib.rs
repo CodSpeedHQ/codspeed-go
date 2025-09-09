@@ -38,7 +38,14 @@ pub fn run_benchmarks<P: AsRef<Path>>(
         let (_target_dir, runner_path) = builder::templater::run(package, &profile_dir)?;
 
         info!("Building binary for package: {}", package.name);
-        let binary_path = builder::build_binary(&runner_path)?;
+
+        let binary_path = match builder::build_binary(&runner_path) {
+            Ok(binary_path) => binary_path,
+            Err(e) => {
+                error!("Failed to build {}: {e}", package.name);
+                continue;
+            }
+        };
 
         runner::run(
             &binary_path,

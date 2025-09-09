@@ -1,5 +1,5 @@
 ---
-source: src/builder/discovery.rs
+source: go-runner/src/builder/discovery.rs
 expression: packages
 ---
 [
@@ -392,6 +392,252 @@ expression: packages
         "import_alias": "benchmarkrangeslicekey_16576224277772605544",
         "qualified_name": "benchmarkrangeslicekey_16576224277772605544.BenchmarkRangeSliceKey",
         "file_path": "foreach/foreach_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
+      "Name": "hash",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/hash [github.com/SimonWaldherr/golang-benchmarks/hash.test]",
+      "TestGoFiles": [
+        "hash_test.go"
+      ],
+      "TestImports": [
+        "crypto/md5",
+        "crypto/sha1",
+        "crypto/sha256",
+        "crypto/sha512",
+        "github.com/jzelinskie/whirlpool",
+        "github.com/reusee/mmh3",
+        "github.com/zeebo/blake3",
+        "golang.org/x/crypto/bcrypt",
+        "golang.org/x/crypto/blake2b",
+        "golang.org/x/crypto/md4",
+        "golang.org/x/crypto/ripemd160",
+        "golang.org/x/crypto/sha3",
+        "hash",
+        "hash/adler32",
+        "hash/crc32",
+        "hash/crc64",
+        "hash/fnv",
+        "math/rand",
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "hash_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkAdler32",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkadler32_11363779915769227794",
+        "qualified_name": "benchmarkadler32_11363779915769227794.BenchmarkAdler32",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkBCryptCost10",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkbcryptcost10_11363779915769227794",
+        "qualified_name": "benchmarkbcryptcost10_11363779915769227794.BenchmarkBCryptCost10",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkBCryptCost16",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkbcryptcost16_11363779915769227794",
+        "qualified_name": "benchmarkbcryptcost16_11363779915769227794.BenchmarkBCryptCost16",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkBCryptCost4",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkbcryptcost4_11363779915769227794",
+        "qualified_name": "benchmarkbcryptcost4_11363779915769227794.BenchmarkBCryptCost4",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkBlake2b256",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkblake2b256_11363779915769227794",
+        "qualified_name": "benchmarkblake2b256_11363779915769227794.BenchmarkBlake2b256",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkBlake2b512",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkblake2b512_11363779915769227794",
+        "qualified_name": "benchmarkblake2b512_11363779915769227794.BenchmarkBlake2b512",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkBlake3256",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkblake3256_11363779915769227794",
+        "qualified_name": "benchmarkblake3256_11363779915769227794.BenchmarkBlake3256",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkCRC32",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkcrc32_11363779915769227794",
+        "qualified_name": "benchmarkcrc32_11363779915769227794.BenchmarkCRC32",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkCRC64ECMA",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkcrc64ecma_11363779915769227794",
+        "qualified_name": "benchmarkcrc64ecma_11363779915769227794.BenchmarkCRC64ECMA",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkCRC64ISO",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkcrc64iso_11363779915769227794",
+        "qualified_name": "benchmarkcrc64iso_11363779915769227794.BenchmarkCRC64ISO",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkFnv128",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkfnv128_11363779915769227794",
+        "qualified_name": "benchmarkfnv128_11363779915769227794.BenchmarkFnv128",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkFnv128a",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkfnv128a_11363779915769227794",
+        "qualified_name": "benchmarkfnv128a_11363779915769227794.BenchmarkFnv128a",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkFnv32",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkfnv32_11363779915769227794",
+        "qualified_name": "benchmarkfnv32_11363779915769227794.BenchmarkFnv32",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkFnv32a",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkfnv32a_11363779915769227794",
+        "qualified_name": "benchmarkfnv32a_11363779915769227794.BenchmarkFnv32a",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkFnv64",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkfnv64_11363779915769227794",
+        "qualified_name": "benchmarkfnv64_11363779915769227794.BenchmarkFnv64",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkFnv64a",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkfnv64a_11363779915769227794",
+        "qualified_name": "benchmarkfnv64a_11363779915769227794.BenchmarkFnv64a",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkMD4",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkmd4_11363779915769227794",
+        "qualified_name": "benchmarkmd4_11363779915769227794.BenchmarkMD4",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkMD5",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkmd5_11363779915769227794",
+        "qualified_name": "benchmarkmd5_11363779915769227794.BenchmarkMD5",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkMMH3",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkmmh3_11363779915769227794",
+        "qualified_name": "benchmarkmmh3_11363779915769227794.BenchmarkMMH3",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkRIPEMD160",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkripemd160_11363779915769227794",
+        "qualified_name": "benchmarkripemd160_11363779915769227794.BenchmarkRIPEMD160",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA1",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha1_11363779915769227794",
+        "qualified_name": "benchmarksha1_11363779915769227794.BenchmarkSHA1",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA224",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha224_11363779915769227794",
+        "qualified_name": "benchmarksha224_11363779915769227794.BenchmarkSHA224",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA256",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha256_11363779915769227794",
+        "qualified_name": "benchmarksha256_11363779915769227794.BenchmarkSHA256",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA256Parallel",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha256parallel_11363779915769227794",
+        "qualified_name": "benchmarksha256parallel_11363779915769227794.BenchmarkSHA256Parallel",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA3256",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha3256_11363779915769227794",
+        "qualified_name": "benchmarksha3256_11363779915769227794.BenchmarkSHA3256",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA3512",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha3512_11363779915769227794",
+        "qualified_name": "benchmarksha3512_11363779915769227794.BenchmarkSHA3512",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA384",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha384_11363779915769227794",
+        "qualified_name": "benchmarksha384_11363779915769227794.BenchmarkSHA384",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkSHA512",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarksha512_11363779915769227794",
+        "qualified_name": "benchmarksha512_11363779915769227794.BenchmarkSHA512",
+        "file_path": "hash/hash_test.go"
+      },
+      {
+        "name": "BenchmarkWhirlpool",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/hash",
+        "import_alias": "benchmarkwhirlpool_11363779915769227794",
+        "qualified_name": "benchmarkwhirlpool_11363779915769227794.BenchmarkWhirlpool",
+        "file_path": "hash/hash_test.go"
       }
     ]
   },

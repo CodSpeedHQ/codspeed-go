@@ -1,0 +1,117 @@
+---
+source: go-runner/src/integration_tests.rs
+expression: results
+---
+[
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkDiscardingPrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkDiscardingPrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkGoTemplatePrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkGoTemplatePrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkJSONPathPrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkJSONPathPrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkJSONPrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkJSONPrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkNamePrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkNamePrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkOmitManagedFieldsPrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkOmitManagedFieldsPrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTablePrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkTablePrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTypeSetterPrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkTypeSetterPrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkYAMLPrinter",
+        "uri": "pkg/printers/bench_test.go::BenchmarkYAMLPrinter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  }
+]
