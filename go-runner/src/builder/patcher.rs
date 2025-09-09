@@ -5,6 +5,29 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
+fn codspeed_go_version() -> anyhow::Result<String> {
+    if std::env::var("CODSPEED_LOCAL_GO_PKG").is_err() && cfg!(not(test)) {
+        return Ok(format!("v{}", env!("CARGO_PKG_VERSION")));
+    }
+
+    // When running in GitHub Actions, we always want to use the latest
+    // codspeed-go package. For this, we have to use the current branch.
+    if std::env::var("GITHUB_ACTIONS").is_ok() {
+        return Ok(std::env::var("GITHUB_HEAD_REF")?);
+    }
+
+    // Locally, run `git rev-parse --abbrev-ref HEAD` to get the current branch name
+    let output = Command::new("git")
+        .args(["rev-parse", "--abbrev-ref", "HEAD"])
+        .output()
+        .context("Failed to execute 'git rev-parse' command")?;
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        bail!("Failed to get current git branch: {}", stderr);
+    }
+    Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
+}
+
 pub fn replace_pkg<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     let codspeed_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
     let replace_arg = format!(
@@ -55,8 +78,10 @@ pub fn patch_imports<P: AsRef<Path>>(
     debug!("Patched {patched_files} files");
 
     // 2. Update the go module to use the codspeed package
-    let version = format!("v{}", env!("CARGO_PKG_VERSION"));
-    let pkg = format!("github.com/CodSpeedHQ/codspeed-go@{version}");
+    let pkg = format!(
+        "github.com/CodSpeedHQ/codspeed-go@{}",
+        codspeed_go_version()?
+    );
     debug!("Installing {pkg}");
 
     let mut cmd: Command = Command::new("go");
@@ -72,8 +97,19 @@ pub fn patch_imports<P: AsRef<Path>>(
         let stderr = String::from_utf8_lossy(&output.stderr);
         bail!("Failed to install codspeed-go dependency: {}", stderr);
     }
-
     debug!("Successfully installed codspeed-go dependency");
+
+    // Run 'go mod tidy' to resolve transitive dependencies
+    let output = Command::new("go")
+        .args(["mod", "tidy"])
+        .current_dir(folder)
+        .output()
+        .context("Failed to execute 'go mod tidy' command")?;
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        bail!("Failed to run 'go mod tidy': {}", stderr);
+    }
+    debug!("Ran 'go mod tidy' successfully");
 
     // Ensure we have the latest codspeed-go package installed. Just
     // use the local one which might contain uncommitted changes.
@@ -113,6 +149,11 @@ pub fn patch_go_source(source: &str) -> anyhow::Result<String> {
         source,
         "github.com/thejerf/slogassert",
         "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
+    )?;
+    let source = replace_import(
+        source,
+        "github.com/frankban/quicktest",
+        "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
     )?;
 
     Ok(source)

@@ -236,6 +236,17 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkQuicktest",
+        "uri": "example/compat/quicktest_test.go::BenchmarkQuicktest",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
         "name": "BenchmarkTestifyWithNew",
         "uri": "example/compat/testify_test.go::BenchmarkTestifyWithNew",
         "config": {

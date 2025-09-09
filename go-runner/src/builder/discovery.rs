@@ -78,7 +78,7 @@ impl GoPackage {
         };
 
         let mut benchmarks = Vec::new();
-        'file_loop: for file in test_go_files.iter().sorted() {
+        for file in test_go_files.iter().sorted() {
             assert!(file.ends_with("_test.go"));
 
             let file_path = self.dir.join(file);
@@ -92,20 +92,6 @@ impl GoPackage {
                     continue;
                 }
             };
-
-            // Check for unsupported imports
-            const UNSUPPORTED_IMPORTS: &[(&str, &str)] =
-                &[("github.com/frankban/quicktest", "quicktest")];
-            for (import_path, import_name) in UNSUPPORTED_IMPORTS {
-                if file
-                    .imports
-                    .iter()
-                    .any(|import| import.path.value.contains(import_path))
-                {
-                    warn!("Skipping file with {import_name} import: {file_path:?}");
-                    continue 'file_loop;
-                }
-            }
 
             // We can't import packages that are declared as `main`
             if file.pkg_name.name == "main" {
