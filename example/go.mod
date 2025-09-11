@@ -1,4 +1,4 @@
-module example
+module github.com/CodSpeedHQ/codspeed-go/example
 
 go 1.24.3
 

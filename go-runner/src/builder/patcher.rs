@@ -9,7 +9,17 @@ fn codspeed_go_version() -> anyhow::Result<String> {
     // When running in GitHub Actions, we always want to use the latest
     // codspeed-go package. For this, we have to use the current branch.
     if std::env::var("CODSPEED_LOCAL_GO_PKG").is_ok() || cfg!(test) {
-        std::env::var("GITHUB_SHA").context("Couldn't find GITHUB_SHA")
+        // Run `git rev-parse --abbrev-ref HEAD` to get the current branch name
+        let output = Command::new("git")
+            .args(["rev-parse", "--abbrev-ref", "HEAD"])
+            .output()
+            .context("Failed to execute 'git rev-parse' command")?;
+        if !output.status.success() {
+            let stderr = String::from_utf8_lossy(&output.stderr);
+            bail!("Failed to get current git branch: {}", stderr);
+        }
+        let branch = String::from_utf8_lossy(&output.stdout).trim().to_string();
+        Ok(branch)
     } else {
         Ok(format!("v{}", env!("CARGO_PKG_VERSION")))
     }

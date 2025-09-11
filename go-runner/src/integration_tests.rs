@@ -70,10 +70,12 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::zerolog("zerolog")]
 #[case::zap("zap")]
 #[case::hugo("hugo")]
+#[case::example("example")]
+#[case::example_with_main("example-with-main")]
+
 // Currently not producing results:
 #[case::fuego("fuego")]
 #[case::cli_runtime("cli-runtime")]
-#[case::example("example")]
 fn test_build_and_run(#[case] project_name: &str) {
     let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("testdata/projects")
