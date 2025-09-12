@@ -5,29 +5,6 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-fn codspeed_go_version() -> anyhow::Result<String> {
-    if std::env::var("CODSPEED_LOCAL_GO_PKG").is_err() && cfg!(not(test)) {
-        return Ok(format!("v{}", env!("CARGO_PKG_VERSION")));
-    }
-
-    // When running in GitHub Actions, we always want to use the latest
-    // codspeed-go package. For this, we have to use the current branch.
-    if std::env::var("GITHUB_ACTIONS").is_ok() {
-        return Ok(std::env::var("GITHUB_HEAD_REF")?);
-    }
-
-    // Locally, run `git rev-parse --abbrev-ref HEAD` to get the current branch name
-    let output = Command::new("git")
-        .args(["rev-parse", "--abbrev-ref", "HEAD"])
-        .output()
-        .context("Failed to execute 'git rev-parse' command")?;
-    if !output.status.success() {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        bail!("Failed to get current git branch: {}", stderr);
-    }
-    Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
-}
-
 pub fn replace_pkg<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     let codspeed_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
     let replace_arg = format!(
@@ -78,10 +55,9 @@ pub fn patch_imports<P: AsRef<Path>>(
     debug!("Patched {patched_files} files");
 
     // 2. Update the go module to use the codspeed package
-    let pkg = format!(
-        "github.com/CodSpeedHQ/codspeed-go@{}",
-        codspeed_go_version()?
-    );
+    let version = std::env::var("CODSPEED_GO_PKG_VERSION")
+        .unwrap_or_else(|_| format!("v{}", env!("CARGO_PKG_VERSION")));
+    let pkg = format!("github.com/CodSpeedHQ/codspeed-go@{}", version);
     debug!("Installing {pkg}");
 
     let mut cmd: Command = Command::new("go");
