@@ -68,13 +68,8 @@ pub fn run<P: AsRef<Path>>(
     ))?;
     debug!("Relative package path: {relative_package_path:?}");
 
-    // 2. Find benchmark files and patch their imports
-    let files_to_patch = package
-        .benchmarks
-        .iter()
-        .map(|bench| target_dir.path().join(&bench.file_path))
-        .collect::<Vec<_>>();
-    patcher::patch_imports(&target_dir, files_to_patch)?;
+    // 2. Patch the imports of all files with our own versions
+    patcher::patch_imports(&target_dir)?;
 
     // 3. Rename the _test.go files to _codspeed.go
     for file in files {

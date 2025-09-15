@@ -2,7 +2,7 @@
 
 use crate::prelude::*;
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::process::Command;
 
 pub fn replace_pkg<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
@@ -29,21 +29,19 @@ pub fn replace_pkg<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub fn patch_imports<P: AsRef<Path>>(
-    folder: P,
-    files_to_patch: Vec<PathBuf>,
-) -> anyhow::Result<()> {
+pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     let folder = folder.as_ref();
     debug!("Patching imports in folder: {folder:?}");
 
     // 1. Find all imports that match "testing" and replace them with codspeed equivalent
     let mut patched_files = 0;
-    for go_file in files_to_patch {
+
+    let pattern = folder.join("**/*.go");
+    for go_file in glob::glob(pattern.to_str().unwrap())?.filter_map(Result::ok) {
         let content =
             fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
 
         let patched_content = patch_go_source(&content)?;
-
         if patched_content != content {
             fs::write(&go_file, patched_content)
                 .context(format!("Failed to write patched Go file: {go_file:?}"))?;

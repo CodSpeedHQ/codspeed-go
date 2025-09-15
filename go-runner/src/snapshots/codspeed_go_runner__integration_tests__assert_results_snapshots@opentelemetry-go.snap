@@ -169,5 +169,28 @@ expression: results
         "stats": "[stats]"
       }
     ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkStartEndSpanNoSDK",
+        "uri": "internal/global/benchmark_test.go::BenchmarkStartEndSpanNoSDK",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
   }
 ]
