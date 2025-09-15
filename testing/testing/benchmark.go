@@ -165,6 +165,11 @@ func (b *B) StartTimer() {
 // while performing steps that you don't want to measure.
 func (b *B) StopTimer() {
 	if b.timerOn {
+		// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
+		// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
+		// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
+		// the number of iterations for this round.
+		b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
 		b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, highPrecisionTimeSince(b.start))
 		b.duration += highPrecisionTimeSince(b.start)
 		// runtime.ReadMemStats(&memStats)
@@ -241,8 +246,6 @@ func (b *B) __codspeed_root_frame__runN(n int) {
 	b.StopTimer()
 	b.previousN = n
 	b.previousDuration = b.duration
-
-	b.codspeedItersPerRound = append(b.codspeedItersPerRound, int64(n))
 
 	if b.loop.n > 0 && !b.loop.done && !b.failed {
 		b.Error("benchmark function returned without B.Loop() == false (break or return in loop?)")
