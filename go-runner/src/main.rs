@@ -3,7 +3,7 @@ use std::path::Path;
 
 fn main() -> anyhow::Result<()> {
     env_logger::builder()
-        .parse_env("CODSPEED_LOG")
+        .parse_env(env_logger::Env::new().filter_or("CODSPEED_LOG", "info"))
         .filter_module("handlebars", log::LevelFilter::Off)
         .format_timestamp(None)
         .init();
