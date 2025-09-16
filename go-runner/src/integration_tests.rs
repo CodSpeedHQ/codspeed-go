@@ -72,7 +72,6 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::zerolog("zerolog")]
 #[case::zap("zap")]
 #[case::hugo("hugo")]
-// Currently not producing results:
 #[case::fuego("fuego")]
 #[case::cli_runtime("cli-runtime")]
 #[case::example("example")]
