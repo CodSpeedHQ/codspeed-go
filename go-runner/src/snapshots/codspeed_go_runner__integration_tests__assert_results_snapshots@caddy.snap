@@ -1,0 +1,107 @@
+---
+source: go-runner/src/integration_tests.rs
+expression: results
+---
+[
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkLoad",
+        "uri": "admin_test.go::BenchmarkLoad",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReplacer::escaped_placeholder",
+        "uri": "replacer_test.go::BenchmarkReplacer::escaped_placeholder",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReplacer::int_replacement",
+        "uri": "replacer_test.go::BenchmarkReplacer::int_replacement",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReplacer::no_placeholder",
+        "uri": "replacer_test.go::BenchmarkReplacer::no_placeholder",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReplacer::placeholder",
+        "uri": "replacer_test.go::BenchmarkReplacer::placeholder",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReplacer::string_replacement",
+        "uri": "replacer_test.go::BenchmarkReplacer::string_replacement",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkOpenResponseWriter",
+        "uri": "modules/caddyhttp/encode/encode_test.go::BenchmarkOpenResponseWriter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  }
+]

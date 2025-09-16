@@ -47,10 +47,13 @@ pub fn run_benchmarks<P: AsRef<Path>>(
             }
         };
 
-        runner::run(
+        if let Err(error) = runner::run(
             &binary_path,
             &["-test.bench", &cli.bench, "-test.benchtime", &cli.benchtime],
-        )?;
+        ) {
+            error!("Failed to run benchmarks for {}: {error}", package.name);
+            continue;
+        }
     }
 
     // 3. Collect the results

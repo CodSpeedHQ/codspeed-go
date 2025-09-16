@@ -63,7 +63,9 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 }
 
 #[rstest]
-// // #[case::caddy("caddy")]
+// The 'BenchmarkMatchExpressionMatch/boolean_matches_succeed_for_placeholder_http.request.tls.client.subject-16' benchmark currently
+// panics, which causes the binary (which contains more benchmarks) to exit. Has to be fixed within Caddy.
+#[case::caddy("caddy")]
 #[case::fzf("fzf")]
 #[case::opentelemetry_go("opentelemetry-go")]
 #[case::golang_benchmarks("golang-benchmarks")]
