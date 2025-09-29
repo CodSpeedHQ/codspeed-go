@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-INSTRUMENT_HOOKS_COMMIT="d094ae4d6aa0be555a1016cfbbea74e34b0ed555"
+INSTRUMENT_HOOKS_COMMIT="0d3de57fe46ef97714a41ed028096f6f84fdbd2a"
 INSTRUMENT_HOOKS_URL="https://github.com/CodSpeedHQ/instrument-hooks/archive/${INSTRUMENT_HOOKS_COMMIT}.tar.gz"
 VENDOR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMP_DIR=$(mktemp -d)

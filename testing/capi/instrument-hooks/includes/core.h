@@ -36,6 +36,15 @@ int8_t instrument_hooks_executed_benchmark(InstrumentHooks *, int32_t pid,
 int8_t instrument_hooks_set_integration(InstrumentHooks *, const char *name,
                                         const char *version);
 
+#define MARKER_TYPE_SAMPLE_START 0
+#define MARKER_TYPE_SAMPLE_END 1
+#define MARKER_TYPE_BENCHMARK_START 2
+#define MARKER_TYPE_BENCHMARK_END 3
+
+int8_t instrument_hooks_add_marker(InstrumentHooks *, uint32_t pid,
+                                   uint8_t marker_type, uint64_t timestamp);
+uint64_t instrument_hooks_current_timestamp(void);
+
 int8_t callgrind_start_instrumentation();
 int8_t callgrind_stop_instrumentation();
 
