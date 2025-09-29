@@ -50,7 +50,7 @@ jobs:
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
         with:
-          branch: cod-1348-perf-debug-logs-of-currentbenchmark-are-shown-in-github
+          runner-branch: cod-1348-perf-debug-logs-of-currentbenchmark-are-shown-in-github
           mode: walltime
           working-directory: example
           run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
