@@ -34,7 +34,6 @@ jobs:
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
-
   compat-integration-test-walltime:
     runs-on: codspeed-macro
     steps:
@@ -47,10 +46,11 @@ jobs:
           cache-target: release
 
       - name: Run the benchmarks
-        uses: CodSpeedHQ/action@main
+        uses: CodSpeedHQ/action@chore/runner-branch
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
         with:
+          branch: cod-1348-perf-debug-logs-of-currentbenchmark-are-shown-in-github
           mode: walltime
           working-directory: example
           run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
