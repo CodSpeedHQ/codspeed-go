@@ -1,4 +1,4 @@
-package example
+package timing
 
 import (
 	"testing"
