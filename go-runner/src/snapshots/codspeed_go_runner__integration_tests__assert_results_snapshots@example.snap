@@ -70,8 +70,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep100ns",
-        "uri": "example/sleep_test.go::BenchmarkSleep100ns",
+        "name": "BenchmarkLargeSetup",
+        "uri": "example/setup_test.go::BenchmarkLargeSetup",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -81,140 +81,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkSleep100ns_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep100ns_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep100us",
-        "uri": "example/sleep_test.go::BenchmarkSleep100us",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep100us_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep100us_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep10ms",
-        "uri": "example/sleep_test.go::BenchmarkSleep10ms",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep10ms_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep10ms_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep10us",
-        "uri": "example/sleep_test.go::BenchmarkSleep10us",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep10us_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep10us_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep1ms",
-        "uri": "example/sleep_test.go::BenchmarkSleep1ms",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep1ms_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep1ms_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep1us",
-        "uri": "example/sleep_test.go::BenchmarkSleep1us",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep1us_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep1us_Loop",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep50ms",
-        "uri": "example/sleep_test.go::BenchmarkSleep50ms",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkSleep50ms_Loop",
-        "uri": "example/sleep_test.go::BenchmarkSleep50ms_Loop",
+        "name": "BenchmarkLargeSetupInLoop",
+        "uri": "example/setup_test.go::BenchmarkLargeSetupInLoop",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -271,6 +139,172 @@ expression: results
       {
         "name": "BenchmarkWithSlogAssert",
         "uri": "example/compat/slogassert_test.go::BenchmarkWithSlogAssert",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkSleep100ns",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep100ns",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep100ns_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep100ns_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep100us",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep100us",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep100us_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep100us_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep10ms",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep10ms",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep10ms_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep10ms_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep10us",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep10us",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep10us_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep10us_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep1ms",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep1ms",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep1ms_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep1ms_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep1us",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep1us",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep1us_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep1us_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep50ms",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep50ms",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSleep50ms_Loop",
+        "uri": "example/timing/sleep_test.go::BenchmarkSleep50ms_Loop",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
