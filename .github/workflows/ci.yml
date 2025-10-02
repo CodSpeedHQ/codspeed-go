@@ -37,6 +37,9 @@ jobs:
 
   compat-integration-test-walltime:
     runs-on: codspeed-macro
+    strategy:
+      matrix:
+        target: [example, example/compat, example/very/nested/module]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,7 +56,7 @@ jobs:
         with:
           mode: walltime
           working-directory: example
-          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ./...
+          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
 
   check:
     runs-on: ubuntu-latest
