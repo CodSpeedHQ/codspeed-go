@@ -53,7 +53,7 @@ jobs:
         with:
           mode: walltime
           working-directory: example
-          run: cargo r --manifest-path ../go-runner/Cargo.toml -- test -bench=.
+          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=.
 
   check:
     runs-on: ubuntu-latest
