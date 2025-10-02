@@ -389,7 +389,7 @@ func (b *B) launch() {
 			b.codspeedTimePerRoundNs = make([]time.Duration, 0)
 
 			// Final run:
-			benchD := time.Second * b.benchTime.d
+			benchD := b.benchTime.d
 			benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
 
 			// When we have a very slow benchmark (e.g. taking 500ms), we have to:
