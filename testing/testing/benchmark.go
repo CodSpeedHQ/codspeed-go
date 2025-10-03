@@ -503,7 +503,6 @@ func (b *B) loopSlowPath() bool {
 		if b.loop.n < uint64(b.benchTime.n) {
 			b.loop.n = uint64(b.benchTime.n)
 			b.loop.i++
-			b.ResetTimer()
 			b.StartTimer()
 			return true
 		}
