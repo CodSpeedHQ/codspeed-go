@@ -165,19 +165,21 @@ func (b *B) StartTimer() {
 // while performing steps that you don't want to measure.
 func (b *B) StopTimer() {
 	if b.timerOn {
-		// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
-		// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
-		// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
-		// the number of iterations for this round.
-		b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
-		b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, highPrecisionTimeSince(b.start))
-		b.duration += highPrecisionTimeSince(b.start)
+		timeSinceStart := highPrecisionTimeSince(b.start)
+		b.duration += timeSinceStart
 		// runtime.ReadMemStats(&memStats)
 		// b.netAllocs += memStats.Mallocs - b.startAllocs
 		// b.netBytes += memStats.TotalAlloc - b.startBytes
 		b.timerOn = false
 		// If we hit B.Loop with the timer stopped, fail.
 		// b.loop.i |= loopPoisonTimer
+
+		// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
+		// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
+		// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
+		// the number of iterations for this round.
+		b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
+		b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, timeSinceStart)
 	}
 }
 
