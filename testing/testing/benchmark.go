@@ -90,6 +90,10 @@ type codspeed struct {
 
 	codspeedTimePerRoundNs []time.Duration
 	codspeedItersPerRound  []int64
+
+	startTimestamp  uint64
+	startTimestamps []uint64
+	stopTimestamps  []uint64
 }
 
 // B is a type passed to [Benchmark] functions to manage benchmark
@@ -150,7 +154,7 @@ type B struct {
 // StartTimer starts timing a test. This function is called automatically
 // before a benchmark starts, but it can also be used to resume timing after
 // a call to [B.StopTimer].
-func (b *B) StartTimer() {
+func (b *B) StartTimerWithoutMarker() {
 	if !b.timerOn {
 		// runtime.ReadMemStats(&memStats)
 		// b.startAllocs = memStats.Mallocs
@@ -161,9 +165,19 @@ func (b *B) StartTimer() {
 	}
 }
 
+func (b *B) StartTimer() {
+	timerOn := b.timerOn
+
+	b.StartTimerWithoutMarker()
+
+	if !timerOn {
+		b.startTimestamp = capi.CurrentTimestamp()
+	}
+}
+
 // StopTimer stops timing a test. This can be used to pause the timer
 // while performing steps that you don't want to measure.
-func (b *B) StopTimer() {
+func (b *B) StopTimerWithoutMarker() {
 	if b.timerOn {
 		timeSinceStart := highPrecisionTimeSince(b.start)
 		b.duration += timeSinceStart
@@ -183,6 +197,25 @@ func (b *B) StopTimer() {
 	}
 }
 
+func (b *B) StopTimer() {
+	endTimestamp := capi.CurrentTimestamp()
+	timerOn := b.timerOn
+
+	b.StopTimerWithoutMarker()
+
+	if timerOn {
+		if b.startTimestamp >= endTimestamp {
+			// This should never happen, unless we have a bug in the timer logic.
+			panic(fmt.Sprintf("Invalid benchmark timestamps: start timestamp (%d) is greater than or equal to end timestamp (%d)", b.startTimestamp, endTimestamp))
+		}
+		b.startTimestamps = append(b.startTimestamps, b.startTimestamp)
+		b.stopTimestamps = append(b.stopTimestamps, endTimestamp)
+
+		// Reset to prevent accidental reuse
+		b.startTimestamp = 0
+	}
+}
+
 // ResetTimer zeroes the elapsed benchmark time and memory allocation counters
 // and deletes user-reported metrics.
 // It does not affect whether the timer is running.
@@ -199,10 +232,29 @@ func (b *B) ResetTimer() {
 		b.startAllocs = memStats.Mallocs
 		b.startBytes = memStats.TotalAlloc
 		b.start = highPrecisionTimeNow()
+
+		b.startTimestamp = capi.CurrentTimestamp()
 	}
 	b.duration = 0
 	b.netAllocs = 0
 	b.netBytes = 0
+
+	// Clear CodSpeed timestamp data
+	b.codspeedItersPerRound = b.codspeedItersPerRound[:0]
+	b.codspeedTimePerRoundNs = b.codspeedTimePerRoundNs[:0]
+	b.startTimestamps = b.startTimestamps[:0]
+	b.stopTimestamps = b.stopTimestamps[:0]
+}
+
+func (b *B) sendAccumulatedTimestamps() {
+	for i := 0; i < len(b.startTimestamps); i++ {
+		b.instrument_hooks.AddBenchmarkTimestamps(
+			b.startTimestamps[i],
+			b.stopTimestamps[i],
+		)
+	}
+	b.startTimestamps = b.startTimestamps[:0]
+	b.stopTimestamps = b.stopTimestamps[:0]
 }
 
 // SetBytes records the number of bytes processed in a single operation.
@@ -387,8 +439,7 @@ func (b *B) launch() {
 			}
 
 			// Reset the fields from the warmup run
-			b.codspeedItersPerRound = make([]int64, 0)
-			b.codspeedTimePerRoundNs = make([]time.Duration, 0)
+			b.ResetTimer()
 
 			// Final run:
 			benchD := b.benchTime.d
@@ -413,6 +464,7 @@ func (b *B) launch() {
 				b.runN(int(roundN))
 			}
 			b.codspeed.instrument_hooks.StopBenchmark()
+			b.sendAccumulatedTimestamps()
 		}
 	}
 	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.codspeedTimePerRoundNs, b.codspeedItersPerRound, b.extra}
@@ -452,8 +504,10 @@ func (b *B) stopOrScaleBLoop() bool {
 	t := b.Elapsed()
 	if t >= b.benchTime.d {
 		// Stop the timer so we don't count cleanup time
-		b.StopTimer()
+		b.StopTimerWithoutMarker()
 		b.codspeed.instrument_hooks.StopBenchmark()
+		b.sendAccumulatedTimestamps()
+
 		// Commit iteration count
 		b.N = int(b.loop.n)
 		b.loop.done = true
@@ -470,7 +524,7 @@ func (b *B) stopOrScaleBLoop() bool {
 	}
 	b.loop.i++
 
-	b.StartTimer()
+	b.StartTimerWithoutMarker()
 	return true
 }
 
@@ -492,12 +546,9 @@ func (b *B) loopSlowPath() bool {
 		b.N = 0
 		b.loop.i++
 
-		b.codspeedItersPerRound = make([]int64, 0)
-		b.codspeedTimePerRoundNs = make([]time.Duration, 0)
-
 		b.codspeed.instrument_hooks.StartBenchmark()
 		b.ResetTimer()
-		b.StartTimer()
+		b.StartTimerWithoutMarker()
 		return true
 	}
 	// Handles fixed iterations case
@@ -505,11 +556,13 @@ func (b *B) loopSlowPath() bool {
 		if b.loop.n < uint64(b.benchTime.n) {
 			b.loop.n = uint64(b.benchTime.n)
 			b.loop.i++
-			b.StartTimer()
+			b.StartTimerWithoutMarker()
 			return true
 		}
-		b.StopTimer()
+		b.StopTimerWithoutMarker()
 		b.codspeed.instrument_hooks.StopBenchmark()
+		b.sendAccumulatedTimestamps()
+
 		// Commit iteration count
 		b.N = int(b.loop.n)
 		b.loop.done = true
@@ -553,7 +606,7 @@ func (b *B) loopSlowPath() bool {
 // whereas b.N-based benchmarks must run the benchmark function (and any
 // associated setup and cleanup) several times.
 func (b *B) Loop() bool {
-	b.StopTimer()
+	b.StopTimerWithoutMarker()
 	// This is written such that the fast path is as fast as possible and can be
 	// inlined.
 	//
@@ -568,7 +621,7 @@ func (b *B) Loop() bool {
 	//   path can do consistency checks and fail.
 	if b.loop.i < b.loop.n {
 		b.loop.i++
-		b.StartTimer()
+		b.StartTimerWithoutMarker()
 		return true
 	}
 	return b.loopSlowPath()

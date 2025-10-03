@@ -3,10 +3,14 @@ package capi
 /*
 #cgo CFLAGS: -I${SRCDIR}/instrument-hooks/includes
 #include "instrument-hooks/dist/core.c"
+
+#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__248
+#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__249
 typedef struct instruments_root_InstrumentHooks__547 InstrumentHooks;
 */
 import "C"
 import (
+	"os"
 	"runtime"
 	"unsafe"
 )
@@ -78,4 +82,17 @@ func (i *InstrumentHooks) IsInstrumented() bool {
 		return false
 	}
 	return bool(C.instrument_hooks_is_instrumented(i.hooks))
+}
+
+func CurrentTimestamp() uint64 {
+	return uint64(C.instrument_hooks_current_timestamp())
+}
+
+func (i *InstrumentHooks) AddBenchmarkTimestamps(startTimestamp, endTimestamp uint64) {
+	if i.hooks == nil {
+		return
+	}
+	pid := uint32(os.Getpid())
+	C.instrument_hooks_add_marker(i.hooks, C.uint32_t(pid), C.MARKER_TYPE_BENCHMARK_START, C.uint64_t(startTimestamp))
+	C.instrument_hooks_add_marker(i.hooks, C.uint32_t(pid), C.MARKER_TYPE_BENCHMARK_END, C.uint64_t(endTimestamp))
 }
