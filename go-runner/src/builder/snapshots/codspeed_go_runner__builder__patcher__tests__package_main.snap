@@ -9,3 +9,7 @@ import testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
 func BenchmarkExample(b *testing.B) {
     // benchmark code
 }
+
+func TestExample(t *testing.T) {
+    s := "package main"
+}

@@ -24,3 +24,4 @@ tempfile = "3.14"
 [dev-dependencies]
 insta = { version = "1.43", features = ["json", "redactions"] }
 rstest = "0.26"
+test-log = "0.2.18"

@@ -77,6 +77,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::example("example")]
 #[case::example_with_helper("example-with-helper")]
 #[case::example_with_main("example-with-main")]
+#[test_log::test]
 fn test_build_and_run(#[case] project_name: &str) {
     let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("testdata/projects")

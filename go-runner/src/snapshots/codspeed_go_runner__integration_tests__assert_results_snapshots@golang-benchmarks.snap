@@ -747,6 +747,62 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkFloodFillBFS",
+        "uri": "floodfill/floodfill_test.go::BenchmarkFloodFillBFS",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloodFillDFS",
+        "uri": "floodfill/floodfill_test.go::BenchmarkFloodFillDFS",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloodFillRecursive",
+        "uri": "floodfill/floodfill_test.go::BenchmarkFloodFillRecursive",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloodFillStack4Way",
+        "uri": "floodfill/floodfill_test.go::BenchmarkFloodFillStack4Way",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkForMap",
         "uri": "foreach/foreach_test.go::BenchmarkForMap",
         "config": {

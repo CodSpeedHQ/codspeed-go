@@ -1,8 +1,8 @@
 ---
-source: src/builder/patcher.rs
+source: go-runner/src/builder/patcher.rs
 expression: result
 ---
-package main
+package main_compat
 
 import (
 	"fmt"

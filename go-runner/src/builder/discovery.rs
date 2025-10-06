@@ -93,12 +93,6 @@ impl GoPackage {
                 }
             };
 
-            // We can't import packages that are declared as `main`
-            if file.pkg_name.name == "main" {
-                warn!("Skipping file with main package: {file_path:?}");
-                continue;
-            }
-
             // First, collect all benchmark function names from this file
             let mut found_benchmarks = Vec::new();
             for decl in &file.decl {

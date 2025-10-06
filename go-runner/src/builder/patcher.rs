@@ -114,8 +114,9 @@ pub fn patch_go_source(source: &str) -> anyhow::Result<String> {
             Ok(source)
         };
 
+    let source = replace_package_main(source.into())?;
     let source = replace_import(
-        source.to_string(),
+        source,
         "testing",
         "testing \"github.com/CodSpeedHQ/codspeed-go/compat/testing\"",
     )?;
@@ -131,6 +132,24 @@ pub fn patch_go_source(source: &str) -> anyhow::Result<String> {
     )?;
 
     Ok(source)
+}
+
+/// Replace `package main` with `package main_compat` to allow importing it from other packages.
+fn replace_package_main(source: String) -> anyhow::Result<String> {
+    let parsed = gosyn::parse_source(&source)?;
+
+    // Only replace if package name is "main"
+    if parsed.pkg_name.name != "main" {
+        return Ok(source);
+    }
+
+    // pkg_name.pos is the position of the identifier "main" in the source
+    let name_start = parsed.pkg_name.pos;
+    let name_end = name_start + parsed.pkg_name.name.len();
+
+    let mut result = source;
+    result.replace_range(name_start..name_end, "main_compat");
+    Ok(result)
 }
 
 #[cfg(test)]
@@ -246,6 +265,19 @@ import (
 )
 "#;
 
+    const PACKAGE_MAIN: &str = r#"package main
+
+import "testing"
+
+func BenchmarkExample(b *testing.B) {
+    // benchmark code
+}
+
+func TestExample(t *testing.T) {
+    s := "package main"
+}
+"#;
+
     #[rstest]
     #[case("single_import_replacement", SINGLE_IMPORT)]
     #[case("multiline_import_replacement", MULTILINE_IMPORT)]
@@ -261,6 +293,7 @@ import (
         "multiline_import_with_testing_string",
         MULTILINE_IMPORT_WITH_TESTING_STRING
     )]
+    #[case("package_main", PACKAGE_MAIN)]
     fn test_patch_go_source(#[case] test_name: &str, #[case] source: &str) {
         let result = patch_go_source(source).unwrap();
         assert_snapshot!(test_name, result);

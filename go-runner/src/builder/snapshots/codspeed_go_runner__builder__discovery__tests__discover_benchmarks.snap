@@ -345,6 +345,59 @@ expression: packages
   {
     "raw_package": {
       "Dir": "[package_dir]",
+      "Name": "main",
+      "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/floodfill [github.com/SimonWaldherr/golang-benchmarks/floodfill.test]",
+      "TestGoFiles": [
+        "floodfill_test.go"
+      ],
+      "TestImports": [
+        "testing"
+      ],
+      "CompiledGoFiles": [
+        "floodfill_test.go"
+      ],
+      "Module": {
+        "Path": "github.com/SimonWaldherr/golang-benchmarks",
+        "Dir": "[module_dir]",
+        "GoMod": "[go_mod_path]",
+        "GoVersion": "1.18",
+        "Main": true
+      }
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkFloodFillBFS",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/floodfill",
+        "import_alias": "benchmarkfloodfillbfs_18158933623445949257",
+        "qualified_name": "benchmarkfloodfillbfs_18158933623445949257.BenchmarkFloodFillBFS",
+        "file_path": "floodfill/floodfill_test.go"
+      },
+      {
+        "name": "BenchmarkFloodFillDFS",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/floodfill",
+        "import_alias": "benchmarkfloodfilldfs_18158933623445949257",
+        "qualified_name": "benchmarkfloodfilldfs_18158933623445949257.BenchmarkFloodFillDFS",
+        "file_path": "floodfill/floodfill_test.go"
+      },
+      {
+        "name": "BenchmarkFloodFillRecursive",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/floodfill",
+        "import_alias": "benchmarkfloodfillrecursive_18158933623445949257",
+        "qualified_name": "benchmarkfloodfillrecursive_18158933623445949257.BenchmarkFloodFillRecursive",
+        "file_path": "floodfill/floodfill_test.go"
+      },
+      {
+        "name": "BenchmarkFloodFillStack4Way",
+        "module_path": "github.com/SimonWaldherr/golang-benchmarks/floodfill",
+        "import_alias": "benchmarkfloodfillstack4way_18158933623445949257",
+        "qualified_name": "benchmarkfloodfillstack4way_18158933623445949257.BenchmarkFloodFillStack4Way",
+        "file_path": "floodfill/floodfill_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": {
+      "Dir": "[package_dir]",
       "Name": "foreach",
       "ImportPath": "github.com/SimonWaldherr/golang-benchmarks/foreach [github.com/SimonWaldherr/golang-benchmarks/foreach.test]",
       "TestGoFiles": [
