@@ -26,27 +26,27 @@ InstrumentHooks *instrument_hooks_init(void);
 void instrument_hooks_deinit(InstrumentHooks *);
 
 bool instrument_hooks_is_instrumented(InstrumentHooks *);
-int8_t instrument_hooks_start_benchmark(InstrumentHooks *);
-int8_t instrument_hooks_stop_benchmark(InstrumentHooks *);
-int8_t instrument_hooks_set_executed_benchmark(InstrumentHooks *, int32_t pid,
-                                               const char *uri);
+uint8_t instrument_hooks_start_benchmark(InstrumentHooks *);
+uint8_t instrument_hooks_stop_benchmark(InstrumentHooks *);
+uint8_t instrument_hooks_set_executed_benchmark(InstrumentHooks *, int32_t pid,
+                                                const char *uri);
 // Deprecated: use instrument_hooks_set_executed_benchmark instead
-int8_t instrument_hooks_executed_benchmark(InstrumentHooks *, int32_t pid,
-                                           const char *uri);
-int8_t instrument_hooks_set_integration(InstrumentHooks *, const char *name,
-                                        const char *version);
+uint8_t instrument_hooks_executed_benchmark(InstrumentHooks *, int32_t pid,
+                                            const char *uri);
+uint8_t instrument_hooks_set_integration(InstrumentHooks *, const char *name,
+                                         const char *version);
 
 #define MARKER_TYPE_SAMPLE_START 0
 #define MARKER_TYPE_SAMPLE_END 1
 #define MARKER_TYPE_BENCHMARK_START 2
 #define MARKER_TYPE_BENCHMARK_END 3
 
-int8_t instrument_hooks_add_marker(InstrumentHooks *, uint32_t pid,
-                                   uint8_t marker_type, uint64_t timestamp);
+uint8_t instrument_hooks_add_marker(InstrumentHooks *, uint32_t pid,
+                                    uint8_t marker_type, uint64_t timestamp);
 uint64_t instrument_hooks_current_timestamp(void);
 
-int8_t callgrind_start_instrumentation();
-int8_t callgrind_stop_instrumentation();
+void callgrind_start_instrumentation();
+void callgrind_stop_instrumentation();
 
 // Feature flags for instrument hooks
 
@@ -61,7 +61,7 @@ void instrument_hooks_set_feature(instrument_hooks_feature_t feature,
 // directly consume the headers such as C or C++. This will allow for more
 // precise tracking of the benchmark performance.
 
-static inline int8_t instrument_hooks_start_benchmark_inline(
+static inline uint8_t instrument_hooks_start_benchmark_inline(
     InstrumentHooks *instance) {
   instrument_hooks_set_feature(FEATURE_DISABLE_CALLGRIND_MARKERS, true);
   if (instrument_hooks_start_benchmark(instance) != 0) {
@@ -73,7 +73,7 @@ static inline int8_t instrument_hooks_start_benchmark_inline(
   return 0;
 }
 
-static inline int8_t instrument_hooks_stop_benchmark_inline(
+static inline uint8_t instrument_hooks_stop_benchmark_inline(
     InstrumentHooks *instance) {
   CALLGRIND_STOP_INSTRUMENTATION;
   return instrument_hooks_stop_benchmark(instance);

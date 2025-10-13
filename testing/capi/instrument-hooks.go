@@ -1,11 +1,11 @@
 package capi
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/instrument-hooks/includes
+#cgo CFLAGS: -I${SRCDIR}/instrument-hooks/includes -Wno-format -Wno-format-security
 #include "instrument-hooks/dist/core.c"
 
-#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__248
-#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__249
+#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__249
+#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__250
 typedef struct instruments_root_InstrumentHooks__547 InstrumentHooks;
 */
 import "C"
