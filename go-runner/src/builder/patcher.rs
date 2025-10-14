@@ -38,6 +38,11 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
 
     let pattern = folder.join("**/*.go");
     for go_file in glob::glob(pattern.to_str().unwrap())?.filter_map(Result::ok) {
+        // Skip directories - glob can match directories ending in .go (e.g., vendor/github.com/nats-io/nats.go)
+        if !go_file.is_file() {
+            continue;
+        }
+
         let content =
             fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
 
