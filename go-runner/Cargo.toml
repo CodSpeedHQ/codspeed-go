@@ -1,6 +1,6 @@
 [package]
 name = "codspeed-go-runner"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2024"
 repository = "https://github.com/CodSpeedHQ/codspeed-go"
 publish = false
