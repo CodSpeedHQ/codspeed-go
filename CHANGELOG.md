@@ -5,6 +5,15 @@
 
 
 
+## [0.4.1] - 2025-10-14
+
+### <!-- 0 -->🚀 Features
+- Add test with .go folder by @not-matthias
+
+### <!-- 1 -->🐛 Bug Fixes
+- Dont try to patch folders ending with .go by @not-matthias in [#21](https://github.com/CodSpeedHQ/codspeed-go/pull/21)
+
+
 ## [0.4.0] - 2025-10-14
 
 ### <!-- 0 -->🚀 Features
@@ -23,6 +32,7 @@
 - Run go-runner in release mode by @not-matthias
 
 ### <!-- 7 -->⚙️ Internals
+- Add a changelog by @art049
 - Pin rust version by @art049
 - Bump instrument-hooks by @not-matthias in [#20](https://github.com/CodSpeedHQ/codspeed-go/pull/20)
 - Bump instrument-hooks by @not-matthias
@@ -126,6 +136,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.4.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.0..v0.4.1
 [0.4.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.3.0..v0.4.0
 [0.3.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.2.0..v0.3.0
 [0.2.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.1.2..v0.2.0
