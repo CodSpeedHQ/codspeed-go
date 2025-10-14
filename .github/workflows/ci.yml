@@ -14,8 +14,6 @@ jobs:
           submodules: true
       - uses: actions/setup-go@v5
       - uses: moonrepo/setup-rust@v1
-        with:
-          components: rustfmt, clippy
       - uses: pre-commit/action@v3.0.1
         with:
           extra_args: --all-files
