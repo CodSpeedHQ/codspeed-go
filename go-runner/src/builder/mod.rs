@@ -105,6 +105,7 @@ pub fn build_binary<P: AsRef<Path>>(runner_go_path: P) -> anyhow::Result<std::pa
 
     let args = vec![
         "build",
+        "-mod=mod",
         "-tags=codspeed",
         "-ldflags",
         &ldflags,
