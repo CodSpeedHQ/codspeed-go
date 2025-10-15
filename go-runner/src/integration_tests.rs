@@ -79,6 +79,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::example_with_main("example-with-main")]
 #[case::example_with_dot_go_folder("example-with-dot-go-folder")]
 #[case::example_with_vendor("example-with-vendor")]
+#[case::example_with_test_package("example-with-test-package")]
 #[test_log::test]
 fn test_build_and_run(#[case] project_name: &str) {
     let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
