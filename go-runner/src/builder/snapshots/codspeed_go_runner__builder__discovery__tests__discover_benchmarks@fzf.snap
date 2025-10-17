@@ -1,0 +1,32 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkExtractColor",
+        "module_path": "github.com/junegunn/fzf/src",
+        "import_alias": "benchmarkextractcolor_14283034902160090855",
+        "qualified_name": "benchmarkextractcolor_14283034902160090855.BenchmarkExtractColor",
+        "file_path": "src/ansi_test.go"
+      },
+      {
+        "name": "BenchmarkNextAnsiEscapeSequence",
+        "module_path": "github.com/junegunn/fzf/src",
+        "import_alias": "benchmarknextansiescapesequence_14283034902160090855",
+        "qualified_name": "benchmarknextansiescapesequence_14283034902160090855.BenchmarkNextAnsiEscapeSequence",
+        "file_path": "src/ansi_test.go"
+      },
+      {
+        "name": "BenchmarkNextAnsiEscapeSequence_Regex",
+        "module_path": "github.com/junegunn/fzf/src",
+        "import_alias": "benchmarknextansiescapesequence_regex_14283034902160090855",
+        "qualified_name": "benchmarknextansiescapesequence_regex_14283034902160090855.BenchmarkNextAnsiEscapeSequence_Regex",
+        "file_path": "src/ansi_test.go"
+      }
+    ]
+  }
+]

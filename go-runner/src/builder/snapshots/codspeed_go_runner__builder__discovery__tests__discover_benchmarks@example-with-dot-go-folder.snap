@@ -1,0 +1,30 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkExample",
+        "module_path": "example.com/dot-go-folder-test",
+        "import_alias": "benchmarkexample_7847346762563147456",
+        "qualified_name": "benchmarkexample_7847346762563147456.BenchmarkExample",
+        "file_path": "bench_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkInsideFolder",
+        "module_path": "example.com/dot-go-folder-test/some_package.go",
+        "import_alias": "benchmarkinsidefolder_9649425054511170700",
+        "qualified_name": "benchmarkinsidefolder_9649425054511170700.BenchmarkInsideFolder",
+        "file_path": "some_package.go/bench_test.go"
+      }
+    ]
+  }
+]

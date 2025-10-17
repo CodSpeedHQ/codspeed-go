@@ -1,0 +1,185 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkContextAppend",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkcontextappend_4383361269039284158",
+        "qualified_name": "benchmarkcontextappend_4383361269039284158.BenchmarkContextAppend",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkContextFieldType",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkcontextfieldtype_4383361269039284158",
+        "qualified_name": "benchmarkcontextfieldtype_4383361269039284158.BenchmarkContextFieldType",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkContextFields",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkcontextfields_4383361269039284158",
+        "qualified_name": "benchmarkcontextfields_4383361269039284158.BenchmarkContextFields",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkDisabled",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkdisabled_4383361269039284158",
+        "qualified_name": "benchmarkdisabled_4383361269039284158.BenchmarkDisabled",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkInfo",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkinfo_4383361269039284158",
+        "qualified_name": "benchmarkinfo_4383361269039284158.BenchmarkInfo",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkLogArrayObject",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarklogarrayobject_4383361269039284158",
+        "qualified_name": "benchmarklogarrayobject_4383361269039284158.BenchmarkLogArrayObject",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkLogEmpty",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarklogempty_4383361269039284158",
+        "qualified_name": "benchmarklogempty_4383361269039284158.BenchmarkLogEmpty",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkLogFieldType",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarklogfieldtype_4383361269039284158",
+        "qualified_name": "benchmarklogfieldtype_4383361269039284158.BenchmarkLogFieldType",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkLogFields",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarklogfields_4383361269039284158",
+        "qualified_name": "benchmarklogfields_4383361269039284158.BenchmarkLogFields",
+        "file_path": "benchmark_test.go"
+      },
+      {
+        "name": "BenchmarkHooks",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkhooks_4383361269039284158",
+        "qualified_name": "benchmarkhooks_4383361269039284158.BenchmarkHooks",
+        "file_path": "hook_test.go"
+      },
+      {
+        "name": "BenchmarkSamplers",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarksamplers_4383361269039284158",
+        "qualified_name": "benchmarksamplers_4383361269039284158.BenchmarkSamplers",
+        "file_path": "sampler_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkDataRace",
+        "module_path": "github.com/rs/zerolog/hlog",
+        "import_alias": "benchmarkdatarace_14719264016234589343",
+        "qualified_name": "benchmarkdatarace_14719264016234589343.BenchmarkDataRace",
+        "file_path": "hlog/hlog_test.go"
+      },
+      {
+        "name": "BenchmarkHandlers",
+        "module_path": "github.com/rs/zerolog/hlog",
+        "import_alias": "benchmarkhandlers_14719264016234589343",
+        "qualified_name": "benchmarkhandlers_14719264016234589343.BenchmarkHandlers",
+        "file_path": "hlog/hlog_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkAppendString",
+        "module_path": "github.com/rs/zerolog/internal/cbor",
+        "import_alias": "benchmarkappendstring_15041621223362855765",
+        "qualified_name": "benchmarkappendstring_15041621223362855765.BenchmarkAppendString",
+        "file_path": "internal/cbor/string_test.go"
+      },
+      {
+        "name": "BenchmarkAppendTime",
+        "module_path": "github.com/rs/zerolog/internal/cbor",
+        "import_alias": "benchmarkappendtime_15041621223362855765",
+        "qualified_name": "benchmarkappendtime_15041621223362855765.BenchmarkAppendTime",
+        "file_path": "internal/cbor/time_test.go"
+      },
+      {
+        "name": "BenchmarkAppendFloat",
+        "module_path": "github.com/rs/zerolog/internal/cbor",
+        "import_alias": "benchmarkappendfloat_15041621223362855765",
+        "qualified_name": "benchmarkappendfloat_15041621223362855765.BenchmarkAppendFloat",
+        "file_path": "internal/cbor/types_test.go"
+      },
+      {
+        "name": "BenchmarkAppendInt",
+        "module_path": "github.com/rs/zerolog/internal/cbor",
+        "import_alias": "benchmarkappendint_15041621223362855765",
+        "qualified_name": "benchmarkappendint_15041621223362855765.BenchmarkAppendInt",
+        "file_path": "internal/cbor/types_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkAppendBytes",
+        "module_path": "github.com/rs/zerolog/internal/json",
+        "import_alias": "benchmarkappendbytes_16338080240747305392",
+        "qualified_name": "benchmarkappendbytes_16338080240747305392.BenchmarkAppendBytes",
+        "file_path": "internal/json/bytes_test.go"
+      },
+      {
+        "name": "BenchmarkAppendString",
+        "module_path": "github.com/rs/zerolog/internal/json",
+        "import_alias": "benchmarkappendstring_16338080240747305392",
+        "qualified_name": "benchmarkappendstring_16338080240747305392.BenchmarkAppendString",
+        "file_path": "internal/json/string_test.go"
+      },
+      {
+        "name": "BenchmarkEncoder_AppendFloat32",
+        "module_path": "github.com/rs/zerolog/internal/json",
+        "import_alias": "benchmarkencoder_appendfloat32_16338080240747305392",
+        "qualified_name": "benchmarkencoder_appendfloat32_16338080240747305392.BenchmarkEncoder_AppendFloat32",
+        "file_path": "internal/json/types_test.go"
+      },
+      {
+        "name": "BenchmarkEncoder_AppendFloat64",
+        "module_path": "github.com/rs/zerolog/internal/json",
+        "import_alias": "benchmarkencoder_appendfloat64_16338080240747305392",
+        "qualified_name": "benchmarkencoder_appendfloat64_16338080240747305392.BenchmarkEncoder_AppendFloat64",
+        "file_path": "internal/json/types_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkLogStack",
+        "module_path": "github.com/rs/zerolog/pkgerrors",
+        "import_alias": "benchmarklogstack_4043122862950150244",
+        "qualified_name": "benchmarklogstack_4043122862950150244.BenchmarkLogStack",
+        "file_path": "pkgerrors/stacktrace_test.go"
+      }
+    ]
+  }
+]

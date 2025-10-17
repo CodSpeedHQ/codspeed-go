@@ -1,0 +1,88 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkContext_Body",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkcontext_body_1011315274854895255",
+        "qualified_name": "benchmarkcontext_body_1011315274854895255.BenchmarkContext_Body",
+        "file_path": "ctx_test.go"
+      },
+      {
+        "name": "BenchmarkReadJSON",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkreadjson_1011315274854895255",
+        "qualified_name": "benchmarkreadjson_1011315274854895255.BenchmarkReadJSON",
+        "file_path": "deserialization_test.go"
+      },
+      {
+        "name": "BenchmarkReadString",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkreadstring_1011315274854895255",
+        "qualified_name": "benchmarkreadstring_1011315274854895255.BenchmarkReadString",
+        "file_path": "deserialization_test.go"
+      },
+      {
+        "name": "BenchmarkHTTPError_PublicError",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkhttperror_publicerror_1011315274854895255",
+        "qualified_name": "benchmarkhttperror_publicerror_1011315274854895255.BenchmarkHTTPError_PublicError",
+        "file_path": "errors_test.go"
+      },
+      {
+        "name": "BenchmarkRender",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkrender_1011315274854895255",
+        "qualified_name": "benchmarkrender_1011315274854895255.BenchmarkRender",
+        "file_path": "html_test.go"
+      },
+      {
+        "name": "BenchmarkCamelToHuman",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkcameltohuman_1011315274854895255",
+        "qualified_name": "benchmarkcameltohuman_1011315274854895255.BenchmarkCamelToHuman",
+        "file_path": "net_http_mux_test.go"
+      },
+      {
+        "name": "BenchmarkRequest",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkrequest_1011315274854895255",
+        "qualified_name": "benchmarkrequest_1011315274854895255.BenchmarkRequest",
+        "file_path": "net_http_mux_test.go"
+      },
+      {
+        "name": "BenchmarkRoutesRegistration",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkroutesregistration_1011315274854895255",
+        "qualified_name": "benchmarkroutesregistration_1011315274854895255.BenchmarkRoutesRegistration",
+        "file_path": "openapi_test.go"
+      },
+      {
+        "name": "BenchmarkServer_generateOpenAPI",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkserver_generateopenapi_1011315274854895255",
+        "qualified_name": "benchmarkserver_generateopenapi_1011315274854895255.BenchmarkServer_generateOpenAPI",
+        "file_path": "openapi_test.go"
+      },
+      {
+        "name": "BenchmarkParsePathParams",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkparsepathparams_1011315274854895255",
+        "qualified_name": "benchmarkparsepathparams_1011315274854895255.BenchmarkParsePathParams",
+        "file_path": "params_test.go"
+      },
+      {
+        "name": "BenchmarkOutTransform",
+        "module_path": "github.com/go-fuego/fuego",
+        "import_alias": "benchmarkouttransform_1011315274854895255",
+        "qualified_name": "benchmarkouttransform_1011315274854895255.BenchmarkOutTransform",
+        "file_path": "serialization_test.go"
+      }
+    ]
+  }
+]

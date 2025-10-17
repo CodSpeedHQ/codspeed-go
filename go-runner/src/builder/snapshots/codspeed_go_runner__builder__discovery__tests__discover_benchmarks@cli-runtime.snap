@@ -1,0 +1,74 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkDiscardingPrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarkdiscardingprinter_4505967898862013882",
+        "qualified_name": "benchmarkdiscardingprinter_4505967898862013882.BenchmarkDiscardingPrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkGoTemplatePrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarkgotemplateprinter_4505967898862013882",
+        "qualified_name": "benchmarkgotemplateprinter_4505967898862013882.BenchmarkGoTemplatePrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkJSONPathPrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarkjsonpathprinter_4505967898862013882",
+        "qualified_name": "benchmarkjsonpathprinter_4505967898862013882.BenchmarkJSONPathPrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkJSONPrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarkjsonprinter_4505967898862013882",
+        "qualified_name": "benchmarkjsonprinter_4505967898862013882.BenchmarkJSONPrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkNamePrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarknameprinter_4505967898862013882",
+        "qualified_name": "benchmarknameprinter_4505967898862013882.BenchmarkNamePrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkOmitManagedFieldsPrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarkomitmanagedfieldsprinter_4505967898862013882",
+        "qualified_name": "benchmarkomitmanagedfieldsprinter_4505967898862013882.BenchmarkOmitManagedFieldsPrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkTablePrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarktableprinter_4505967898862013882",
+        "qualified_name": "benchmarktableprinter_4505967898862013882.BenchmarkTablePrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkTypeSetterPrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarktypesetterprinter_4505967898862013882",
+        "qualified_name": "benchmarktypesetterprinter_4505967898862013882.BenchmarkTypeSetterPrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      },
+      {
+        "name": "BenchmarkYAMLPrinter",
+        "module_path": "k8s.io/cli-runtime/pkg/printers",
+        "import_alias": "benchmarkyamlprinter_4505967898862013882",
+        "qualified_name": "benchmarkyamlprinter_4505967898862013882.BenchmarkYAMLPrinter",
+        "file_path": "pkg/printers/bench_test.go"
+      }
+    ]
+  }
+]

@@ -298,18 +298,40 @@ impl Deref for BenchmarkPackage {
 mod tests {
     use super::*;
 
+    #[rstest::rstest]
+    #[case::caddy("caddy")]
+    #[case::fzf("fzf")]
+    #[case::opentelemetry_go("opentelemetry-go")]
+    #[case::golang_benchmarks("golang-benchmarks")]
+    #[case::zerolog("zerolog")]
+    #[case::zap("zap")]
+    #[case::hugo("hugo")]
+    #[case::fuego("fuego")]
+    #[case::cli_runtime("cli-runtime")]
+    #[case::example("example")]
+    #[case::example_with_helper("example-with-helper")]
+    #[case::example_with_main("example-with-main")]
+    #[case::example_with_dot_go_folder("example-with-dot-go-folder")]
+    #[case::example_with_test_package("example-with-test-package")]
     #[test]
-    fn test_discover_benchmarks() {
-        let packages = BenchmarkPackage::from_project(
-            Path::new("testdata/projects/golang-benchmarks"),
-            &["./...".to_string()],
-        )
-        .unwrap();
+    fn test_discover_benchmarks(#[case] project_name: &str) {
+        let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("testdata/projects")
+            .join(project_name);
 
+        let mut packages =
+            BenchmarkPackage::from_project(&project_dir, &["./...".to_string()]).unwrap();
+
+        // Sort packages by dir to ensure deterministic order
+        packages.sort_by_cached_key(|pkg| pkg.dir.clone());
+
+        let _guard = {
+            let mut settings = insta::Settings::clone_current();
+            settings.set_snapshot_suffix(project_name.to_string());
+            settings.bind_to_scope()
+        };
         insta::assert_json_snapshot!(packages, {
-            ".**[\"Dir\"]" => "[package_dir]",
-            ".**[\"Module\"][\"Dir\"]" => "[module_dir]",
-            ".**[\"Module\"][\"GoMod\"]" => "[go_mod_path]"
+            ".**[\"raw_package\"]" => insta::dynamic_redaction(|_value, _path| "[raw_package]"),
         });
     }
 }

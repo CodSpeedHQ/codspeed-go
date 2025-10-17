@@ -1,0 +1,105 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkAsFloat64Slice",
+        "module_path": "go.opentelemetry.io/otel/attribute/internal",
+        "import_alias": "benchmarkasfloat64slice_4292079508431374558",
+        "qualified_name": "benchmarkasfloat64slice_4292079508431374558.BenchmarkAsFloat64Slice",
+        "file_path": "attribute/internal/attribute_test.go"
+      },
+      {
+        "name": "BenchmarkBoolSliceValue",
+        "module_path": "go.opentelemetry.io/otel/attribute/internal",
+        "import_alias": "benchmarkboolslicevalue_4292079508431374558",
+        "qualified_name": "benchmarkboolslicevalue_4292079508431374558.BenchmarkBoolSliceValue",
+        "file_path": "attribute/internal/attribute_test.go"
+      },
+      {
+        "name": "BenchmarkFloat64SliceValue",
+        "module_path": "go.opentelemetry.io/otel/attribute/internal",
+        "import_alias": "benchmarkfloat64slicevalue_4292079508431374558",
+        "qualified_name": "benchmarkfloat64slicevalue_4292079508431374558.BenchmarkFloat64SliceValue",
+        "file_path": "attribute/internal/attribute_test.go"
+      },
+      {
+        "name": "BenchmarkInt64SliceValue",
+        "module_path": "go.opentelemetry.io/otel/attribute/internal",
+        "import_alias": "benchmarkint64slicevalue_4292079508431374558",
+        "qualified_name": "benchmarkint64slicevalue_4292079508431374558.BenchmarkInt64SliceValue",
+        "file_path": "attribute/internal/attribute_test.go"
+      },
+      {
+        "name": "BenchmarkStringSliceValue",
+        "module_path": "go.opentelemetry.io/otel/attribute/internal",
+        "import_alias": "benchmarkstringslicevalue_4292079508431374558",
+        "qualified_name": "benchmarkstringslicevalue_4292079508431374558.BenchmarkStringSliceValue",
+        "file_path": "attribute/internal/attribute_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkMemberString",
+        "module_path": "go.opentelemetry.io/otel/baggage",
+        "import_alias": "benchmarkmemberstring_16804148212268947688",
+        "qualified_name": "benchmarkmemberstring_16804148212268947688.BenchmarkMemberString",
+        "file_path": "baggage/baggage_test.go"
+      },
+      {
+        "name": "BenchmarkNew",
+        "module_path": "go.opentelemetry.io/otel/baggage",
+        "import_alias": "benchmarknew_16804148212268947688",
+        "qualified_name": "benchmarknew_16804148212268947688.BenchmarkNew",
+        "file_path": "baggage/baggage_test.go"
+      },
+      {
+        "name": "BenchmarkNewMemberRaw",
+        "module_path": "go.opentelemetry.io/otel/baggage",
+        "import_alias": "benchmarknewmemberraw_16804148212268947688",
+        "qualified_name": "benchmarknewmemberraw_16804148212268947688.BenchmarkNewMemberRaw",
+        "file_path": "baggage/baggage_test.go"
+      },
+      {
+        "name": "BenchmarkParse",
+        "module_path": "go.opentelemetry.io/otel/baggage",
+        "import_alias": "benchmarkparse_16804148212268947688",
+        "qualified_name": "benchmarkparse_16804148212268947688.BenchmarkParse",
+        "file_path": "baggage/baggage_test.go"
+      },
+      {
+        "name": "BenchmarkString",
+        "module_path": "go.opentelemetry.io/otel/baggage",
+        "import_alias": "benchmarkstring_16804148212268947688",
+        "qualified_name": "benchmarkstring_16804148212268947688.BenchmarkString",
+        "file_path": "baggage/baggage_test.go"
+      },
+      {
+        "name": "BenchmarkValueEscape",
+        "module_path": "go.opentelemetry.io/otel/baggage",
+        "import_alias": "benchmarkvalueescape_16804148212268947688",
+        "qualified_name": "benchmarkvalueescape_16804148212268947688.BenchmarkValueEscape",
+        "file_path": "baggage/baggage_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkStartEndSpanNoSDK",
+        "module_path": "go.opentelemetry.io/otel/internal/global",
+        "import_alias": "benchmarkstartendspannosdk_11952587464289651052",
+        "qualified_name": "benchmarkstartendspannosdk_11952587464289651052.BenchmarkStartEndSpanNoSDK",
+        "file_path": "internal/global/benchmark_test.go"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1039 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHashMap",
+        "module_path": "github.com/gohugoio/hugo/common/hashing",
+        "import_alias": "benchmarkhashmap_5113029915181216612",
+        "qualified_name": "benchmarkhashmap_5113029915181216612.BenchmarkHashMap",
+        "file_path": "common/hashing/hashing_test.go"
+      },
+      {
+        "name": "BenchmarkHashString",
+        "module_path": "github.com/gohugoio/hugo/common/hashing",
+        "import_alias": "benchmarkhashstring_5113029915181216612",
+        "qualified_name": "benchmarkhashstring_5113029915181216612.BenchmarkHashString",
+        "file_path": "common/hashing/hashing_test.go"
+      },
+      {
+        "name": "BenchmarkXXHashFromReader",
+        "module_path": "github.com/gohugoio/hugo/common/hashing",
+        "import_alias": "benchmarkxxhashfromreader_5113029915181216612",
+        "qualified_name": "benchmarkxxhashfromreader_5113029915181216612.BenchmarkXXHashFromReader",
+        "file_path": "common/hashing/hashing_test.go"
+      },
+      {
+        "name": "BenchmarkXXHashFromString",
+        "module_path": "github.com/gohugoio/hugo/common/hashing",
+        "import_alias": "benchmarkxxhashfromstring_5113029915181216612",
+        "qualified_name": "benchmarkxxhashfromstring_5113029915181216612.BenchmarkXXHashFromString",
+        "file_path": "common/hashing/hashing_test.go"
+      },
+      {
+        "name": "BenchmarkXXHashFromStringHexEncoded",
+        "module_path": "github.com/gohugoio/hugo/common/hashing",
+        "import_alias": "benchmarkxxhashfromstringhexencoded_5113029915181216612",
+        "qualified_name": "benchmarkxxhashfromstringhexencoded_5113029915181216612.BenchmarkXXHashFromStringHexEncoded",
+        "file_path": "common/hashing/hashing_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkGetMethodByName",
+        "module_path": "github.com/gohugoio/hugo/common/hreflect",
+        "import_alias": "benchmarkgetmethodbyname_9357374153552100234",
+        "qualified_name": "benchmarkgetmethodbyname_9357374153552100234.BenchmarkGetMethodByName",
+        "file_path": "common/hreflect/helpers_test.go"
+      },
+      {
+        "name": "BenchmarkGetMethodByNamePara",
+        "module_path": "github.com/gohugoio/hugo/common/hreflect",
+        "import_alias": "benchmarkgetmethodbynamepara_9357374153552100234",
+        "qualified_name": "benchmarkgetmethodbynamepara_9357374153552100234.BenchmarkGetMethodByNamePara",
+        "file_path": "common/hreflect/helpers_test.go"
+      },
+      {
+        "name": "BenchmarkIsContextType",
+        "module_path": "github.com/gohugoio/hugo/common/hreflect",
+        "import_alias": "benchmarkiscontexttype_9357374153552100234",
+        "qualified_name": "benchmarkiscontexttype_9357374153552100234.BenchmarkIsContextType",
+        "file_path": "common/hreflect/helpers_test.go"
+      },
+      {
+        "name": "BenchmarkIsTruthFul",
+        "module_path": "github.com/gohugoio/hugo/common/hreflect",
+        "import_alias": "benchmarkistruthful_9357374153552100234",
+        "qualified_name": "benchmarkistruthful_9357374153552100234.BenchmarkIsTruthFul",
+        "file_path": "common/hreflect/helpers_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkCompileRegexp",
+        "module_path": "github.com/gohugoio/hugo/common/hstrings",
+        "import_alias": "benchmarkcompileregexp_14536616203667474779",
+        "qualified_name": "benchmarkcompileregexp_14536616203667474779.BenchmarkCompileRegexp",
+        "file_path": "common/hstrings/strings_test.go"
+      },
+      {
+        "name": "BenchmarkGetOrCompileRegexp",
+        "module_path": "github.com/gohugoio/hugo/common/hstrings",
+        "import_alias": "benchmarkgetorcompileregexp_14536616203667474779",
+        "qualified_name": "benchmarkgetorcompileregexp_14536616203667474779.BenchmarkGetOrCompileRegexp",
+        "file_path": "common/hstrings/strings_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkTimeFormatter",
+        "module_path": "github.com/gohugoio/hugo/common/htime",
+        "import_alias": "benchmarktimeformatter_6847590086467670113",
+        "qualified_name": "benchmarktimeformatter_6847590086467670113.BenchmarkTimeFormatter",
+        "file_path": "common/htime/time_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkScratchGet",
+        "module_path": "github.com/gohugoio/hugo/common/maps",
+        "import_alias": "benchmarkscratchget_6417345363762736316",
+        "qualified_name": "benchmarkscratchget_6417345363762736316.BenchmarkScratchGet",
+        "file_path": "common/maps/scratch_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkSanitize",
+        "module_path": "github.com/gohugoio/hugo/common/paths",
+        "import_alias": "benchmarksanitize_14713041104841945695",
+        "qualified_name": "benchmarksanitize_14713041104841945695.BenchmarkSanitize",
+        "file_path": "common/paths/path_test.go"
+      },
+      {
+        "name": "BenchmarkParseIdentity",
+        "module_path": "github.com/gohugoio/hugo/common/paths",
+        "import_alias": "benchmarkparseidentity_14713041104841945695",
+        "qualified_name": "benchmarkparseidentity_14713041104841945695.BenchmarkParseIdentity",
+        "file_path": "common/paths/pathparser_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkVisitLinesAfter",
+        "module_path": "github.com/gohugoio/hugo/common/text",
+        "import_alias": "benchmarkvisitlinesafter_14136773289467528674",
+        "qualified_name": "benchmarkvisitlinesafter_14136773289467528674.BenchmarkVisitLinesAfter",
+        "file_path": "common/text/transform_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkStringSort",
+        "module_path": "github.com/gohugoio/hugo/compare",
+        "import_alias": "benchmarkstringsort_3776787483196778836",
+        "qualified_name": "benchmarkstringsort_3776787483196778836.BenchmarkStringSort",
+        "file_path": "compare/compare_strings_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkDefaultConfigProvider",
+        "module_path": "github.com/gohugoio/hugo/config",
+        "import_alias": "benchmarkdefaultconfigprovider_3417273390574421001",
+        "qualified_name": "benchmarkdefaultconfigprovider_3417273390574421001.BenchmarkDefaultConfigProvider",
+        "file_path": "config/defaultConfigProvider_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkLoad",
+        "module_path": "github.com/gohugoio/hugo/config/allconfig",
+        "import_alias": "benchmarkload_152983686080391686",
+        "qualified_name": "benchmarkload_152983686080391686.BenchmarkLoad",
+        "file_path": "config/allconfig/load_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHashingFs",
+        "module_path": "github.com/gohugoio/hugo/hugofs",
+        "import_alias": "benchmarkhashingfs_2018967518753075157",
+        "qualified_name": "benchmarkhashingfs_2018967518753075157.BenchmarkHashingFs",
+        "file_path": "hugofs/hashing_fs_test.go"
+      },
+      {
+        "name": "BenchmarkWalk",
+        "module_path": "github.com/gohugoio/hugo/hugofs",
+        "import_alias": "benchmarkwalk_2018967518753075157",
+        "qualified_name": "benchmarkwalk_2018967518753075157.BenchmarkWalk",
+        "file_path": "hugofs/walk_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkGetGlob",
+        "module_path": "github.com/gohugoio/hugo/hugofs/glob",
+        "import_alias": "benchmarkgetglob_10959439052270934151",
+        "qualified_name": "benchmarkgetglob_10959439052270934151.BenchmarkGetGlob",
+        "file_path": "hugofs/glob/glob_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkCascade",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkcascade_1700044546413486578",
+        "qualified_name": "benchmarkcascade_1700044546413486578.BenchmarkCascade",
+        "file_path": "hugolib/cascade_test.go"
+      },
+      {
+        "name": "BenchmarkCascadeTarget",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkcascadetarget_1700044546413486578",
+        "qualified_name": "benchmarkcascadetarget_1700044546413486578.BenchmarkCascadeTarget",
+        "file_path": "hugolib/cascade_test.go"
+      },
+      {
+        "name": "BenchmarkBaseline",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkbaseline_1700044546413486578",
+        "qualified_name": "benchmarkbaseline_1700044546413486578.BenchmarkBaseline",
+        "file_path": "hugolib/hugo_smoke_test.go"
+      },
+      {
+        "name": "BenchmarkGetPage",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkgetpage_1700044546413486578",
+        "qualified_name": "benchmarkgetpage_1700044546413486578.BenchmarkGetPage",
+        "file_path": "hugolib/pagecollections_test.go"
+      },
+      {
+        "name": "BenchmarkGetPageRegular",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkgetpageregular_1700044546413486578",
+        "qualified_name": "benchmarkgetpageregular_1700044546413486578.BenchmarkGetPageRegular",
+        "file_path": "hugolib/pagecollections_test.go"
+      },
+      {
+        "name": "BenchmarkMergeByLanguage",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkmergebylanguage_1700044546413486578",
+        "qualified_name": "benchmarkmergebylanguage_1700044546413486578.BenchmarkMergeByLanguage",
+        "file_path": "hugolib/pages_language_merge_test.go"
+      },
+      {
+        "name": "BenchmarkPagePageCollections",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkpagepagecollections_1700044546413486578",
+        "qualified_name": "benchmarkpagepagecollections_1700044546413486578.BenchmarkPagePageCollections",
+        "file_path": "hugolib/pages_test.go"
+      },
+      {
+        "name": "BenchmarkPagesPrevNext",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkpagesprevnext_1700044546413486578",
+        "qualified_name": "benchmarkpagesprevnext_1700044546413486578.BenchmarkPagesPrevNext",
+        "file_path": "hugolib/pages_test.go"
+      },
+      {
+        "name": "BenchmarkRebuildContentFileChange",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkrebuildcontentfilechange_1700044546413486578",
+        "qualified_name": "benchmarkrebuildcontentfilechange_1700044546413486578.BenchmarkRebuildContentFileChange",
+        "file_path": "hugolib/rebuild_test.go"
+      },
+      {
+        "name": "BenchmarkResourceChainPostProcess",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkresourcechainpostprocess_1700044546413486578",
+        "qualified_name": "benchmarkresourcechainpostprocess_1700044546413486578.BenchmarkResourceChainPostProcess",
+        "file_path": "hugolib/resource_chain_test.go"
+      },
+      {
+        "name": "BenchmarkReplaceShortcodeTokens",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkreplaceshortcodetokens_1700044546413486578",
+        "qualified_name": "benchmarkreplaceshortcodetokens_1700044546413486578.BenchmarkReplaceShortcodeTokens",
+        "file_path": "hugolib/shortcode_test.go"
+      },
+      {
+        "name": "BenchmarkShortcodesInSite",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarkshortcodesinsite_1700044546413486578",
+        "qualified_name": "benchmarkshortcodesinsite_1700044546413486578.BenchmarkShortcodesInSite",
+        "file_path": "hugolib/shortcode_test.go"
+      },
+      {
+        "name": "BenchmarkSiteNew",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarksitenew_1700044546413486578",
+        "qualified_name": "benchmarksitenew_1700044546413486578.BenchmarkSiteNew",
+        "file_path": "hugolib/site_benchmark_new_test.go"
+      },
+      {
+        "name": "BenchmarkTaxonomiesGetTerms",
+        "module_path": "github.com/gohugoio/hugo/hugolib",
+        "import_alias": "benchmarktaxonomiesgetterms_1700044546413486578",
+        "qualified_name": "benchmarktaxonomiesgetterms_1700044546413486578.BenchmarkTaxonomiesGetTerms",
+        "file_path": "hugolib/taxonomy_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHash",
+        "module_path": "github.com/gohugoio/hugo/hugolib/pagesfromdata",
+        "import_alias": "benchmarkhash_17303803225052856470",
+        "qualified_name": "benchmarkhash_17303803225052856470.BenchmarkHash",
+        "file_path": "hugolib/pagesfromdata/pagesfromgotmpl_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkSegmentsMatch",
+        "module_path": "github.com/gohugoio/hugo/hugolib/segments",
+        "import_alias": "benchmarksegmentsmatch_12038842643177664133",
+        "qualified_name": "benchmarksegmentsmatch_12038842643177664133.BenchmarkSegmentsMatch",
+        "file_path": "hugolib/segments/segments_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkExecuteGreet",
+        "module_path": "github.com/gohugoio/hugo/internal/warpc",
+        "import_alias": "benchmarkexecutegreet_5409103899159522076",
+        "qualified_name": "benchmarkexecutegreet_5409103899159522076.BenchmarkExecuteGreet",
+        "file_path": "internal/warpc/warpc_test.go"
+      },
+      {
+        "name": "BenchmarkExecuteGreetPara",
+        "module_path": "github.com/gohugoio/hugo/internal/warpc",
+        "import_alias": "benchmarkexecutegreetpara_5409103899159522076",
+        "qualified_name": "benchmarkexecutegreetpara_5409103899159522076.BenchmarkExecuteGreetPara",
+        "file_path": "internal/warpc/warpc_test.go"
+      },
+      {
+        "name": "BenchmarkExecuteKatex",
+        "module_path": "github.com/gohugoio/hugo/internal/warpc",
+        "import_alias": "benchmarkexecutekatex_5409103899159522076",
+        "qualified_name": "benchmarkexecutekatex_5409103899159522076.BenchmarkExecuteKatex",
+        "file_path": "internal/warpc/warpc_test.go"
+      },
+      {
+        "name": "BenchmarkExecuteKatexPara",
+        "module_path": "github.com/gohugoio/hugo/internal/warpc",
+        "import_alias": "benchmarkexecutekatexpara_5409103899159522076",
+        "qualified_name": "benchmarkexecutekatexpara_5409103899159522076.BenchmarkExecuteKatexPara",
+        "file_path": "internal/warpc/warpc_test.go"
+      },
+      {
+        "name": "BenchmarkKatexStartStop",
+        "module_path": "github.com/gohugoio/hugo/internal/warpc",
+        "import_alias": "benchmarkkatexstartstop_5409103899159522076",
+        "qualified_name": "benchmarkkatexstartstop_5409103899159522076.BenchmarkKatexStartStop",
+        "file_path": "internal/warpc/warpc_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkCollator",
+        "module_path": "github.com/gohugoio/hugo/langs",
+        "import_alias": "benchmarkcollator_11016030763065786343",
+        "qualified_name": "benchmarkcollator_11016030763065786343.BenchmarkCollator",
+        "file_path": "langs/language_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkI18nTranslate",
+        "module_path": "github.com/gohugoio/hugo/langs/i18n",
+        "import_alias": "benchmarki18ntranslate_13243728170525625298",
+        "qualified_name": "benchmarki18ntranslate_13243728170525625298.BenchmarkI18nTranslate",
+        "file_path": "langs/i18n/i18n_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkSanitizeAnchorName",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark",
+        "import_alias": "benchmarksanitizeanchorname_5159563046487902237",
+        "qualified_name": "benchmarksanitizeanchorname_5159563046487902237.BenchmarkSanitizeAnchorName",
+        "file_path": "markup/goldmark/autoid_test.go"
+      },
+      {
+        "name": "BenchmarkSanitizeAnchorNameAsciiOnly",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark",
+        "import_alias": "benchmarksanitizeanchornameasciionly_5159563046487902237",
+        "qualified_name": "benchmarksanitizeanchornameasciionly_5159563046487902237.BenchmarkSanitizeAnchorNameAsciiOnly",
+        "file_path": "markup/goldmark/autoid_test.go"
+      },
+      {
+        "name": "BenchmarkSanitizeAnchorNameBlackfriday",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark",
+        "import_alias": "benchmarksanitizeanchornameblackfriday_5159563046487902237",
+        "qualified_name": "benchmarksanitizeanchornameblackfriday_5159563046487902237.BenchmarkSanitizeAnchorNameBlackfriday",
+        "file_path": "markup/goldmark/autoid_test.go"
+      },
+      {
+        "name": "BenchmarkSanitizeAnchorNameString",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark",
+        "import_alias": "benchmarksanitizeanchornamestring_5159563046487902237",
+        "qualified_name": "benchmarksanitizeanchornamestring_5159563046487902237.BenchmarkSanitizeAnchorNameString",
+        "file_path": "markup/goldmark/autoid_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkWrap",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark/hugocontext",
+        "import_alias": "benchmarkwrap_46586337699277623",
+        "qualified_name": "benchmarkwrap_46586337699277623.BenchmarkWrap",
+        "file_path": "markup/goldmark/hugocontext/hugocontext_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkToc",
+        "module_path": "github.com/gohugoio/hugo/markup/tableofcontents",
+        "import_alias": "benchmarktoc_7685652659533225032",
+        "qualified_name": "benchmarktoc_7685652659533225032.BenchmarkToc",
+        "file_path": "markup/tableofcontents/tableofcontents_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkTypeOps",
+        "module_path": "github.com/gohugoio/hugo/media",
+        "import_alias": "benchmarktypeops_5964443826173887463",
+        "qualified_name": "benchmarktypeops_5964443826173887463.BenchmarkTypeOps",
+        "file_path": "media/mediaType_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHowSimilar",
+        "module_path": "github.com/gohugoio/hugo/metrics",
+        "import_alias": "benchmarkhowsimilar_14889918854829962813",
+        "qualified_name": "benchmarkhowsimilar_14889918854829962813.BenchmarkHowSimilar",
+        "file_path": "metrics/metrics_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkDecodeYAMLToMap",
+        "module_path": "github.com/gohugoio/hugo/parser/metadecoders",
+        "import_alias": "benchmarkdecodeyamltomap_9459021737728421882",
+        "qualified_name": "benchmarkdecodeyamltomap_9459021737728421882.BenchmarkDecodeYAMLToMap",
+        "file_path": "parser/metadecoders/decoder_test.go"
+      },
+      {
+        "name": "BenchmarkStringifyMapKeysIntegers",
+        "module_path": "github.com/gohugoio/hugo/parser/metadecoders",
+        "import_alias": "benchmarkstringifymapkeysintegers_9459021737728421882",
+        "qualified_name": "benchmarkstringifymapkeysintegers_9459021737728421882.BenchmarkStringifyMapKeysIntegers",
+        "file_path": "parser/metadecoders/decoder_test.go"
+      },
+      {
+        "name": "BenchmarkStringifyMapKeysStringsOnlyInterfaceMaps",
+        "module_path": "github.com/gohugoio/hugo/parser/metadecoders",
+        "import_alias": "benchmarkstringifymapkeysstringsonlyinterfacemaps_9459021737728421882",
+        "qualified_name": "benchmarkstringifymapkeysstringsonlyinterfacemaps_9459021737728421882.BenchmarkStringifyMapKeysStringsOnlyInterfaceMaps",
+        "file_path": "parser/metadecoders/decoder_test.go"
+      },
+      {
+        "name": "BenchmarkStringifyMapKeysStringsOnlyStringMaps",
+        "module_path": "github.com/gohugoio/hugo/parser/metadecoders",
+        "import_alias": "benchmarkstringifymapkeysstringsonlystringmaps_9459021737728421882",
+        "qualified_name": "benchmarkstringifymapkeysstringsonlystringmaps_9459021737728421882.BenchmarkStringifyMapKeysStringsOnlyStringMaps",
+        "file_path": "parser/metadecoders/decoder_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkShortcodeLexer",
+        "module_path": "github.com/gohugoio/hugo/parser/pageparser",
+        "import_alias": "benchmarkshortcodelexer_8462163296422208886",
+        "qualified_name": "benchmarkshortcodelexer_8462163296422208886.BenchmarkShortcodeLexer",
+        "file_path": "parser/pageparser/pageparser_shortcode_test.go"
+      },
+      {
+        "name": "BenchmarkHasShortcode",
+        "module_path": "github.com/gohugoio/hugo/parser/pageparser",
+        "import_alias": "benchmarkhasshortcode_8462163296422208886",
+        "qualified_name": "benchmarkhasshortcode_8462163296422208886.BenchmarkHasShortcode",
+        "file_path": "parser/pageparser/pageparser_test.go"
+      },
+      {
+        "name": "BenchmarkParse",
+        "module_path": "github.com/gohugoio/hugo/parser/pageparser",
+        "import_alias": "benchmarkparse_8462163296422208886",
+        "qualified_name": "benchmarkparse_8462163296422208886.BenchmarkParse",
+        "file_path": "parser/pageparser/pageparser_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkElementsCollectorWriter",
+        "module_path": "github.com/gohugoio/hugo/publisher",
+        "import_alias": "benchmarkelementscollectorwriter_675901470590545190",
+        "qualified_name": "benchmarkelementscollectorwriter_675901470590545190.BenchmarkElementsCollectorWriter",
+        "file_path": "publisher/htmlElementsCollector_test.go"
+      },
+      {
+        "name": "BenchmarkElementsCollectorWriterPre",
+        "module_path": "github.com/gohugoio/hugo/publisher",
+        "import_alias": "benchmarkelementscollectorwriterpre_675901470590545190",
+        "qualified_name": "benchmarkelementscollectorwriterpre_675901470590545190.BenchmarkElementsCollectorWriterPre",
+        "file_path": "publisher/htmlElementsCollector_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkRelatedMatchesIn",
+        "module_path": "github.com/gohugoio/hugo/related",
+        "import_alias": "benchmarkrelatedmatchesin_11634052282318476998",
+        "qualified_name": "benchmarkrelatedmatchesin_11634052282318476998.BenchmarkRelatedMatchesIn",
+        "file_path": "related/inverted_index_test.go"
+      },
+      {
+        "name": "BenchmarkRelatedNewIndex",
+        "module_path": "github.com/gohugoio/hugo/related",
+        "import_alias": "benchmarkrelatednewindex_11634052282318476998",
+        "qualified_name": "benchmarkrelatednewindex_11634052282318476998.BenchmarkRelatedNewIndex",
+        "file_path": "related/inverted_index_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHashImage",
+        "module_path": "github.com/gohugoio/hugo/resources",
+        "import_alias": "benchmarkhashimage_10958523510323494919",
+        "qualified_name": "benchmarkhashimage_10958523510323494919.BenchmarkHashImage",
+        "file_path": "resources/resource_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkDecodeExif",
+        "module_path": "github.com/gohugoio/hugo/resources/images/exif",
+        "import_alias": "benchmarkdecodeexif_10346144041226160598",
+        "qualified_name": "benchmarkdecodeexif_10346144041226160598.BenchmarkDecodeExif",
+        "file_path": "resources/images/exif/exif_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkSummaryFromHTML",
+        "module_path": "github.com/gohugoio/hugo/resources/page",
+        "import_alias": "benchmarksummaryfromhtml_15519052165763528696",
+        "qualified_name": "benchmarksummaryfromhtml_15519052165763528696.BenchmarkSummaryFromHTML",
+        "file_path": "resources/page/page_markup_test.go"
+      },
+      {
+        "name": "BenchmarkSummaryFromHTMLWithDivider",
+        "module_path": "github.com/gohugoio/hugo/resources/page",
+        "import_alias": "benchmarksummaryfromhtmlwithdivider_15519052165763528696",
+        "qualified_name": "benchmarksummaryfromhtmlwithdivider_15519052165763528696.BenchmarkSummaryFromHTMLWithDivider",
+        "file_path": "resources/page/page_markup_test.go"
+      },
+      {
+        "name": "BenchmarkPageCache",
+        "module_path": "github.com/gohugoio/hugo/resources/page",
+        "import_alias": "benchmarkpagecache_15519052165763528696",
+        "qualified_name": "benchmarkpagecache_15519052165763528696.BenchmarkPageCache",
+        "file_path": "resources/page/pages_cache_test.go"
+      },
+      {
+        "name": "BenchmarkSearchPage",
+        "module_path": "github.com/gohugoio/hugo/resources/page",
+        "import_alias": "benchmarksearchpage_15519052165763528696",
+        "qualified_name": "benchmarksearchpage_15519052165763528696.BenchmarkSearchPage",
+        "file_path": "resources/page/pages_sort_search_test.go"
+      },
+      {
+        "name": "BenchmarkSortByWeightAndReverse",
+        "module_path": "github.com/gohugoio/hugo/resources/page",
+        "import_alias": "benchmarksortbyweightandreverse_15519052165763528696",
+        "qualified_name": "benchmarksortbyweightandreverse_15519052165763528696.BenchmarkSortByWeightAndReverse",
+        "file_path": "resources/page/pages_sort_test.go"
+      },
+      {
+        "name": "BenchmarkPermalinkExpand",
+        "module_path": "github.com/gohugoio/hugo/resources/page",
+        "import_alias": "benchmarkpermalinkexpand_15519052165763528696",
+        "qualified_name": "benchmarkpermalinkexpand_15519052165763528696.BenchmarkPermalinkExpand",
+        "file_path": "resources/page/permalinks_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkImportResolver",
+        "module_path": "github.com/gohugoio/hugo/resources/resource_transformers/cssjs",
+        "import_alias": "benchmarkimportresolver_1384745676888685941",
+        "qualified_name": "benchmarkimportresolver_1384745676888685941.BenchmarkImportResolver",
+        "file_path": "resources/resource_transformers/cssjs/inline_imports_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkMerge",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarkmerge_16168492887836003420",
+        "qualified_name": "benchmarkmerge_16168492887836003420.BenchmarkMerge",
+        "file_path": "tpl/collections/merge_test.go"
+      },
+      {
+        "name": "BenchmarkQuerify",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarkquerify_16168492887836003420",
+        "qualified_name": "benchmarkquerify_16168492887836003420.BenchmarkQuerify",
+        "file_path": "tpl/collections/querify_test.go"
+      },
+      {
+        "name": "BenchmarkQuerifyMap",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarkquerifymap_16168492887836003420",
+        "qualified_name": "benchmarkquerifymap_16168492887836003420.BenchmarkQuerifyMap",
+        "file_path": "tpl/collections/querify_test.go"
+      },
+      {
+        "name": "BenchmarkQuerifySlice",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarkquerifyslice_16168492887836003420",
+        "qualified_name": "benchmarkquerifyslice_16168492887836003420.BenchmarkQuerifySlice",
+        "file_path": "tpl/collections/querify_test.go"
+      },
+      {
+        "name": "BenchmarkSortMap",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarksortmap_16168492887836003420",
+        "qualified_name": "benchmarksortmap_16168492887836003420.BenchmarkSortMap",
+        "file_path": "tpl/collections/sort_test.go"
+      },
+      {
+        "name": "BenchmarkWhereMap",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarkwheremap_16168492887836003420",
+        "qualified_name": "benchmarkwheremap_16168492887836003420.BenchmarkWhereMap",
+        "file_path": "tpl/collections/where_test.go"
+      },
+      {
+        "name": "BenchmarkWhereOps",
+        "module_path": "github.com/gohugoio/hugo/tpl/collections",
+        "import_alias": "benchmarkwhereops_16168492887836003420",
+        "qualified_name": "benchmarkwhereops_16168492887836003420.BenchmarkWhereOps",
+        "file_path": "tpl/collections/where_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkXxHash",
+        "module_path": "github.com/gohugoio/hugo/tpl/hash",
+        "import_alias": "benchmarkxxhash_13921214352606506419",
+        "qualified_name": "benchmarkxxhash_13921214352606506419.BenchmarkXxHash",
+        "file_path": "tpl/hash/hash_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkCSSEscaper",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkcssescaper_12483362044868267232",
+        "qualified_name": "benchmarkcssescaper_12483362044868267232.BenchmarkCSSEscaper",
+        "file_path": "tpl/internal/go_templates/htmltemplate/css_test.go"
+      },
+      {
+        "name": "BenchmarkCSSEscaperNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkcssescapernospecials_12483362044868267232",
+        "qualified_name": "benchmarkcssescapernospecials_12483362044868267232.BenchmarkCSSEscaperNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/css_test.go"
+      },
+      {
+        "name": "BenchmarkCSSValueFilter",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkcssvaluefilter_12483362044868267232",
+        "qualified_name": "benchmarkcssvaluefilter_12483362044868267232.BenchmarkCSSValueFilter",
+        "file_path": "tpl/internal/go_templates/htmltemplate/css_test.go"
+      },
+      {
+        "name": "BenchmarkCSSValueFilterOk",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkcssvaluefilterok_12483362044868267232",
+        "qualified_name": "benchmarkcssvaluefilterok_12483362044868267232.BenchmarkCSSValueFilterOk",
+        "file_path": "tpl/internal/go_templates/htmltemplate/css_test.go"
+      },
+      {
+        "name": "BenchmarkDecodeCSS",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkdecodecss_12483362044868267232",
+        "qualified_name": "benchmarkdecodecss_12483362044868267232.BenchmarkDecodeCSS",
+        "file_path": "tpl/internal/go_templates/htmltemplate/css_test.go"
+      },
+      {
+        "name": "BenchmarkDecodeCSSNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkdecodecssnospecials_12483362044868267232",
+        "qualified_name": "benchmarkdecodecssnospecials_12483362044868267232.BenchmarkDecodeCSSNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/css_test.go"
+      },
+      {
+        "name": "BenchmarkEscapedExecute",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkescapedexecute_12483362044868267232",
+        "qualified_name": "benchmarkescapedexecute_12483362044868267232.BenchmarkEscapedExecute",
+        "file_path": "tpl/internal/go_templates/htmltemplate/escape_test.go"
+      },
+      {
+        "name": "BenchmarkHTMLNospaceEscaper",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkhtmlnospaceescaper_12483362044868267232",
+        "qualified_name": "benchmarkhtmlnospaceescaper_12483362044868267232.BenchmarkHTMLNospaceEscaper",
+        "file_path": "tpl/internal/go_templates/htmltemplate/html_test.go"
+      },
+      {
+        "name": "BenchmarkHTMLNospaceEscaperNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkhtmlnospaceescapernospecials_12483362044868267232",
+        "qualified_name": "benchmarkhtmlnospaceescapernospecials_12483362044868267232.BenchmarkHTMLNospaceEscaperNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/html_test.go"
+      },
+      {
+        "name": "BenchmarkStripTags",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkstriptags_12483362044868267232",
+        "qualified_name": "benchmarkstriptags_12483362044868267232.BenchmarkStripTags",
+        "file_path": "tpl/internal/go_templates/htmltemplate/html_test.go"
+      },
+      {
+        "name": "BenchmarkStripTagsNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkstriptagsnospecials_12483362044868267232",
+        "qualified_name": "benchmarkstriptagsnospecials_12483362044868267232.BenchmarkStripTagsNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/html_test.go"
+      },
+      {
+        "name": "BenchmarkJSRegexpEscaper",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsregexpescaper_12483362044868267232",
+        "qualified_name": "benchmarkjsregexpescaper_12483362044868267232.BenchmarkJSRegexpEscaper",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSRegexpEscaperNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsregexpescapernospecials_12483362044868267232",
+        "qualified_name": "benchmarkjsregexpescapernospecials_12483362044868267232.BenchmarkJSRegexpEscaperNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSStrEscaper",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsstrescaper_12483362044868267232",
+        "qualified_name": "benchmarkjsstrescaper_12483362044868267232.BenchmarkJSStrEscaper",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSStrEscaperNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsstrescapernospecials_12483362044868267232",
+        "qualified_name": "benchmarkjsstrescapernospecials_12483362044868267232.BenchmarkJSStrEscaperNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSValEscaperWithNum",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsvalescaperwithnum_12483362044868267232",
+        "qualified_name": "benchmarkjsvalescaperwithnum_12483362044868267232.BenchmarkJSValEscaperWithNum",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSValEscaperWithObj",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsvalescaperwithobj_12483362044868267232",
+        "qualified_name": "benchmarkjsvalescaperwithobj_12483362044868267232.BenchmarkJSValEscaperWithObj",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSValEscaperWithObjNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsvalescaperwithobjnospecials_12483362044868267232",
+        "qualified_name": "benchmarkjsvalescaperwithobjnospecials_12483362044868267232.BenchmarkJSValEscaperWithObjNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSValEscaperWithStr",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsvalescaperwithstr_12483362044868267232",
+        "qualified_name": "benchmarkjsvalescaperwithstr_12483362044868267232.BenchmarkJSValEscaperWithStr",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkJSValEscaperWithStrNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkjsvalescaperwithstrnospecials_12483362044868267232",
+        "qualified_name": "benchmarkjsvalescaperwithstrnospecials_12483362044868267232.BenchmarkJSValEscaperWithStrNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/js_test.go"
+      },
+      {
+        "name": "BenchmarkTemplateSpecialTags",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarktemplatespecialtags_12483362044868267232",
+        "qualified_name": "benchmarktemplatespecialtags_12483362044868267232.BenchmarkTemplateSpecialTags",
+        "file_path": "tpl/internal/go_templates/htmltemplate/transition_test.go"
+      },
+      {
+        "name": "BenchmarkSrcsetFilter",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarksrcsetfilter_12483362044868267232",
+        "qualified_name": "benchmarksrcsetfilter_12483362044868267232.BenchmarkSrcsetFilter",
+        "file_path": "tpl/internal/go_templates/htmltemplate/url_test.go"
+      },
+      {
+        "name": "BenchmarkSrcsetFilterNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarksrcsetfilternospecials_12483362044868267232",
+        "qualified_name": "benchmarksrcsetfilternospecials_12483362044868267232.BenchmarkSrcsetFilterNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/url_test.go"
+      },
+      {
+        "name": "BenchmarkURLEscaper",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkurlescaper_12483362044868267232",
+        "qualified_name": "benchmarkurlescaper_12483362044868267232.BenchmarkURLEscaper",
+        "file_path": "tpl/internal/go_templates/htmltemplate/url_test.go"
+      },
+      {
+        "name": "BenchmarkURLEscaperNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkurlescapernospecials_12483362044868267232",
+        "qualified_name": "benchmarkurlescapernospecials_12483362044868267232.BenchmarkURLEscaperNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/url_test.go"
+      },
+      {
+        "name": "BenchmarkURLNormalizer",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkurlnormalizer_12483362044868267232",
+        "qualified_name": "benchmarkurlnormalizer_12483362044868267232.BenchmarkURLNormalizer",
+        "file_path": "tpl/internal/go_templates/htmltemplate/url_test.go"
+      },
+      {
+        "name": "BenchmarkURLNormalizerNoSpecials",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/htmltemplate",
+        "import_alias": "benchmarkurlnormalizernospecials_12483362044868267232",
+        "qualified_name": "benchmarkurlnormalizernospecials_12483362044868267232.BenchmarkURLNormalizerNoSpecials",
+        "file_path": "tpl/internal/go_templates/htmltemplate/url_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkListString",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/parse",
+        "import_alias": "benchmarkliststring_12091539013657696344",
+        "qualified_name": "benchmarkliststring_12091539013657696344.BenchmarkListString",
+        "file_path": "tpl/internal/go_templates/texttemplate/parse/parse_test.go"
+      },
+      {
+        "name": "BenchmarkParseLarge",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/parse",
+        "import_alias": "benchmarkparselarge_12091539013657696344",
+        "qualified_name": "benchmarkparselarge_12091539013657696344.BenchmarkParseLarge",
+        "file_path": "tpl/internal/go_templates/texttemplate/parse/parse_test.go"
+      },
+      {
+        "name": "BenchmarkVariableString",
+        "module_path": "github.com/gohugoio/hugo/tpl/internal/go_templates/texttemplate/parse",
+        "import_alias": "benchmarkvariablestring_12091539013657696344",
+        "qualified_name": "benchmarkvariablestring_12091539013657696344.BenchmarkVariableString",
+        "file_path": "tpl/internal/go_templates/texttemplate/parse/parse_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkTruncate",
+        "module_path": "github.com/gohugoio/hugo/tpl/strings",
+        "import_alias": "benchmarktruncate_11257671554297370755",
+        "qualified_name": "benchmarktruncate_11257671554297370755.BenchmarkTruncate",
+        "file_path": "tpl/strings/truncate_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkCompareDescriptors",
+        "module_path": "github.com/gohugoio/hugo/tpl/tplimpl",
+        "import_alias": "benchmarkcomparedescriptors_16591105017139932943",
+        "qualified_name": "benchmarkcomparedescriptors_16591105017139932943.BenchmarkCompareDescriptors",
+        "file_path": "tpl/tplimpl/templatedescriptor_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkLiveReloadInject",
+        "module_path": "github.com/gohugoio/hugo/transform/livereloadinject",
+        "import_alias": "benchmarklivereloadinject_13224044352763152379",
+        "qualified_name": "benchmarklivereloadinject_13224044352763152379.BenchmarkLiveReloadInject",
+        "file_path": "transform/livereloadinject/livereloadinject_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkAbsURL",
+        "module_path": "github.com/gohugoio/hugo/transform/urlreplacers",
+        "import_alias": "benchmarkabsurl_3155915875871903319",
+        "qualified_name": "benchmarkabsurl_3155915875871903319.BenchmarkAbsURL",
+        "file_path": "transform/urlreplacers/absurlreplacer_test.go"
+      },
+      {
+        "name": "BenchmarkAbsURLSrcset",
+        "module_path": "github.com/gohugoio/hugo/transform/urlreplacers",
+        "import_alias": "benchmarkabsurlsrcset_3155915875871903319",
+        "qualified_name": "benchmarkabsurlsrcset_3155915875871903319.BenchmarkAbsURLSrcset",
+        "file_path": "transform/urlreplacers/absurlreplacer_test.go"
+      },
+      {
+        "name": "BenchmarkXMLAbsURL",
+        "module_path": "github.com/gohugoio/hugo/transform/urlreplacers",
+        "import_alias": "benchmarkxmlabsurl_3155915875871903319",
+        "qualified_name": "benchmarkxmlabsurl_3155915875871903319.BenchmarkXMLAbsURL",
+        "file_path": "transform/urlreplacers/absurlreplacer_test.go"
+      },
+      {
+        "name": "BenchmarkXMLAbsURLSrcset",
+        "module_path": "github.com/gohugoio/hugo/transform/urlreplacers",
+        "import_alias": "benchmarkxmlabsurlsrcset_3155915875871903319",
+        "qualified_name": "benchmarkxmlabsurlsrcset_3155915875871903319.BenchmarkXMLAbsURLSrcset",
+        "file_path": "transform/urlreplacers/absurlreplacer_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkPoller",
+        "module_path": "github.com/gohugoio/hugo/watcher/filenotify",
+        "import_alias": "benchmarkpoller_5517665682261906176",
+        "qualified_name": "benchmarkpoller_5517665682261906176.BenchmarkPoller",
+        "file_path": "watcher/filenotify/poller_test.go"
+      }
+    ]
+  }
+]

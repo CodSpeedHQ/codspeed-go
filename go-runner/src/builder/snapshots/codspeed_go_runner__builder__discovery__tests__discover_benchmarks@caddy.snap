@@ -1,0 +1,98 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkLoad",
+        "module_path": "github.com/caddyserver/caddy/v2",
+        "import_alias": "benchmarkload_11044152246690907007",
+        "qualified_name": "benchmarkload_11044152246690907007.BenchmarkLoad",
+        "file_path": "admin_test.go"
+      },
+      {
+        "name": "BenchmarkReplacer",
+        "module_path": "github.com/caddyserver/caddy/v2",
+        "import_alias": "benchmarkreplacer_11044152246690907007",
+        "qualified_name": "benchmarkreplacer_11044152246690907007.BenchmarkReplacer",
+        "file_path": "replacer_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkMatchExpressionMatch",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkmatchexpressionmatch_847408598907947825",
+        "qualified_name": "benchmarkmatchexpressionmatch_847408598907947825.BenchmarkMatchExpressionMatch",
+        "file_path": "modules/caddyhttp/celmatcher_test.go"
+      },
+      {
+        "name": "BenchmarkHeaderREMatcher",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkheaderrematcher_847408598907947825",
+        "qualified_name": "benchmarkheaderrematcher_847408598907947825.BenchmarkHeaderREMatcher",
+        "file_path": "modules/caddyhttp/matchers_test.go"
+      },
+      {
+        "name": "BenchmarkHostMatcherWithPlaceholder",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkhostmatcherwithplaceholder_847408598907947825",
+        "qualified_name": "benchmarkhostmatcherwithplaceholder_847408598907947825.BenchmarkHostMatcherWithPlaceholder",
+        "file_path": "modules/caddyhttp/matchers_test.go"
+      },
+      {
+        "name": "BenchmarkHostMatcherWithoutPlaceholder",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkhostmatcherwithoutplaceholder_847408598907947825",
+        "qualified_name": "benchmarkhostmatcherwithoutplaceholder_847408598907947825.BenchmarkHostMatcherWithoutPlaceholder",
+        "file_path": "modules/caddyhttp/matchers_test.go"
+      },
+      {
+        "name": "BenchmarkLargeHostMatcher",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarklargehostmatcher_847408598907947825",
+        "qualified_name": "benchmarklargehostmatcher_847408598907947825.BenchmarkLargeHostMatcher",
+        "file_path": "modules/caddyhttp/matchers_test.go"
+      },
+      {
+        "name": "BenchmarkServer_LogRequest",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkserver_logrequest_847408598907947825",
+        "qualified_name": "benchmarkserver_logrequest_847408598907947825.BenchmarkServer_LogRequest",
+        "file_path": "modules/caddyhttp/server_test.go"
+      },
+      {
+        "name": "BenchmarkServer_LogRequest_NopLogger",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkserver_logrequest_noplogger_847408598907947825",
+        "qualified_name": "benchmarkserver_logrequest_noplogger_847408598907947825.BenchmarkServer_LogRequest_NopLogger",
+        "file_path": "modules/caddyhttp/server_test.go"
+      },
+      {
+        "name": "BenchmarkServer_LogRequest_WithTrace",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp",
+        "import_alias": "benchmarkserver_logrequest_withtrace_847408598907947825",
+        "qualified_name": "benchmarkserver_logrequest_withtrace_847408598907947825.BenchmarkServer_LogRequest_WithTrace",
+        "file_path": "modules/caddyhttp/server_test.go"
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkOpenResponseWriter",
+        "module_path": "github.com/caddyserver/caddy/v2/modules/caddyhttp/encode",
+        "import_alias": "benchmarkopenresponsewriter_6976708135776919894",
+        "qualified_name": "benchmarkopenresponsewriter_6976708135776919894.BenchmarkOpenResponseWriter",
+        "file_path": "modules/caddyhttp/encode/encode_test.go"
+      }
+    ]
+  }
+]
