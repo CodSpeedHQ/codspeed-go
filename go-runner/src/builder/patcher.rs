@@ -46,7 +46,7 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
         let content =
             fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
 
-        let patched_content = patch_go_source(&content)?;
+        let patched_content = patch_imports_for_source(&content)?;
         if patched_content != content {
             fs::write(&go_file, patched_content)
                 .context(format!("Failed to write patched Go file: {go_file:?}"))?;
@@ -57,7 +57,146 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     }
     debug!("Patched {patched_files} files");
 
-    // 2. Update the go module to use the codspeed package
+    Ok(())
+}
+
+/// Internal function to apply import patterns to Go source code
+pub fn patch_imports_for_source(source: &str) -> anyhow::Result<String> {
+    let replace_import =
+        |mut source: String, import_path: &str, replacement: &str| -> anyhow::Result<String> {
+            let parsed = gosyn::parse_source(&source)?;
+
+            if let Some(import) = parsed
+                .imports
+                .iter()
+                .find(|import| import.path.value == format!("\"{import_path}\""))
+            {
+                let start_pos = import.path.pos;
+                let end_pos = start_pos + import.path.value.len();
+
+                source.replace_range(start_pos..end_pos, replacement);
+            }
+
+            Ok(source)
+        };
+
+    let source = replace_import(
+        source.to_string(),
+        "testing",
+        "testing \"github.com/CodSpeedHQ/codspeed-go/compat/testing\"",
+    )?;
+    let source = replace_import(
+        source,
+        "github.com/thejerf/slogassert",
+        "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
+    )?;
+    let source = replace_import(
+        source,
+        "github.com/frankban/quicktest",
+        "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
+    )?;
+
+    Ok(source)
+}
+
+/// Patches imports and package in specific test files
+///
+/// This ensures we only modify the test files that belong to the current test package,
+/// avoiding conflicts when multiple test packages exist in the same directory
+pub fn patch_packages_for_test_files<P: AsRef<Path>>(test_files: &[P]) -> anyhow::Result<()> {
+    debug!("Patching {} test files", test_files.len());
+
+    let mut patched_files = 0;
+    for go_file in test_files {
+        let go_file = go_file.as_ref();
+        if !go_file.is_file() {
+            continue;
+        }
+
+        let content =
+            fs::read_to_string(go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
+
+        let patched_content = patch_package_for_source(content.clone())?;
+        if patched_content != content {
+            fs::write(go_file, patched_content)
+                .context(format!("Failed to write patched Go file: {go_file:?}"))?;
+
+            debug!("Patched package in: {go_file:?}");
+            patched_files += 1;
+        }
+    }
+    debug!("Patched {patched_files} files");
+
+    Ok(())
+}
+
+/// Patches all .go files in a directory to rename "package main" to "package main_compat"
+///
+/// This is needed when we have a "package main" with benchmarks that need to be imported.
+/// By renaming all files in the package to "main_compat", we make it importable.
+pub fn patch_all_packages_in_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<()> {
+    let dir = dir.as_ref();
+    debug!("Patching all .go files in directory: {dir:?}");
+
+    let mut patched_files = 0;
+    let pattern = dir.join("*.go");
+    for go_file in glob::glob(pattern.to_str().unwrap())?.filter_map(Result::ok) {
+        if !go_file.is_file() {
+            continue;
+        }
+
+        let content =
+            fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
+
+        let patched_content = patch_package_for_source(content.clone())?;
+        if patched_content != content {
+            fs::write(&go_file, patched_content)
+                .context(format!("Failed to write patched Go file: {go_file:?}"))?;
+
+            debug!("Patched package in: {go_file:?}");
+            patched_files += 1;
+        }
+    }
+    debug!("Patched {patched_files} files in directory");
+
+    Ok(())
+}
+
+/// Replace `package main` with `package main_compat` to allow importing it from other packages.
+/// Also replace `package foo_test` with `package main` for external test packages.
+fn patch_package_for_source(source: String) -> anyhow::Result<String> {
+    let parsed = gosyn::parse_source(&source)?;
+    let pkg_name = &parsed.pkg_name.name;
+
+    let replacement = if pkg_name == "main" {
+        Some("main_compat")
+    } else if pkg_name.ends_with("_test") {
+        // For external test packages (package foo_test), convert to package main
+        // They will be placed in the codspeed/ subdirectory and built as standalone executables
+        Some("main")
+    } else {
+        None
+    };
+
+    if let Some(new_name) = replacement {
+        // pkg_name.pos is the position of the identifier in the source
+        let name_start = parsed.pkg_name.pos;
+        let name_end = name_start + pkg_name.len();
+
+        let mut result = source;
+        result.replace_range(name_start..name_end, new_name);
+        Ok(result)
+    } else {
+        Ok(source)
+    }
+}
+
+/// Installs the codspeed-go dependency in the module
+pub fn install_codspeed_dependency<P: AsRef<Path>>(module_dir: P) -> anyhow::Result<()> {
+    let folder = module_dir.as_ref();
+    debug!("Installing codspeed-go dependency in module: {folder:?}");
+
+    // 1. Update the go module to use the codspeed package
     let version = std::env::var("CODSPEED_GO_PKG_VERSION")
         .unwrap_or_else(|_| format!("v{}", env!("CARGO_PKG_VERSION")));
     let pkg = format!("github.com/CodSpeedHQ/codspeed-go@{}", version);
@@ -97,64 +236,6 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     }
 
     Ok(())
-}
-
-/// Internal function to apply import patterns to Go source code
-pub fn patch_go_source(source: &str) -> anyhow::Result<String> {
-    let replace_import =
-        |mut source: String, import_path: &str, replacement: &str| -> anyhow::Result<String> {
-            let parsed = gosyn::parse_source(&source)?;
-
-            if let Some(import) = parsed
-                .imports
-                .iter()
-                .find(|import| import.path.value == format!("\"{import_path}\""))
-            {
-                let start_pos = import.path.pos;
-                let end_pos = start_pos + import.path.value.len();
-
-                source.replace_range(start_pos..end_pos, replacement);
-            }
-
-            Ok(source)
-        };
-
-    let source = replace_package_main(source.into())?;
-    let source = replace_import(
-        source,
-        "testing",
-        "testing \"github.com/CodSpeedHQ/codspeed-go/compat/testing\"",
-    )?;
-    let source = replace_import(
-        source,
-        "github.com/thejerf/slogassert",
-        "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
-    )?;
-    let source = replace_import(
-        source,
-        "github.com/frankban/quicktest",
-        "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
-    )?;
-
-    Ok(source)
-}
-
-/// Replace `package main` with `package main_compat` to allow importing it from other packages.
-fn replace_package_main(source: String) -> anyhow::Result<String> {
-    let parsed = gosyn::parse_source(&source)?;
-
-    // Only replace if package name is "main"
-    if parsed.pkg_name.name != "main" {
-        return Ok(source);
-    }
-
-    // pkg_name.pos is the position of the identifier "main" in the source
-    let name_start = parsed.pkg_name.pos;
-    let name_end = name_start + parsed.pkg_name.name.len();
-
-    let mut result = source;
-    result.replace_range(name_start..name_end, "main_compat");
-    Ok(result)
 }
 
 #[cfg(test)]
@@ -300,7 +381,8 @@ func TestExample(t *testing.T) {
     )]
     #[case("package_main", PACKAGE_MAIN)]
     fn test_patch_go_source(#[case] test_name: &str, #[case] source: &str) {
-        let result = patch_go_source(source).unwrap();
+        let result = patch_imports_for_source(source).unwrap();
+        let result = patch_package_for_source(result).unwrap();
         assert_snapshot!(test_name, result);
     }
 }

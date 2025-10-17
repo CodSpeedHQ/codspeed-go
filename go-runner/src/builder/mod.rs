@@ -87,11 +87,16 @@ pub fn build_binary<P: AsRef<Path>>(runner_go_path: P) -> anyhow::Result<std::pa
     let runner_go_path = runner_go_path.as_ref();
     let file_dir = runner_go_path.parent().unwrap();
     let module_root = file_dir.parent().unwrap();
-    let relative_path = runner_go_path.strip_prefix(module_root).unwrap();
+
+    // This will be the relative path from the module root to the codspeed directory, containing
+    // the runner.go file. This is needed so that we compile _all_ the files within that package.
+    //
+    // This is important when we have external test packages, which are moved to the codspeed folder.
+    let relative_dir_path = file_dir.strip_prefix(module_root).unwrap();
 
     debug!(
         "Building codspeed runner binary: {:?} (root = {:?})",
-        module_root.join(relative_path),
+        module_root.join(relative_dir_path),
         module_root
     );
 
@@ -103,6 +108,12 @@ pub fn build_binary<P: AsRef<Path>>(runner_go_path: P) -> anyhow::Result<std::pa
         env!("CARGO_PKG_VERSION")
     );
 
+    // Go doesn't support absolute paths, so we have to convert it to a relative path starting
+    // with `./{relative_dir_path}`.
+    let dot_slash_path = {
+        let p = relative_dir_path.to_str().unwrap();
+        format!("./{p}")
+    };
     let args = vec![
         "build",
         "-mod=mod",
@@ -111,7 +122,7 @@ pub fn build_binary<P: AsRef<Path>>(runner_go_path: P) -> anyhow::Result<std::pa
         &ldflags,
         "-o",
         binary_path.to_str().unwrap(),
-        relative_path.to_str().unwrap(),
+        &dot_slash_path,
     ];
 
     let output = Command::new("go")

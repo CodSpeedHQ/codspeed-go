@@ -567,6 +567,150 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkJSONLogMarshalerFunc",
+        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkJSONLogMarshalerFunc",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSampler_Check::100_keys",
+        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_Check::100_keys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSampler_Check::50_keys",
+        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_Check::50_keys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSampler_Check::7_keys",
+        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_Check::7_keys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSampler_CheckWithHook::100_keys",
+        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::100_keys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSampler_CheckWithHook::50_keys",
+        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::50_keys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSampler_CheckWithHook::7_keys",
+        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::7_keys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStandardJSON",
+        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkStandardJSON",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTeeCheck",
+        "uri": "zapcore/codspeed/tee_logger_bench_test.go::BenchmarkTeeCheck",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkZapConsole",
+        "uri": "zapcore/codspeed/console_encoder_bench_test.go::BenchmarkZapConsole",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkZapJSON",
+        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkZapJSON",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkZapJSONFloat32AndComplex64",
+        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkZapJSONFloat32AndComplex64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkTake",
         "uri": "internal/stacktrace/stack_test.go::BenchmarkTake",
         "config": {

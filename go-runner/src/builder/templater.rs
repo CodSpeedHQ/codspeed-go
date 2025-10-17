@@ -55,9 +55,8 @@ pub fn run<P: AsRef<Path>>(
 
     // Get files that need to be renamed first
     let files = package
-        .test_go_files
-        .as_ref()
-        .ok_or_else(|| anyhow::anyhow!("No test files found for package: {}", package.name))?;
+        .test_files()
+        .with_context(|| anyhow::anyhow!("No test files found for package: {}", package.name))?;
 
     // Calculate the relative path from module root to package directory
     let package_dir = Path::new(&package.dir);
@@ -68,22 +67,67 @@ pub fn run<P: AsRef<Path>>(
     ))?;
     debug!("Relative package path: {relative_package_path:?}");
 
-    // 2. Patch the imports of all files with our own versions
+    // 2. Patch the imports and package of the test files
+    // - Renames package declarations (to support main package tests and external tests)
+    // - Fixes imports to use our compat packages (e.g., testing/quicktest/testify)
+    let package_path = target_dir.path().join(relative_package_path);
+    let test_file_paths: Vec<PathBuf> = files.iter().map(|f| package_path.join(f)).collect();
+
+    // If we have external tests (e.g. "package {pkg}_test") they have to be
+    // changed to "package main" so they can be built within the codspeed/ sub-package.
+    if package.is_external_test_package() {
+        info!("Patching external test package files");
+        patcher::patch_packages_for_test_files(&test_file_paths)?;
+    } else if package.name == "main" {
+        // If this is a "package main" (not external test), we need to patch ALL .go files in the package directory
+        // so they all become "package main_compat" and can be imported by the runner.
+
+        info!("Package is 'main' - patching all .go files in package directory");
+        patcher::patch_all_packages_in_dir(&package_path)?;
+    }
     patcher::patch_imports(&target_dir)?;
 
-    // 3. Rename the _test.go files to _codspeed.go
-    for file in files {
-        let old_path = target_dir.path().join(relative_package_path).join(file);
-        let new_path = old_path.with_file_name(
-            old_path
-                .file_name()
-                .unwrap()
-                .to_string_lossy()
-                .replace("_test", "_codspeed"),
-        );
+    // 3. Install codspeed-go dependency at the module level (once for the whole module)
+    patcher::install_codspeed_dependency(&target_dir)?;
 
-        fs::rename(&old_path, &new_path)
-            .context(format!("Failed to rename {old_path:?} to {new_path:?}"))?;
+    // 3. Handle test files differently based on whether they're external or internal tests
+    let codspeed_dir = target_dir
+        .path()
+        .join(relative_package_path)
+        .join("codspeed");
+    fs::create_dir_all(&codspeed_dir).context("Failed to create codspeed directory")?;
+
+    if package.is_external_test_package() {
+        // For external test packages: copy test files to codspeed/ subdirectory AND rename them
+        // (remove _test suffix so Go will compile them with `go build`)
+        // They're now package main and will be built from the subdirectory
+        debug!("Handling external test package - moving files to codspeed/ subdirectory");
+        for file in files {
+            let src_path = target_dir.path().join(relative_package_path).join(file);
+            // Rename _test.go to _codspeed.go so it's not treated as a test file
+            let dst_filename = file.replace("_test.go", "_codspeed.go");
+            let dst_path = codspeed_dir.join(&dst_filename);
+
+            fs::rename(&src_path, &dst_path).context(format!(
+                "Failed to rename external test file from {src_path:?} to {dst_path:?}"
+            ))?;
+        }
+    } else {
+        // For internal test packages: rename _test.go to _codspeed.go in place
+        debug!("Handling internal test package - renaming files in place");
+        for file in files {
+            let old_path = target_dir.path().join(relative_package_path).join(file);
+            let new_path = old_path.with_file_name(
+                old_path
+                    .file_name()
+                    .unwrap()
+                    .to_string_lossy()
+                    .replace("_test", "_codspeed"),
+            );
+
+            fs::rename(&old_path, &new_path)
+                .context(format!("Failed to rename {old_path:?} to {new_path:?}"))?;
+        }
     }
 
     // 4. Generate the codspeed/runner.go file using the template
@@ -99,17 +143,7 @@ pub fn run<P: AsRef<Path>>(
     };
     let rendered = handlebars.render("main", &data)?;
 
-    let runner_path = target_dir
-        .path()
-        .join(relative_package_path)
-        .join("codspeed/runner.go");
-    fs::create_dir_all(
-        target_dir
-            .path()
-            .join(relative_package_path)
-            .join("codspeed"),
-    )
-    .context("Failed to create codspeed directory")?;
+    let runner_path = codspeed_dir.join("runner.go");
     fs::write(&runner_path, rendered).context("Failed to write runner.go file")?;
 
     Ok((target_dir, runner_path))

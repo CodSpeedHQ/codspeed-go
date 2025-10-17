@@ -14,6 +14,117 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkAbsURL::absurl",
+        "uri": "helpers/codspeed/url_test.go::BenchmarkAbsURL::absurl",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAbsURL::relurl",
+        "uri": "helpers/codspeed/url_test.go::BenchmarkAbsURL::relurl",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReaderContains",
+        "uri": "helpers/codspeed/general_test.go::BenchmarkReaderContains",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkRelURL",
+        "uri": "helpers/codspeed/url_test.go::BenchmarkRelURL",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTotalWords",
+        "uri": "helpers/codspeed/content_test.go::BenchmarkTotalWords",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTrimShortHTML",
+        "uri": "helpers/codspeed/content_test.go::BenchmarkTrimShortHTML",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkUniqueStrings::Reuse_slice",
+        "uri": "helpers/codspeed/general_test.go::BenchmarkUniqueStrings::Reuse_slice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkUniqueStrings::Reuse_slice_sorted",
+        "uri": "helpers/codspeed/general_test.go::BenchmarkUniqueStrings::Reuse_slice_sorted",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkUniqueStrings::Safe",
+        "uri": "helpers/codspeed/general_test.go::BenchmarkUniqueStrings::Safe",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkAbsURL",
         "uri": "transform/urlreplacers/absurlreplacer_test.go::BenchmarkAbsURL",
         "config": {
@@ -1007,6 +1118,51 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkCodeblocks::Default",
+        "uri": "markup/goldmark/codspeed/goldmark_integration_test.go::BenchmarkCodeblocks::Default",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkCodeblocks::Hook_no_higlight",
+        "uri": "markup/goldmark/codspeed/goldmark_integration_test.go::BenchmarkCodeblocks::Hook_no_higlight",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkRenderHooks",
+        "uri": "markup/goldmark/codspeed/goldmark_integration_test.go::BenchmarkRenderHooks",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkCollator::Para",
         "uri": "langs/language_test.go::BenchmarkCollator::Para",
         "config": {
@@ -1324,6 +1480,228 @@ expression: results
       {
         "name": "BenchmarkKatexStartStop::PoolSize8",
         "uri": "internal/warpc/warpc_test.go::BenchmarkKatexStartStop::PoolSize8",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkExecuteWithContext",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkExecuteWithContext",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLookupPagesLayout::Single_root",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupPagesLayout::Single_root",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLookupPagesLayout::Single_sub_folder",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupPagesLayout::Single_sub_folder",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLookupPartial",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupPartial",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLookupShortcode::nestedpage",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupShortcode::nestedpage",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkLookupShortcode::toplevelpage",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupShortcode::toplevelpage",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkNewTemplateStore",
+        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkNewTemplateStore",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkFinder::Find_none",
+        "uri": "identity/codspeed/finder_test.go::BenchmarkFinder::Find_none",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFinder::Find_one",
+        "uri": "identity/codspeed/finder_test.go::BenchmarkFinder::Find_one",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Add_duplicates",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Add_duplicates",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Add_unique",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Add_unique",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Nop_Anonymous",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_Anonymous",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Nop_StringIdentity_const",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_const",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Nop_StringIdentity_const_other_package",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_const_other_package",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Nop_StringIdentity_var",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_var",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::Nop_pointer_identity",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_pointer_identity",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIdentityManager::identity.NewManager",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::identity.NewManager",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIsNotDependent::Nested_not_found_10_5",
+        "uri": "identity/codspeed/identity_test.go::BenchmarkIsNotDependent::Nested_not_found_10_5",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1949,6 +2327,119 @@ expression: results
       {
         "name": "BenchmarkI18nTranslate::unknown-language-codes",
         "uri": "langs/i18n/i18n_test.go::BenchmarkI18nTranslate::unknown-language-codes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkImageExif::Cold_cache",
+        "uri": "resources/codspeed/image_test.go::BenchmarkImageExif::Cold_cache",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkImageExif::Cold_cache,_10",
+        "uri": "resources/codspeed/image_test.go::BenchmarkImageExif::Cold_cache,_10",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkImageExif::Warm_cache",
+        "uri": "resources/codspeed/image_test.go::BenchmarkImageExif::Warm_cache",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkResizeParallel",
+        "uri": "resources/codspeed/image_test.go::BenchmarkResizeParallel",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkInWithCaching",
+        "uri": "tpl/time/codspeed/time_test.go::BenchmarkInWithCaching",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInWithoutCaching",
+        "uri": "tpl/time/codspeed/time_test.go::BenchmarkInWithoutCaching",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkIncludeCached",
+        "uri": "tpl/partials/codspeed/partials_integration_test.go::BenchmarkIncludeCached",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2671,6 +3162,29 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkRelatedSite",
+        "uri": "related/codspeed/related_integration_test.go::BenchmarkRelatedSite",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkSanitizeAnchorName",
         "uri": "markup/goldmark/autoid_test.go::BenchmarkSanitizeAnchorName",
         "config": {
@@ -2854,6 +3368,128 @@ expression: results
       {
         "name": "BenchmarkToc::ToHTML",
         "uri": "markup/tableofcontents/tableofcontents_test.go::BenchmarkToc::ToHTML",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkTreeInsert::1000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTreeInsert::10000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::10000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTreeInsert::100000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::100000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTreeInsert::300000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::300000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk::Walk_all_dimensions_1000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk::Walk_all_dimensions_10000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_10000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk::Walk_all_dimensions_100000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_100000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk::Walk_one_dimension_1000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk::Walk_one_dimension_10000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_10000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWalk::Walk_one_dimension_100000",
+        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_100000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

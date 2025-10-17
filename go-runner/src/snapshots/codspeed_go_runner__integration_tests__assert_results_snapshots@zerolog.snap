@@ -14,6 +14,40 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "Benchmark::Pooler",
+        "uri": "diode/codspeed/diode_test.go::Benchmark::Pooler",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "Benchmark::Waiter",
+        "uri": "diode/codspeed/diode_test.go::Benchmark::Waiter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkAppendBytes::EncodingFirst",
         "uri": "internal/json/bytes_test.go::BenchmarkAppendBytes::EncodingFirst",
         "config": {
@@ -424,6 +458,29 @@ expression: results
       {
         "name": "BenchmarkAppendTime::Integer",
         "uri": "internal/cbor/time_test.go::BenchmarkAppendTime::Integer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkConsoleWriter",
+        "uri": "codspeed/console_test.go::BenchmarkConsoleWriter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

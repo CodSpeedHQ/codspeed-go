@@ -81,6 +81,657 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkBool::AsBool",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::AsBool",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBool::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBool::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBool::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBoolSlice::AsBoolSlice",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::AsBoolSlice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBoolSlice::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBoolSlice::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBoolSlice::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEquivalentMapAccess::10_int_attributes",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::10_int_attributes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEquivalentMapAccess::10_string_attributes",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::10_string_attributes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEquivalentMapAccess::1_int_attribute",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::1_int_attribute",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEquivalentMapAccess::1_string_attribute",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::1_string_attribute",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkEquivalentMapAccess::Empty",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::Empty",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::AllDropped::NewSetWithFiltered",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::AllDropped::NewSetWithFiltered",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::AllDropped::Set.Filter",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::AllDropped::Set.Filter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::Filtered::NewSetWithFiltered",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::Filtered::NewSetWithFiltered",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::Filtered::Set.Filter",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::Filtered::Set.Filter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::NoFilter::NewSetWithFiltered",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFilter::NewSetWithFiltered",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::NoFilter::Set.Filter",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFilter::Set.Filter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::NoFiltered::NewSetWithFiltered",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFiltered::NewSetWithFiltered",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFiltering::NoFiltered::Set.Filter",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFiltered::Set.Filter",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64::AsFloat64",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::AsFloat64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64Slice::AsFloat64Slice",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::AsFloat64Slice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64Slice::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64Slice::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFloat64Slice::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64::AsInt64",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::AsInt64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64Slice::AsInt64Slice",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::AsInt64Slice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64Slice::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64Slice::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt64Slice::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInt::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIntSlice::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkIntSlice::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIntSlice::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkIntSlice::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIntSlice::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkIntSlice::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkNewSet",
+        "uri": "attribute/codspeed/set_test.go::BenchmarkNewSet",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkString::AsString",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::AsString",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkString::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkString::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkString::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringSlice::AsStringSlice",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::AsStringSlice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringSlice::Emit",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::Emit",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringSlice::KeyValue",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::KeyValue",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStringSlice::Value",
+        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::Value",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkExtract::BogusVersion",
+        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkExtract::BogusVersion",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExtract::FutureAdditionalData",
+        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkExtract::FutureAdditionalData",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExtract::Sampled",
+        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkExtract::Sampled",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInject::SampledSpanContext",
+        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkInject::SampledSpanContext",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInject::WithoutSpanContext",
+        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkInject::WithoutSpanContext",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkMemberString",
         "uri": "baggage/baggage_test.go::BenchmarkMemberString",
         "config": {

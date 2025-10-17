@@ -86,10 +86,9 @@ impl GoPackage {
     }
 
     /// Check if this package is an external test package (package name ends with _test).
-    /// External test packages have ImportPath like "example_test [example.test]".
+    /// External test packages have names ending with "_test".
     pub fn is_external_test_package(&self) -> bool {
-        // External test packages have import paths matching pattern: *_test [*.test]
-        self.import_path.contains("_test [") && self.import_path.ends_with(".test]")
+        self.name.ends_with("_test")
     }
 
     /// Returns the appropriate test files list based on whether this is an external test package.

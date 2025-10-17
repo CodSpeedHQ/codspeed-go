@@ -8,9 +8,9 @@ import (
 
 	codspeed_testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 
-	// Import parent package containing the benchmarks
+	// Import parent package containing the benchmarks (only for internal tests)
 	{{#each benchmarks}}
-	    {{import_alias}} "{{module_path}}"
+	    {{#unless is_external}}{{import_alias}} "{{module_path}}"{{/unless}}
 	{{/each}}
 )
 
@@ -75,7 +75,8 @@ func main() {
 	var examples = []codspeed_testing.InternalExample{}
 	var benchmarks = []codspeed_testing.InternalBenchmark{
 		{{#each benchmarks}}
-		        {"{{name}}", {{qualified_name}}},
+			{"{{name}}",
+			{{#if is_external}}{{name}}{{else}}{{qualified_name}}{{/if}}},
 		{{/each}}
 	}
 
