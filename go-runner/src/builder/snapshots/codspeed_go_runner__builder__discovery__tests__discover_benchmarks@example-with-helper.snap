@@ -11,7 +11,8 @@ expression: packages
         "module_path": "example-with-helper",
         "import_alias": "benchmarkfib_10228706780785555621",
         "qualified_name": "benchmarkfib_10228706780785555621.BenchmarkFib",
-        "file_path": "fib_test.go"
+        "file_path": "fib_test.go",
+        "is_external": false
       }
     ]
   }

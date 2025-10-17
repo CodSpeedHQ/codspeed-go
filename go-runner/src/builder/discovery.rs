@@ -26,14 +26,27 @@ pub struct GoPackage {
     #[serde(rename = "ImportPath")]
     pub import_path: String,
 
+    /// The Go source files included in this package (e.g. `[fib.go, fib_test.go]`)
+    #[serde(rename = "GoFiles")]
+    pub go_files: Option<Vec<String>>,
+
+    /// The Go test files included in this package (e.g. `[fib_test.go]`).
+    /// This is `None` for external test packages.
     #[serde(rename = "TestGoFiles")]
     pub test_go_files: Option<Vec<String>>,
+
+    #[serde(rename = "Imports")]
+    pub imports: Option<Vec<String>>,
 
     #[serde(rename = "TestImports")]
     pub test_imports: Option<Vec<String>>,
 
     #[serde(rename = "CompiledGoFiles")]
     pub compiled_go_files: Option<Vec<String>>,
+
+    /// For external test packages, this is the package being tested
+    #[serde(rename = "ForTest")]
+    pub for_test: Option<String>,
 
     #[serde(rename = "Module")]
     pub module: GoModule,
@@ -72,10 +85,60 @@ impl GoPackage {
         serde_json::from_str(&format!("[{output}]")).context("Failed to parse Go list output")
     }
 
+    /// Check if this package is an external test package (package name ends with _test).
+    /// External test packages have ImportPath like "example_test [example.test]".
+    pub fn is_external_test_package(&self) -> bool {
+        // External test packages have import paths matching pattern: *_test [*.test]
+        self.import_path.contains("_test [") && self.import_path.ends_with(".test]")
+    }
+
+    /// Returns the appropriate test files list based on whether this is an external test package.
+    pub fn test_files(&self) -> Option<&Vec<String>> {
+        if self.is_external_test_package() {
+            self.go_files.as_ref()
+        } else {
+            self.test_go_files.as_ref()
+        }
+    }
+
+    /// Returns the appropriate imports list based on whether this is an external test package.
+    fn test_imports_list(&self) -> &Option<Vec<String>> {
+        if self.is_external_test_package() {
+            &self.imports
+        } else {
+            &self.test_imports
+        }
+    }
+
+    /// Extracts the clean package import path for benchmarks.
+    ///
+    /// The import_path format is like "local.dev/example-complex/pkg/auth [local.dev/example-complex/pkg/auth.test]"
+    /// For external test packages (_test suffix), use the ForTest field which contains the package being tested
+    fn package_import_path(&self) -> anyhow::Result<String> {
+        if self.is_external_test_package() {
+            self.for_test
+                .as_ref()
+                .ok_or_else(|| {
+                    anyhow::anyhow!("External test package {} missing ForTest field", self.name)
+                })
+                .cloned()
+        } else {
+            Ok(self
+                .import_path
+                .split_whitespace()
+                .next()
+                .unwrap_or(&self.import_path)
+                .to_string())
+        }
+    }
+
     fn benchmarks(&self) -> anyhow::Result<Vec<GoBenchmark>> {
-        let Some(test_go_files) = &self.test_go_files else {
+        let Some(test_go_files) = self.test_files() else {
             bail!("No test files found for package: {}", self.name);
         };
+
+        let package_import_path = self.package_import_path()?;
+        let is_external = self.is_external_test_package();
 
         let mut benchmarks = Vec::new();
         for file in test_go_files.iter().sorted() {
@@ -110,15 +173,6 @@ impl GoPackage {
                 found_benchmarks.push(func_name.clone());
             }
 
-            // Extract the actual package import path from the full import_path
-            // The import_path format is like "local.dev/example-complex/pkg/auth [local.dev/example-complex/pkg/auth.test]"
-            let package_import_path = self
-                .import_path
-                .split_whitespace()
-                .next()
-                .unwrap_or(&self.import_path)
-                .to_string();
-
             // Remove the module dir parent from the file path
             let root_relative_file_path = file_path.strip_prefix(&self.module.dir).context(
                 format!("Couldn't strip the module dir from file path: {file_path:?}"),
@@ -129,6 +183,7 @@ impl GoPackage {
                     package_import_path.clone(),
                     func,
                     root_relative_file_path.to_path_buf(),
+                    is_external,
                 ));
             }
         }
@@ -149,14 +204,22 @@ pub struct GoBenchmark {
     import_alias: String,
 
     /// The name with the package (e.g. `foo_test.BenchmarkFoo`).
-    qualified_name: String,
+    pub qualified_name: String,
 
     /// The file path relative to the module directory (e.g. `pkg/foo/foo_test.go`).
     pub file_path: PathBuf,
+
+    /// Whether this benchmark is from an external test package (package foo_test).
+    pub is_external: bool,
 }
 
 impl GoBenchmark {
-    pub fn new(package_import_path: String, name: String, file_path: PathBuf) -> Self {
+    pub fn new(
+        package_import_path: String,
+        name: String,
+        file_path: PathBuf,
+        is_external: bool,
+    ) -> Self {
         let hash = {
             let mut hasher = DefaultHasher::new();
             package_import_path.hash(&mut hasher);
@@ -171,6 +234,7 @@ impl GoBenchmark {
             name,
             qualified_name,
             file_path,
+            is_external,
         }
     }
 }
@@ -199,47 +263,42 @@ impl BenchmarkPackage {
         // Sort packages by import path to ensure deterministic order
         raw_packages.sort_by(|a, b| a.import_path.cmp(&b.import_path));
 
-        let has_test_files =
-            |files: &Vec<String>| files.iter().any(|name| name.ends_with("_test.go"));
-        let has_test_imports = |imports: &Vec<String>| {
-            imports.iter().any(|import| {
-                // import "testing"
-                import.contains("testing")
-            })
-        };
-
         let mut packages = Vec::new();
         for package in raw_packages {
-            // Skip packages without test files
-            let has_tests = package
-                .test_go_files
-                .as_ref()
-                .map(has_test_files)
-                .unwrap_or_default();
-            if !has_tests {
+            // Filter 1: Must have test files
+            let Some(test_files) = package.test_files() else {
                 debug!("Skipping package without test files: {}", package.name);
+                continue;
+            };
+            if !test_files.iter().any(|name| name.ends_with("_test.go")) {
+                debug!(
+                    "Skipping package with files, but without test files: {}",
+                    package.name
+                );
                 continue;
             }
 
-            // Skip packages without test imports
-            let has_test_imports = package
-                .test_imports
-                .as_ref()
-                .map(has_test_imports)
-                .unwrap_or_default();
-            if !has_test_imports {
+            // Filter 2: Must have testing imports
+            let Some(test_imports) = package.test_imports_list() else {
+                debug!("Skipping package without test imports: {}", package.name);
+                continue;
+            };
+            if !test_imports.iter().any(|import| import.contains("testing")) {
                 debug!("Skipping package without test imports: {}", package.name);
                 continue;
             }
 
-            // Only include test executables, since we want to generate them manually.
+            // Filter 3: Must be a test executable
             // Example format: `local.dev/example-complex [local.dev/example-complex.test]`
             if !package.import_path.ends_with(".test]") {
-                debug!("Skipping package without test executable: {}", package.name);
+                debug!(
+                    "Skipping package without test executable: {}",
+                    package.import_path
+                );
                 continue;
             }
 
-            // Skip packages that don't have benchmarks
+            // Filter 4: Must have benchmarks
             let benchmarks = match package.benchmarks() {
                 Ok(benchmarks) => benchmarks,
                 Err(e) => {
@@ -313,7 +372,7 @@ mod tests {
     #[case::example_with_main("example-with-main")]
     #[case::example_with_dot_go_folder("example-with-dot-go-folder")]
     #[case::example_with_test_package("example-with-test-package")]
-    #[test]
+    #[test_log::test]
     fn test_discover_benchmarks(#[case] project_name: &str) {
         let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
             .join("testdata/projects")

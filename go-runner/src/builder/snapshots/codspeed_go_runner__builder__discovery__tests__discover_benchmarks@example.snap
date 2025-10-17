@@ -11,35 +11,40 @@ expression: packages
         "module_path": "example",
         "import_alias": "benchmarkfibonacci10_9576953055782987076",
         "qualified_name": "benchmarkfibonacci10_9576953055782987076.BenchmarkFibonacci10",
-        "file_path": "fib_test.go"
+        "file_path": "fib_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkFibonacci20_Loop",
         "module_path": "example",
         "import_alias": "benchmarkfibonacci20_loop_9576953055782987076",
         "qualified_name": "benchmarkfibonacci20_loop_9576953055782987076.BenchmarkFibonacci20_Loop",
-        "file_path": "fib_test.go"
+        "file_path": "fib_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkFibonacci20_bN",
         "module_path": "example",
         "import_alias": "benchmarkfibonacci20_bn_9576953055782987076",
         "qualified_name": "benchmarkfibonacci20_bn_9576953055782987076.BenchmarkFibonacci20_bN",
-        "file_path": "fib_test.go"
+        "file_path": "fib_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkLargeSetup",
         "module_path": "example",
         "import_alias": "benchmarklargesetup_9576953055782987076",
         "qualified_name": "benchmarklargesetup_9576953055782987076.BenchmarkLargeSetup",
-        "file_path": "setup_test.go"
+        "file_path": "setup_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkLargeSetupInLoop",
         "module_path": "example",
         "import_alias": "benchmarklargesetupinloop_9576953055782987076",
         "qualified_name": "benchmarklargesetupinloop_9576953055782987076.BenchmarkLargeSetupInLoop",
-        "file_path": "setup_test.go"
+        "file_path": "setup_test.go",
+        "is_external": false
       }
     ]
   },
@@ -51,28 +56,32 @@ expression: packages
         "module_path": "example/compat",
         "import_alias": "benchmarkquicktest_3904647701036713533",
         "qualified_name": "benchmarkquicktest_3904647701036713533.BenchmarkQuicktest",
-        "file_path": "compat/quicktest_test.go"
+        "file_path": "compat/quicktest_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkWithSlogAssert",
         "module_path": "example/compat",
         "import_alias": "benchmarkwithslogassert_3904647701036713533",
         "qualified_name": "benchmarkwithslogassert_3904647701036713533.BenchmarkWithSlogAssert",
-        "file_path": "compat/slogassert_test.go"
+        "file_path": "compat/slogassert_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkTestifyWithNew",
         "module_path": "example/compat",
         "import_alias": "benchmarktestifywithnew_3904647701036713533",
         "qualified_name": "benchmarktestifywithnew_3904647701036713533.BenchmarkTestifyWithNew",
-        "file_path": "compat/testify_test.go"
+        "file_path": "compat/testify_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkTestifyWithT",
         "module_path": "example/compat",
         "import_alias": "benchmarktestifywitht_3904647701036713533",
         "qualified_name": "benchmarktestifywitht_3904647701036713533.BenchmarkTestifyWithT",
-        "file_path": "compat/testify_test.go"
+        "file_path": "compat/testify_test.go",
+        "is_external": false
       }
     ]
   },
@@ -84,98 +93,112 @@ expression: packages
         "module_path": "example/timing",
         "import_alias": "benchmarksleep100ns_9596130933289179795",
         "qualified_name": "benchmarksleep100ns_9596130933289179795.BenchmarkSleep100ns",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep100ns_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep100ns_loop_9596130933289179795",
         "qualified_name": "benchmarksleep100ns_loop_9596130933289179795.BenchmarkSleep100ns_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep100us",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep100us_9596130933289179795",
         "qualified_name": "benchmarksleep100us_9596130933289179795.BenchmarkSleep100us",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep100us_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep100us_loop_9596130933289179795",
         "qualified_name": "benchmarksleep100us_loop_9596130933289179795.BenchmarkSleep100us_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep10ms",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep10ms_9596130933289179795",
         "qualified_name": "benchmarksleep10ms_9596130933289179795.BenchmarkSleep10ms",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep10ms_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep10ms_loop_9596130933289179795",
         "qualified_name": "benchmarksleep10ms_loop_9596130933289179795.BenchmarkSleep10ms_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep10us",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep10us_9596130933289179795",
         "qualified_name": "benchmarksleep10us_9596130933289179795.BenchmarkSleep10us",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep10us_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep10us_loop_9596130933289179795",
         "qualified_name": "benchmarksleep10us_loop_9596130933289179795.BenchmarkSleep10us_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep1ms",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep1ms_9596130933289179795",
         "qualified_name": "benchmarksleep1ms_9596130933289179795.BenchmarkSleep1ms",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep1ms_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep1ms_loop_9596130933289179795",
         "qualified_name": "benchmarksleep1ms_loop_9596130933289179795.BenchmarkSleep1ms_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep1us",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep1us_9596130933289179795",
         "qualified_name": "benchmarksleep1us_9596130933289179795.BenchmarkSleep1us",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep1us_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep1us_loop_9596130933289179795",
         "qualified_name": "benchmarksleep1us_loop_9596130933289179795.BenchmarkSleep1us_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep50ms",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep50ms_9596130933289179795",
         "qualified_name": "benchmarksleep50ms_9596130933289179795.BenchmarkSleep50ms",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       },
       {
         "name": "BenchmarkSleep50ms_Loop",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep50ms_loop_9596130933289179795",
         "qualified_name": "benchmarksleep50ms_loop_9596130933289179795.BenchmarkSleep50ms_Loop",
-        "file_path": "timing/sleep_test.go"
+        "file_path": "timing/sleep_test.go",
+        "is_external": false
       }
     ]
   },
@@ -187,7 +210,8 @@ expression: packages
         "module_path": "example/very/nested/module",
         "import_alias": "benchmarkexample_15276134930479441851",
         "qualified_name": "benchmarkexample_15276134930479441851.BenchmarkExample",
-        "file_path": "very/nested/module/example_test.go"
+        "file_path": "very/nested/module/example_test.go",
+        "is_external": false
       }
     ]
   }
