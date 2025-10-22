@@ -3,7 +3,7 @@
 package fib_test
 
 import (
-	"example-with-test-package/fib"
+	fib "example-with-test-package/fib_external"
 	"testing"
 )
 
@@ -45,5 +45,15 @@ func TestFibonacciEdgeCases(t *testing.T) {
 func BenchmarkFibonacci20(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		fib.Fibonacci(20)
+	}
+}
+
+func TestPrivateFibonacci(t *testing.T) {
+	fib.PrivateFibonacci(30)
+}
+
+func BenchmarkPrivateFibonacci(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		fib.PrivateFibonacci(30)
 	}
 }
