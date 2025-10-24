@@ -270,6 +270,70 @@ expression: packages
         "is_external": false
       },
       {
+        "name": "BenchmarkZapConsole",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarkzapconsole_9756807534644178564",
+        "qualified_name": "benchmarkzapconsole_9756807534644178564.BenchmarkZapConsole",
+        "file_path": "zapcore/console_encoder_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkJSONLogMarshalerFunc",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarkjsonlogmarshalerfunc_9756807534644178564",
+        "qualified_name": "benchmarkjsonlogmarshalerfunc_9756807534644178564.BenchmarkJSONLogMarshalerFunc",
+        "file_path": "zapcore/json_encoder_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkStandardJSON",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarkstandardjson_9756807534644178564",
+        "qualified_name": "benchmarkstandardjson_9756807534644178564.BenchmarkStandardJSON",
+        "file_path": "zapcore/json_encoder_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkZapJSON",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarkzapjson_9756807534644178564",
+        "qualified_name": "benchmarkzapjson_9756807534644178564.BenchmarkZapJSON",
+        "file_path": "zapcore/json_encoder_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkZapJSONFloat32AndComplex64",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarkzapjsonfloat32andcomplex64_9756807534644178564",
+        "qualified_name": "benchmarkzapjsonfloat32andcomplex64_9756807534644178564.BenchmarkZapJSONFloat32AndComplex64",
+        "file_path": "zapcore/json_encoder_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkSampler_Check",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarksampler_check_9756807534644178564",
+        "qualified_name": "benchmarksampler_check_9756807534644178564.BenchmarkSampler_Check",
+        "file_path": "zapcore/sampler_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkSampler_CheckWithHook",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarksampler_checkwithhook_9756807534644178564",
+        "qualified_name": "benchmarksampler_checkwithhook_9756807534644178564.BenchmarkSampler_CheckWithHook",
+        "file_path": "zapcore/sampler_bench_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkTeeCheck",
+        "module_path": "go.uber.org/zap/zapcore",
+        "import_alias": "benchmarkteecheck_9756807534644178564",
+        "qualified_name": "benchmarkteecheck_9756807534644178564.BenchmarkTeeCheck",
+        "file_path": "zapcore/tee_logger_bench_test.go",
+        "is_external": true
+      },
+      {
         "name": "BenchmarkMultiWriteSyncer",
         "module_path": "go.uber.org/zap/zapcore",
         "import_alias": "benchmarkmultiwritesyncer_9756807534644178564",

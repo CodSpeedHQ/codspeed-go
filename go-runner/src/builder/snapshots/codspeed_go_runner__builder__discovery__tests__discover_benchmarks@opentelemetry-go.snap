@@ -116,6 +116,115 @@ expression: packages
     "raw_package": "[raw_package]",
     "benchmarks": [
       {
+        "name": "BenchmarkBool",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkbool_9112764275935889827",
+        "qualified_name": "benchmarkbool_9112764275935889827.BenchmarkBool",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkBoolSlice",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkboolslice_9112764275935889827",
+        "qualified_name": "benchmarkboolslice_9112764275935889827.BenchmarkBoolSlice",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkEquivalentMapAccess",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkequivalentmapaccess_9112764275935889827",
+        "qualified_name": "benchmarkequivalentmapaccess_9112764275935889827.BenchmarkEquivalentMapAccess",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkFloat64",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkfloat64_9112764275935889827",
+        "qualified_name": "benchmarkfloat64_9112764275935889827.BenchmarkFloat64",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkFloat64Slice",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkfloat64slice_9112764275935889827",
+        "qualified_name": "benchmarkfloat64slice_9112764275935889827.BenchmarkFloat64Slice",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkInt",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkint_9112764275935889827",
+        "qualified_name": "benchmarkint_9112764275935889827.BenchmarkInt",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkInt64",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkint64_9112764275935889827",
+        "qualified_name": "benchmarkint64_9112764275935889827.BenchmarkInt64",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkInt64Slice",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkint64slice_9112764275935889827",
+        "qualified_name": "benchmarkint64slice_9112764275935889827.BenchmarkInt64Slice",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkIntSlice",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkintslice_9112764275935889827",
+        "qualified_name": "benchmarkintslice_9112764275935889827.BenchmarkIntSlice",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkString",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkstring_9112764275935889827",
+        "qualified_name": "benchmarkstring_9112764275935889827.BenchmarkString",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkStringSlice",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkstringslice_9112764275935889827",
+        "qualified_name": "benchmarkstringslice_9112764275935889827.BenchmarkStringSlice",
+        "file_path": "attribute/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkFiltering",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarkfiltering_9112764275935889827",
+        "qualified_name": "benchmarkfiltering_9112764275935889827.BenchmarkFiltering",
+        "file_path": "attribute/set_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkNewSet",
+        "module_path": "go.opentelemetry.io/otel/attribute",
+        "import_alias": "benchmarknewset_9112764275935889827",
+        "qualified_name": "benchmarknewset_9112764275935889827.BenchmarkNewSet",
+        "file_path": "attribute/set_test.go",
+        "is_external": true
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
         "name": "BenchmarkAsFloat64Slice",
         "module_path": "go.opentelemetry.io/otel/attribute/internal",
         "import_alias": "benchmarkasfloat64slice_4292079508431374558",

@@ -114,6 +114,40 @@ expression: results
           "max_rounds": null
         },
         "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkPrivateFibonacci",
+        "uri": "go-runner/testdata/projects/example-with-test-package/fib_external/codspeed/fib_integration_test.go::BenchmarkPrivateFibonacci",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkSay2",
+        "uri": "go-runner/testdata/projects/example-with-test-package/hello2/codspeed/hello_test.go::BenchmarkSay2",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
       }
     ]
   }

@@ -79,6 +79,14 @@ expression: packages
         "is_external": false
       },
       {
+        "name": "BenchmarkConsoleWriter",
+        "module_path": "github.com/rs/zerolog",
+        "import_alias": "benchmarkconsolewriter_4383361269039284158",
+        "qualified_name": "benchmarkconsolewriter_4383361269039284158.BenchmarkConsoleWriter",
+        "file_path": "console_test.go",
+        "is_external": true
+      },
+      {
         "name": "BenchmarkHooks",
         "module_path": "github.com/rs/zerolog",
         "import_alias": "benchmarkhooks_4383361269039284158",

@@ -262,6 +262,59 @@ expression: packages
     "raw_package": "[raw_package]",
     "benchmarks": [
       {
+        "name": "BenchmarkTotalWords",
+        "module_path": "github.com/gohugoio/hugo/helpers",
+        "import_alias": "benchmarktotalwords_76596580405171165",
+        "qualified_name": "benchmarktotalwords_76596580405171165.BenchmarkTotalWords",
+        "file_path": "helpers/content_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkTrimShortHTML",
+        "module_path": "github.com/gohugoio/hugo/helpers",
+        "import_alias": "benchmarktrimshorthtml_76596580405171165",
+        "qualified_name": "benchmarktrimshorthtml_76596580405171165.BenchmarkTrimShortHTML",
+        "file_path": "helpers/content_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkReaderContains",
+        "module_path": "github.com/gohugoio/hugo/helpers",
+        "import_alias": "benchmarkreadercontains_76596580405171165",
+        "qualified_name": "benchmarkreadercontains_76596580405171165.BenchmarkReaderContains",
+        "file_path": "helpers/general_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkUniqueStrings",
+        "module_path": "github.com/gohugoio/hugo/helpers",
+        "import_alias": "benchmarkuniquestrings_76596580405171165",
+        "qualified_name": "benchmarkuniquestrings_76596580405171165.BenchmarkUniqueStrings",
+        "file_path": "helpers/general_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkAbsURL",
+        "module_path": "github.com/gohugoio/hugo/helpers",
+        "import_alias": "benchmarkabsurl_76596580405171165",
+        "qualified_name": "benchmarkabsurl_76596580405171165.BenchmarkAbsURL",
+        "file_path": "helpers/url_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkRelURL",
+        "module_path": "github.com/gohugoio/hugo/helpers",
+        "import_alias": "benchmarkrelurl_76596580405171165",
+        "qualified_name": "benchmarkrelurl_76596580405171165.BenchmarkRelURL",
+        "file_path": "helpers/url_test.go",
+        "is_external": true
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
         "name": "BenchmarkHashingFs",
         "module_path": "github.com/gohugoio/hugo/hugofs",
         "import_alias": "benchmarkhashingfs_2018967518753075157",
@@ -434,6 +487,27 @@ expression: packages
     "raw_package": "[raw_package]",
     "benchmarks": [
       {
+        "name": "BenchmarkTreeInsert",
+        "module_path": "github.com/gohugoio/hugo/hugolib/doctree",
+        "import_alias": "benchmarktreeinsert_10776930824105248872",
+        "qualified_name": "benchmarktreeinsert_10776930824105248872.BenchmarkTreeInsert",
+        "file_path": "hugolib/doctree/nodeshiftree_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkWalk",
+        "module_path": "github.com/gohugoio/hugo/hugolib/doctree",
+        "import_alias": "benchmarkwalk_10776930824105248872",
+        "qualified_name": "benchmarkwalk_10776930824105248872.BenchmarkWalk",
+        "file_path": "hugolib/doctree/nodeshiftree_test.go",
+        "is_external": true
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
         "name": "BenchmarkHash",
         "module_path": "github.com/gohugoio/hugo/hugolib/pagesfromdata",
         "import_alias": "benchmarkhash_17303803225052856470",
@@ -453,6 +527,35 @@ expression: packages
         "qualified_name": "benchmarksegmentsmatch_12038842643177664133.BenchmarkSegmentsMatch",
         "file_path": "hugolib/segments/segments_test.go",
         "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkFinder",
+        "module_path": "github.com/gohugoio/hugo/identity",
+        "import_alias": "benchmarkfinder_12445121846465317058",
+        "qualified_name": "benchmarkfinder_12445121846465317058.BenchmarkFinder",
+        "file_path": "identity/finder_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkIdentityManager",
+        "module_path": "github.com/gohugoio/hugo/identity",
+        "import_alias": "benchmarkidentitymanager_12445121846465317058",
+        "qualified_name": "benchmarkidentitymanager_12445121846465317058.BenchmarkIdentityManager",
+        "file_path": "identity/identity_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkIsNotDependent",
+        "module_path": "github.com/gohugoio/hugo/identity",
+        "import_alias": "benchmarkisnotdependent_12445121846465317058",
+        "qualified_name": "benchmarkisnotdependent_12445121846465317058.BenchmarkIsNotDependent",
+        "file_path": "identity/identity_test.go",
+        "is_external": true
       }
     ]
   },
@@ -590,6 +693,22 @@ expression: packages
         "qualified_name": "benchmarksanitizeanchornamestring_5159563046487902237.BenchmarkSanitizeAnchorNameString",
         "file_path": "markup/goldmark/autoid_test.go",
         "is_external": false
+      },
+      {
+        "name": "BenchmarkCodeblocks",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark",
+        "import_alias": "benchmarkcodeblocks_5159563046487902237",
+        "qualified_name": "benchmarkcodeblocks_5159563046487902237.BenchmarkCodeblocks",
+        "file_path": "markup/goldmark/goldmark_integration_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkRenderHooks",
+        "module_path": "github.com/gohugoio/hugo/markup/goldmark",
+        "import_alias": "benchmarkrenderhooks_5159563046487902237",
+        "qualified_name": "benchmarkrenderhooks_5159563046487902237.BenchmarkRenderHooks",
+        "file_path": "markup/goldmark/goldmark_integration_test.go",
+        "is_external": true
       }
     ]
   },
@@ -771,6 +890,14 @@ expression: packages
         "qualified_name": "benchmarkrelatednewindex_11634052282318476998.BenchmarkRelatedNewIndex",
         "file_path": "related/inverted_index_test.go",
         "is_external": false
+      },
+      {
+        "name": "BenchmarkRelatedSite",
+        "module_path": "github.com/gohugoio/hugo/related",
+        "import_alias": "benchmarkrelatedsite_11634052282318476998",
+        "qualified_name": "benchmarkrelatedsite_11634052282318476998.BenchmarkRelatedSite",
+        "file_path": "related/related_integration_test.go",
+        "is_external": true
       }
     ]
   },
@@ -790,6 +917,22 @@ expression: packages
   {
     "raw_package": "[raw_package]",
     "benchmarks": [
+      {
+        "name": "BenchmarkImageExif",
+        "module_path": "github.com/gohugoio/hugo/resources",
+        "import_alias": "benchmarkimageexif_10958523510323494919",
+        "qualified_name": "benchmarkimageexif_10958523510323494919.BenchmarkImageExif",
+        "file_path": "resources/image_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkResizeParallel",
+        "module_path": "github.com/gohugoio/hugo/resources",
+        "import_alias": "benchmarkresizeparallel_10958523510323494919",
+        "qualified_name": "benchmarkresizeparallel_10958523510323494919.BenchmarkResizeParallel",
+        "file_path": "resources/image_test.go",
+        "is_external": true
+      },
       {
         "name": "BenchmarkHashImage",
         "module_path": "github.com/gohugoio/hugo/resources",
@@ -1281,6 +1424,46 @@ expression: packages
         "qualified_name": "benchmarkcomparedescriptors_16591105017139932943.BenchmarkCompareDescriptors",
         "file_path": "tpl/tplimpl/templatedescriptor_test.go",
         "is_external": false
+      },
+      {
+        "name": "BenchmarkExecuteWithContext",
+        "module_path": "github.com/gohugoio/hugo/tpl/tplimpl",
+        "import_alias": "benchmarkexecutewithcontext_16591105017139932943",
+        "qualified_name": "benchmarkexecutewithcontext_16591105017139932943.BenchmarkExecuteWithContext",
+        "file_path": "tpl/tplimpl/templatestore_integration_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkLookupPagesLayout",
+        "module_path": "github.com/gohugoio/hugo/tpl/tplimpl",
+        "import_alias": "benchmarklookuppageslayout_16591105017139932943",
+        "qualified_name": "benchmarklookuppageslayout_16591105017139932943.BenchmarkLookupPagesLayout",
+        "file_path": "tpl/tplimpl/templatestore_integration_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkLookupPartial",
+        "module_path": "github.com/gohugoio/hugo/tpl/tplimpl",
+        "import_alias": "benchmarklookuppartial_16591105017139932943",
+        "qualified_name": "benchmarklookuppartial_16591105017139932943.BenchmarkLookupPartial",
+        "file_path": "tpl/tplimpl/templatestore_integration_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkLookupShortcode",
+        "module_path": "github.com/gohugoio/hugo/tpl/tplimpl",
+        "import_alias": "benchmarklookupshortcode_16591105017139932943",
+        "qualified_name": "benchmarklookupshortcode_16591105017139932943.BenchmarkLookupShortcode",
+        "file_path": "tpl/tplimpl/templatestore_integration_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkNewTemplateStore",
+        "module_path": "github.com/gohugoio/hugo/tpl/tplimpl",
+        "import_alias": "benchmarknewtemplatestore_16591105017139932943",
+        "qualified_name": "benchmarknewtemplatestore_16591105017139932943.BenchmarkNewTemplateStore",
+        "file_path": "tpl/tplimpl/templatestore_integration_test.go",
+        "is_external": true
       }
     ]
   },
