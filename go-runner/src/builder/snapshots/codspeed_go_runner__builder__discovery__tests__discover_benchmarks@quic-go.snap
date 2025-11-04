@@ -1,0 +1,381 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkConnIDManagerInOrder",
+        "module_path": "github.com/quic-go/quic-go",
+        "import_alias": "benchmarkconnidmanagerinorder_17725812368620695335",
+        "qualified_name": "benchmarkconnidmanagerinorder_17725812368620695335.BenchmarkConnIDManagerInOrder",
+        "file_path": "conn_id_manager_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkConnIDManagerReordered",
+        "module_path": "github.com/quic-go/quic-go",
+        "import_alias": "benchmarkconnidmanagerreordered_17725812368620695335",
+        "qualified_name": "benchmarkconnidmanagerreordered_17725812368620695335.BenchmarkConnIDManagerReordered",
+        "file_path": "conn_id_manager_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHandshake",
+        "module_path": "github.com/quic-go/quic-go/integrationtests/self",
+        "import_alias": "benchmarkhandshake_2479404715441424897",
+        "qualified_name": "benchmarkhandshake_2479404715441424897.BenchmarkHandshake",
+        "file_path": "integrationtests/self/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkStreamChurn",
+        "module_path": "github.com/quic-go/quic-go/integrationtests/self",
+        "import_alias": "benchmarkstreamchurn_2479404715441424897",
+        "qualified_name": "benchmarkstreamchurn_2479404715441424897.BenchmarkStreamChurn",
+        "file_path": "integrationtests/self/benchmark_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkTransfer",
+        "module_path": "github.com/quic-go/quic-go/integrationtests/self",
+        "import_alias": "benchmarktransfer_2479404715441424897",
+        "qualified_name": "benchmarktransfer_2479404715441424897.BenchmarkTransfer",
+        "file_path": "integrationtests/self/benchmark_test.go",
+        "is_external": true
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHistoryIsDuplicate",
+        "module_path": "github.com/quic-go/quic-go/internal/ackhandler",
+        "import_alias": "benchmarkhistoryisduplicate_9929565287867201488",
+        "qualified_name": "benchmarkhistoryisduplicate_9929565287867201488.BenchmarkHistoryIsDuplicate",
+        "file_path": "internal/ackhandler/received_packet_history_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkHistoryReceiveCommonCase",
+        "module_path": "github.com/quic-go/quic-go/internal/ackhandler",
+        "import_alias": "benchmarkhistoryreceivecommoncase_9929565287867201488",
+        "qualified_name": "benchmarkhistoryreceivecommoncase_9929565287867201488.BenchmarkHistoryReceiveCommonCase",
+        "file_path": "internal/ackhandler/received_packet_history_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkHistoryReceiveReversePacketsWithGaps",
+        "module_path": "github.com/quic-go/quic-go/internal/ackhandler",
+        "import_alias": "benchmarkhistoryreceivereversepacketswithgaps_9929565287867201488",
+        "qualified_name": "benchmarkhistoryreceivereversepacketswithgaps_9929565287867201488.BenchmarkHistoryReceiveReversePacketsWithGaps",
+        "file_path": "internal/ackhandler/received_packet_history_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkHistoryReceiveSequentialPackets",
+        "module_path": "github.com/quic-go/quic-go/internal/ackhandler",
+        "import_alias": "benchmarkhistoryreceivesequentialpackets_9929565287867201488",
+        "qualified_name": "benchmarkhistoryreceivesequentialpackets_9929565287867201488.BenchmarkHistoryReceiveSequentialPackets",
+        "file_path": "internal/ackhandler/received_packet_history_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkHistoryReceiveSequentialPacketsWithGaps",
+        "module_path": "github.com/quic-go/quic-go/internal/ackhandler",
+        "import_alias": "benchmarkhistoryreceivesequentialpacketswithgaps_9929565287867201488",
+        "qualified_name": "benchmarkhistoryreceivesequentialpacketswithgaps_9929565287867201488.BenchmarkHistoryReceiveSequentialPacketsWithGaps",
+        "file_path": "internal/ackhandler/received_packet_history_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkSendAndAcknowledge",
+        "module_path": "github.com/quic-go/quic-go/internal/ackhandler",
+        "import_alias": "benchmarksendandacknowledge_9929565287867201488",
+        "qualified_name": "benchmarksendandacknowledge_9929565287867201488.BenchmarkSendAndAcknowledge",
+        "file_path": "internal/ackhandler/sent_packet_handler_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkPacer",
+        "module_path": "github.com/quic-go/quic-go/internal/congestion",
+        "import_alias": "benchmarkpacer_14226698885780729378",
+        "qualified_name": "benchmarkpacer_14226698885780729378.BenchmarkPacer",
+        "file_path": "internal/congestion/pacer_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkHKDFExpandLabelOurs",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkhkdfexpandlabelours_3445167521795741151",
+        "qualified_name": "benchmarkhkdfexpandlabelours_3445167521795741151.BenchmarkHKDFExpandLabelOurs",
+        "file_path": "internal/handshake/hkdf_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkHKDFExpandLabelStandardLibrary",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkhkdfexpandlabelstandardlibrary_3445167521795741151",
+        "qualified_name": "benchmarkhkdfexpandlabelstandardlibrary_3445167521795741151.BenchmarkHKDFExpandLabelStandardLibrary",
+        "file_path": "internal/handshake/hkdf_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkInitialAEAD",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkinitialaead_3445167521795741151",
+        "qualified_name": "benchmarkinitialaead_3445167521795741151.BenchmarkInitialAEAD",
+        "file_path": "internal/handshake/initial_aead_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkInitialAEADCreate",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkinitialaeadcreate_3445167521795741151",
+        "qualified_name": "benchmarkinitialaeadcreate_3445167521795741151.BenchmarkInitialAEADCreate",
+        "file_path": "internal/handshake/initial_aead_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkPacketDecryption",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkpacketdecryption_3445167521795741151",
+        "qualified_name": "benchmarkpacketdecryption_3445167521795741151.BenchmarkPacketDecryption",
+        "file_path": "internal/handshake/updatable_aead_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkPacketEncryption",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkpacketencryption_3445167521795741151",
+        "qualified_name": "benchmarkpacketencryption_3445167521795741151.BenchmarkPacketEncryption",
+        "file_path": "internal/handshake/updatable_aead_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkRollKeys",
+        "module_path": "github.com/quic-go/quic-go/internal/handshake",
+        "import_alias": "benchmarkrollkeys_3445167521795741151",
+        "qualified_name": "benchmarkrollkeys_3445167521795741151.BenchmarkRollKeys",
+        "file_path": "internal/handshake/updatable_aead_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkNow",
+        "module_path": "github.com/quic-go/quic-go/internal/monotime",
+        "import_alias": "benchmarknow_6421836119628624696",
+        "qualified_name": "benchmarknow_6421836119628624696.BenchmarkNow",
+        "file_path": "internal/monotime/time_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkConnectionIDStringer",
+        "module_path": "github.com/quic-go/quic-go/internal/protocol",
+        "import_alias": "benchmarkconnectionidstringer_3895154521026762770",
+        "qualified_name": "benchmarkconnectionidstringer_3895154521026762770.BenchmarkConnectionIDStringer",
+        "file_path": "internal/protocol/connection_id_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkRingBuffer",
+        "module_path": "github.com/quic-go/quic-go/internal/utils/ringbuffer",
+        "import_alias": "benchmarkringbuffer_14300724861336105258",
+        "qualified_name": "benchmarkringbuffer_14300724861336105258.BenchmarkRingBuffer",
+        "file_path": "internal/utils/ringbuffer/ringbuffer_bench_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkParseExtendedHeader",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparseextendedheader_7372446328961579375",
+        "qualified_name": "benchmarkparseextendedheader_7372446328961579375.BenchmarkParseExtendedHeader",
+        "file_path": "internal/wire/extended_header_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParseAckFrame",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparseackframe_7372446328961579375",
+        "qualified_name": "benchmarkparseackframe_7372446328961579375.BenchmarkParseAckFrame",
+        "file_path": "internal/wire/frame_parser_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParseDatagramFrame",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparsedatagramframe_7372446328961579375",
+        "qualified_name": "benchmarkparsedatagramframe_7372446328961579375.BenchmarkParseDatagramFrame",
+        "file_path": "internal/wire/frame_parser_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParseOtherFrames",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparseotherframes_7372446328961579375",
+        "qualified_name": "benchmarkparseotherframes_7372446328961579375.BenchmarkParseOtherFrames",
+        "file_path": "internal/wire/frame_parser_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParseStreamFrame",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparsestreamframe_7372446328961579375",
+        "qualified_name": "benchmarkparsestreamframe_7372446328961579375.BenchmarkParseStreamFrame",
+        "file_path": "internal/wire/frame_parser_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkArbitraryHeaderParsing",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkarbitraryheaderparsing_7372446328961579375",
+        "qualified_name": "benchmarkarbitraryheaderparsing_7372446328961579375.BenchmarkArbitraryHeaderParsing",
+        "file_path": "internal/wire/header_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkIs0RTTPacket",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkis0rttpacket_7372446328961579375",
+        "qualified_name": "benchmarkis0rttpacket_7372446328961579375.BenchmarkIs0RTTPacket",
+        "file_path": "internal/wire/header_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParseInitial",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparseinitial_7372446328961579375",
+        "qualified_name": "benchmarkparseinitial_7372446328961579375.BenchmarkParseInitial",
+        "file_path": "internal/wire/header_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParseRetry",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkparseretry_7372446328961579375",
+        "qualified_name": "benchmarkparseretry_7372446328961579375.BenchmarkParseRetry",
+        "file_path": "internal/wire/header_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkWriteShortHeader",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkwriteshortheader_7372446328961579375",
+        "qualified_name": "benchmarkwriteshortheader_7372446328961579375.BenchmarkWriteShortHeader",
+        "file_path": "internal/wire/short_header_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkTransportParameters",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarktransportparameters_7372446328961579375",
+        "qualified_name": "benchmarktransportparameters_7372446328961579375.BenchmarkTransportParameters",
+        "file_path": "internal/wire/transport_parameter_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkComposeVersionNegotiationPacket",
+        "module_path": "github.com/quic-go/quic-go/internal/wire",
+        "import_alias": "benchmarkcomposeversionnegotiationpacket_7372446328961579375",
+        "qualified_name": "benchmarkcomposeversionnegotiationpacket_7372446328961579375.BenchmarkComposeVersionNegotiationPacket",
+        "file_path": "internal/wire/version_negotiation_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkConnectionTracing",
+        "module_path": "github.com/quic-go/quic-go/qlog",
+        "import_alias": "benchmarkconnectiontracing_9904566609006801914",
+        "qualified_name": "benchmarkconnectiontracing_9904566609006801914.BenchmarkConnectionTracing",
+        "file_path": "qlog/benchmark_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkAppend",
+        "module_path": "github.com/quic-go/quic-go/quicvarint",
+        "import_alias": "benchmarkappend_17354483699754972331",
+        "qualified_name": "benchmarkappend_17354483699754972331.BenchmarkAppend",
+        "file_path": "quicvarint/varint_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkAppendWithLen",
+        "module_path": "github.com/quic-go/quic-go/quicvarint",
+        "import_alias": "benchmarkappendwithlen_17354483699754972331",
+        "qualified_name": "benchmarkappendwithlen_17354483699754972331.BenchmarkAppendWithLen",
+        "file_path": "quicvarint/varint_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkParse",
+        "module_path": "github.com/quic-go/quic-go/quicvarint",
+        "import_alias": "benchmarkparse_17354483699754972331",
+        "qualified_name": "benchmarkparse_17354483699754972331.BenchmarkParse",
+        "file_path": "quicvarint/varint_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkReadBytesReader",
+        "module_path": "github.com/quic-go/quic-go/quicvarint",
+        "import_alias": "benchmarkreadbytesreader_17354483699754972331",
+        "qualified_name": "benchmarkreadbytesreader_17354483699754972331.BenchmarkReadBytesReader",
+        "file_path": "quicvarint/varint_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkReadSimpleReader",
+        "module_path": "github.com/quic-go/quic-go/quicvarint",
+        "import_alias": "benchmarkreadsimplereader_17354483699754972331",
+        "qualified_name": "benchmarkreadsimplereader_17354483699754972331.BenchmarkReadSimpleReader",
+        "file_path": "quicvarint/varint_test.go",
+        "is_external": false
+      }
+    ]
+  }
+]

@@ -22,7 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: ['1.23', '1.24', '1.25']
+        go-version: ['1.24.x', '1.25.x']
+    env:
+      # Needed for the quic-go test
+      GOEXPERIMENT: ${{ matrix.go-version == '1.24.x' && 'synctest' || '' }}
     steps:
       - uses: actions/checkout@v4
         with:

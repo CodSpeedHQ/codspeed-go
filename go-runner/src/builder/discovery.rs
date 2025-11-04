@@ -366,6 +366,7 @@ mod tests {
     #[case::hugo("hugo")]
     #[case::fuego("fuego")]
     #[case::cli_runtime("cli-runtime")]
+    #[case::quic_go("quic-go")]
     #[case::example("example")]
     #[case::example_with_helper("example-with-helper")]
     #[case::example_with_main("example-with-main")]

@@ -1,0 +1,761 @@
+---
+source: go-runner/src/integration_tests.rs
+expression: results
+---
+[
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkAppend::1-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppend::1-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppend::2-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppend::2-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppend::4-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppend::4-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppend::8-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppend::8-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendWithLen::1-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppendWithLen::1-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendWithLen::2-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppendWithLen::2-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendWithLen::4-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppendWithLen::4-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkAppendWithLen::8-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkAppendWithLen::8-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParse::1-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkParse::1-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParse::2-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkParse::2-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParse::4-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkParse::4-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParse::8-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkParse::8-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadBytesReader::1-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadBytesReader::1-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadBytesReader::2-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadBytesReader::2-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadBytesReader::4-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadBytesReader::4-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadBytesReader::8-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadBytesReader::8-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadSimpleReader::1-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadSimpleReader::1-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadSimpleReader::2-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadSimpleReader::2-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadSimpleReader::4-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadSimpleReader::4-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkReadSimpleReader::8-byte",
+        "uri": "quicvarint/varint_test.go::BenchmarkReadSimpleReader::8-byte",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkArbitraryHeaderParsing::dest_100_/_src_150",
+        "uri": "internal/wire/header_test.go::BenchmarkArbitraryHeaderParsing::dest_100_/_src_150",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkArbitraryHeaderParsing::dest_20_/_src_20",
+        "uri": "internal/wire/header_test.go::BenchmarkArbitraryHeaderParsing::dest_20_/_src_20",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkArbitraryHeaderParsing::dest_8/_src_10",
+        "uri": "internal/wire/header_test.go::BenchmarkArbitraryHeaderParsing::dest_8/_src_10",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkComposeVersionNegotiationPacket",
+        "uri": "internal/wire/version_negotiation_test.go::BenchmarkComposeVersionNegotiationPacket",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIs0RTTPacket",
+        "uri": "internal/wire/header_test.go::BenchmarkIs0RTTPacket",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseAckFrame",
+        "uri": "internal/wire/frame_parser_test.go::BenchmarkParseAckFrame",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseDatagramFrame",
+        "uri": "internal/wire/frame_parser_test.go::BenchmarkParseDatagramFrame",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseExtendedHeader",
+        "uri": "internal/wire/extended_header_test.go::BenchmarkParseExtendedHeader",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseInitial::with_token",
+        "uri": "internal/wire/header_test.go::BenchmarkParseInitial::with_token",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseInitial::without_token",
+        "uri": "internal/wire/header_test.go::BenchmarkParseInitial::without_token",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseOtherFrames",
+        "uri": "internal/wire/frame_parser_test.go::BenchmarkParseOtherFrames",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseRetry",
+        "uri": "internal/wire/header_test.go::BenchmarkParseRetry",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkParseStreamFrame",
+        "uri": "internal/wire/frame_parser_test.go::BenchmarkParseStreamFrame",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTransportParameters::with_preferred_address",
+        "uri": "internal/wire/transport_parameter_test.go::BenchmarkTransportParameters::with_preferred_address",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTransportParameters::without_preferred_address",
+        "uri": "internal/wire/transport_parameter_test.go::BenchmarkTransportParameters::without_preferred_address",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWriteShortHeader",
+        "uri": "internal/wire/short_header_test.go::BenchmarkWriteShortHeader",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkConnectionIDStringer",
+        "uri": "internal/protocol/connection_id_test.go::BenchmarkConnectionIDStringer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHKDFExpandLabelOurs::TLS_AES_128_GCM_SHA256",
+        "uri": "internal/handshake/hkdf_test.go::BenchmarkHKDFExpandLabelOurs::TLS_AES_128_GCM_SHA256",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHKDFExpandLabelOurs::TLS_AES_256_GCM_SHA384",
+        "uri": "internal/handshake/hkdf_test.go::BenchmarkHKDFExpandLabelOurs::TLS_AES_256_GCM_SHA384",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHKDFExpandLabelOurs::TLS_CHACHA20_POLY1305_SHA256",
+        "uri": "internal/handshake/hkdf_test.go::BenchmarkHKDFExpandLabelOurs::TLS_CHACHA20_POLY1305_SHA256",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHKDFExpandLabelStandardLibrary::TLS_AES_128_GCM_SHA256",
+        "uri": "internal/handshake/hkdf_test.go::BenchmarkHKDFExpandLabelStandardLibrary::TLS_AES_128_GCM_SHA256",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHKDFExpandLabelStandardLibrary::TLS_AES_256_GCM_SHA384",
+        "uri": "internal/handshake/hkdf_test.go::BenchmarkHKDFExpandLabelStandardLibrary::TLS_AES_256_GCM_SHA384",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHKDFExpandLabelStandardLibrary::TLS_CHACHA20_POLY1305_SHA256",
+        "uri": "internal/handshake/hkdf_test.go::BenchmarkHKDFExpandLabelStandardLibrary::TLS_CHACHA20_POLY1305_SHA256",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInitialAEAD::opening_100_bytes",
+        "uri": "internal/handshake/initial_aead_test.go::BenchmarkInitialAEAD::opening_100_bytes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInitialAEAD::opening_1200_bytes",
+        "uri": "internal/handshake/initial_aead_test.go::BenchmarkInitialAEAD::opening_1200_bytes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInitialAEAD::sealing_100_bytes",
+        "uri": "internal/handshake/initial_aead_test.go::BenchmarkInitialAEAD::sealing_100_bytes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInitialAEAD::sealing_1200_bytes",
+        "uri": "internal/handshake/initial_aead_test.go::BenchmarkInitialAEAD::sealing_1200_bytes",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInitialAEADCreate",
+        "uri": "internal/handshake/initial_aead_test.go::BenchmarkInitialAEADCreate",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkPacketDecryption",
+        "uri": "internal/handshake/updatable_aead_test.go::BenchmarkPacketDecryption",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkPacketEncryption",
+        "uri": "internal/handshake/updatable_aead_test.go::BenchmarkPacketEncryption",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkRollKeys",
+        "uri": "internal/handshake/updatable_aead_test.go::BenchmarkRollKeys",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkHistoryIsDuplicate",
+        "uri": "internal/ackhandler/received_packet_history_test.go::BenchmarkHistoryIsDuplicate",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHistoryReceiveCommonCase",
+        "uri": "internal/ackhandler/received_packet_history_test.go::BenchmarkHistoryReceiveCommonCase",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHistoryReceiveReversePacketsWithGaps",
+        "uri": "internal/ackhandler/received_packet_history_test.go::BenchmarkHistoryReceiveReversePacketsWithGaps",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHistoryReceiveSequentialPackets",
+        "uri": "internal/ackhandler/received_packet_history_test.go::BenchmarkHistoryReceiveSequentialPackets",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkHistoryReceiveSequentialPacketsWithGaps",
+        "uri": "internal/ackhandler/received_packet_history_test.go::BenchmarkHistoryReceiveSequentialPacketsWithGaps",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSendAndAcknowledge::ack_every:_10,_in_flight:_100",
+        "uri": "internal/ackhandler/sent_packet_handler_test.go::BenchmarkSendAndAcknowledge::ack_every:_10,_in_flight:_100",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSendAndAcknowledge::ack_every:_100,_in_flight:_1000",
+        "uri": "internal/ackhandler/sent_packet_handler_test.go::BenchmarkSendAndAcknowledge::ack_every:_100,_in_flight:_1000",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkSendAndAcknowledge::ack_every:_2,_in_flight:_0",
+        "uri": "internal/ackhandler/sent_packet_handler_test.go::BenchmarkSendAndAcknowledge::ack_every:_2,_in_flight:_0",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkPacer",
+        "uri": "internal/congestion/pacer_test.go::BenchmarkPacer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkRingBuffer",
+        "uri": "internal/utils/ringbuffer/ringbuffer_bench_test.go::BenchmarkRingBuffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  }
+]

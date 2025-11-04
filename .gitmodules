@@ -25,3 +25,6 @@
 [submodule "go-runner/testdata/projects/caddy"]
 	path = go-runner/testdata/projects/caddy
 	url = https://github.com/caddyserver/caddy
+[submodule "go-runner/testdata/projects/quic-go"]
+	path = go-runner/testdata/projects/quic-go
+	url = https://github.com/quic-go/quic-go
