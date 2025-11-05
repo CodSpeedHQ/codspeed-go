@@ -1,0 +1,454 @@
+diff --git a/benchmark.go b/benchmark.go
+index 882859b..668e674 100644
+--- a/benchmark.go
++++ b/benchmark.go
+@@ -6,12 +6,18 @@ package testing
+
+ import (
+ 	"context"
++	"crypto/rand"
++	"encoding/hex"
++	"encoding/json"
+ 	"flag"
+ 	"fmt"
++	"github.com/CodSpeedHQ/codspeed-go/testing/capi"
+ 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/sysinfo"
+ 	"io"
+ 	"math"
+ 	"os"
++	"path/filepath"
++	"reflect"
+ 	"runtime"
+ 	"slices"
+ 	"strconv"
+@@ -78,6 +84,17 @@ type InternalBenchmark struct {
+ 	F    func(b *B)
+ }
+
++type codspeed struct {
++	instrument_hooks *capi.InstrumentHooks
++
++	codspeedTimePerRoundNs []time.Duration
++	codspeedItersPerRound  []int64
++
++	startTimestamp  uint64
++	startTimestamps []uint64
++	stopTimestamps  []uint64
++}
++
+ // B is a type passed to [Benchmark] functions to manage benchmark
+ // timing and control the number of iterations.
+ //
+@@ -93,6 +110,7 @@ type InternalBenchmark struct {
+ // affecting benchmark results.
+ type B struct {
+ 	common
++	codspeed
+ 	importPath       string // import path of the package containing the benchmark
+ 	bstate           *benchState
+ 	N                int
+@@ -135,28 +153,65 @@ type B struct {
+ // StartTimer starts timing a test. This function is called automatically
+ // before a benchmark starts, but it can also be used to resume timing after
+ // a call to [B.StopTimer].
+-func (b *B) StartTimer() {
++func (b *B) StartTimerWithoutMarker() {
+ 	if !b.timerOn {
+-		runtime.ReadMemStats(&memStats)
+-		b.startAllocs = memStats.Mallocs
+-		b.startBytes = memStats.TotalAlloc
++		// runtime.ReadMemStats(&memStats)
++		// b.startAllocs = memStats.Mallocs
++		// b.startBytes = memStats.TotalAlloc
+ 		b.start = highPrecisionTimeNow()
+ 		b.timerOn = true
+-		b.loop.i &^= loopPoisonTimer
++		// b.loop.i &^= loopPoisonTimer
++	}
++}
++
++func (b *B) StartTimer() {
++	timerOn := b.timerOn
++
++	b.StartTimerWithoutMarker()
++
++	if !timerOn {
++		b.startTimestamp = capi.CurrentTimestamp()
+ 	}
+ }
+
+ // StopTimer stops timing a test. This can be used to pause the timer
+ // while performing steps that you don't want to measure.
+-func (b *B) StopTimer() {
++func (b *B) StopTimerWithoutMarker() {
+ 	if b.timerOn {
+-		b.duration += highPrecisionTimeSince(b.start)
+-		runtime.ReadMemStats(&memStats)
+-		b.netAllocs += memStats.Mallocs - b.startAllocs
+-		b.netBytes += memStats.TotalAlloc - b.startBytes
++		timeSinceStart := highPrecisionTimeSince(b.start)
++		b.duration += timeSinceStart
++		// runtime.ReadMemStats(&memStats)
++		// b.netAllocs += memStats.Mallocs - b.startAllocs
++		// b.netBytes += memStats.TotalAlloc - b.startBytes
+ 		b.timerOn = false
+ 		// If we hit B.Loop with the timer stopped, fail.
+-		b.loop.i |= loopPoisonTimer
++		// b.loop.i |= loopPoisonTimer
++
++		// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
++		// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
++		// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
++		// the number of iterations for this round.
++		b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
++		b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, timeSinceStart)
++	}
++}
++
++func (b *B) StopTimer() {
++	endTimestamp := capi.CurrentTimestamp()
++	timerOn := b.timerOn
++
++	b.StopTimerWithoutMarker()
++
++	if timerOn {
++		if b.startTimestamp >= endTimestamp {
++			// This should never happen, unless we have a bug in the timer logic.
++			panic(fmt.Sprintf("Invalid benchmark timestamps: start timestamp (%d) is greater than or equal to end timestamp (%d)", b.startTimestamp, endTimestamp))
++		}
++		b.startTimestamps = append(b.startTimestamps, b.startTimestamp)
++		b.stopTimestamps = append(b.stopTimestamps, endTimestamp)
++
++		// Reset to prevent accidental reuse
++		b.startTimestamp = 0
+ 	}
+ }
+
+@@ -176,10 +231,29 @@ func (b *B) ResetTimer() {
+ 		b.startAllocs = memStats.Mallocs
+ 		b.startBytes = memStats.TotalAlloc
+ 		b.start = highPrecisionTimeNow()
++
++		b.startTimestamp = capi.CurrentTimestamp()
+ 	}
+ 	b.duration = 0
+ 	b.netAllocs = 0
+ 	b.netBytes = 0
++
++	// Clear CodSpeed timestamp data
++	b.codspeedItersPerRound = b.codspeedItersPerRound[:0]
++	b.codspeedTimePerRoundNs = b.codspeedTimePerRoundNs[:0]
++	b.startTimestamps = b.startTimestamps[:0]
++	b.stopTimestamps = b.stopTimestamps[:0]
++}
++
++func (b *B) sendAccumulatedTimestamps() {
++	for i := 0; i < len(b.startTimestamps); i++ {
++		b.instrument_hooks.AddBenchmarkTimestamps(
++			b.startTimestamps[i],
++			b.stopTimestamps[i],
++		)
++	}
++	b.startTimestamps = b.startTimestamps[:0]
++	b.stopTimestamps = b.stopTimestamps[:0]
+ }
+
+ // SetBytes records the number of bytes processed in a single operation.
+@@ -195,6 +269,11 @@ func (b *B) ReportAllocs() {
+
+ // runN runs a single benchmark for the specified number of iterations.
+ func (b *B) runN(n int) {
++	b.__codspeed_root_frame__runN(n)
++}
++
++//go:noinline
++func (b *B) __codspeed_root_frame__runN(n int) {
+ 	benchmarkLock.Lock()
+ 	defer benchmarkLock.Unlock()
+ 	ctx, cancelCtx := context.WithCancel(context.Background())
+@@ -274,6 +353,8 @@ var labelsOnce sync.Once
+ // subbenchmarks. b must not have subbenchmarks.
+ func (b *B) run() {
+ 	labelsOnce.Do(func() {
++		fmt.Fprintf(b.w, "Running with CodSpeed (mode: walltime)\n")
++
+ 		fmt.Fprintf(b.w, "goos: %s\n", runtime.GOOS)
+ 		fmt.Fprintf(b.w, "goarch: %s\n", runtime.GOARCH)
+ 		if b.importPath != "" {
+@@ -344,18 +425,48 @@ func (b *B) launch() {
+ 				b.runN(b.benchTime.n)
+ 			}
+ 		} else {
+-			d := b.benchTime.d
+-			for n := int64(1); !b.failed && b.duration < d && n < 1e9; {
++			warmupD := time.Millisecond * 500
++			warmupN := int64(1)
++			for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
+ 				last := n
+ 				// Predict required iterations.
+-				goalns := d.Nanoseconds()
++				goalns := warmupD.Nanoseconds()
+ 				prevIters := int64(b.N)
+ 				n = int64(predictN(goalns, prevIters, b.duration.Nanoseconds(), last))
+ 				b.runN(int(n))
++				warmupN = n
++			}
++
++			// Reset the fields from the warmup run
++			b.ResetTimer()
++
++			// Final run:
++			benchD := b.benchTime.d
++			benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
++
++			// When we have a very slow benchmark (e.g. taking 500ms), we have to:
++			// 1. Reduce the number of rounds to not slow down the process (e.g. by executing a 1s bench 100 times)
++			// 2. Not end up with roundN of 0 when dividing benchN (which can be < 100) by rounds
++			const minRounds = 100
++			var rounds int
++			var roundN int
++			if benchN < minRounds {
++				rounds = benchN
++				roundN = 1
++			} else {
++				rounds = minRounds
++				roundN = benchN / int(rounds)
+ 			}
++
++			b.codspeed.instrument_hooks.StartBenchmark()
++			for range rounds {
++				b.runN(int(roundN))
++			}
++			b.codspeed.instrument_hooks.StopBenchmark()
++			b.sendAccumulatedTimestamps()
+ 		}
+ 	}
+-	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.extra}
++	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.codspeedTimePerRoundNs, b.codspeedItersPerRound, b.extra}
+ }
+
+ // Elapsed returns the measured elapsed time of the benchmark.
+@@ -408,9 +519,9 @@ func (b *B) stopOrScaleBLoop() bool {
+
+ func (b *B) loopSlowPath() bool {
+ 	// Consistency checks
+-	if !b.timerOn {
+-		b.Fatal("B.Loop called with timer stopped")
+-	}
++	// if !b.timerOn {
++	// 	b.Fatal("B.Loop called with timer stopped")
++	// }
+ 	if b.loop.i&loopPoisonMask != 0 {
+ 		panic(fmt.Sprintf("unknown loop stop condition: %#x", b.loop.i))
+ 	}
+@@ -426,7 +537,9 @@ func (b *B) loopSlowPath() bool {
+ 		}
+ 		// Within a b.Loop loop, we don't use b.N (to avoid confusion).
+ 		b.N = 0
++		b.codspeed.instrument_hooks.StartBenchmark()
+ 		b.ResetTimer()
++		b.StartTimerWithoutMarker()
+
+ 		// Start the next iteration.
+ 		b.loop.i++
+@@ -448,13 +561,17 @@ func (b *B) loopSlowPath() bool {
+ 		more = b.stopOrScaleBLoop()
+ 	}
+ 	if !more {
+-		b.StopTimer()
++		b.StopTimerWithoutMarker()
++		b.codspeed.instrument_hooks.StopBenchmark()
++		b.sendAccumulatedTimestamps()
++
+ 		// Commit iteration count
+ 		b.N = int(b.loop.n)
+ 		b.loop.done = true
+ 		return false
+ 	}
+
++	b.StartTimerWithoutMarker()
+ 	// Start the next iteration.
+ 	b.loop.i++
+ 	return true
+@@ -495,6 +612,7 @@ func (b *B) loopSlowPath() bool {
+ // whereas b.N-based benchmarks must run the benchmark function (and any
+ // associated setup and cleanup) several times.
+ func (b *B) Loop() bool {
++	b.StopTimerWithoutMarker()
+ 	// This is written such that the fast path is as fast as possible and can be
+ 	// inlined.
+ 	//
+@@ -509,6 +627,7 @@ func (b *B) Loop() bool {
+ 	//   path can do consistency checks and fail.
+ 	if b.loop.i < b.loop.n {
+ 		b.loop.i++
++		b.StartTimerWithoutMarker()
+ 		return true
+ 	}
+ 	return b.loopSlowPath()
+@@ -535,6 +654,9 @@ type BenchmarkResult struct {
+ 	MemAllocs uint64        // The total number of memory allocations.
+ 	MemBytes  uint64        // The total number of bytes allocated.
+
++	CodspeedTimePerRoundNs []time.Duration
++	CodspeedItersPerRound  []int64
++
+ 	// Extra records additional metrics reported by ReportMetric.
+ 	Extra map[string]float64
+ }
+@@ -715,6 +837,9 @@ func runBenchmarks(importPath string, matchString func(pat, str string) (bool, e
+ 			w:     os.Stdout,
+ 			bench: true,
+ 		},
++		codspeed: codspeed{
++			instrument_hooks: capi.NewInstrumentHooks(),
++		},
+ 		importPath: importPath,
+ 		benchFunc: func(b *B) {
+ 			for _, Benchmark := range bs {
+@@ -724,6 +849,8 @@ func runBenchmarks(importPath string, matchString func(pat, str string) (bool, e
+ 		benchTime: benchTime,
+ 		bstate:    bstate,
+ 	}
++	defer main.codspeed.instrument_hooks.Close()
++
+ 	if Verbose() {
+ 		main.chatty = newChattyPrinter(main.w)
+ 	}
+@@ -752,6 +879,7 @@ func (s *benchState) processBench(b *B) {
+ 						chatty: b.chatty,
+ 						bench:  true,
+ 					},
++					codspeed:  b.codspeed,
+ 					benchFunc: b.benchFunc,
+ 					benchTime: b.benchTime,
+ 				}
+@@ -767,6 +895,111 @@ func (s *benchState) processBench(b *B) {
+ 				continue
+ 			}
+ 			results := r.String()
++
++			// ############################################################################################
++			// START CODSPEED
++			type RawResults struct {
++				Name                   string          `json:"name"`
++				Uri                    string          `json:"uri"`
++				Pid                    int             `json:"pid"`
++				CodspeedTimePerRoundNs []time.Duration `json:"codspeed_time_per_round_ns"`
++				CodspeedItersPerRound  []int64         `json:"codspeed_iters_per_round"`
++			}
++
++			// Find the filename of the benchmark file
++			var benchFile string
++			if b.benchFunc != nil {
++				pc := reflect.ValueOf(b.benchFunc).Pointer()
++				fn := runtime.FuncForPC(pc)
++				if fn == nil {
++					continue
++				}
++
++				file, _ := fn.FileLine(pc)
++				if strings.HasSuffix(file, "_codspeed.go") {
++					benchFile = file
++				}
++			}
++
++			if benchFile == "" {
++				panic("Could not determine benchmark file name")
++			}
++
++			relativeBenchFile := getGitRelativePath(benchFile)
++			if strings.HasSuffix(relativeBenchFile, "_codspeed.go") {
++				relativeBenchFile = strings.TrimSuffix(relativeBenchFile, "_codspeed.go") + "_test.go"
++			}
++
++			// Build custom bench name with :: separator
++			var nameParts []string
++			current := &b.common
++			for current.parent != nil {
++				// Extract the sub-benchmark part by removing parent prefix
++				parentName := current.parent.name
++				if strings.HasPrefix(current.name, parentName+"/") {
++					subName := strings.TrimPrefix(current.name, parentName+"/")
++					nameParts = append([]string{subName}, nameParts...)
++				} else {
++					nameParts = append([]string{current.name}, nameParts...)
++				}
++
++				if current.parent.name == "Main" {
++					break
++				}
++				current = current.parent
++			}
++			benchName = strings.Join(nameParts, "::")
++			benchUri := fmt.Sprintf("%s::%s", relativeBenchFile, benchName)
++
++			rawResults := RawResults{
++				Name:                   benchName,
++				Uri:                    benchUri,
++				Pid:                    os.Getpid(),
++				CodspeedTimePerRoundNs: r.CodspeedTimePerRoundNs,
++				CodspeedItersPerRound:  r.CodspeedItersPerRound,
++			}
++
++			goRunnerMetadata, err := findGoRunnerMetadata()
++			if err != nil {
++				panic(fmt.Sprintf("failed to get go runner metadata: %v", err))
++			}
++
++			if err := os.MkdirAll(filepath.Join(goRunnerMetadata.ProfileFolder, "raw_results"), 0755); err != nil {
++				fmt.Fprintf(os.Stderr, "failed to create raw results directory: %v\n", err)
++				continue
++			}
++			// Generate random filename to avoid any overwrites
++			randomBytes := make([]byte, 16)
++			if _, err := rand.Read(randomBytes); err != nil {
++				fmt.Fprintf(os.Stderr, "failed to generate random filename: %v\n", err)
++				continue
++			}
++			rawResultsFile := filepath.Join(goRunnerMetadata.ProfileFolder, "raw_results", fmt.Sprintf("%s.json", hex.EncodeToString(randomBytes)))
++			file, err := os.Create(rawResultsFile)
++			if err != nil {
++				fmt.Fprintf(os.Stderr, "failed to create raw results file: %v\n", err)
++				continue
++			}
++			output, err := json.MarshalIndent(rawResults, "", "  ")
++			if err != nil {
++				fmt.Fprintf(os.Stderr, "failed to marshal raw results: %v\n", err)
++				file.Close()
++				continue
++			}
++			// FIXME: Don't overwrite the file if it already exists
++			if _, err := file.Write(output); err != nil {
++				fmt.Fprintf(os.Stderr, "failed to write raw results: %v\n", err)
++				file.Close()
++				continue
++			}
++			defer file.Close()
++
++			// Send pid and executed benchmark to the runner
++			b.codspeed.instrument_hooks.SetExecutedBenchmark(uint32(os.Getpid()), benchUri)
++
++			// END CODSPEED
++			// ############################################################################################
++
+ 			if b.chatty != nil {
+ 				fmt.Fprintf(b.w, "%-*s\t", s.maxLen, benchName)
+ 			}
+@@ -827,6 +1060,7 @@ func (b *B) Run(name string, f func(b *B)) bool {
+ 			chatty:  b.chatty,
+ 			bench:   true,
+ 		},
++		codspeed:   b.codspeed,
+ 		importPath: b.importPath,
+ 		benchFunc:  f,
+ 		benchTime:  b.benchTime,
+@@ -943,6 +1177,8 @@ func (pb *PB) Next() bool {
+ // RunParallel reports ns/op values as wall time for the benchmark as a whole,
+ // not the sum of wall time or CPU time over each parallel goroutine.
+ func (b *B) RunParallel(body func(*PB)) {
++	fmt.Println("RunParallel is currently unsupported when running with CodSpeed. Continuing without measurements...")
++
+ 	if b.N == 0 {
+ 		return // Nothing to do when probing.
+ 	}

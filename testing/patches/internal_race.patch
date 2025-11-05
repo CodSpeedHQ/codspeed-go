@@ -1,17 +1,17 @@
 diff --git a/internal/race/norace.go b/internal/race/norace.go
-index fc6e13f..346564b 100644
+index 8d2e5ea..49d68a4 100644
 --- a/internal/race/norace.go
 +++ b/internal/race/norace.go
-@@ -8,8 +8,6 @@ package race
+@@ -7,7 +7,7 @@
+ package race
 
  import (
- 	"unsafe"
--
 -	"github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
++	// "github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
+ 	"unsafe"
  )
 
- const Enabled = false
-@@ -35,8 +33,8 @@ func Read(addr unsafe.Pointer) {
+@@ -34,8 +34,8 @@ func Read(addr unsafe.Pointer) {
  func ReadPC(addr unsafe.Pointer, callerpc, pc uintptr) {
  }
 
@@ -22,7 +22,7 @@ index fc6e13f..346564b 100644
 
  func Write(addr unsafe.Pointer) {
  }
-@@ -44,8 +42,8 @@ func Write(addr unsafe.Pointer) {
+@@ -43,8 +43,8 @@ func Write(addr unsafe.Pointer) {
  func WritePC(addr unsafe.Pointer, callerpc, pc uintptr) {
  }
 
