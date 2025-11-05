@@ -1,8 +1,8 @@
 package compat
 
 import (
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
 	qt "github.com/CodSpeedHQ/codspeed-go/pkg/quicktest"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 )
 
 func TestQuicktest(t *testing.T) {

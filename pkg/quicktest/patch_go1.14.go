@@ -5,7 +5,7 @@
 
 package quicktest
 
-import testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+import testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 
 // Patch sets a variable to a temporary value for the duration of the test.
 //

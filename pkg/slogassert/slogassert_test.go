@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
-	slogtest "github.com/CodSpeedHQ/codspeed-go/compat/testing/slogtest"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
+	slogtest "github.com/CodSpeedHQ/codspeed-go/testing/testing/slogtest"
 )
 
 const (

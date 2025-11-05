@@ -3,8 +3,8 @@ package compat
 import (
 	"log/slog"
 
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
 	slogassert "github.com/CodSpeedHQ/codspeed-go/pkg/slogassert"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 )
 
 func TestWithSlogAssert(t *testing.T) {

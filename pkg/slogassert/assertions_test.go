@@ -2,7 +2,7 @@ package slogassert
 
 import (
 	"fmt"
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"log/slog"
 	"strconv"
 	"strings"

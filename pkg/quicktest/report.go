@@ -5,7 +5,7 @@ package quicktest
 import (
 	"bytes"
 	"fmt"
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"go/ast"
 	"go/parser"
 	"go/printer"

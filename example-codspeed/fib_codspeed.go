@@ -1,7 +1,7 @@
 package example
 
 import (
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 )
 
 func BenchmarkFibonacci10(b *testing.B) {

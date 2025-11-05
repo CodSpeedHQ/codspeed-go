@@ -3,7 +3,7 @@
 package quicktest_test
 
 import (
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"sync"
 	"sync/atomic"
 

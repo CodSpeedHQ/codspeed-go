@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"regexp"
 	"strings"
 	"time"

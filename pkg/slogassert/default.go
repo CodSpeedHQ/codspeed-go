@@ -1,7 +1,7 @@
 package slogassert
 
 import (
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"log"
 	"log/slog"
 	"os"

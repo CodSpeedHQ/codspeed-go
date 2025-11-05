@@ -5,7 +5,7 @@ package quicktest_test
 import (
 	"errors"
 	"fmt"
-	testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 
 	qt "github.com/CodSpeedHQ/codspeed-go/pkg/quicktest"
 )

@@ -1,6 +1,6 @@
 package slogassert
 
-import testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"
+import testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 
 func TestNullHandler(t *testing.T) {
 	l := NullLogger()
