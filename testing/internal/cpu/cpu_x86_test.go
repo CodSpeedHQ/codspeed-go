@@ -7,10 +7,9 @@
 package cpu_test
 
 import (
-	"testing"
-
 	. "github.com/CodSpeedHQ/codspeed-go/testing/internal/cpu"
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebug"
+	"testing"
 )
 
 func TestX86ifAVX2hasAVX(t *testing.T) {

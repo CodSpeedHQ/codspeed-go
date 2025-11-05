@@ -5,14 +5,13 @@
 package testenv_test
 
 import (
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/platform"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"testing"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/platform"
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 )
 
 func TestGoToolLocation(t *testing.T) {

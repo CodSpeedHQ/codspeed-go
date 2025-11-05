@@ -6,11 +6,10 @@ package testing_test
 
 import (
 	"flag"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 	"os"
 	"os/exec"
 	"testing"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 )
 
 var testFlagArg = flag.String("test_flag_arg", "", "TestFlag: passing -v option")

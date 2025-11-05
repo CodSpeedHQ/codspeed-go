@@ -7,9 +7,8 @@
 package sysinfo
 
 import (
-	"sync"
-
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/cpu"
+	"sync"
 )
 
 var CPUName = sync.OnceValue(func() string {

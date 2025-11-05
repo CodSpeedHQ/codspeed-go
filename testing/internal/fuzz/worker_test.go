@@ -9,6 +9,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/race"
 	"io"
 	"os"
 	"os/signal"
@@ -16,8 +17,6 @@ import (
 	"strconv"
 	"testing"
 	"time"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/race"
 )
 
 var benchmarkWorkerFlag = flag.Bool("benchmarkworker", false, "")

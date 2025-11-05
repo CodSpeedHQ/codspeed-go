@@ -5,9 +5,8 @@
 package sysinfo_test
 
 import (
-	"testing"
-
 	. "github.com/CodSpeedHQ/codspeed-go/testing/internal/sysinfo"
+	"testing"
 )
 
 func TestCPUName(t *testing.T) {

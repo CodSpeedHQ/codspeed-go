@@ -13,6 +13,8 @@ package testdeps
 import (
 	"bufio"
 	"context"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/fuzz"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testlog"
 	"io"
 	"os"
 	"os/signal"
@@ -22,9 +24,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/fuzz"
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testlog"
 )
 
 // Cover indicates whether coverage is enabled.

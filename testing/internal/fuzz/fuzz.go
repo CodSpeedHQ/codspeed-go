@@ -13,6 +13,7 @@ import (
 	"crypto/sha256"
 	"errors"
 	"fmt"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebug"
 	"io"
 	"math/bits"
 	"os"
@@ -21,8 +22,6 @@ import (
 	"runtime"
 	"strings"
 	"time"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebug"
 )
 
 // CoordinateFuzzingOpts is a set of arguments for CoordinateFuzzing.

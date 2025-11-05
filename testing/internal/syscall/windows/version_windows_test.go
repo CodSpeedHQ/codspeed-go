@@ -6,10 +6,9 @@ package windows_test
 
 import (
 	"errors"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/syscall/windows"
 	"syscall"
 	"testing"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/syscall/windows"
 )
 
 func TestSupportUnixSocket(t *testing.T) {

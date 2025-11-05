@@ -6,11 +6,10 @@ package cpu_test
 
 import (
 	"errors"
+	. "github.com/CodSpeedHQ/codspeed-go/testing/internal/cpu"
 	"os"
 	"regexp"
 	"testing"
-
-	. "github.com/CodSpeedHQ/codspeed-go/testing/internal/cpu"
 )
 
 func getFeatureList() ([]string, error) {

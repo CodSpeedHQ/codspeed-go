@@ -7,6 +7,7 @@
 package race
 
 import (
+	// "github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
 	"unsafe"
 )
 

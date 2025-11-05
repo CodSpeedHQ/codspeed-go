@@ -8,13 +8,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/diff"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 	"os"
 	"os/exec"
 	"testing"
 	"text/template"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/diff"
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 )
 
 var flagFix = flag.Bool("fix", false, "if true, fix out-of-date generated files")

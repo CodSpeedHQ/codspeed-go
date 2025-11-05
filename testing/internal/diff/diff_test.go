@@ -6,10 +6,9 @@ package diff
 
 import (
 	"bytes"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/txtar"
 	"path/filepath"
 	"testing"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/txtar"
 )
 
 func clean(text []byte) []byte {

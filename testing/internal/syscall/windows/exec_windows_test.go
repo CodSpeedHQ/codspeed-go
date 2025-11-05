@@ -8,13 +8,13 @@ package windows_test
 
 import (
 	"fmt"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/syscall/windows"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 	"os"
 	"os/exec"
 	"syscall"
 	"testing"
 	"unsafe"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/syscall/windows"
 )
 
 func TestRunAtLowIntegrity(t *testing.T) {
@@ -30,7 +30,7 @@ func TestRunAtLowIntegrity(t *testing.T) {
 		return
 	}
 
-	cmd := exec.Command(os.Args[0], "-test.run=^TestRunAtLowIntegrity$", "--")
+	cmd := exec.Command(testenv.Executable(t), "-test.run=^TestRunAtLowIntegrity$", "--")
 	cmd.Env = []string{"GO_WANT_HELPER_PROCESS=1"}
 
 	token, err := getIntegrityLevelToken(sidWilLow)
@@ -130,7 +130,7 @@ func getIntegrityLevelToken(wns string) (syscall.Token, error) {
 
 	err = windows.SetTokenInformation(token,
 		syscall.TokenIntegrityLevel,
-		uintptr(unsafe.Pointer(tml)),
+		unsafe.Pointer(tml),
 		tml.Size())
 	if err != nil {
 		token.Close()

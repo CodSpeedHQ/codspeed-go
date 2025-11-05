@@ -49,13 +49,12 @@ package godebug
 // meaning it cannot introduce a GODEBUG setting of its own.
 // We keep imports to the absolute bare minimum.
 import (
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/bisect"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebugs"
 	"sync"
 	"sync/atomic"
 	"unsafe"
 	_ "unsafe" // go:linkname
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/bisect"
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebugs"
 )
 
 // A Setting is a single setting in the $GODEBUG environment variable.
@@ -238,8 +237,14 @@ func update(def, env string) {
 	// Update all the cached values, creating new ones as needed.
 	// We parse the environment variable first, so that any settings it has
 	// are already locked in place (did[name] = true) before we consider
-	// the defaults.
+	// the defaults. Existing immutable settings are always locked.
 	did := make(map[string]bool)
+	cache.Range(func(name, s any) bool {
+		if info := s.(*setting).info; info != nil && info.Immutable {
+			did[name.(string)] = true
+		}
+		return true
+	})
 	parse(did, env)
 	parse(did, def)
 

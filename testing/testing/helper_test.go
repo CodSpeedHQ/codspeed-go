@@ -5,12 +5,11 @@
 package testing_test
 
 import (
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 	"os"
 	"regexp"
 	"strings"
 	"testing"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 )
 
 func TestTBHelper(t *testing.T) {

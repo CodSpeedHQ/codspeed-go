@@ -8,11 +8,10 @@ package testing
 
 import (
 	"errors"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/syscall/windows"
 	"math/bits"
 	"syscall"
 	"time"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/syscall/windows"
 )
 
 // isWindowsRetryable reports whether err is a Windows error code

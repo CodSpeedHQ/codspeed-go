@@ -5,6 +5,8 @@
 package godebugs_test
 
 import (
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebugs"
+	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -12,9 +14,6 @@ import (
 	"runtime"
 	"strings"
 	"testing"
-
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/godebugs"
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/testenv"
 )
 
 func TestAll(t *testing.T) {
