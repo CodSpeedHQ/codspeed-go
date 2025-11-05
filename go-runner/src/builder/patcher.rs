@@ -80,11 +80,23 @@ pub fn patch_imports_for_source(source: &str) -> anyhow::Result<String> {
             Ok(source)
         };
 
-    let source = replace_import(
+    let mut source = replace_import(
         source.to_string(),
         "testing",
-        "testing \"github.com/CodSpeedHQ/codspeed-go/compat/testing\"",
+        "testing \"github.com/CodSpeedHQ/codspeed-go/testing/testing\"",
     )?;
+
+    // Then replace sub-packages like "testing/synctest"
+    for testing_pkg in &["fstest", "iotest", "quick", "slogtest", "synctest"] {
+        source = replace_import(
+            source.to_string(),
+            &format!("testing/{}", testing_pkg),
+            &format!(
+                "{testing_pkg} \"github.com/CodSpeedHQ/codspeed-go/testing/testing/{testing_pkg}\""
+            ),
+        )?;
+    }
+
     let source = replace_import(
         source,
         "github.com/thejerf/slogassert",
