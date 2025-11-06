@@ -502,11 +502,6 @@ func (b *B) ReportMetric(n float64, unit string) {
 func (b *B) stopOrScaleBLoop() bool {
 	t := b.Elapsed()
 	if t >= b.benchTime.d {
-		// Stop the timer so we don't count cleanup time
-		b.StopTimerWithoutMarker()
-		b.codspeed.instrument_hooks.StopBenchmark()
-		b.sendAccumulatedTimestamps()
-
 		// We've reached the target
 		return false
 	}
@@ -519,8 +514,6 @@ func (b *B) stopOrScaleBLoop() bool {
 		// in big trouble.
 		panic("loop iteration target overflow")
 	}
-
-	b.StartTimerWithoutMarker()
 	return true
 }
 
