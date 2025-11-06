@@ -34,10 +34,12 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go-version }}
+      - uses: taiki-e/install-action@cargo-nextest
+
       - uses: moonrepo/setup-rust@v1
       - run: |
           cd go-runner
-          cargo test --all
+          cargo nextest run --all
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
