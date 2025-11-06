@@ -355,6 +355,7 @@ impl Deref for BenchmarkPackage {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::utils::can_build_project;
 
     #[rstest::rstest]
     #[case::caddy("caddy")]
@@ -377,6 +378,11 @@ mod tests {
         let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
             .join("testdata/projects")
             .join(project_name);
+
+        if !can_build_project(&project_dir) {
+            eprintln!("Skipping test for project {project_name} due to Go version constraints.");
+            return;
+        }
 
         let mut packages =
             BenchmarkPackage::from_project(&project_dir, &["./...".to_string()]).unwrap();

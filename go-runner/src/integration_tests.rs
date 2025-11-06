@@ -3,7 +3,7 @@ use rstest::rstest;
 use std::path::{Path, PathBuf};
 use tempfile::TempDir;
 
-use crate::results::walltime_results::WalltimeResults;
+use crate::{results::walltime_results::WalltimeResults, utils::can_build_project};
 
 fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
     let glob_pattern = profile_dir.join("results");
@@ -86,6 +86,11 @@ fn test_build_and_run(#[case] project_name: &str) {
     let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("testdata/projects")
         .join(project_name);
+
+    if !can_build_project(&project_dir) {
+        eprintln!("Skipping test for project {project_name} due to Go version constraints.");
+        return;
+    }
 
     let temp_dir = TempDir::new().unwrap();
     let profile_dir = temp_dir.path().join("profile");
