@@ -101,11 +101,15 @@ apply_patch "patches/benchmark.patch" 10 "testing"
 apply_patch "patches/testing.patch" 10 "testing"
 apply_patch "patches/synctest.patch" 10
 
+# Replace all `"testing"` imports with 'testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"' (only for non-test files)
+find . -type f -name "*.go" -not -name "*_test.go" -exec sed -i 's|"testing"|testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"|g' {} +
+
 # Restore CodSpeed-specific files
 restore_files "testing/codspeed.go"
 
 # Cleanup
 rm -rf go .codspeed-backup
 
-# Run pre-commit to format the code
+# Run pre-commit and format the code
+go fmt ./... > /dev/null 2>&1 || true
 pre-commit run --all-files > /dev/null 2>&1 || true

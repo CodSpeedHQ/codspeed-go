@@ -434,8 +434,65 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkConnIDManagerInOrder",
+        "uri": "conn_id_manager_test.go::BenchmarkConnIDManagerInOrder",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkConnIDManagerReordered",
+        "uri": "conn_id_manager_test.go::BenchmarkConnIDManagerReordered",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkConnectionIDStringer",
         "uri": "internal/protocol/connection_id_test.go::BenchmarkConnectionIDStringer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkConnectionTracing",
+        "uri": "qlog/benchmark_test.go::BenchmarkConnectionTracing",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -623,6 +680,62 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkHandshake",
+        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkHandshake",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStreamChurn",
+        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkStreamChurn",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTransfer::500_kb",
+        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkTransfer::500_kb",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkTransfer::51200_kb",
+        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkTransfer::51200_kb",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkHistoryIsDuplicate",
         "uri": "internal/ackhandler/received_packet_history_test.go::BenchmarkHistoryIsDuplicate",
         "config": {
@@ -702,6 +815,40 @@ expression: results
       {
         "name": "BenchmarkSendAndAcknowledge::ack_every:_2,_in_flight:_0",
         "uri": "internal/ackhandler/sent_packet_handler_test.go::BenchmarkSendAndAcknowledge::ack_every:_2,_in_flight:_0",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkNow::Now",
+        "uri": "internal/monotime/time_test.go::BenchmarkNow::Now",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkNow::time.Now",
+        "uri": "internal/monotime/time_test.go::BenchmarkNow::time.Now",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

@@ -27,7 +27,7 @@
 //
 //	package abs
 //
-//	import "testing"
+//	import testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 //
 //	func TestAbs(t *testing.T) {
 //	    got := Abs(-1)
@@ -43,7 +43,7 @@
 //	package abs_test
 //
 //	import (
-//		"testing"
+//		testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 //
 //		"path_to_pkg/abs"
 //	)

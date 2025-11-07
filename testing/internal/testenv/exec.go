@@ -8,13 +8,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
 	"sync"
-	"testing"
 	"time"
 )
 

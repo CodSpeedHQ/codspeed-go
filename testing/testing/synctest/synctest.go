@@ -259,7 +259,7 @@ package synctest
 
 import (
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/synctest"
-	"testing"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	_ "unsafe" // for linkname
 )
 

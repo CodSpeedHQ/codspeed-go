@@ -18,6 +18,7 @@ import (
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/cfg"
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/goarch"
 	"github.com/CodSpeedHQ/codspeed-go/testing/internal/platform"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -25,7 +26,6 @@ import (
 	"strconv"
 	"strings"
 	"sync"
-	"testing"
 )
 
 // Save the original environment during init for use in checks. A test

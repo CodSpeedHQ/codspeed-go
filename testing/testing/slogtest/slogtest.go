@@ -9,10 +9,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 	"log/slog"
 	"reflect"
 	"runtime"
-	"testing"
 	"time"
 )
 
