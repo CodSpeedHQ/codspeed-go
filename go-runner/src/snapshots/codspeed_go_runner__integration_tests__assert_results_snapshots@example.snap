@@ -14,6 +14,84 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkBufferRead",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferRead",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBufferWrite",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferWrite",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkCounterWithMutex",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkCounterWithMutex",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFSTestFS",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkFSTestFS",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIOTestReader",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkIOTestReader",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWriterFunc",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkWriterFunc",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkExample",
         "uri": "example/very/nested/module/example_test.go::BenchmarkExample",
         "config": {

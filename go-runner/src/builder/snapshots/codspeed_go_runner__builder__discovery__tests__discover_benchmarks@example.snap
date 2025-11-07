@@ -89,6 +89,59 @@ expression: packages
     "raw_package": "[raw_package]",
     "benchmarks": [
       {
+        "name": "BenchmarkBufferRead",
+        "module_path": "example/sub-packages",
+        "import_alias": "benchmarkbufferread_2338334068071879025",
+        "qualified_name": "benchmarkbufferread_2338334068071879025.BenchmarkBufferRead",
+        "file_path": "sub-packages/buffer_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkBufferWrite",
+        "module_path": "example/sub-packages",
+        "import_alias": "benchmarkbufferwrite_2338334068071879025",
+        "qualified_name": "benchmarkbufferwrite_2338334068071879025.BenchmarkBufferWrite",
+        "file_path": "sub-packages/buffer_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkCounterWithMutex",
+        "module_path": "example/sub-packages",
+        "import_alias": "benchmarkcounterwithmutex_2338334068071879025",
+        "qualified_name": "benchmarkcounterwithmutex_2338334068071879025.BenchmarkCounterWithMutex",
+        "file_path": "sub-packages/buffer_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkFSTestFS",
+        "module_path": "example/sub-packages",
+        "import_alias": "benchmarkfstestfs_2338334068071879025",
+        "qualified_name": "benchmarkfstestfs_2338334068071879025.BenchmarkFSTestFS",
+        "file_path": "sub-packages/buffer_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkIOTestReader",
+        "module_path": "example/sub-packages",
+        "import_alias": "benchmarkiotestreader_2338334068071879025",
+        "qualified_name": "benchmarkiotestreader_2338334068071879025.BenchmarkIOTestReader",
+        "file_path": "sub-packages/buffer_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkWriterFunc",
+        "module_path": "example/sub-packages",
+        "import_alias": "benchmarkwriterfunc_2338334068071879025",
+        "qualified_name": "benchmarkwriterfunc_2338334068071879025.BenchmarkWriterFunc",
+        "file_path": "sub-packages/buffer_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
         "name": "BenchmarkSleep100ns",
         "module_path": "example/timing",
         "import_alias": "benchmarksleep100ns_9596130933289179795",
