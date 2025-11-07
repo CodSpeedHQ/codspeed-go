@@ -128,6 +128,7 @@ pub fn build_binary<P: AsRef<Path>>(runner_go_path: P) -> anyhow::Result<std::pa
     let output = Command::new("go")
         .args(&args)
         .current_dir(module_root)
+        .env("GOWORK", "off") // Disable workspace mode to avoid -mod flag conflicts
         .output()
         .context("Failed to execute go build command")?;
 
