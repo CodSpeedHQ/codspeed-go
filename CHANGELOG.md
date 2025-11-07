@@ -5,6 +5,40 @@
 
 
 
+## [0.4.2] - 2025-11-07
+
+### <!-- 0 -->🚀 Features
+- Add step to verify up-to-date fork scripts by @not-matthias in [#29](https://github.com/CodSpeedHQ/codspeed-go/pull/29)
+- Speedup tests using `cargo nextest` by @not-matthias
+- Check for version requirements in tests by @not-matthias
+- Add quic-go project by @not-matthias
+- Patch import paths for testing and sub-packages by @not-matthias
+- Test multiple go versions by @not-matthias
+- Add example with `_test` package by @not-matthias
+- Add support for external test packages by @not-matthias
+- Discover external test packages by @not-matthias
+- Add discovery tests for all projects by @not-matthias
+
+### <!-- 1 -->🐛 Bug Fixes
+- Add compatibility for Go versions < 1.25 in fstest package by @not-matthias in [#30](https://github.com/CodSpeedHQ/codspeed-go/pull/30)
+- Ensure build works with go workspaces by @not-matthias
+- Panic on build error to find bugs during tests by @not-matthias
+- Use testing fork imports by @not-matthias
+- Remove abi fork to avoid duplicate symbol error; patch synctest to allow build by @not-matthias
+- Remove double stop bug by @not-matthias
+- Dont run vendor benches by @not-matthias in [#25](https://github.com/CodSpeedHQ/codspeed-go/pull/25)
+
+### <!-- 3 -->📚 Documentation
+- Add documentation about test execution by @not-matthias in [#26](https://github.com/CodSpeedHQ/codspeed-go/pull/26)
+
+### <!-- 7 -->⚙️ Internals
+- Add testing sub-package benches and tests by @not-matthias
+- Replace compat package with direct testing import by @not-matthias
+- Bump fork to 1.25 by @not-matthias
+- Update fork script and patches by @not-matthias
+- Add example using `go mod vendor` by @not-matthias
+
+
 ## [0.4.1] - 2025-10-14
 
 ### <!-- 0 -->🚀 Features
@@ -12,6 +46,9 @@
 
 ### <!-- 1 -->🐛 Bug Fixes
 - Dont try to patch folders ending with .go by @not-matthias in [#21](https://github.com/CodSpeedHQ/codspeed-go/pull/21)
+
+### <!-- 7 -->⚙️ Internals
+- Release v0.4.1 by @art049
 
 
 ## [0.4.0] - 2025-10-14
@@ -136,6 +173,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.4.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.1..v0.4.2
 [0.4.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.0..v0.4.1
 [0.4.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.3.0..v0.4.0
 [0.3.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.2.0..v0.3.0
