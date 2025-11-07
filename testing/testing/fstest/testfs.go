@@ -449,22 +449,7 @@ func (t *fsTester) checkStat(path string, entry fs.DirEntry) {
 		}
 	}
 
-	if fsys, ok := t.fsys.(fs.ReadLinkFS); ok {
-		info2, err := fsys.Lstat(path)
-		if err != nil {
-			t.errorf("%s: fsys.Lstat: %v", path, err)
-			return
-		}
-		fientry2 := formatInfoEntry(info2)
-		if fentry != fientry2 {
-			t.errorf("%s: mismatch:\n\tentry = %s\n\tfsys.Lstat(...) = %s", path, fentry, fientry2)
-		}
-		feinfo := formatInfo(einfo)
-		finfo2 := formatInfo(info2)
-		if feinfo != finfo2 {
-			t.errorf("%s: mismatch:\n\tentry.Info() = %s\n\tfsys.Lstat(...) = %s\n", path, feinfo, finfo2)
-		}
-	}
+	t.checkReadLinkFS(path, einfo, fentry)
 }
 
 // checkDirList checks that two directory lists contain the same files and file info.

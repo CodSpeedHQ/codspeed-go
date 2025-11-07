@@ -41,7 +41,7 @@ restore_files() {
         if [ -e "$backup_file" ]; then
             # Remove destination first to avoid creating nested directories
             rm -rf "$file"
-            cp -r "$backup_file" "$file"
+            mv "$backup_file" "$file"
             echo "Restored: $file"
         fi
     done
@@ -79,8 +79,13 @@ apply_patch() {
 
 echo "Forking Go testing package from version ${GO_VERSION}..."
 
-# Backup CodSpeed-specific files before removing directories
-backup_files "testing/codspeed.go"
+# CodSpeed-specific files to preserve during fork
+CODSPEED_FILES=(
+    "testing/codspeed.go"
+    "testing/fstest/testfs_readlinkfs_compat.go"
+    "testing/fstest/testfs_readlinkfs.go"
+)
+backup_files "${CODSPEED_FILES[@]}"
 
 # We need to copy the testing/ package:
 rm -rf go testing internal
@@ -101,14 +106,14 @@ apply_patch "patches/benchmark.patch" 10 "testing"
 apply_patch "patches/testing.patch" 10 "testing"
 apply_patch "patches/synctest.patch" 10
 
+# `testing/testfs` uses Go 1.25 features that we need to patch out for compatibility with older Go versions
+apply_patch "patches/testfs.patch" 10 "testing"
+
 # Replace all `"testing"` imports with 'testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"' (only for non-test files)
 find . -type f -name "*.go" -not -name "*_test.go" -exec sed -i 's|"testing"|testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"|g' {} +
 
 # Restore CodSpeed-specific files
-restore_files "testing/codspeed.go"
-
-# Cleanup
-rm -rf go .codspeed-backup
+restore_files "${CODSPEED_FILES[@]}"
 
 # Run pre-commit and format the code
 go fmt ./... > /dev/null 2>&1 || true

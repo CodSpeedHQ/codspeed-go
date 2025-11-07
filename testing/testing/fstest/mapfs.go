@@ -41,7 +41,6 @@ type MapFile struct {
 }
 
 var _ fs.FS = MapFS(nil)
-var _ fs.ReadLinkFS = MapFS(nil)
 var _ fs.File = (*openMapFile)(nil)
 
 // Open opens the named file after following any symbolic links.
