@@ -42,8 +42,12 @@ pub fn run_benchmarks<P: AsRef<Path>>(
         let binary_path = match builder::build_binary(&runner_path) {
             Ok(binary_path) => binary_path,
             Err(e) => {
-                error!("Failed to build {}: {e}", package.name);
-                continue;
+                if cfg!(test) {
+                    panic!("Failed to build {}: {e}", package.name);
+                } else {
+                    error!("Failed to build {}: {e}", package.name);
+                    continue;
+                }
             }
         };
 
