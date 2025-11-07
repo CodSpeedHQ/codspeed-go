@@ -8,7 +8,7 @@
 package synctest
 
 import (
-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
+	// "github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
 	"unsafe"
 )
 
@@ -32,11 +32,24 @@ const (
 	OtherBubble                       // associated with a different bubble
 )
 
+// Manual import of `Escape` to avoid the `internal/abi` dependency which contains assembly functions, which would
+// lead to linker errors due to duplicate symbols.
+var alwaysFalse bool
+var escapeSink any
+
+// Escape forces any pointers in x to escape to the heap.
+func Escape[T any](x T) T {
+	if alwaysFalse {
+		escapeSink = x
+	}
+	return x
+}
+
 // Associate attempts to associate p with the current bubble.
 // It returns the new association status of p.
 func Associate[T any](p *T) Association {
 	// Ensure p escapes to permit us to attach a special to it.
-	escapedP := abi.Escape(p)
+	escapedP := Escape(p)
 	return Association(associate(unsafe.Pointer(escapedP)))
 }
 

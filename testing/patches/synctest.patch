@@ -1,0 +1,79 @@
+diff --git a/internal/synctest/synctest.go b/internal/synctest/synctest.go
+index 69378a4..3965a9b 100644
+--- a/internal/synctest/synctest.go
++++ b/internal/synctest/synctest.go
+@@ -8,7 +8,7 @@
+ package synctest
+
+ import (
+-	"github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
++	// "github.com/CodSpeedHQ/codspeed-go/testing/internal/abi"
+ 	"unsafe"
+ )
+
+@@ -32,11 +32,24 @@ const (
+ 	OtherBubble                       // associated with a different bubble
+ )
+
++// Manual import of `Escape` to avoid the `internal/abi` dependency which contains assembly functions, which would
++// lead to linker errors due to duplicate symbols.
++var alwaysFalse bool
++var escapeSink any
++
++// Escape forces any pointers in x to escape to the heap.
++func Escape[T any](x T) T {
++	if alwaysFalse {
++		escapeSink = x
++	}
++	return x
++}
++
+ // Associate attempts to associate p with the current bubble.
+ // It returns the new association status of p.
+ func Associate[T any](p *T) Association {
+ 	// Ensure p escapes to permit us to attach a special to it.
+-	escapedP := abi.Escape(p)
++	escapedP := Escape(p)
+ 	return Association(associate(unsafe.Pointer(escapedP)))
+ }
+
+diff --git a/testing/synctest/synctest.go b/testing/synctest/synctest.go
+index 880aa12..b0f1cd6 100644
+--- a/testing/synctest/synctest.go
++++ b/testing/synctest/synctest.go
+@@ -280,7 +280,7 @@ import (
+ func Test(t *testing.T, f func(*testing.T)) {
+ 	var ok bool
+ 	synctest.Run(func() {
+-		ok = testingSynctestTest(t, f)
++		ok = testingSynctestTest_codspeed(t, f)
+ 	})
+ 	if !ok {
+ 		// Fail the test outside the bubble,
+@@ -289,8 +289,9 @@ func Test(t *testing.T, f func(*testing.T)) {
+ 	}
+ }
+
+-//go:linkname testingSynctestTest testing/synctest.testingSynctestTest
+-func testingSynctestTest(t *testing.T, f func(*testing.T)) bool
++// NOTE(CODSPEED): This has to be renamed because the linked has a blocklist with the exact name: https://github.com/golang/go/blob/ad3ccd92e4c2ddfc1499a5e038eb0aa0012c0dda/src/cmd/link/internal/loader/loader.go#L2469
++//go:linkname testingSynctestTest_codspeed testing/synctest.testingSynctestTest_codspeed
++func testingSynctestTest_codspeed(t *testing.T, f func(*testing.T)) bool
+
+ // Wait blocks until every goroutine within the current bubble,
+ // other than the current goroutine, is durably blocked.
+diff --git a/testing/testing.go b/testing/testing.go
+index c132641..1332779 100644
+--- a/testing/testing.go
++++ b/testing/testing.go
+@@ -2022,8 +2022,8 @@ func (t *T) Run(name string, f func(t *T)) bool {
+ // testingSynctestTest runs f within a synctest bubble.
+ // It is called by synctest.Test, from within an already-created bubble.
+ //
+-//go:linkname testingSynctestTest testing/synctest.testingSynctestTest
+-func testingSynctestTest(t *T, f func(*T)) (ok bool) {
++//go:linkname testingSynctestTest_codspeed testing/synctest.testingSynctestTest_codspeed
++func testingSynctestTest_codspeed(t *T, f func(*T)) (ok bool) {
+ 	if t.cleanupStarted.Load() {
+ 		panic("testing: synctest.Run called during t.Cleanup")
+ 	}

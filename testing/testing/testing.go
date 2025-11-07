@@ -2022,8 +2022,8 @@ func (t *T) Run(name string, f func(t *T)) bool {
 // testingSynctestTest runs f within a synctest bubble.
 // It is called by synctest.Test, from within an already-created bubble.
 //
-//go:linkname testingSynctestTest testing/synctest.testingSynctestTest
-func testingSynctestTest(t *T, f func(*T)) (ok bool) {
+//go:linkname testingSynctestTest_codspeed testing/synctest.testingSynctestTest_codspeed
+func testingSynctestTest_codspeed(t *T, f func(*T)) (ok bool) {
 	if t.cleanupStarted.Load() {
 		panic("testing: synctest.Run called during t.Cleanup")
 	}

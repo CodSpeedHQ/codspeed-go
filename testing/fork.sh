@@ -76,18 +76,19 @@ apply_patch() {
     echo "Successfully applied: $(basename "$patch_file")"
 }
 
+
 echo "Forking Go testing package from version ${GO_VERSION}..."
 
 # Backup CodSpeed-specific files before removing directories
 backup_files "testing/codspeed.go"
 
 # We need to copy the testing/ package:
+rm -rf go testing internal
 git clone -b "release-branch.go${GO_VERSION}" --depth 1 https://github.com/golang/go/
-rm -rf internal testing
 cp -r go/src/testing testing/
 
 # Copy all required internal packages. We need them to have a clean `go mod tidy` output.
-copy_internal_packages "cpu" "fuzz" "goarch" "race" "sysinfo" "testlog" "testenv" "syscall/windows" "godebug" "synctest" "bisect" "godebugs" "abi" "cfg" "platform" "diff" "txtar"
+copy_internal_packages "cpu" "fuzz" "goarch" "race" "sysinfo" "testlog" "testenv" "syscall/windows" "godebug" "synctest" "bisect" "godebugs" "cfg" "platform" "diff" "txtar"
 
 # Replace all `"internal/*"` imports with 'github.com/CodSpeedHQ/codspeed-go/testing/internal/'
 find . -type f -name "*.go" -exec sed -i 's|"internal/|"github.com/CodSpeedHQ/codspeed-go/testing/internal/|g' {} +
@@ -98,6 +99,7 @@ apply_patch "patches/internal_race.patch" 0
 # Apply CodSpeed modifications to testing package (split into separate files)
 apply_patch "patches/benchmark.patch" 10 "testing"
 apply_patch "patches/testing.patch" 10 "testing"
+apply_patch "patches/synctest.patch" 10
 
 # Restore CodSpeed-specific files
 restore_files "testing/codspeed.go"

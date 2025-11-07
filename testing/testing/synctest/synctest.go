@@ -280,7 +280,7 @@ import (
 func Test(t *testing.T, f func(*testing.T)) {
 	var ok bool
 	synctest.Run(func() {
-		ok = testingSynctestTest(t, f)
+		ok = testingSynctestTest_codspeed(t, f)
 	})
 	if !ok {
 		// Fail the test outside the bubble,
@@ -289,8 +289,10 @@ func Test(t *testing.T, f func(*testing.T)) {
 	}
 }
 
-//go:linkname testingSynctestTest testing/synctest.testingSynctestTest
-func testingSynctestTest(t *testing.T, f func(*testing.T)) bool
+// NOTE(CODSPEED): This has to be renamed because the linked has a blocklist with the exact name: https://github.com/golang/go/blob/ad3ccd92e4c2ddfc1499a5e038eb0aa0012c0dda/src/cmd/link/internal/loader/loader.go#L2469
+//
+//go:linkname testingSynctestTest_codspeed testing/synctest.testingSynctestTest_codspeed
+func testingSynctestTest_codspeed(t *testing.T, f func(*testing.T)) bool
 
 // Wait blocks until every goroutine within the current bubble,
 // other than the current goroutine, is durably blocked.
