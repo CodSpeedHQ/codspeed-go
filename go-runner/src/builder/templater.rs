@@ -25,10 +25,17 @@ pub fn run<P: AsRef<Path>>(
     package: &BenchmarkPackage,
     profile_dir: P,
 ) -> anyhow::Result<(TempDir, PathBuf)> {
-    // 1. Copy the whole module to a build directory
+    // 1. Copy the whole git repository to a build directory
     let target_dir = TempDir::new()?;
     std::fs::create_dir_all(&target_dir).context("Failed to create target directory")?;
-    utils::copy_dir_recursively(&package.module.dir, &target_dir)?;
+
+    let git_root = if let Ok(git_dir) = utils::get_parent_git_repo_path(&package.module.dir) {
+        git_dir
+    } else {
+        warn!("Could not find git repository root. Falling back to module directory as root");
+        PathBuf::from(&package.module.dir)
+    };
+    utils::copy_dir_recursively(&git_root, &target_dir)?;
 
     // Create a new go-runner.metadata file in the root of the project
     //
@@ -58,12 +65,11 @@ pub fn run<P: AsRef<Path>>(
         .test_files()
         .with_context(|| anyhow::anyhow!("No test files found for package: {}", package.name))?;
 
-    // Calculate the relative path from module root to package directory
+    // Calculate the relative path from git root to package directory
     let package_dir = Path::new(&package.dir);
-    let module_dir = Path::new(&package.module.dir);
-    let relative_package_path = package_dir.strip_prefix(module_dir).context(format!(
-        "Package dir {:?} is not within module dir {:?}",
-        package.dir, package.module.dir
+    let relative_package_path = package_dir.strip_prefix(&git_root).context(format!(
+        "Package dir {:?} is not within git root {:?}",
+        package.dir, git_root
     ))?;
     debug!("Relative package path: {relative_package_path:?}");
 
@@ -87,8 +93,16 @@ pub fn run<P: AsRef<Path>>(
     }
     patcher::patch_imports(&target_dir)?;
 
-    // 3. Install codspeed-go dependency at the module level (once for the whole module)
-    patcher::install_codspeed_dependency(&target_dir)?;
+    // 3. Install codspeed-go dependency at the package module level
+    // Find the module directory by getting the relative path from git root
+    let module_dir = Path::new(&package.module.dir)
+        .strip_prefix(&git_root)
+        .map(|relative_module_path| target_dir.path().join(relative_module_path))
+        .unwrap_or_else(|_| {
+            // Fall back to target_dir if we can't calculate relative path
+            target_dir.path().to_path_buf()
+        });
+    patcher::install_codspeed_dependency(&module_dir)?;
 
     // 3. Handle test files differently based on whether they're external or internal tests
     let codspeed_dir = target_dir

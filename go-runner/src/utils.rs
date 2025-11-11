@@ -8,20 +8,36 @@ pub fn copy_dir_recursively(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io:
     for entry in fs::read_dir(src)? {
         let entry = entry?;
         let ty = entry.file_type()?;
+        let path = entry.path();
+
         if ty.is_dir() {
-            if entry.file_name() == ".git" {
+            if entry.file_name() == ".git" || entry.file_name() == "target" {
                 continue;
             }
 
-            copy_dir_recursively(entry.path(), dst.as_ref().join(entry.file_name()))?;
+            copy_dir_recursively(&path, dst.as_ref().join(entry.file_name()))?;
+        } else if ty.is_symlink() {
+            // Follow symlinks to directories, copy other symlinks as-is
+            if let Ok(metadata) = fs::metadata(&path) {
+                if metadata.is_dir() {
+                    // Symlink points to a directory, follow it recursively
+                    copy_dir_recursively(&path, dst.as_ref().join(entry.file_name()))?;
+                } else {
+                    // Symlink points to a file, copy it
+                    fs::copy(&path, dst.as_ref().join(entry.file_name()))?;
+                }
+            } else {
+                // If metadata fails (broken symlink), copy the symlink as-is
+                fs::copy(&path, dst.as_ref().join(entry.file_name()))?;
+            }
         } else {
-            fs::copy(entry.path(), dst.as_ref().join(entry.file_name()))?;
+            fs::copy(&path, dst.as_ref().join(entry.file_name()))?;
         }
     }
     Ok(())
 }
 
-fn get_parent_git_repo_path(abs_path: &Path) -> io::Result<PathBuf> {
+pub fn get_parent_git_repo_path(abs_path: &Path) -> io::Result<PathBuf> {
     if abs_path.join(".git").exists() {
         Ok(abs_path.to_path_buf())
     } else {
