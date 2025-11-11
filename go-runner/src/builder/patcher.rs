@@ -46,7 +46,7 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
         let content =
             fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
 
-        let patched_content = patch_imports_for_source(&content)?;
+        let patched_content = patch_imports_for_source(&content);
         if patched_content != content {
             fs::write(&go_file, patched_content)
                 .context(format!("Failed to write patched Go file: {go_file:?}"))?;
@@ -61,30 +61,34 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
 }
 
 /// Internal function to apply import patterns to Go source code
-pub fn patch_imports_for_source(source: &str) -> anyhow::Result<String> {
-    let replace_import =
-        |mut source: String, import_path: &str, replacement: &str| -> anyhow::Result<String> {
-            let parsed = gosyn::parse_source(&source)?;
-
-            if let Some(import) = parsed
-                .imports
-                .iter()
-                .find(|import| import.path.value == format!("\"{import_path}\""))
-            {
-                let start_pos = import.path.pos;
-                let end_pos = start_pos + import.path.value.len();
-
-                source.replace_range(start_pos..end_pos, replacement);
-            }
-
-            Ok(source)
+pub fn patch_imports_for_source(source: &str) -> String {
+    let replace_import = |mut source: String, import_path: &str, replacement: &str| -> String {
+        // If we can't parse the source, skip this replacement
+        // This can happen with template files or malformed Go code
+        let parsed = match gosyn::parse_source(&source) {
+            Ok(p) => p,
+            Err(_) => return source,
         };
+
+        if let Some(import) = parsed
+            .imports
+            .iter()
+            .find(|import| import.path.value == format!("\"{import_path}\""))
+        {
+            let start_pos = import.path.pos;
+            let end_pos = start_pos + import.path.value.len();
+
+            source.replace_range(start_pos..end_pos, replacement);
+        }
+
+        source
+    };
 
     let mut source = replace_import(
         source.to_string(),
         "testing",
         "testing \"github.com/CodSpeedHQ/codspeed-go/testing/testing\"",
-    )?;
+    );
 
     // Then replace sub-packages like "testing/synctest"
     for testing_pkg in &["fstest", "iotest", "quick", "slogtest", "synctest"] {
@@ -94,21 +98,19 @@ pub fn patch_imports_for_source(source: &str) -> anyhow::Result<String> {
             &format!(
                 "{testing_pkg} \"github.com/CodSpeedHQ/codspeed-go/testing/testing/{testing_pkg}\""
             ),
-        )?;
+        );
     }
 
     let source = replace_import(
         source,
         "github.com/thejerf/slogassert",
         "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
-    )?;
-    let source = replace_import(
+    );
+    replace_import(
         source,
         "github.com/frankban/quicktest",
         "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
-    )?;
-
-    Ok(source)
+    )
 }
 
 /// Patches imports and package in specific test files
@@ -393,7 +395,7 @@ func TestExample(t *testing.T) {
     )]
     #[case("package_main", PACKAGE_MAIN)]
     fn test_patch_go_source(#[case] test_name: &str, #[case] source: &str) {
-        let result = patch_imports_for_source(source).unwrap();
+        let result = patch_imports_for_source(source);
         let result = patch_package_for_source(result).unwrap();
         assert_snapshot!(test_name, result);
     }
