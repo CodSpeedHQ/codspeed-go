@@ -147,6 +147,11 @@ impl GoPackage {
             let content = std::fs::read_to_string(&file_path)
                 .context(format!("Failed to read test file: {file_path:?}"))?;
 
+            // Optimization: Ensure the file contains "func Benchmark" before parsing
+            if !content.contains("func Benchmark") {
+                continue;
+            }
+
             let file = match gosyn::parse_source(&content) {
                 Ok(ast) => ast,
                 Err(e) => {

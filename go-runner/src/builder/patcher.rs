@@ -63,6 +63,11 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
 /// Internal function to apply import patterns to Go source code
 pub fn patch_imports_for_source(source: &str) -> String {
     let replace_import = |mut source: String, import_path: &str, replacement: &str| -> String {
+        // Optimization: check if the import path exists in the source before parsing
+        if !source.contains(import_path) {
+            return source;
+        }
+
         // If we can't parse the source, skip this replacement
         // This can happen with template files or malformed Go code
         let parsed = match gosyn::parse_source(&source) {
