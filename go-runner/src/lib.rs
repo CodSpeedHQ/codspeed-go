@@ -4,7 +4,7 @@ use std::{collections::HashMap, path::Path};
 pub mod builder;
 pub mod cli;
 pub mod prelude;
-mod results;
+pub mod results;
 pub mod runner;
 pub(crate) mod utils;
 
@@ -51,23 +51,29 @@ pub fn run_benchmarks<P: AsRef<Path>>(
             }
         };
 
-        if let Err(error) = runner::run(
-            &binary_path,
-            &["-test.bench", &cli.bench, "-test.benchtime", &cli.benchtime],
-        ) {
-            error!("Failed to run benchmarks for {}: {error}", package.name);
-            continue;
+        if !cli.dry_run {
+            if let Err(error) = runner::run(
+                &binary_path,
+                &["-test.bench", &cli.bench, "-test.benchtime", &cli.benchtime],
+            ) {
+                error!("Failed to run benchmarks for {}: {error}", package.name);
+                continue;
+            }
+        } else {
+            info!("Skipping benchmark execution (dry-run mode)");
         }
     }
 
     // 3. Collect the results
-    collect_walltime_results(profile_dir.as_ref())?;
+    if !cli.dry_run {
+        collect_walltime_results(profile_dir.as_ref())?;
+    }
 
     Ok(())
 }
 
 // TODO: This should be merged with codspeed-rust/codspeed/walltime_results.rs
-fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
+pub fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
     let raw_results = results::raw_result::RawResult::parse_folder(profile_dir)?;
     info!("Parsed {} raw results", raw_results.len());
 

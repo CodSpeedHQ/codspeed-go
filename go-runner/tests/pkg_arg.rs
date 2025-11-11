@@ -9,6 +9,7 @@ pub fn test_pkg_arg_filters_correctly() {
         bench: "BenchmarkBar1".to_string(),
         benchtime: "1x".to_string(),
         packages: vec!["./bar".to_string()],
+        dry_run: false,
     };
     let stdout = run_with_cli("tests/pkg_arg.in", &cli).unwrap();
 
@@ -27,6 +28,7 @@ pub fn test_pkg_arg_all_packages() {
         bench: ".".to_string(),
         benchtime: "1x".to_string(),
         packages: vec!["./...".to_string()],
+        dry_run: false,
     };
     let stdout = run_with_cli_multi("tests/pkg_arg.in", &cli).unwrap();
 
@@ -43,6 +45,7 @@ pub fn test_pkg_arg_multiple_packages() {
         bench: ".".to_string(),
         benchtime: "1x".to_string(),
         packages: vec!["./foo".to_string(), "./bar".to_string()],
+        dry_run: false,
     };
     let stdout = run_with_cli_multi("tests/pkg_arg.in", &cli).unwrap();
 
