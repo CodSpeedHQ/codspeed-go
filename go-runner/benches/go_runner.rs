@@ -1,4 +1,5 @@
 use codspeed_go_runner::results::raw_result::RawResult;
+use std::time::Duration;
 use tempfile::TempDir;
 
 #[divan::bench(max_time = std::time::Duration::from_secs(5))]
@@ -30,12 +31,15 @@ fn bench_go_runner(bencher: divan::Bencher) {
 }
 
 const TIME_ENTRIES: [usize; 5] = [100_000, 500_000, 1_000_000, 5_000_000, 10_000_000];
+const FILE_COUNT: [usize; 3] = [5, 10, 25];
 
-#[divan::bench(consts = TIME_ENTRIES, max_time = std::time::Duration::from_secs(5))]
-fn bench_collect_results<const N: usize>(bencher: divan::Bencher) {
-    fn random_raw_result<const N: usize>() -> RawResult {
-        let times_per_round = (0..N).map(|_| rand::random::<u64>() % 1_000_000).collect();
-        let iters_per_round = (0..N).map(|_| rand::random::<u64>() % 1_000 + 1).collect();
+#[divan::bench(args = FILE_COUNT, consts = TIME_ENTRIES, max_time = Duration::from_secs(5))]
+fn bench_collect_results<const N: usize>(bencher: divan::Bencher, file_count: usize) {
+    use rand::prelude::*;
+
+    fn random_raw_result<const N: usize>(rng: &mut StdRng) -> RawResult {
+        let times_per_round = (0..N).map(|_| rng.random::<u64>() % 1_000_000).collect();
+        let iters_per_round = (0..N).map(|_| rng.random::<u64>() % 1_000 + 1).collect();
         RawResult {
             name: "foo".into(),
             uri: "foo".into(),
@@ -47,11 +51,16 @@ fn bench_collect_results<const N: usize>(bencher: divan::Bencher) {
 
     bencher
         .with_inputs(|| {
+            let mut rng = StdRng::seed_from_u64(42);
+
             let profile_dir = TempDir::new().unwrap();
             let raw_results = profile_dir.path().join("raw_results");
             std::fs::create_dir(&raw_results).unwrap();
 
-            for (i, raw_result) in (0..10).map(|_| random_raw_result::<N>()).enumerate() {
+            for (i, raw_result) in (0..file_count)
+                .map(|_| random_raw_result::<N>(&mut rng))
+                .enumerate()
+            {
                 let json = serde_json::to_string(&raw_result).unwrap();
                 std::fs::write(raw_results.join(format!("{i}.json")), json).unwrap();
             }
