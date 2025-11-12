@@ -54,15 +54,18 @@ impl WalltimeBenchmark {
     pub fn from_runtime_data(
         name: String,
         uri: String,
-        iters_per_round: Vec<u128>,
-        times_per_round_ns: Vec<u128>,
+        iters_per_round: &[u64],
+        times_per_round_ns: &[u64],
         max_time_ns: Option<u128>,
     ) -> Self {
-        let total_time = times_per_round_ns.iter().sum::<u128>() as f64 / 1_000_000_000.0;
+        let total_time =
+            times_per_round_ns.iter().map(|&t| t as u128).sum::<u128>() as f64 / 1_000_000_000.0;
         let time_per_iteration_per_round_ns: Vec<_> = times_per_round_ns
-            .into_iter()
-            .zip(&iters_per_round)
-            .map(|(time_per_round, iter_per_round)| time_per_round / iter_per_round)
+            .iter()
+            .zip(iters_per_round)
+            .map(|(time_per_round, iter_per_round)| {
+                *time_per_round as u128 / *iter_per_round as u128
+            })
             .map(|t| t as f64)
             .collect::<Vec<f64>>();
 
@@ -103,8 +106,8 @@ impl WalltimeBenchmark {
         let max_ns = data.max();
 
         // TODO(COD-1056): We currently only support single iteration count per round
-        let iter_per_round =
-            (iters_per_round.iter().sum::<u128>() / iters_per_round.len() as u128) as u64;
+        let iter_per_round = (iters_per_round.iter().map(|&t| t as u128).sum::<u128>()
+            / iters_per_round.len() as u128) as u64;
         let warmup_iters = 0; // FIXME: add warmup detection
 
         let stats = BenchmarkStats {
@@ -178,8 +181,8 @@ mod tests {
         let benchmark = WalltimeBenchmark::from_runtime_data(
             NAME.to_string(),
             URI.to_string(),
-            vec![1],
-            vec![42],
+            &[1],
+            &[42],
             None,
         );
         assert_eq!(benchmark.stats.stdev_ns, 0.);
@@ -191,13 +194,13 @@ mod tests {
     #[test]
     fn test_parse_bench_with_variable_iterations() {
         let iters_per_round = vec![1, 2, 3, 4, 5, 6];
-        let total_rounds = iters_per_round.iter().sum::<u128>() as f64;
+        let total_rounds = iters_per_round.iter().sum::<u64>() as f64;
 
         let benchmark = WalltimeBenchmark::from_runtime_data(
             NAME.to_string(),
             URI.to_string(),
-            iters_per_round,
-            vec![42, 42 * 2, 42 * 3, 42 * 4, 42 * 5, 42 * 6],
+            &iters_per_round,
+            &[42, 42 * 2, 42 * 3, 42 * 4, 42 * 5, 42 * 6],
             None,
         );
 

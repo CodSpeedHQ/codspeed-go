@@ -1,6 +1,5 @@
-use std::path::Path;
-
 use serde::{Deserialize, Serialize};
+use std::path::Path;
 
 use crate::results::walltime_results::WalltimeBenchmark;
 
@@ -15,41 +14,29 @@ pub struct RawResult {
 }
 
 impl RawResult {
-    pub fn parse(content: &str) -> anyhow::Result<Self> {
-        serde_json::from_str(content)
-            .map_err(|e| anyhow::anyhow!("Failed to parse raw result: {}", e))
-    }
-
-    pub fn parse_folder<P: AsRef<Path>>(folder: P) -> anyhow::Result<Vec<Self>> {
+    pub fn parse_folder<P: AsRef<Path>>(
+        folder: P,
+    ) -> anyhow::Result<Vec<(u32, WalltimeBenchmark)>> {
         let glob_pattern = folder.as_ref().join("raw_results").join("*.json");
-        Ok(glob::glob(&glob_pattern.to_string_lossy())?
+        let result = glob::glob(&glob_pattern.to_string_lossy())?
             .filter_map(Result::ok)
             .filter_map(|path| {
-                let content = std::fs::read_to_string(&path).ok()?;
-                Self::parse(&content).ok()
+                let file = std::fs::File::open(&path).ok()?;
+                let reader = std::io::BufReader::new(file);
+                let json: Self = serde_json::from_reader(reader).ok()?;
+                Some((
+                    json.pid,
+                    WalltimeBenchmark::from_runtime_data(
+                        json.name,
+                        json.uri,
+                        &json.codspeed_iters_per_round,
+                        &json.codspeed_time_per_round_ns,
+                        None,
+                    ),
+                ))
             })
-            .collect())
-    }
-
-    pub fn into_walltime_benchmark(self) -> WalltimeBenchmark {
-        let times_per_round_ns = self
-            .codspeed_time_per_round_ns
-            .iter()
-            .map(|t| *t as u128)
-            .collect::<Vec<_>>();
-        let iters_per_round = self
-            .codspeed_iters_per_round
-            .iter()
-            .map(|i| *i as u128)
             .collect();
-
-        WalltimeBenchmark::from_runtime_data(
-            self.name,
-            self.uri,
-            iters_per_round,
-            times_per_round_ns,
-            None,
-        )
+        Ok(result)
     }
 }
 

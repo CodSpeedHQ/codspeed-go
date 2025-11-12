@@ -1,4 +1,8 @@
-use crate::{builder::BenchmarkPackage, prelude::*};
+use crate::{
+    builder::BenchmarkPackage,
+    prelude::*,
+    results::{raw_result::RawResult, walltime_results::WalltimeBenchmark},
+};
 use std::{collections::HashMap, path::Path};
 
 pub mod builder;
@@ -74,16 +78,13 @@ pub fn run_benchmarks<P: AsRef<Path>>(
 
 // TODO: This should be merged with codspeed-rust/codspeed/walltime_results.rs
 pub fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
-    let raw_results = results::raw_result::RawResult::parse_folder(profile_dir)?;
-    info!("Parsed {} raw results", raw_results.len());
+    let mut benchmarks_by_pid: HashMap<u32, Vec<WalltimeBenchmark>> = HashMap::new();
 
-    let mut benchmarks_by_pid: HashMap<u32, Vec<results::walltime_results::WalltimeBenchmark>> =
-        HashMap::new();
-    for raw in raw_results {
+    for (pid, walltime_result) in RawResult::parse_folder(profile_dir)?.into_iter() {
         benchmarks_by_pid
-            .entry(raw.pid)
+            .entry(pid)
             .or_default()
-            .push(raw.into_walltime_benchmark());
+            .push(walltime_result);
     }
 
     for (pid, walltime_benchmarks) in benchmarks_by_pid {
