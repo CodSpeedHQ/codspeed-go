@@ -21,14 +21,19 @@ struct TemplateData {
     module_name: String,
 }
 
-pub fn run<P: AsRef<Path>>(
-    package: &BenchmarkPackage,
-    profile_dir: P,
-) -> anyhow::Result<(TempDir, PathBuf)> {
-    // 1. Copy the whole git repository to a build directory
-    let target_dir = TempDir::new()?;
-    std::fs::create_dir_all(&target_dir).context("Failed to create target directory")?;
+/// Runs the templater which sets up a temporary Go project with patched test files and a custom runner.
+///
+/// # Returns
+///
+/// The path to the generated runner.go file. This should be passed to the `build_binary` function to build
+/// the binary that will execute the benchmarks.
+pub fn run<P: AsRef<Path>>(package: &BenchmarkPackage, profile_dir: P) -> anyhow::Result<PathBuf> {
+    // Create a temporary target directory for building the modified Go project.
+    // NOTE: We don't want to spend time cleanup any temporary files since the code is only
+    // run on CI servers which clean up themselves.
+    let target_dir = TempDir::new()?.keep();
 
+    // 1. Copy the whole git repository to a build directory
     let git_root = if let Ok(git_dir) = utils::get_parent_git_repo_path(&package.module.dir) {
         git_dir
     } else {
@@ -55,7 +60,7 @@ pub fn run<P: AsRef<Path>>(
         relative_package_path,
     };
     fs::write(
-        target_dir.path().join("go-runner.metadata"),
+        target_dir.join("go-runner.metadata"),
         serde_json::to_string_pretty(&metadata)?,
     )
     .context("Failed to write go-runner.metadata file")?;
@@ -76,7 +81,7 @@ pub fn run<P: AsRef<Path>>(
     // 2. Patch the imports and package of the test files
     // - Renames package declarations (to support main package tests and external tests)
     // - Fixes imports to use our compat packages (e.g., testing/quicktest/testify)
-    let package_path = target_dir.path().join(relative_package_path);
+    let package_path = target_dir.join(relative_package_path);
     let test_file_paths: Vec<PathBuf> = files.iter().map(|f| package_path.join(f)).collect();
 
     // If we have external tests (e.g. "package {pkg}_test") they have to be
@@ -97,18 +102,15 @@ pub fn run<P: AsRef<Path>>(
     // Find the module directory by getting the relative path from git root
     let module_dir = Path::new(&package.module.dir)
         .strip_prefix(&git_root)
-        .map(|relative_module_path| target_dir.path().join(relative_module_path))
+        .map(|relative_module_path| target_dir.join(relative_module_path))
         .unwrap_or_else(|_| {
             // Fall back to target_dir if we can't calculate relative path
-            target_dir.path().to_path_buf()
+            target_dir.to_path_buf()
         });
     patcher::install_codspeed_dependency(&module_dir)?;
 
     // 3. Handle test files differently based on whether they're external or internal tests
-    let codspeed_dir = target_dir
-        .path()
-        .join(relative_package_path)
-        .join("codspeed");
+    let codspeed_dir = target_dir.join(relative_package_path).join("codspeed");
     fs::create_dir_all(&codspeed_dir).context("Failed to create codspeed directory")?;
 
     if package.is_external_test_package() {
@@ -117,7 +119,7 @@ pub fn run<P: AsRef<Path>>(
         // They're now package main and will be built from the subdirectory
         debug!("Handling external test package - moving files to codspeed/ subdirectory");
         for file in files {
-            let src_path = target_dir.path().join(relative_package_path).join(file);
+            let src_path = target_dir.join(relative_package_path).join(file);
             // Rename _test.go to _codspeed.go so it's not treated as a test file
             let dst_filename = file.replace("_test.go", "_codspeed.go");
             let dst_path = codspeed_dir.join(&dst_filename);
@@ -130,7 +132,7 @@ pub fn run<P: AsRef<Path>>(
         // For internal test packages: rename _test.go to _codspeed.go in place
         debug!("Handling internal test package - renaming files in place");
         for file in files {
-            let old_path = target_dir.path().join(relative_package_path).join(file);
+            let old_path = target_dir.join(relative_package_path).join(file);
             let new_path = old_path.with_file_name(
                 old_path
                     .file_name()
@@ -160,5 +162,5 @@ pub fn run<P: AsRef<Path>>(
     let runner_path = codspeed_dir.join("runner.go");
     fs::write(&runner_path, rendered).context("Failed to write runner.go file")?;
 
-    Ok((target_dir, runner_path))
+    Ok(runner_path)
 }

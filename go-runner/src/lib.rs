@@ -35,7 +35,7 @@ pub fn run_benchmarks<P: AsRef<Path>>(
     // 2. Generate codspeed runners, build binaries, and execute them
     for package in &packages {
         info!("Generating custom runner for package: {}", package.name);
-        let (_target_dir, runner_path) = builder::templater::run(package, &profile_dir)?;
+        let runner_path = builder::templater::run(package, &profile_dir)?;
 
         info!("Building binary for package: {}", package.name);
 

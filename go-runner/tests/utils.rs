@@ -4,7 +4,7 @@ use std::path::Path;
 /// Helper function to run a single package with arguments
 pub fn run_package_with_args(package: &BenchmarkPackage, args: &[&str]) -> anyhow::Result<String> {
     let profile_dir = tempfile::TempDir::new()?;
-    let (_dir, runner_path) = builder::templater::run(package, profile_dir.as_ref())?;
+    let runner_path = builder::templater::run(package, profile_dir.as_ref())?;
     let binary_path = builder::build_binary(&runner_path)?;
     runner::run_with_stdout(&binary_path, args)
 }
