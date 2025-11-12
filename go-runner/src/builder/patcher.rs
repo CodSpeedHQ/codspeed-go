@@ -1,6 +1,7 @@
 //! Patches the imports to use codspeed rather than the official "testing" package.
 
 use crate::prelude::*;
+use itertools::Itertools;
 use rayon::prelude::*;
 use std::fs;
 use std::path::Path;
@@ -69,18 +70,21 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
 
 /// Internal function to apply import patterns to Go source code
 pub fn patch_imports_for_source(source: &str) -> String {
-    let replace_import = |mut source: String, import_path: &str, replacement: &str| -> String {
+    let mut source = source.to_string();
+
+    // If we can't parse the source, skip this replacement
+    // This can happen with template files or malformed Go code
+    let parsed = match gosyn::parse_source(&source) {
+        Ok(p) => p,
+        Err(_) => return source,
+    };
+
+    let mut replacements = vec![];
+    let mut find_replace_range = |import_path: &str, replacement: &str| {
         // Optimization: check if the import path exists in the source before parsing
         if !source.contains(import_path) {
-            return source;
+            return;
         }
-
-        // If we can't parse the source, skip this replacement
-        // This can happen with template files or malformed Go code
-        let parsed = match gosyn::parse_source(&source) {
-            Ok(p) => p,
-            Err(_) => return source,
-        };
 
         if let Some(import) = parsed
             .imports
@@ -90,22 +94,13 @@ pub fn patch_imports_for_source(source: &str) -> String {
             let start_pos = import.path.pos;
             let end_pos = start_pos + import.path.value.len();
 
-            source.replace_range(start_pos..end_pos, replacement);
+            replacements.push((start_pos..end_pos, replacement.to_string()));
         }
-
-        source
     };
-
-    let mut source = replace_import(
-        source.to_string(),
-        "testing",
-        "testing \"github.com/CodSpeedHQ/codspeed-go/testing/testing\"",
-    );
 
     // Then replace sub-packages like "testing/synctest"
     for testing_pkg in &["fstest", "iotest", "quick", "slogtest", "synctest"] {
-        source = replace_import(
-            source.to_string(),
+        find_replace_range(
             &format!("testing/{}", testing_pkg),
             &format!(
                 "{testing_pkg} \"github.com/CodSpeedHQ/codspeed-go/testing/testing/{testing_pkg}\""
@@ -113,16 +108,29 @@ pub fn patch_imports_for_source(source: &str) -> String {
         );
     }
 
-    let source = replace_import(
-        source,
+    find_replace_range(
+        "testing",
+        "testing \"github.com/CodSpeedHQ/codspeed-go/testing/testing\"",
+    );
+    find_replace_range(
         "github.com/thejerf/slogassert",
         "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
     );
-    replace_import(
-        source,
+    find_replace_range(
         "github.com/frankban/quicktest",
         "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
-    )
+    );
+
+    // Apply replacements in reverse order to avoid shifting positions
+    for (range, replacement) in replacements
+        .into_iter()
+        .sorted_by_key(|(range, _)| range.start)
+        .rev()
+    {
+        source.replace_range(range, &replacement);
+    }
+
+    source
 }
 
 /// Patches imports and package in specific test files
@@ -390,6 +398,17 @@ func TestExample(t *testing.T) {
 }
 "#;
 
+    const MANY_TESTING_IMPORTS: &str = r#"package subpackages
+import (
+	"bytes"
+	"io"
+	"testing"
+	"testing/fstest"
+	"testing/iotest"
+	"testing/synctest"
+)
+"#;
+
     #[rstest]
     #[case("single_import_replacement", SINGLE_IMPORT)]
     #[case("multiline_import_replacement", MULTILINE_IMPORT)]
@@ -406,6 +425,7 @@ func TestExample(t *testing.T) {
         MULTILINE_IMPORT_WITH_TESTING_STRING
     )]
     #[case("package_main", PACKAGE_MAIN)]
+    #[case("many_testing_imports", MANY_TESTING_IMPORTS)]
     fn test_patch_go_source(#[case] test_name: &str, #[case] source: &str) {
         let result = patch_imports_for_source(source);
         let result = patch_package_for_source(result).unwrap();
