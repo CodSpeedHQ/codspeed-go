@@ -21,6 +21,7 @@ statrs = { version = "0.18", default-features = false }
 thiserror = "2.0"
 tempfile = "3.14"
 semver = "1.0.27"
+dircpy = "0.3.19"
 
 [dev-dependencies]
 divan = { version = "4.1.0", package = "codspeed-divan-compat" }

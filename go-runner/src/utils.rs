@@ -1,39 +1,12 @@
 #[cfg(test)]
 use crate::prelude::*;
+use std::io;
 use std::path::{Path, PathBuf};
-use std::{fs, io};
 
 pub fn copy_dir_recursively(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> {
-    fs::create_dir_all(&dst)?;
-    for entry in fs::read_dir(src)? {
-        let entry = entry?;
-        let ty = entry.file_type()?;
-        let path = entry.path();
-
-        if ty.is_dir() {
-            if entry.file_name() == ".git" || entry.file_name() == "target" {
-                continue;
-            }
-
-            copy_dir_recursively(&path, dst.as_ref().join(entry.file_name()))?;
-        } else if ty.is_symlink() {
-            // Follow symlinks to directories, copy other symlinks as-is
-            if let Ok(metadata) = fs::metadata(&path) {
-                if metadata.is_dir() {
-                    // Symlink points to a directory, follow it recursively
-                    copy_dir_recursively(&path, dst.as_ref().join(entry.file_name()))?;
-                } else {
-                    // Symlink points to a file, copy it
-                    fs::copy(&path, dst.as_ref().join(entry.file_name()))?;
-                }
-            } else {
-                // If metadata fails (broken symlink), copy the symlink as-is
-                fs::copy(&path, dst.as_ref().join(entry.file_name()))?;
-            }
-        } else {
-            fs::copy(&path, dst.as_ref().join(entry.file_name()))?;
-        }
-    }
+    let excludes = vec!["node_modules".into(), "target".into()];
+    let includes = vec![];
+    dircpy::copy_dir_advanced(src, dst, true, true, true, excludes, includes)?;
     Ok(())
 }
 
