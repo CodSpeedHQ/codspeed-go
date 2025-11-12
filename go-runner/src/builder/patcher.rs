@@ -1,6 +1,7 @@
 //! Patches the imports to use codspeed rather than the official "testing" package.
 
 use crate::prelude::*;
+use rayon::prelude::*;
 use std::fs;
 use std::path::Path;
 use std::process::Command;
@@ -34,28 +35,34 @@ pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     debug!("Patching imports in folder: {folder:?}");
 
     // 1. Find all imports that match "testing" and replace them with codspeed equivalent
-    let mut patched_files = 0;
-
     let pattern = folder.join("**/*.go");
-    for go_file in glob::glob(pattern.to_str().unwrap())?.filter_map(Result::ok) {
-        // Skip directories - glob can match directories ending in .go (e.g., vendor/github.com/nats-io/nats.go)
-        if !go_file.is_file() {
-            continue;
-        }
+    let patched_files = glob::glob(pattern.to_str().unwrap())?
+        .par_bridge()
+        .filter_map(Result::ok)
+        .filter_map(|go_file| {
+            // Skip directories - glob can match directories ending in .go (e.g., vendor/github.com/nats-io/nats.go)
+            if !go_file.is_file() {
+                return None;
+            }
 
-        let content =
-            fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
+            let Ok(content) = fs::read_to_string(&go_file) else {
+                error!("Failed to read Go file: {go_file:?}");
+                return None;
+            };
 
-        let patched_content = patch_imports_for_source(&content);
-        if patched_content != content {
-            fs::write(&go_file, patched_content)
-                .context(format!("Failed to write patched Go file: {go_file:?}"))?;
+            let patched_content = patch_imports_for_source(&content);
+            if patched_content != content {
+                let Ok(_) = fs::write(&go_file, patched_content) else {
+                    error!("Failed to write patched Go file: {go_file:?}");
+                    return None;
+                };
 
-            debug!("Patched imports in: {go_file:?}");
-            patched_files += 1;
-        }
-    }
-    debug!("Patched {patched_files} files");
+                debug!("Patched imports in: {go_file:?}");
+            }
+            Some(())
+        })
+        .count();
+    debug!("Patched {} files", patched_files);
 
     Ok(())
 }
