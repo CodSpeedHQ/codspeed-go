@@ -109,7 +109,7 @@ pub fn run<P: AsRef<Path>>(package: &BenchmarkPackage, profile_dir: P) -> anyhow
         });
     patcher::install_codspeed_dependency(&module_dir)?;
 
-    // 3. Handle test files differently based on whether they're external or internal tests
+    // 4. Handle test files differently based on whether they're external or internal tests
     let codspeed_dir = target_dir.join(relative_package_path).join("codspeed");
     fs::create_dir_all(&codspeed_dir).context("Failed to create codspeed directory")?;
 
@@ -146,7 +146,7 @@ pub fn run<P: AsRef<Path>>(package: &BenchmarkPackage, profile_dir: P) -> anyhow
         }
     }
 
-    // 4. Generate the codspeed/runner.go file using the template
+    // 5. Generate the codspeed/runner.go file using the template
     let mut handlebars = Handlebars::new();
     let template_content = include_str!("template.go");
     handlebars.register_template_string("main", template_content)?;
