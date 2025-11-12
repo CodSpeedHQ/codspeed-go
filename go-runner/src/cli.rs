@@ -43,6 +43,15 @@ impl Cli {
         }
     }
 
+    /// Parses the command-line arguments into a Cli instance.
+    ///
+    /// # Why not use clap or structopt?
+    ///
+    /// Unfortunately `go test` supports arguments with a different syntax than those crates. For
+    /// example, `-bench` and `-benchtime` use single dashes instead of double dashes.
+    ///
+    /// We can't do this with clap/structopt, because they only support single dashes for single-letter
+    /// flags (e.g., `-h`), and double dashes for multi-letter flags (e.g., `--help`).
     fn parse_args(mut args: impl Iterator<Item = String>) -> Result<Self, CliExit> {
         let mut instance = Self::default();
 
