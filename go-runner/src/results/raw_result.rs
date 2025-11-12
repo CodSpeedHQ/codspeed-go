@@ -1,3 +1,4 @@
+use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::path::Path;
 
@@ -19,6 +20,7 @@ impl RawResult {
     ) -> anyhow::Result<Vec<(u32, WalltimeBenchmark)>> {
         let glob_pattern = folder.as_ref().join("raw_results").join("*.json");
         let result = glob::glob(&glob_pattern.to_string_lossy())?
+            .par_bridge()
             .filter_map(Result::ok)
             .filter_map(|path| {
                 let file = std::fs::File::open(&path).ok()?;

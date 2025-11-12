@@ -1,7 +1,6 @@
 // NOTE: This file was taken from `codspeed-rust` and modified a bit to fit this project.
 
 use anyhow::Result;
-
 use serde::{Deserialize, Serialize};
 use statrs::statistics::{Data, Distribution, Max, Min, OrderStatistics};
 
@@ -70,7 +69,7 @@ impl WalltimeBenchmark {
             .collect::<Vec<f64>>();
 
         let mut data = Data::new(time_per_iteration_per_round_ns);
-        let rounds = data.len() as u64;
+        let rounds: u64 = data.len() as u64;
 
         let mean_ns = data.mean().unwrap();
 
