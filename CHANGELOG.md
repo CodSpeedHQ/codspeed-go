@@ -5,6 +5,34 @@
 
 
 
+## [0.5.0] - 2025-11-13
+
+### <!-- 0 -->🚀 Features
+- Avoid parsing source code multiple times when patching imports by @not-matthias in [#33](https://github.com/CodSpeedHQ/codspeed-go/pull/33)
+- Parallelize imports patching by @not-matthias
+- Add rayon to parallelize result processing by @not-matthias
+- Remove intermediate walltime result allocations by @not-matthias
+- Keep temporary build directory to speedup execution by @not-matthias
+- Optimize parsing by checking for benchmark functions and import paths by @not-matthias
+- Add codspeed benchmarks by @not-matthias
+
+### <!-- 1 -->🐛 Bug Fixes
+- Do not delete the profile folder (#34) by @not-matthias in [#34](https://github.com/CodSpeedHQ/codspeed-go/pull/34)
+- Cleanup temporary files during tests by @not-matthias
+- Copy whole git repository to avoid missing files or packages by @not-matthias
+- Ignore corrupted or template go files which can't be parsed by @not-matthias
+
+### <!-- 3 -->📚 Documentation
+- Clarify reason for not using clap or structopt in argument parsing by @not-matthias in [#32](https://github.com/CodSpeedHQ/codspeed-go/pull/32)
+- Fix comment numbering by @not-matthias
+
+### <!-- 7 -->⚙️ Internals
+- Add file count benchmark parameter by @not-matthias
+- Use dircpy crate to copy folders by @not-matthias
+- Add example with mod replace by @not-matthias
+- Add RELEASE.md with the release process by @adriencaccia
+
+
 ## [0.4.2] - 2025-11-07
 
 ### <!-- 0 -->🚀 Features
@@ -32,6 +60,7 @@
 - Add documentation about test execution by @not-matthias in [#26](https://github.com/CodSpeedHQ/codspeed-go/pull/26)
 
 ### <!-- 7 -->⚙️ Internals
+- Release v0.4.2 by @adriencaccia
 - Add testing sub-package benches and tests by @not-matthias
 - Replace compat package with direct testing import by @not-matthias
 - Bump fork to 1.25 by @not-matthias
@@ -173,6 +202,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.5.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.2..v0.5.0
 [0.4.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.1..v0.4.2
 [0.4.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.0..v0.4.1
 [0.4.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.3.0..v0.4.0
