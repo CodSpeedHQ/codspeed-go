@@ -21,8 +21,6 @@ pub fn run_benchmarks<P: AsRef<Path>>(
     project_dir: &Path,
     cli: &crate::cli::Cli,
 ) -> anyhow::Result<()> {
-    std::fs::remove_dir_all(&profile_dir).ok();
-
     // 1. Build phase - Benchmark and package discovery
     let packages = BenchmarkPackage::from_project(project_dir, &cli.packages)?;
     info!("Discovered {} packages", packages.len());
