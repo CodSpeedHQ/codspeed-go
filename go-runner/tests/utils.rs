@@ -1,10 +1,15 @@
-use codspeed_go_runner::{builder, builder::BenchmarkPackage, cli::Cli, runner};
+use codspeed_go_runner::{
+    builder::{self, BenchmarkPackage, templater::Templater},
+    cli::Cli,
+    runner,
+};
 use std::path::Path;
 
 /// Helper function to run a single package with arguments
 pub fn run_package_with_args(package: &BenchmarkPackage, args: &[&str]) -> anyhow::Result<String> {
     let profile_dir = tempfile::TempDir::new()?;
-    let (_dir, runner_path) = builder::templater::run(package, profile_dir.as_ref())?;
+    let templater = Templater::new();
+    let runner_path = templater.run(package, profile_dir.as_ref())?;
     let binary_path = builder::build_binary(&runner_path)?;
     runner::run_with_stdout(&binary_path, args)
 }

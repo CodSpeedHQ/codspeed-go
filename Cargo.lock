@@ -235,6 +235,7 @@ dependencies = [
  "insta",
  "itertools",
  "log",
+ "once_cell",
  "rand",
  "rayon",
  "regex",
