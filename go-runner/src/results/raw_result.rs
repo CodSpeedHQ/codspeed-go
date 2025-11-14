@@ -18,24 +18,32 @@ impl RawResult {
     pub fn parse_folder<P: AsRef<Path>>(
         folder: P,
     ) -> anyhow::Result<Vec<(u32, WalltimeBenchmark)>> {
-        let glob_pattern = folder.as_ref().join("raw_results").join("*.json");
+        let glob_pattern = folder.as_ref().join("*.json");
         let result = glob::glob(&glob_pattern.to_string_lossy())?
             .par_bridge()
             .filter_map(Result::ok)
             .filter_map(|path| {
-                let file = std::fs::File::open(&path).ok()?;
-                let reader = std::io::BufReader::new(file);
-                let json: Self = serde_json::from_reader(reader).ok()?;
-                Some((
-                    json.pid,
-                    WalltimeBenchmark::from_runtime_data(
-                        json.name,
-                        json.uri,
-                        &json.codspeed_iters_per_round,
-                        &json.codspeed_time_per_round_ns,
-                        None,
-                    ),
-                ))
+                let (pid, bench) = {
+                    let file = std::fs::File::open(&path).ok()?;
+                    let reader = std::io::BufReader::new(file);
+                    let json: Self = serde_json::from_reader(reader).ok()?;
+
+                    (
+                        json.pid,
+                        WalltimeBenchmark::from_runtime_data(
+                            json.name,
+                            json.uri,
+                            &json.codspeed_iters_per_round,
+                            &json.codspeed_time_per_round_ns,
+                            None,
+                        ),
+                    )
+                };
+
+                // Remove the file since we processed it
+                std::fs::remove_file(path).ok();
+
+                Some((pid, bench))
             })
             .collect();
         Ok(result)

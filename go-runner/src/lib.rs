@@ -1,5 +1,5 @@
 use crate::{
-    builder::BenchmarkPackage,
+    builder::{BenchmarkPackage, templater::Templater},
     prelude::*,
     results::{raw_result::RawResult, walltime_results::WalltimeBenchmark},
 };
@@ -11,6 +11,9 @@ pub mod prelude;
 pub mod results;
 pub mod runner;
 pub(crate) mod utils;
+
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 
 #[cfg(test)]
 mod integration_tests;
@@ -35,13 +38,14 @@ pub fn run_benchmarks<P: AsRef<Path>>(
     }
 
     // 2. Generate codspeed runners, build binaries, and execute them
+    let templater = Templater::new();
     for package in &packages {
         info!("Generating custom runner for package: {}", package.name);
-        let (_target_dir, runner_path) = builder::templater::run(package, &profile_dir)?;
+        let ctx = templater.run(package, &profile_dir)?;
 
         info!("Building binary for package: {}", package.name);
 
-        let binary_path = match builder::build_binary(&runner_path) {
+        let binary_path = match builder::build_binary(ctx.runner_path()) {
             Ok(binary_path) => binary_path,
             Err(e) => {
                 if cfg!(test) {
@@ -61,14 +65,15 @@ pub fn run_benchmarks<P: AsRef<Path>>(
                 error!("Failed to run benchmarks for {}: {error}", package.name);
                 continue;
             }
+
+            // Collect the results in a new thread
+            let profile_dir = profile_dir.as_ref().to_path_buf();
+            std::thread::spawn(move || {
+                collect_walltime_results(profile_dir.as_ref()).unwrap();
+            });
         } else {
             info!("Skipping benchmark execution (dry-run mode)");
         }
-    }
-
-    // 3. Collect the results
-    if !cli.dry_run {
-        collect_walltime_results(profile_dir.as_ref())?;
     }
 
     Ok(())
@@ -78,11 +83,24 @@ pub fn run_benchmarks<P: AsRef<Path>>(
 pub fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
     let mut benchmarks_by_pid: HashMap<u32, Vec<WalltimeBenchmark>> = HashMap::new();
 
-    for (pid, walltime_result) in RawResult::parse_folder(profile_dir)?.into_iter() {
+    let raw_results_dir = profile_dir.join("raw_results");
+    for (pid, walltime_result) in RawResult::parse_folder(&raw_results_dir)?.into_iter() {
         benchmarks_by_pid
             .entry(pid)
             .or_default()
             .push(walltime_result);
+    }
+
+    // Remove raw results directory after processing to save space
+    if raw_results_dir.exists() {
+        std::fs::remove_dir_all(&raw_results_dir)?;
+    }
+
+    // Ensure we have at least some results to write, otherwise the runner will crash with confusing errors
+    if benchmarks_by_pid.is_empty() {
+        anyhow::bail!(
+            "No benchmark results found to collect. This may indicate that no benchmark was executed or that it failed to run."
+        );
     }
 
     for (pid, walltime_benchmarks) in benchmarks_by_pid {
