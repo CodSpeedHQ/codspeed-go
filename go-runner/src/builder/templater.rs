@@ -43,7 +43,7 @@ impl CodspeedContext {
         target_dir: PathBuf,
     ) -> Self {
         Self {
-            patcher: Patcher::new(),
+            patcher: Patcher::new(&git_root),
             package: package.clone(),
             profile_dir: profile_dir.as_ref().to_path_buf(),
             git_root,

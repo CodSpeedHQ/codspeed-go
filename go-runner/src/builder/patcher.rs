@@ -7,20 +7,17 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-/// Patcher is responsible for patching Go source files to replace imports and package names. It also reverts
-/// all changes on drop.
-#[derive(Default)]
+/// Patcher is responsible for patching Go source files to replace imports and package names.
+/// It also reverts all changes on drop.
 pub struct Patcher {
-    /// List of files that have been renamed (and moved). Format is `(src_path, dst_path)`.
-    renamed_files: Vec<(PathBuf, PathBuf)>,
-
-    /// List of packages that have been patched. Format is `(package_path, prev_pkg_name)`.
-    patched_packages: Vec<(PathBuf, String)>,
+    git_repo: git2::Repository,
 }
 
 impl Patcher {
-    pub fn new() -> Self {
-        Default::default()
+    pub fn new(git_root: &PathBuf) -> Self {
+        Self {
+            git_repo: git2::Repository::open(git_root).expect("Failed to open git repository"),
+        }
     }
 
     /// Replace `package main` with `package main_compat` to allow importing it from other packages.
@@ -69,13 +66,11 @@ impl Patcher {
 
             let mut content = fs::read_to_string(go_file)
                 .context(format!("Failed to read Go file: {go_file:?}"))?;
-            if let Some(prev_pkg) = Self::patch_package(&mut content, None)? {
+            if Self::patch_package(&mut content, None)?.is_some() {
                 fs::write(go_file, content)
                     .context(format!("Failed to write patched Go file: {go_file:?}"))?;
-                self.patched_packages.push((go_file.clone(), prev_pkg));
             }
         }
-        debug!("Patched {} files", self.patched_packages.len());
 
         Ok(())
     }
@@ -94,10 +89,106 @@ impl Patcher {
         Ok(())
     }
 
+    fn patch_imports_for_source(source: &mut String) -> bool {
+        let mut modified = false;
+
+        // If we can't parse the source, skip this replacement
+        // This can happen with template files or malformed Go code
+        let parsed = match gosyn::parse_source(&source) {
+            Ok(p) => p,
+            Err(_) => return modified,
+        };
+
+        let mut replacements = vec![];
+        let mut find_replace_range = |import_path: &str, replacement: &str| {
+            // Optimization: check if the import path exists in the source before parsing
+            if !source.contains(import_path) {
+                return;
+            }
+
+            if let Some(import) = parsed
+                .imports
+                .iter()
+                .find(|import| import.path.value == format!("\"{import_path}\""))
+            {
+                let start_pos = import.path.pos;
+                let end_pos = start_pos + import.path.value.len();
+                modified = true;
+
+                replacements.push((start_pos..end_pos, replacement.to_string()));
+            }
+        };
+
+        // Then replace sub-packages like "testing/synctest"
+        for testing_pkg in &["fstest", "iotest", "quick", "slogtest", "synctest"] {
+            find_replace_range(
+                &format!("testing/{}", testing_pkg),
+                &format!(
+                    "{testing_pkg} \"github.com/CodSpeedHQ/codspeed-go/testing/testing/{testing_pkg}\""
+                ),
+            );
+        }
+
+        find_replace_range(
+            "testing",
+            "testing \"github.com/CodSpeedHQ/codspeed-go/testing/testing\"",
+        );
+        find_replace_range(
+            "github.com/thejerf/slogassert",
+            "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
+        );
+        find_replace_range(
+            "github.com/frankban/quicktest",
+            "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
+        );
+
+        // Apply replacements in reverse order to avoid shifting positions
+        for (range, replacement) in replacements
+            .into_iter()
+            .sorted_by_key(|(range, _)| range.start)
+            .rev()
+        {
+            source.replace_range(range, &replacement);
+        }
+
+        modified
+    }
+
     /// This doesn't have to be reverted because it doesn't have negative side effects
     /// if we leave it in place.
     pub fn patch_imports<P: AsRef<Path>>(&mut self, folder: P) -> anyhow::Result<()> {
-        patch_imports(folder)?;
+        let folder = folder.as_ref();
+        debug!("Patching imports in folder: {folder:?}");
+
+        // 1. Find all imports that match "testing" and replace them with codspeed equivalent
+        let pattern = folder.join("**/*.go");
+        let patched_files = glob::glob(pattern.to_str().unwrap())?
+            .par_bridge()
+            .filter_map(Result::ok)
+            .filter_map(|go_file| {
+                // Skip directories - glob can match directories ending in .go (e.g., vendor/github.com/nats-io/nats.go)
+                if !go_file.is_file() {
+                    return None;
+                }
+
+                let Ok(mut content) = fs::read_to_string(&go_file) else {
+                    error!("Failed to read Go file: {go_file:?}");
+                    return None;
+                };
+
+                if Self::patch_imports_for_source(&mut content) {
+                    let Ok(_) = fs::write(&go_file, &content) else {
+                        error!("Failed to write patched Go file: {go_file:?}");
+                        return None;
+                    };
+
+                    debug!("Patched imports in: {go_file:?}");
+                }
+                Some(())
+            })
+            .count();
+        debug!("Patched {} files", patched_files);
+
         Ok(())
     }
 
@@ -112,7 +203,6 @@ impl Patcher {
                     .replace("_test", "_codspeed"),
             );
             fs::rename(src_path, new_path.clone())?;
-            self.renamed_files.push((src_path.to_path_buf(), new_path));
         }
 
         Ok(())
@@ -131,51 +221,27 @@ impl Patcher {
                 .to_string_lossy()
                 .replace("_test.go", "_codspeed.go");
             let dst_path = dst_dir.as_ref().join(&dst_filename);
-
             fs::rename(src_path.as_ref(), &dst_path)?;
-            self.renamed_files
-                .push((src_path.as_ref().to_path_buf(), dst_path));
         }
 
-        Ok(())
-    }
-}
-
-// The reverse operations to revert the patches
-impl Patcher {
-    pub fn revert_all(&mut self) -> anyhow::Result<()> {
-        self.revert_renames()?;
-        self.revert_patched_packages()?;
-        Ok(())
-    }
-
-    fn revert_renames(&mut self) -> anyhow::Result<()> {
-        for (original, renamed) in &self.renamed_files {
-            fs::rename(renamed, original).context(format!(
-                "Failed to revert file rename from {:?} to {:?}",
-                renamed, original
-            ))?;
-        }
-        self.renamed_files.clear();
-        Ok(())
-    }
-
-    fn revert_patched_packages(&mut self) -> anyhow::Result<()> {
-        for (pkg_path, prev_pkg_name) in &self.patched_packages {
-            let mut content = fs::read_to_string(pkg_path)
-                .context(format!("Failed to read Go file: {pkg_path:?}"))?;
-            Self::patch_package(&mut content, Some(prev_pkg_name.clone()))?;
-            fs::write(pkg_path, content)
-                .context(format!("Failed to write reverted Go file: {pkg_path:?}"))?;
-        }
-        self.patched_packages.clear();
         Ok(())
     }
 }
 
 impl Drop for Patcher {
     fn drop(&mut self) {
-        self.revert_all().expect("Failed to revert patches");
+        self.git_repo
+            .reset(
+                self.git_repo
+                    .head()
+                    .unwrap()
+                    .peel_to_commit()
+                    .unwrap()
+                    .as_object(),
+                git2::ResetType::Hard,
+                None,
+            )
+            .expect("Failed to revert changes in patched files");
     }
 }
 
@@ -201,200 +267,6 @@ pub fn replace_pkg<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     debug!("Added local replace directive to go.mod");
 
     Ok(())
-}
-
-pub fn patch_imports<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
-    let folder = folder.as_ref();
-    debug!("Patching imports in folder: {folder:?}");
-
-    // 1. Find all imports that match "testing" and replace them with codspeed equivalent
-    let pattern = folder.join("**/*.go");
-    let patched_files = glob::glob(pattern.to_str().unwrap())?
-        .par_bridge()
-        .filter_map(Result::ok)
-        .filter_map(|go_file| {
-            // Skip directories - glob can match directories ending in .go (e.g., vendor/github.com/nats-io/nats.go)
-            if !go_file.is_file() {
-                return None;
-            }
-
-            let Ok(content) = fs::read_to_string(&go_file) else {
-                error!("Failed to read Go file: {go_file:?}");
-                return None;
-            };
-
-            let patched_content = patch_imports_for_source(&content);
-            if patched_content != content {
-                let Ok(_) = fs::write(&go_file, patched_content) else {
-                    error!("Failed to write patched Go file: {go_file:?}");
-                    return None;
-                };
-
-                debug!("Patched imports in: {go_file:?}");
-            }
-            Some(())
-        })
-        .count();
-    debug!("Patched {} files", patched_files);
-
-    Ok(())
-}
-
-/// Internal function to apply import patterns to Go source code
-pub fn patch_imports_for_source(source: &str) -> String {
-    let mut source = source.to_string();
-
-    // If we can't parse the source, skip this replacement
-    // This can happen with template files or malformed Go code
-    let parsed = match gosyn::parse_source(&source) {
-        Ok(p) => p,
-        Err(_) => return source,
-    };
-
-    let mut replacements = vec![];
-    let mut find_replace_range = |import_path: &str, replacement: &str| {
-        // Optimization: check if the import path exists in the source before parsing
-        if !source.contains(import_path) {
-            return;
-        }
-
-        if let Some(import) = parsed
-            .imports
-            .iter()
-            .find(|import| import.path.value == format!("\"{import_path}\""))
-        {
-            let start_pos = import.path.pos;
-            let end_pos = start_pos + import.path.value.len();
-
-            replacements.push((start_pos..end_pos, replacement.to_string()));
-        }
-    };
-
-    // Then replace sub-packages like "testing/synctest"
-    for testing_pkg in &["fstest", "iotest", "quick", "slogtest", "synctest"] {
-        find_replace_range(
-            &format!("testing/{}", testing_pkg),
-            &format!(
-                "{testing_pkg} \"github.com/CodSpeedHQ/codspeed-go/testing/testing/{testing_pkg}\""
-            ),
-        );
-    }
-
-    find_replace_range(
-        "testing",
-        "testing \"github.com/CodSpeedHQ/codspeed-go/testing/testing\"",
-    );
-    find_replace_range(
-        "github.com/thejerf/slogassert",
-        "\"github.com/CodSpeedHQ/codspeed-go/pkg/slogassert\"",
-    );
-    find_replace_range(
-        "github.com/frankban/quicktest",
-        "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
-    );
-
-    // Apply replacements in reverse order to avoid shifting positions
-    for (range, replacement) in replacements
-        .into_iter()
-        .sorted_by_key(|(range, _)| range.start)
-        .rev()
-    {
-        source.replace_range(range, &replacement);
-    }
-
-    source
-}
-
-/// Patches imports and package in specific test files
-///
-/// This ensures we only modify the test files that belong to the current test package,
-/// avoiding conflicts when multiple test packages exist in the same directory
-pub fn patch_packages_for_test_files<P: AsRef<Path>>(test_files: &[P]) -> anyhow::Result<()> {
-    debug!("Patching {} test files", test_files.len());
-
-    let mut patched_files = 0;
-    for go_file in test_files {
-        let go_file = go_file.as_ref();
-        if !go_file.is_file() {
-            continue;
-        }
-
-        let content =
-            fs::read_to_string(go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
-
-        let patched_content = patch_package_for_source(content.clone())?;
-        if patched_content != content {
-            fs::write(go_file, patched_content)
-                .context(format!("Failed to write patched Go file: {go_file:?}"))?;
-
-            debug!("Patched package in: {go_file:?}");
-            patched_files += 1;
-        }
-    }
-    debug!("Patched {patched_files} files");
-
-    Ok(())
-}
-
-/// Patches all .go files in a directory to rename "package main" to "package main_compat"
-///
-/// This is needed when we have a "package main" with benchmarks that need to be imported.
-/// By renaming all files in the package to "main_compat", we make it importable.
-pub fn patch_all_packages_in_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<()> {
-    let dir = dir.as_ref();
-    debug!("Patching all .go files in directory: {dir:?}");
-
-    let mut patched_files = 0;
-    let pattern = dir.join("*.go");
-    for go_file in glob::glob(pattern.to_str().unwrap())?.filter_map(Result::ok) {
-        if !go_file.is_file() {
-            continue;
-        }
-
-        let content =
-            fs::read_to_string(&go_file).context(format!("Failed to read Go file: {go_file:?}"))?;
-
-        let patched_content = patch_package_for_source(content.clone())?;
-        if patched_content != content {
-            fs::write(&go_file, patched_content)
-                .context(format!("Failed to write patched Go file: {go_file:?}"))?;
-
-            debug!("Patched package in: {go_file:?}");
-            patched_files += 1;
-        }
-    }
-    debug!("Patched {patched_files} files in directory");
-
-    Ok(())
-}
-
-/// Replace `package main` with `package main_compat` to allow importing it from other packages.
-/// Also replace `package foo_test` with `package main` for external test packages.
-fn patch_package_for_source(source: String) -> anyhow::Result<String> {
-    let parsed = gosyn::parse_source(&source)?;
-    let pkg_name = &parsed.pkg_name.name;
-
-    let replacement = if pkg_name == "main" {
-        Some("main_compat")
-    } else if pkg_name.ends_with("_test") {
-        // For external test packages (package foo_test), convert to package main
-        // They will be placed in the codspeed/ subdirectory and built as standalone executables
-        Some("main")
-    } else {
-        None
-    };
-
-    if let Some(new_name) = replacement {
-        // pkg_name.pos is the position of the identifier in the source
-        let name_start = parsed.pkg_name.pos;
-        let name_end = name_start + pkg_name.len();
-
-        let mut result = source;
-        result.replace_range(name_start..name_end, new_name);
-        Ok(result)
-    } else {
-        Ok(source)
-    }
 }
 
 /// Installs the codspeed-go dependency in the module
@@ -599,8 +471,10 @@ import (
     #[case("package_main", PACKAGE_MAIN)]
     #[case("many_testing_imports", MANY_TESTING_IMPORTS)]
     fn test_patch_go_source(#[case] test_name: &str, #[case] source: &str) {
-        let result = patch_imports_for_source(source);
-        let result = patch_package_for_source(result).unwrap();
+        let mut result = source.to_string();
+
+        Patcher::patch_imports_for_source(&mut result);
+        Patcher::patch_package(&mut result, None).unwrap();
         assert_snapshot!(test_name, result);
     }
 }
