@@ -12,6 +12,9 @@ pub mod results;
 pub mod runner;
 pub(crate) mod utils;
 
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
 #[cfg(test)]
 mod integration_tests;
 

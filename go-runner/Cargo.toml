@@ -24,6 +24,7 @@ semver = "1.0.27"
 dircpy = "0.3.19"
 rayon = "1"
 once_cell = "1.21.3"
+mimalloc = "0.1.48"
 
 [dev-dependencies]
 divan = { version = "4.1.0", package = "codspeed-divan-compat" }
