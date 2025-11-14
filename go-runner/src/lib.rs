@@ -39,6 +39,7 @@ pub fn run_benchmarks<P: AsRef<Path>>(
 
     // 2. Generate codspeed runners, build binaries, and execute them
     let templater = Templater::new();
+    let mut threads = Vec::with_capacity(packages.len());
     for package in &packages {
         info!("Generating custom runner for package: {}", package.name);
         let ctx = templater.run(package, &profile_dir)?;
@@ -65,15 +66,23 @@ pub fn run_benchmarks<P: AsRef<Path>>(
                 error!("Failed to run benchmarks for {}: {error}", package.name);
                 continue;
             }
+
+            // Collect the results in a new thread, to avoid blocking the main thread at the end. The
+            // conversions and computations can take a while when we have a lot of iterations.
+            let profile_dir = profile_dir.as_ref().to_path_buf();
+            threads.push(std::thread::spawn(move || {
+                collect_walltime_results(profile_dir.as_ref()).unwrap();
+            }));
         } else {
             info!("Skipping benchmark execution (dry-run mode)");
         }
     }
 
-    // 3. Collect the results
-    if !cli.dry_run {
-        collect_walltime_results(profile_dir.as_ref())?;
-    }
+    // Wait for all result collection threads to finish
+    threads.into_iter().for_each(|t| {
+        t.join()
+            .expect("Failed to join collect_walltime_results thread")
+    });
 
     Ok(())
 }
@@ -88,11 +97,6 @@ pub fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
             .entry(pid)
             .or_default()
             .push(walltime_result);
-    }
-
-    // Remove raw results directory after processing to save space
-    if raw_results_dir.exists() {
-        std::fs::remove_dir_all(&raw_results_dir)?;
     }
 
     for (pid, walltime_benchmarks) in benchmarks_by_pid {

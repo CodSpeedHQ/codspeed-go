@@ -23,19 +23,27 @@ impl RawResult {
             .par_bridge()
             .filter_map(Result::ok)
             .filter_map(|path| {
-                let file = std::fs::File::open(&path).ok()?;
-                let reader = std::io::BufReader::new(file);
-                let json: Self = serde_json::from_reader(reader).ok()?;
-                Some((
-                    json.pid,
-                    WalltimeBenchmark::from_runtime_data(
-                        json.name,
-                        json.uri,
-                        &json.codspeed_iters_per_round,
-                        &json.codspeed_time_per_round_ns,
-                        None,
-                    ),
-                ))
+                let (pid, bench) = {
+                    let file = std::fs::File::open(&path).ok()?;
+                    let reader = std::io::BufReader::new(file);
+                    let json: Self = serde_json::from_reader(reader).ok()?;
+
+                    (
+                        json.pid,
+                        WalltimeBenchmark::from_runtime_data(
+                            json.name,
+                            json.uri,
+                            &json.codspeed_iters_per_round,
+                            &json.codspeed_time_per_round_ns,
+                            None,
+                        ),
+                    )
+                };
+
+                // Remove the file since we processed it
+                std::fs::remove_file(path).ok();
+
+                Some((pid, bench))
             })
             .collect();
         Ok(result)
