@@ -4,7 +4,8 @@ use std::path::Path;
 fn main() -> anyhow::Result<()> {
     env_logger::builder()
         .parse_env(env_logger::Env::new().filter_or("CODSPEED_LOG", "info"))
-        .filter_module("handlebars", log::LevelFilter::Off)
+        .filter_module("handlebars", log::LevelFilter::Warn)
+        .filter_module("dircpy", log::LevelFilter::Warn)
         .format_timestamp(None)
         .init();
 
