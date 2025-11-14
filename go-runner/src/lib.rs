@@ -65,14 +65,15 @@ pub fn run_benchmarks<P: AsRef<Path>>(
                 error!("Failed to run benchmarks for {}: {error}", package.name);
                 continue;
             }
+
+            // Collect the results in a new thread
+            let profile_dir = profile_dir.as_ref().to_path_buf();
+            std::thread::spawn(move || {
+                collect_walltime_results(profile_dir.as_ref()).unwrap();
+            });
         } else {
             info!("Skipping benchmark execution (dry-run mode)");
         }
-    }
-
-    // 3. Collect the results
-    if !cli.dry_run {
-        collect_walltime_results(profile_dir.as_ref())?;
     }
 
     Ok(())
