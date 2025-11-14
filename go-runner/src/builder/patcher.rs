@@ -4,8 +4,180 @@ use crate::prelude::*;
 use itertools::Itertools;
 use rayon::prelude::*;
 use std::fs;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::process::Command;
+
+/// Patcher is responsible for patching Go source files to replace imports and package names. It also reverts
+/// all changes on drop.
+#[derive(Default)]
+pub struct Patcher {
+    /// List of files that have been renamed (and moved). Format is `(src_path, dst_path)`.
+    renamed_files: Vec<(PathBuf, PathBuf)>,
+
+    /// List of packages that have been patched. Format is `(package_path, prev_pkg_name)`.
+    patched_packages: Vec<(PathBuf, String)>,
+}
+
+impl Patcher {
+    pub fn new() -> Self {
+        Default::default()
+    }
+
+    /// Replace `package main` with `package main_compat` to allow importing it from other packages.
+    /// Also replace `package foo_test` with `package main` for external test packages.
+    ///
+    /// Returns the previous package name, or None if no replacement was made.
+    fn patch_package(
+        source: &mut String,
+        replacement: Option<String>,
+    ) -> anyhow::Result<Option<String>> {
+        let parsed = gosyn::parse_source(&source)?;
+        let prev_pkg_name = parsed.pkg_name.name;
+
+        let replacement = replacement.or_else(|| {
+            if prev_pkg_name == "main" {
+                Some("main_compat".into())
+            } else if prev_pkg_name.ends_with("_test") {
+                // For external test packages (package foo_test), convert to package main
+                // They will be placed in the codspeed/ subdirectory and built as standalone executables
+                Some("main".into())
+            } else {
+                None
+            }
+        });
+
+        if let Some(new_name) = replacement {
+            let name_start = parsed.pkg_name.pos;
+            let name_end = name_start + prev_pkg_name.len();
+            source.replace_range(name_start..name_end, &new_name);
+
+            Ok(Some(prev_pkg_name))
+        } else {
+            Ok(None)
+        }
+    }
+
+    /// Patches imports and package in specific test files
+    ///
+    /// This ensures we only modify the test files that belong to the current test package,
+    /// avoiding conflicts when multiple test packages exist in the same directory
+    pub fn patch_packages_for_files(&mut self, files: &[PathBuf]) -> anyhow::Result<()> {
+        for go_file in files {
+            if !go_file.is_file() {
+                continue;
+            }
+
+            let mut content = fs::read_to_string(go_file)
+                .context(format!("Failed to read Go file: {go_file:?}"))?;
+            if let Some(prev_pkg) = Self::patch_package(&mut content, None)? {
+                fs::write(go_file, content)
+                    .context(format!("Failed to write patched Go file: {go_file:?}"))?;
+                self.patched_packages.push((go_file.clone(), prev_pkg));
+            }
+        }
+        debug!("Patched {} files", self.patched_packages.len());
+
+        Ok(())
+    }
+
+    /// Patches all .go files in a directory to rename "package main" to "package main_compat"
+    ///
+    /// This is needed when we have a "package main" with benchmarks that need to be imported.
+    /// By renaming all files in the package to "main_compat", we make it importable.
+    pub fn patch_all_packages_in_dir<P: AsRef<Path>>(&mut self, dir: P) -> anyhow::Result<()> {
+        self.patch_packages_for_files(
+            &glob::glob(&dir.as_ref().join("*.go").to_string_lossy())?
+                .filter_map(Result::ok)
+                .collect::<Vec<_>>(),
+        )?;
+
+        Ok(())
+    }
+
+    /// This doesn't have to be reverted because it doesn't have negative side effects
+    /// if we leave it in place.
+    pub fn patch_imports<P: AsRef<Path>>(&mut self, folder: P) -> anyhow::Result<()> {
+        patch_imports(folder)?;
+        Ok(())
+    }
+
+    pub fn rename_test_files<P: AsRef<Path>>(&mut self, files: &[P]) -> anyhow::Result<()> {
+        for file in files {
+            let src_path = file.as_ref();
+            let new_path = src_path.with_file_name(
+                src_path
+                    .file_name()
+                    .unwrap()
+                    .to_string_lossy()
+                    .replace("_test", "_codspeed"),
+            );
+            fs::rename(src_path, new_path.clone())?;
+            self.renamed_files.push((src_path.to_path_buf(), new_path));
+        }
+
+        Ok(())
+    }
+
+    pub fn rename_and_move_test_files<P: AsRef<Path>>(
+        &mut self,
+        files: &[P],
+        dst_dir: &P,
+    ) -> anyhow::Result<()> {
+        for src_path in files {
+            let dst_filename = src_path
+                .as_ref()
+                .file_name()
+                .unwrap()
+                .to_string_lossy()
+                .replace("_test.go", "_codspeed.go");
+            let dst_path = dst_dir.as_ref().join(&dst_filename);
+
+            fs::rename(src_path.as_ref(), &dst_path)?;
+            self.renamed_files
+                .push((src_path.as_ref().to_path_buf(), dst_path));
+        }
+
+        Ok(())
+    }
+}
+
+// The reverse operations to revert the patches
+impl Patcher {
+    pub fn revert_all(&mut self) -> anyhow::Result<()> {
+        self.revert_renames()?;
+        self.revert_patched_packages()?;
+        Ok(())
+    }
+
+    fn revert_renames(&mut self) -> anyhow::Result<()> {
+        for (original, renamed) in &self.renamed_files {
+            fs::rename(renamed, original).context(format!(
+                "Failed to revert file rename from {:?} to {:?}",
+                renamed, original
+            ))?;
+        }
+        self.renamed_files.clear();
+        Ok(())
+    }
+
+    fn revert_patched_packages(&mut self) -> anyhow::Result<()> {
+        for (pkg_path, prev_pkg_name) in &self.patched_packages {
+            let mut content = fs::read_to_string(pkg_path)
+                .context(format!("Failed to read Go file: {pkg_path:?}"))?;
+            Self::patch_package(&mut content, Some(prev_pkg_name.clone()))?;
+            fs::write(pkg_path, content)
+                .context(format!("Failed to write reverted Go file: {pkg_path:?}"))?;
+        }
+        self.patched_packages.clear();
+        Ok(())
+    }
+}
+
+impl Drop for Patcher {
+    fn drop(&mut self) {
+        self.revert_all().expect("Failed to revert patches");
+    }
+}
 
 pub fn replace_pkg<P: AsRef<Path>>(folder: P) -> anyhow::Result<()> {
     let codspeed_root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();

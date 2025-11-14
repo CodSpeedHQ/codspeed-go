@@ -38,11 +38,11 @@ pub fn run_benchmarks<P: AsRef<Path>>(
     let templater = Templater::new();
     for package in &packages {
         info!("Generating custom runner for package: {}", package.name);
-        let runner_path = templater.run(package, &profile_dir)?;
+        let ctx = templater.run(package, &profile_dir)?;
 
         info!("Building binary for package: {}", package.name);
 
-        let binary_path = match builder::build_binary(&runner_path) {
+        let binary_path = match builder::build_binary(ctx.runner_path()) {
             Ok(binary_path) => binary_path,
             Err(e) => {
                 if cfg!(test) {
