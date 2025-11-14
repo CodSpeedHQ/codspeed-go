@@ -18,7 +18,7 @@ impl RawResult {
     pub fn parse_folder<P: AsRef<Path>>(
         folder: P,
     ) -> anyhow::Result<Vec<(u32, WalltimeBenchmark)>> {
-        let glob_pattern = folder.as_ref().join("raw_results").join("*.json");
+        let glob_pattern = folder.as_ref().join("*.json");
         let result = glob::glob(&glob_pattern.to_string_lossy())?
             .par_bridge()
             .filter_map(Result::ok)

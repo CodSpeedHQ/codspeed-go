@@ -79,11 +79,17 @@ pub fn run_benchmarks<P: AsRef<Path>>(
 pub fn collect_walltime_results(profile_dir: &Path) -> anyhow::Result<()> {
     let mut benchmarks_by_pid: HashMap<u32, Vec<WalltimeBenchmark>> = HashMap::new();
 
-    for (pid, walltime_result) in RawResult::parse_folder(profile_dir)?.into_iter() {
+    let raw_results_dir = profile_dir.join("raw_results");
+    for (pid, walltime_result) in RawResult::parse_folder(&raw_results_dir)?.into_iter() {
         benchmarks_by_pid
             .entry(pid)
             .or_default()
             .push(walltime_result);
+    }
+
+    // Remove raw results directory after processing to save space
+    if raw_results_dir.exists() {
+        std::fs::remove_dir_all(&raw_results_dir)?;
     }
 
     for (pid, walltime_benchmarks) in benchmarks_by_pid {
