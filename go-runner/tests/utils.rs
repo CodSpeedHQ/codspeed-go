@@ -9,8 +9,8 @@ use std::path::Path;
 pub fn run_package_with_args(package: &BenchmarkPackage, args: &[&str]) -> anyhow::Result<String> {
     let profile_dir = tempfile::TempDir::new()?;
     let templater = Templater::new();
-    let runner_path = templater.run(package, profile_dir.as_ref())?;
-    let binary_path = builder::build_binary(&runner_path)?;
+    let ctx = templater.run(package, profile_dir.as_ref())?;
+    let binary_path = builder::build_binary(ctx.runner_path())?;
     runner::run_with_stdout(&binary_path, args)
 }
 
