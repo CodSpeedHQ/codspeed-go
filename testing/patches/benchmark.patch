@@ -181,7 +181,7 @@ index 882859b..668e674 100644
  		} else {
 -			d := b.benchTime.d
 -			for n := int64(1); !b.failed && b.duration < d && n < 1e9; {
-+			warmupD := time.Millisecond * 500
++			warmupD := b.benchTime.d / 10
 +			warmupN := int64(1)
 +			for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
  				last := n

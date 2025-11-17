@@ -425,7 +425,7 @@ func (b *B) launch() {
 				b.runN(b.benchTime.n)
 			}
 		} else {
-			warmupD := time.Millisecond * 500
+			warmupD := b.benchTime.d / 10
 			warmupN := int64(1)
 			for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
 				last := n
