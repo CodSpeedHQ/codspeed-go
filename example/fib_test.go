@@ -30,3 +30,19 @@ func BenchmarkFibonacci20_bN(b *testing.B) {
 // 		this shouldn't be executed
 // 	})
 // }
+
+func BenchmarkFibonacci20Parallel(b *testing.B) {
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			fibonacci(20)
+		}
+	})
+}
+
+func BenchmarkFibonacci10Parallel(b *testing.B) {
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			fibonacci(10)
+		}
+	})
+}

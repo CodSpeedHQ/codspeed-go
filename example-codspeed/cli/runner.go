@@ -85,6 +85,14 @@ func main() {
 			F:    example.BenchmarkFibonacci20,
 		},
 		{
+			Name: "BenchmarkFibonacci20Parallel",
+			F:    example.BenchmarkFibonacci20Parallel,
+		},
+		{
+			Name: "BenchmarkFibonacci10Parallel",
+			F:    example.BenchmarkFibonacci10Parallel,
+		},
+		{
 			Name: "BenchmarkWithSlogAssert",
 			F:    compat.BenchmarkWithSlogAssert,
 		}, {

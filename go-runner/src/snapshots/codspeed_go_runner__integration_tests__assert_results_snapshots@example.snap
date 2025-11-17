@@ -126,6 +126,28 @@ expression: results
         "stats": "[stats]"
       },
       {
+        "name": "BenchmarkFibonacci10Parallel",
+        "uri": "example/fib_test.go::BenchmarkFibonacci10Parallel",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFibonacci20Parallel",
+        "uri": "example/fib_test.go::BenchmarkFibonacci20Parallel",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
         "name": "BenchmarkFibonacci20_Loop",
         "uri": "example/fib_test.go::BenchmarkFibonacci20_Loop",
         "config": {

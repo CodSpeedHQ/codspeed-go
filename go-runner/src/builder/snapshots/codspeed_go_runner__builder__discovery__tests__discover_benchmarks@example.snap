@@ -15,6 +15,22 @@ expression: packages
         "is_external": false
       },
       {
+        "name": "BenchmarkFibonacci10Parallel",
+        "module_path": "example",
+        "import_alias": "benchmarkfibonacci10parallel_9576953055782987076",
+        "qualified_name": "benchmarkfibonacci10parallel_9576953055782987076.BenchmarkFibonacci10Parallel",
+        "file_path": "fib_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkFibonacci20Parallel",
+        "module_path": "example",
+        "import_alias": "benchmarkfibonacci20parallel_9576953055782987076",
+        "qualified_name": "benchmarkfibonacci20parallel_9576953055782987076.BenchmarkFibonacci20Parallel",
+        "file_path": "fib_test.go",
+        "is_external": false
+      },
+      {
         "name": "BenchmarkFibonacci20_Loop",
         "module_path": "example",
         "import_alias": "benchmarkfibonacci20_loop_9576953055782987076",
