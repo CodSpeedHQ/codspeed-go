@@ -55,6 +55,11 @@ apply_patch() {
     local fuzz="${2:-2}"  # Default fuzz factor is 2
     local workdir="${3:-.}"
 
+    # Convert patch_file to absolute path if it's relative
+    if [[ "$patch_file" != /* ]]; then
+        patch_file="$SCRIPT_DIR/$patch_file"
+    fi
+
     if [ ! -f "$patch_file" ]; then
         echo "ERROR: Patch file not found: $patch_file"
         return 1
@@ -63,7 +68,7 @@ apply_patch() {
     echo "Applying patch: $(basename "$patch_file")..."
 
     if [ "$workdir" != "." ]; then
-        (cd "$workdir" && patch -p1 --forward --fuzz="$fuzz" < "../$patch_file") || {
+        (cd "$workdir" && patch -p1 --forward --fuzz="$fuzz" < "$patch_file") || {
             echo "ERROR: $patch_file failed to apply cleanly"
             return 1
         }
