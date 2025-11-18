@@ -120,6 +120,8 @@ find . -type f -name "*.go" -not -name "*_test.go" -exec sed -i 's|"testing"|tes
 # Restore CodSpeed-specific files
 restore_files "${CODSPEED_FILES[@]}"
 
+apply_patch "patches/benchmark_stopbenchmark_fail.patch" 10 ".."
+
 # Run pre-commit and format the code
 go fmt ./... > /dev/null 2>&1 || true
 pre-commit run --all-files > /dev/null 2>&1 || true

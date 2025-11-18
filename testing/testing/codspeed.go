@@ -66,3 +66,11 @@ func getGitRelativePath(absPath string) string {
 
 	return filepath.Join(goRunnerMetadata.RelativePackagePath, cwdRelativePath)
 }
+
+// If the benchmark execution failed, we have to ensure to stop the benchmark, which
+// will send the event to the runner to also stop perf. Otherwise we could possibly
+// sample a lot of data that isn't relevant. Additionally, we want to ensure that
+// the emitted markers are correct (otherwise we'd have a SampleStart without a SampleStop).
+func ensureBenchmarkIsStopped(b *B) {
+	b.codspeed.instrument_hooks.StopBenchmark()
+}

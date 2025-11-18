@@ -325,6 +325,8 @@ func (b *B) run1() bool {
 	}()
 	<-b.signal
 	if b.failed {
+		// This case can happen with a `b.Loop()` benchmark if any of the iterations fail
+		ensureBenchmarkIsStopped(b)
 		fmt.Fprintf(b.w, "%s--- FAIL: %s\n%s", b.chatty.prefix(), b.name, b.output)
 		return false
 	}
@@ -888,6 +890,8 @@ func (s *benchState) processBench(b *B) {
 			}
 			r := b.doBench()
 			if b.failed {
+				ensureBenchmarkIsStopped(b)
+
 				// The output could be very long here, but probably isn't.
 				// We print it all, regardless, because we don't want to trim the reason
 				// the benchmark failed.
