@@ -5,6 +5,29 @@
 
 
 
+## [0.5.1] - 2025-11-19
+
+### <!-- 0 -->🚀 Features
+- Reduce warmup time to avoid long benchmark times by @not-matthias
+- Allow benchmarks with RunParallel by @not-matthias
+- Process raw results while running benchmarks by @not-matthias in [#38](https://github.com/CodSpeedHQ/codspeed-go/pull/38)
+- Switch to mimalloc by @not-matthias
+- Use shared temp directory for all packages by @not-matthias
+
+### <!-- 1 -->🐛 Bug Fixes
+- Emit StopBenchmark command even when benches failed by @not-matthias in [#40](https://github.com/CodSpeedHQ/codspeed-go/pull/40)
+- Local package not used due to incorrect env var by @not-matthias in [#39](https://github.com/CodSpeedHQ/codspeed-go/pull/39)
+- Clear raw_results folder after processing by @not-matthias
+- Incorrect first iteration time by @not-matthias
+
+### <!-- 2 -->🏗️ Refactor
+- Revert patches on drop by @not-matthias
+
+### <!-- 7 -->⚙️ Internals
+- Add examples with RunParallel by @not-matthias
+- Enable log warnings for external modules by @not-matthias in [#36](https://github.com/CodSpeedHQ/codspeed-go/pull/36)
+
+
 ## [0.5.0] - 2025-11-13
 
 ### <!-- 0 -->🚀 Features
@@ -27,6 +50,7 @@
 - Fix comment numbering by @not-matthias
 
 ### <!-- 7 -->⚙️ Internals
+- Release v0.5.0 by @adriencaccia
 - Add file count benchmark parameter by @not-matthias
 - Use dircpy crate to copy folders by @not-matthias
 - Add example with mod replace by @not-matthias
@@ -202,6 +226,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.5.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.0..v0.5.1
 [0.5.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.2..v0.5.0
 [0.4.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.1..v0.4.2
 [0.4.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.0..v0.4.1
