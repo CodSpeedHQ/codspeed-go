@@ -94,11 +94,12 @@ backup_files "${CODSPEED_FILES[@]}"
 
 # We need to copy the testing/ package:
 rm -rf go testing internal
-git clone -b "release-branch.go${GO_VERSION}" --depth 1 https://github.com/golang/go/
+git clone -b "go${GO_VERSION}" --depth 1 https://github.com/golang/go/
 cp -r go/src/testing testing/
 
 # Copy all required internal packages. We need them to have a clean `go mod tidy` output.
 copy_internal_packages "cpu" "fuzz" "goarch" "race" "sysinfo" "testlog" "testenv" "syscall/windows" "godebug" "synctest" "bisect" "godebugs" "cfg" "platform" "diff" "txtar"
+rm -rf go
 
 # Replace all `"internal/*"` imports with 'github.com/CodSpeedHQ/codspeed-go/testing/internal/'
 find . -type f -name "*.go" -exec sed -i 's|"internal/|"github.com/CodSpeedHQ/codspeed-go/testing/internal/|g' {} +
@@ -121,6 +122,7 @@ find . -type f -name "*.go" -not -name "*_test.go" -exec sed -i 's|"testing"|tes
 restore_files "${CODSPEED_FILES[@]}"
 
 apply_patch "patches/benchmark_stopbenchmark_fail.patch" 10 ".."
+
 
 # Run pre-commit and format the code
 go fmt ./... > /dev/null 2>&1 || true
