@@ -122,6 +122,7 @@ find . -type f -name "*.go" -not -name "*_test.go" -exec sed -i 's|"testing"|tes
 restore_files "${CODSPEED_FILES[@]}"
 
 apply_patch "patches/benchmark_stopbenchmark_fail.patch" 10 ".."
+apply_patch "patches/benchmark_stoptimer_mitigation.patch" 10 ".."
 
 
 # Run pre-commit and format the code

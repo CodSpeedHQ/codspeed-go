@@ -93,6 +93,10 @@ type codspeed struct {
 	startTimestamp  uint64
 	startTimestamps []uint64
 	stopTimestamps  []uint64
+
+	// Indicates whether a measurement has been saved already. This aims to prevent saving measurements
+	// twice, because `b.Loop()` saves them internally as well but is also called from runN
+	savedMeasurement bool
 }
 
 // B is a type passed to [Benchmark] functions to manage benchmark
@@ -160,6 +164,7 @@ func (b *B) StartTimerWithoutMarker() {
 		// b.startBytes = memStats.TotalAlloc
 		b.start = highPrecisionTimeNow()
 		b.timerOn = true
+		b.savedMeasurement = false
 		// b.loop.i &^= loopPoisonTimer
 	}
 }
@@ -186,14 +191,32 @@ func (b *B) StopTimerWithoutMarker() {
 		b.timerOn = false
 		// If we hit B.Loop with the timer stopped, fail.
 		// b.loop.i |= loopPoisonTimer
-
-		// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
-		// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
-		// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
-		// the number of iterations for this round.
-		b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
-		b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, timeSinceStart)
 	}
+}
+
+func (b *B) SaveMeasurement() {
+	if b.savedMeasurement {
+		return
+	}
+	b.savedMeasurement = true
+
+	// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
+	// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
+	// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
+	// the number of iterations for this round.
+	timeSinceStart := highPrecisionTimeSince(b.start)
+
+	// If this gets called from b.Loop(), we have to take the duration compared to the previous StartTimer,
+	// if it's called from runN, we can use b.duration
+	duration := time.Duration(0)
+	if b.N == 0 {
+		duration = timeSinceStart
+	} else {
+		duration = b.duration
+	}
+
+	b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
+	b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, duration)
 }
 
 func (b *B) StopTimer() {
@@ -296,6 +319,7 @@ func (b *B) __codspeed_root_frame__runN(n int) {
 	b.ResetTimer()
 	b.StartTimer()
 	b.benchFunc(b)
+	b.SaveMeasurement()
 	b.StopTimer()
 	b.previousN = n
 	b.previousDuration = b.duration
@@ -614,6 +638,7 @@ func (b *B) loopSlowPath() bool {
 // whereas b.N-based benchmarks must run the benchmark function (and any
 // associated setup and cleanup) several times.
 func (b *B) Loop() bool {
+	b.SaveMeasurement()
 	b.StopTimerWithoutMarker()
 	// This is written such that the fast path is as fast as possible and can be
 	// inlined.
