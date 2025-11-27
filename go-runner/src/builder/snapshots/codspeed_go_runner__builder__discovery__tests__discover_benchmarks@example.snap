@@ -61,6 +61,38 @@ expression: packages
         "qualified_name": "benchmarklargesetupinloop_9576953055782987076.BenchmarkLargeSetupInLoop",
         "file_path": "setup_test.go",
         "is_external": false
+      },
+      {
+        "name": "BenchmarkWithOutlierMeasurementModern",
+        "module_path": "example",
+        "import_alias": "benchmarkwithoutliermeasurementmodern_9576953055782987076",
+        "qualified_name": "benchmarkwithoutliermeasurementmodern_9576953055782987076.BenchmarkWithOutlierMeasurementModern",
+        "file_path": "setup_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkWithOutlierMeasurementTraditional",
+        "module_path": "example",
+        "import_alias": "benchmarkwithoutliermeasurementtraditional_9576953055782987076",
+        "qualified_name": "benchmarkwithoutliermeasurementtraditional_9576953055782987076.BenchmarkWithOutlierMeasurementTraditional",
+        "file_path": "setup_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkWithoutStartupModern",
+        "module_path": "example",
+        "import_alias": "benchmarkwithoutstartupmodern_9576953055782987076",
+        "qualified_name": "benchmarkwithoutstartupmodern_9576953055782987076.BenchmarkWithoutStartupModern",
+        "file_path": "setup_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkWithoutStartupTraditional",
+        "module_path": "example",
+        "import_alias": "benchmarkwithoutstartuptraditional_9576953055782987076",
+        "qualified_name": "benchmarkwithoutstartuptraditional_9576953055782987076.BenchmarkWithoutStartupTraditional",
+        "file_path": "setup_test.go",
+        "is_external": false
       }
     ]
   },

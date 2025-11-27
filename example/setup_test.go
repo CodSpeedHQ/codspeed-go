@@ -3,6 +3,7 @@ package example
 import (
 	"runtime"
 	"testing"
+	"time"
 )
 
 func BenchmarkLargeSetup(b *testing.B) {
@@ -49,4 +50,42 @@ func BenchmarkLargeSetupInLoop(b *testing.B) {
 		b.StopTimer()
 	}
 	runtime.KeepAlive(result)
+}
+
+func BenchmarkWithOutlierMeasurementTraditional(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		time.Sleep(10 * time.Millisecond)
+		b.StartTimer()
+
+		time.Sleep(1 * time.Millisecond)
+	}
+}
+
+func BenchmarkWithOutlierMeasurementModern(b *testing.B) {
+	b.ResetTimer()
+	for b.Loop() {
+		b.StopTimer()
+		time.Sleep(10 * time.Millisecond)
+		b.StartTimer()
+
+		time.Sleep(1 * time.Millisecond)
+	}
+}
+
+func BenchmarkWithoutStartupModern(b *testing.B) {
+	time.Sleep(10 * time.Millisecond)
+	b.ResetTimer()
+	for b.Loop() {
+		time.Sleep(1 * time.Millisecond)
+	}
+}
+
+func BenchmarkWithoutStartupTraditional(b *testing.B) {
+	time.Sleep(10 * time.Millisecond)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		time.Sleep(1 * time.Millisecond)
+	}
 }

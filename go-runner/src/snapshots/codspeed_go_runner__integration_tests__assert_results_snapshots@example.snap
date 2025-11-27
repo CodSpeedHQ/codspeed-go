@@ -181,8 +181,41 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkLargeSetupInLoop",
-        "uri": "example/setup_test.go::BenchmarkLargeSetupInLoop",
+        "name": "BenchmarkWithOutlierMeasurementModern",
+        "uri": "example/setup_test.go::BenchmarkWithOutlierMeasurementModern",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWithOutlierMeasurementTraditional",
+        "uri": "example/setup_test.go::BenchmarkWithOutlierMeasurementTraditional",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWithoutStartupModern",
+        "uri": "example/setup_test.go::BenchmarkWithoutStartupModern",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWithoutStartupTraditional",
+        "uri": "example/setup_test.go::BenchmarkWithoutStartupTraditional",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
