@@ -79,6 +79,22 @@ expression: packages
         "is_external": false
       },
       {
+        "name": "BenchmarkWithStopModern",
+        "module_path": "example",
+        "import_alias": "benchmarkwithstopmodern_9576953055782987076",
+        "qualified_name": "benchmarkwithstopmodern_9576953055782987076.BenchmarkWithStopModern",
+        "file_path": "setup_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkWithStopTraditional",
+        "module_path": "example",
+        "import_alias": "benchmarkwithstoptraditional_9576953055782987076",
+        "qualified_name": "benchmarkwithstoptraditional_9576953055782987076.BenchmarkWithStopTraditional",
+        "file_path": "setup_test.go",
+        "is_external": false
+      },
+      {
         "name": "BenchmarkWithoutStartupModern",
         "module_path": "example",
         "import_alias": "benchmarkwithoutstartupmodern_9576953055782987076",

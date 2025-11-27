@@ -89,3 +89,25 @@ func BenchmarkWithoutStartupTraditional(b *testing.B) {
 		time.Sleep(1 * time.Millisecond)
 	}
 }
+
+func BenchmarkWithStopTraditional(b *testing.B) {
+	time.Sleep(2 * time.Millisecond)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		time.Sleep(1 * time.Millisecond)
+	}
+
+	b.StopTimer()
+}
+
+func BenchmarkWithStopModern(b *testing.B) {
+	time.Sleep(2 * time.Millisecond)
+
+	b.ResetTimer()
+	for b.Loop() {
+		time.Sleep(1 * time.Millisecond)
+	}
+
+	b.StopTimer()
+}
