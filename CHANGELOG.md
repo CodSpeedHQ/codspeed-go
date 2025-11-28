@@ -5,6 +5,18 @@
 
 
 
+## [0.6.0] - 2025-11-28
+
+### <!-- 1 -->🐛 Bug Fixes
+- Emit markers for benchmarks using b.Loop() by @not-matthias in [#42](https://github.com/CodSpeedHQ/codspeed-go/pull/42)
+- Save measurements only in the benchmark framework by @not-matthias in [#41](https://github.com/CodSpeedHQ/codspeed-go/pull/41)
+- Use precise version in fork script by @not-matthias
+
+### <!-- 7 -->⚙️ Internals
+- Add edge case where timer is stopped at end of benchmark by @not-matthias
+- Add more test cases to handle setup scenarios by @not-matthias
+
+
 ## [0.5.1] - 2025-11-19
 
 ### <!-- 0 -->🚀 Features
@@ -24,6 +36,7 @@
 - Revert patches on drop by @not-matthias
 
 ### <!-- 7 -->⚙️ Internals
+- Release v0.5.1 by @adriencaccia
 - Add examples with RunParallel by @not-matthias
 - Enable log warnings for external modules by @not-matthias in [#36](https://github.com/CodSpeedHQ/codspeed-go/pull/36)
 
@@ -226,6 +239,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.6.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.1..v0.6.0
 [0.5.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.0..v0.5.1
 [0.5.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.2..v0.5.0
 [0.4.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.1..v0.4.2
