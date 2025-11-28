@@ -226,15 +226,7 @@ func (b *B) StopTimer() {
 	b.StopTimerWithoutMarker()
 
 	if timerOn {
-		if b.startTimestamp >= endTimestamp {
-			// This should never happen, unless we have a bug in the timer logic.
-			panic(fmt.Sprintf("Invalid benchmark timestamps: start timestamp (%d) is greater than or equal to end timestamp (%d)", b.startTimestamp, endTimestamp))
-		}
-		b.startTimestamps = append(b.startTimestamps, b.startTimestamp)
-		b.stopTimestamps = append(b.stopTimestamps, endTimestamp)
-
-		// Reset to prevent accidental reuse
-		b.startTimestamp = 0
+		b.AddBenchmarkMarkers(endTimestamp)
 	}
 }
 
@@ -587,7 +579,18 @@ func (b *B) loopSlowPath() bool {
 		more = b.stopOrScaleBLoop()
 	}
 	if !more {
-		b.StopTimerWithoutMarker()
+		// NOTE: We could move the endTimestamp capturing further up or even into the Loop() function
+		// but this will result in a huge performance degradation since the C FFI calls are expensive.
+		//
+		// The only downside of having this here, is that there's a small chance of perf sampling the
+		// benchmark framework code which already happens anyway because we only emit 1 pair of
+		// start/stop markers per benchmark to minimize overhead and allow full flamegraphs.
+		endTimestamp := capi.CurrentTimestamp()
+
+		// Edge case: The timer is stopped in b.Loop() which prevents any further calls to
+		// StopTimer() from adding the benchmark markers. We have to manually submit them here,
+		// once the benchmark loop is done.
+		b.AddBenchmarkMarkers(endTimestamp)
 		b.codspeed.instrument_hooks.StopBenchmark()
 		b.sendAccumulatedTimestamps()
 

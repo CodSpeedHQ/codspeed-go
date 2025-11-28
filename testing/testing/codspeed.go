@@ -74,3 +74,16 @@ func getGitRelativePath(absPath string) string {
 func ensureBenchmarkIsStopped(b *B) {
 	b.codspeed.instrument_hooks.StopBenchmark()
 }
+
+func (b *B) AddBenchmarkMarkers(endTimestamp uint64) {
+	if b.startTimestamp >= endTimestamp {
+		// This should never happen, unless we have a bug in the timer logic.
+		panic(fmt.Sprintf("Invalid benchmark timestamps: start timestamp (%d) is greater than or equal to end timestamp (%d)", b.startTimestamp, endTimestamp))
+	}
+
+	b.startTimestamps = append(b.startTimestamps, b.startTimestamp)
+	b.stopTimestamps = append(b.stopTimestamps, endTimestamp)
+
+	// Reset to prevent accidental reuse
+	b.startTimestamp = 0
+}
