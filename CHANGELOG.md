@@ -5,6 +5,12 @@
 
 
 
+## [0.6.1] - 2025-12-04
+
+### <!-- 1 -->🐛 Bug Fixes
+- Incomplete reading of benchmark time in b.N loops by @not-matthias in [#43](https://github.com/CodSpeedHQ/codspeed-go/pull/43)
+
+
 ## [0.6.0] - 2025-11-28
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -13,6 +19,7 @@
 - Use precise version in fork script by @not-matthias
 
 ### <!-- 7 -->⚙️ Internals
+- Release v0.6.0 by @adriencaccia
 - Add edge case where timer is stopped at end of benchmark by @not-matthias
 - Add more test cases to handle setup scenarios by @not-matthias
 
@@ -239,6 +246,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.6.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.0..v0.6.1
 [0.6.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.1..v0.6.0
 [0.5.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.0..v0.5.1
 [0.5.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.4.2..v0.5.0
