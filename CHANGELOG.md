@@ -5,10 +5,22 @@
 
 
 
+## [0.6.2] - 2025-12-15
+
+### <!-- 1 -->🐛 Bug Fixes
+- Remove codspeed folder used for integration tests by @not-matthias in [#45](https://github.com/CodSpeedHQ/codspeed-go/pull/45)
+
+### <!-- 7 -->⚙️ Internals
+- Add example using integration test by @not-matthias
+
+
 ## [0.6.1] - 2025-12-04
 
 ### <!-- 1 -->🐛 Bug Fixes
 - Incomplete reading of benchmark time in b.N loops by @not-matthias in [#43](https://github.com/CodSpeedHQ/codspeed-go/pull/43)
+
+### <!-- 7 -->⚙️ Internals
+- Release v0.6.1 by @adriencaccia
 
 
 ## [0.6.0] - 2025-11-28
@@ -246,6 +258,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[0.6.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.1..v0.6.2
 [0.6.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.0..v0.6.1
 [0.6.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.1..v0.6.0
 [0.5.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.0..v0.5.1
