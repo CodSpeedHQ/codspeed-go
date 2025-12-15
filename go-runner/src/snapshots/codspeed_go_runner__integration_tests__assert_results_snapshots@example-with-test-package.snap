@@ -15,7 +15,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkAdd",
-        "uri": "go-runner/testdata/projects/example-with-test-package/codspeed/math_test.go::BenchmarkAdd",
+        "uri": "go-runner/testdata/projects/example-with-test-package/math_test.go::BenchmarkAdd",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -26,7 +26,7 @@ expression: results
       },
       {
         "name": "BenchmarkMultiply",
-        "uri": "go-runner/testdata/projects/example-with-test-package/codspeed/math_test.go::BenchmarkMultiply",
+        "uri": "go-runner/testdata/projects/example-with-test-package/math_test.go::BenchmarkMultiply",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -106,7 +106,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkFibonacci20",
-        "uri": "go-runner/testdata/projects/example-with-test-package/fib_external/codspeed/fib_integration_test.go::BenchmarkFibonacci20",
+        "uri": "go-runner/testdata/projects/example-with-test-package/fib_external/fib_integration_test.go::BenchmarkFibonacci20",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

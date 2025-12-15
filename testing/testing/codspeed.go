@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type GoRunnerMetadata struct {
@@ -86,4 +87,17 @@ func (b *B) AddBenchmarkMarkers(endTimestamp uint64) {
 
 	// Reset to prevent accidental reuse
 	b.startTimestamp = 0
+}
+
+func removeFolderFromPath(path string, folder string) string {
+	parts := strings.Split(path, string(os.PathSeparator))
+
+	var newParts []string
+	for _, p := range parts {
+		if p != folder {
+			newParts = append(newParts, p)
+		}
+	}
+
+	return filepath.Join(newParts...)
 }

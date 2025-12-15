@@ -966,6 +966,9 @@ func (s *benchState) processBench(b *B) {
 			relativeBenchFile := getGitRelativePath(benchFile)
 			if strings.HasSuffix(relativeBenchFile, "_codspeed.go") {
 				relativeBenchFile = strings.TrimSuffix(relativeBenchFile, "_codspeed.go") + "_test.go"
+
+				// Remove the 'codspeed/' folder which is used for external tests
+				relativeBenchFile = removeFolderFromPath(relativeBenchFile, "codspeed")
 			}
 
 			// Build custom bench name with :: separator

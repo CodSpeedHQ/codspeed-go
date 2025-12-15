@@ -568,7 +568,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkJSONLogMarshalerFunc",
-        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkJSONLogMarshalerFunc",
+        "uri": "zapcore/json_encoder_bench_test.go::BenchmarkJSONLogMarshalerFunc",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -579,7 +579,7 @@ expression: results
       },
       {
         "name": "BenchmarkSampler_Check::100_keys",
-        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_Check::100_keys",
+        "uri": "zapcore/sampler_bench_test.go::BenchmarkSampler_Check::100_keys",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -590,7 +590,7 @@ expression: results
       },
       {
         "name": "BenchmarkSampler_Check::50_keys",
-        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_Check::50_keys",
+        "uri": "zapcore/sampler_bench_test.go::BenchmarkSampler_Check::50_keys",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -601,7 +601,7 @@ expression: results
       },
       {
         "name": "BenchmarkSampler_Check::7_keys",
-        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_Check::7_keys",
+        "uri": "zapcore/sampler_bench_test.go::BenchmarkSampler_Check::7_keys",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -612,7 +612,7 @@ expression: results
       },
       {
         "name": "BenchmarkSampler_CheckWithHook::100_keys",
-        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::100_keys",
+        "uri": "zapcore/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::100_keys",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -623,7 +623,7 @@ expression: results
       },
       {
         "name": "BenchmarkSampler_CheckWithHook::50_keys",
-        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::50_keys",
+        "uri": "zapcore/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::50_keys",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -634,7 +634,7 @@ expression: results
       },
       {
         "name": "BenchmarkSampler_CheckWithHook::7_keys",
-        "uri": "zapcore/codspeed/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::7_keys",
+        "uri": "zapcore/sampler_bench_test.go::BenchmarkSampler_CheckWithHook::7_keys",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -645,7 +645,7 @@ expression: results
       },
       {
         "name": "BenchmarkStandardJSON",
-        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkStandardJSON",
+        "uri": "zapcore/json_encoder_bench_test.go::BenchmarkStandardJSON",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -656,7 +656,7 @@ expression: results
       },
       {
         "name": "BenchmarkTeeCheck",
-        "uri": "zapcore/codspeed/tee_logger_bench_test.go::BenchmarkTeeCheck",
+        "uri": "zapcore/tee_logger_bench_test.go::BenchmarkTeeCheck",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -667,7 +667,7 @@ expression: results
       },
       {
         "name": "BenchmarkZapConsole",
-        "uri": "zapcore/codspeed/console_encoder_bench_test.go::BenchmarkZapConsole",
+        "uri": "zapcore/console_encoder_bench_test.go::BenchmarkZapConsole",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -678,7 +678,7 @@ expression: results
       },
       {
         "name": "BenchmarkZapJSON",
-        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkZapJSON",
+        "uri": "zapcore/json_encoder_bench_test.go::BenchmarkZapJSON",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -689,7 +689,7 @@ expression: results
       },
       {
         "name": "BenchmarkZapJSONFloat32AndComplex64",
-        "uri": "zapcore/codspeed/json_encoder_bench_test.go::BenchmarkZapJSONFloat32AndComplex64",
+        "uri": "zapcore/json_encoder_bench_test.go::BenchmarkZapJSONFloat32AndComplex64",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

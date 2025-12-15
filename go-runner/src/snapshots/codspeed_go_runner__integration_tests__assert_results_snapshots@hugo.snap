@@ -15,7 +15,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkAbsURL::absurl",
-        "uri": "helpers/codspeed/url_test.go::BenchmarkAbsURL::absurl",
+        "uri": "helpers/url_test.go::BenchmarkAbsURL::absurl",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -26,7 +26,7 @@ expression: results
       },
       {
         "name": "BenchmarkAbsURL::relurl",
-        "uri": "helpers/codspeed/url_test.go::BenchmarkAbsURL::relurl",
+        "uri": "helpers/url_test.go::BenchmarkAbsURL::relurl",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -37,7 +37,7 @@ expression: results
       },
       {
         "name": "BenchmarkReaderContains",
-        "uri": "helpers/codspeed/general_test.go::BenchmarkReaderContains",
+        "uri": "helpers/general_test.go::BenchmarkReaderContains",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -48,7 +48,7 @@ expression: results
       },
       {
         "name": "BenchmarkRelURL",
-        "uri": "helpers/codspeed/url_test.go::BenchmarkRelURL",
+        "uri": "helpers/url_test.go::BenchmarkRelURL",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -59,7 +59,7 @@ expression: results
       },
       {
         "name": "BenchmarkTotalWords",
-        "uri": "helpers/codspeed/content_test.go::BenchmarkTotalWords",
+        "uri": "helpers/content_test.go::BenchmarkTotalWords",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -70,7 +70,7 @@ expression: results
       },
       {
         "name": "BenchmarkTrimShortHTML",
-        "uri": "helpers/codspeed/content_test.go::BenchmarkTrimShortHTML",
+        "uri": "helpers/content_test.go::BenchmarkTrimShortHTML",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -81,7 +81,7 @@ expression: results
       },
       {
         "name": "BenchmarkUniqueStrings::Reuse_slice",
-        "uri": "helpers/codspeed/general_test.go::BenchmarkUniqueStrings::Reuse_slice",
+        "uri": "helpers/general_test.go::BenchmarkUniqueStrings::Reuse_slice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -92,7 +92,7 @@ expression: results
       },
       {
         "name": "BenchmarkUniqueStrings::Reuse_slice_sorted",
-        "uri": "helpers/codspeed/general_test.go::BenchmarkUniqueStrings::Reuse_slice_sorted",
+        "uri": "helpers/general_test.go::BenchmarkUniqueStrings::Reuse_slice_sorted",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -103,7 +103,7 @@ expression: results
       },
       {
         "name": "BenchmarkUniqueStrings::Safe",
-        "uri": "helpers/codspeed/general_test.go::BenchmarkUniqueStrings::Safe",
+        "uri": "helpers/general_test.go::BenchmarkUniqueStrings::Safe",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1119,7 +1119,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkCodeblocks::Default",
-        "uri": "markup/goldmark/codspeed/goldmark_integration_test.go::BenchmarkCodeblocks::Default",
+        "uri": "markup/goldmark/goldmark_integration_test.go::BenchmarkCodeblocks::Default",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1130,7 +1130,7 @@ expression: results
       },
       {
         "name": "BenchmarkCodeblocks::Hook_no_higlight",
-        "uri": "markup/goldmark/codspeed/goldmark_integration_test.go::BenchmarkCodeblocks::Hook_no_higlight",
+        "uri": "markup/goldmark/goldmark_integration_test.go::BenchmarkCodeblocks::Hook_no_higlight",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1141,7 +1141,7 @@ expression: results
       },
       {
         "name": "BenchmarkRenderHooks",
-        "uri": "markup/goldmark/codspeed/goldmark_integration_test.go::BenchmarkRenderHooks",
+        "uri": "markup/goldmark/goldmark_integration_test.go::BenchmarkRenderHooks",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1502,7 +1502,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkExecuteWithContext",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkExecuteWithContext",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkExecuteWithContext",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1513,7 +1513,7 @@ expression: results
       },
       {
         "name": "BenchmarkLookupPagesLayout::Single_root",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupPagesLayout::Single_root",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkLookupPagesLayout::Single_root",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1524,7 +1524,7 @@ expression: results
       },
       {
         "name": "BenchmarkLookupPagesLayout::Single_sub_folder",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupPagesLayout::Single_sub_folder",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkLookupPagesLayout::Single_sub_folder",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1535,7 +1535,7 @@ expression: results
       },
       {
         "name": "BenchmarkLookupPartial",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupPartial",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkLookupPartial",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1546,7 +1546,7 @@ expression: results
       },
       {
         "name": "BenchmarkLookupShortcode::nestedpage",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupShortcode::nestedpage",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkLookupShortcode::nestedpage",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1557,7 +1557,7 @@ expression: results
       },
       {
         "name": "BenchmarkLookupShortcode::toplevelpage",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkLookupShortcode::toplevelpage",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkLookupShortcode::toplevelpage",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1568,7 +1568,7 @@ expression: results
       },
       {
         "name": "BenchmarkNewTemplateStore",
-        "uri": "tpl/tplimpl/codspeed/templatestore_integration_test.go::BenchmarkNewTemplateStore",
+        "uri": "tpl/tplimpl/templatestore_integration_test.go::BenchmarkNewTemplateStore",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1591,7 +1591,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkFinder::Find_none",
-        "uri": "identity/codspeed/finder_test.go::BenchmarkFinder::Find_none",
+        "uri": "identity/finder_test.go::BenchmarkFinder::Find_none",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1602,7 +1602,7 @@ expression: results
       },
       {
         "name": "BenchmarkFinder::Find_one",
-        "uri": "identity/codspeed/finder_test.go::BenchmarkFinder::Find_one",
+        "uri": "identity/finder_test.go::BenchmarkFinder::Find_one",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1613,7 +1613,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Add_duplicates",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Add_duplicates",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Add_duplicates",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1624,7 +1624,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Add_unique",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Add_unique",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Add_unique",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1635,7 +1635,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Nop_Anonymous",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_Anonymous",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Nop_Anonymous",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1646,7 +1646,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Nop_StringIdentity_const",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_const",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_const",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1657,7 +1657,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Nop_StringIdentity_const_other_package",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_const_other_package",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_const_other_package",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1668,7 +1668,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Nop_StringIdentity_var",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_var",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Nop_StringIdentity_var",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1679,7 +1679,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::Nop_pointer_identity",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::Nop_pointer_identity",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::Nop_pointer_identity",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1690,7 +1690,7 @@ expression: results
       },
       {
         "name": "BenchmarkIdentityManager::identity.NewManager",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIdentityManager::identity.NewManager",
+        "uri": "identity/identity_test.go::BenchmarkIdentityManager::identity.NewManager",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -1701,7 +1701,7 @@ expression: results
       },
       {
         "name": "BenchmarkIsNotDependent::Nested_not_found_10_5",
-        "uri": "identity/codspeed/identity_test.go::BenchmarkIsNotDependent::Nested_not_found_10_5",
+        "uri": "identity/identity_test.go::BenchmarkIsNotDependent::Nested_not_found_10_5",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2349,7 +2349,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkImageExif::Cold_cache",
-        "uri": "resources/codspeed/image_test.go::BenchmarkImageExif::Cold_cache",
+        "uri": "resources/image_test.go::BenchmarkImageExif::Cold_cache",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2360,7 +2360,7 @@ expression: results
       },
       {
         "name": "BenchmarkImageExif::Cold_cache,_10",
-        "uri": "resources/codspeed/image_test.go::BenchmarkImageExif::Cold_cache,_10",
+        "uri": "resources/image_test.go::BenchmarkImageExif::Cold_cache,_10",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2371,7 +2371,7 @@ expression: results
       },
       {
         "name": "BenchmarkImageExif::Warm_cache",
-        "uri": "resources/codspeed/image_test.go::BenchmarkImageExif::Warm_cache",
+        "uri": "resources/image_test.go::BenchmarkImageExif::Warm_cache",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2382,7 +2382,7 @@ expression: results
       },
       {
         "name": "BenchmarkResizeParallel",
-        "uri": "resources/codspeed/image_test.go::BenchmarkResizeParallel",
+        "uri": "resources/image_test.go::BenchmarkResizeParallel",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2405,7 +2405,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkInWithCaching",
-        "uri": "tpl/time/codspeed/time_test.go::BenchmarkInWithCaching",
+        "uri": "tpl/time/time_test.go::BenchmarkInWithCaching",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2416,7 +2416,7 @@ expression: results
       },
       {
         "name": "BenchmarkInWithoutCaching",
-        "uri": "tpl/time/codspeed/time_test.go::BenchmarkInWithoutCaching",
+        "uri": "tpl/time/time_test.go::BenchmarkInWithoutCaching",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -2439,7 +2439,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkIncludeCached",
-        "uri": "tpl/partials/codspeed/partials_integration_test.go::BenchmarkIncludeCached",
+        "uri": "tpl/partials/partials_integration_test.go::BenchmarkIncludeCached",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3163,7 +3163,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkRelatedSite",
-        "uri": "related/codspeed/related_integration_test.go::BenchmarkRelatedSite",
+        "uri": "related/related_integration_test.go::BenchmarkRelatedSite",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3390,7 +3390,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkTreeInsert::1000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::1000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkTreeInsert::1000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3401,7 +3401,7 @@ expression: results
       },
       {
         "name": "BenchmarkTreeInsert::10000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::10000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkTreeInsert::10000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3412,7 +3412,7 @@ expression: results
       },
       {
         "name": "BenchmarkTreeInsert::100000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::100000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkTreeInsert::100000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3423,7 +3423,7 @@ expression: results
       },
       {
         "name": "BenchmarkTreeInsert::300000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkTreeInsert::300000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkTreeInsert::300000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3434,7 +3434,7 @@ expression: results
       },
       {
         "name": "BenchmarkWalk::Walk_all_dimensions_1000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_1000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_1000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3445,7 +3445,7 @@ expression: results
       },
       {
         "name": "BenchmarkWalk::Walk_all_dimensions_10000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_10000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_10000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3456,7 +3456,7 @@ expression: results
       },
       {
         "name": "BenchmarkWalk::Walk_all_dimensions_100000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_100000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkWalk::Walk_all_dimensions_100000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3467,7 +3467,7 @@ expression: results
       },
       {
         "name": "BenchmarkWalk::Walk_one_dimension_1000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_1000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_1000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3478,7 +3478,7 @@ expression: results
       },
       {
         "name": "BenchmarkWalk::Walk_one_dimension_10000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_10000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_10000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -3489,7 +3489,7 @@ expression: results
       },
       {
         "name": "BenchmarkWalk::Walk_one_dimension_100000",
-        "uri": "hugolib/doctree/codspeed/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_100000",
+        "uri": "hugolib/doctree/nodeshiftree_test.go::BenchmarkWalk::Walk_one_dimension_100000",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

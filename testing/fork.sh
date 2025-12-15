@@ -125,6 +125,7 @@ apply_patch "patches/benchmark_stopbenchmark_fail.patch" 10 ".."
 apply_patch "patches/benchmark_stoptimer_mitigation.patch" 10 ".."
 apply_patch "patches/benchmark_benchmarkers_bloop.patch" 10 ".."
 apply_patch "patches/benchmark_savemeasurement_bug.patch" 10 ".."
+apply_patch "patches/benchmark_remove_codspeed_folder.patch" 10 ".."
 
 
 # Run pre-commit and format the code

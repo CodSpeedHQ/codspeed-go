@@ -15,7 +15,7 @@ expression: results
     "benchmarks": [
       {
         "name": "Benchmark::Pooler",
-        "uri": "diode/codspeed/diode_test.go::Benchmark::Pooler",
+        "uri": "diode/diode_test.go::Benchmark::Pooler",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -26,7 +26,7 @@ expression: results
       },
       {
         "name": "Benchmark::Waiter",
-        "uri": "diode/codspeed/diode_test.go::Benchmark::Waiter",
+        "uri": "diode/diode_test.go::Benchmark::Waiter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -480,7 +480,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkConsoleWriter",
-        "uri": "codspeed/console_test.go::BenchmarkConsoleWriter",
+        "uri": "console_test.go::BenchmarkConsoleWriter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

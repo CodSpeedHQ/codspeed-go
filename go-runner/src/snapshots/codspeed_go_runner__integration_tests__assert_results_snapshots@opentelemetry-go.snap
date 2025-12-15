@@ -82,7 +82,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkBool::AsBool",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::AsBool",
+        "uri": "attribute/benchmark_test.go::BenchmarkBool::AsBool",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -93,7 +93,7 @@ expression: results
       },
       {
         "name": "BenchmarkBool::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkBool::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -104,7 +104,7 @@ expression: results
       },
       {
         "name": "BenchmarkBool::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkBool::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -115,7 +115,7 @@ expression: results
       },
       {
         "name": "BenchmarkBool::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBool::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkBool::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -126,7 +126,7 @@ expression: results
       },
       {
         "name": "BenchmarkBoolSlice::AsBoolSlice",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::AsBoolSlice",
+        "uri": "attribute/benchmark_test.go::BenchmarkBoolSlice::AsBoolSlice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -137,7 +137,7 @@ expression: results
       },
       {
         "name": "BenchmarkBoolSlice::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkBoolSlice::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -148,7 +148,7 @@ expression: results
       },
       {
         "name": "BenchmarkBoolSlice::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkBoolSlice::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -159,7 +159,7 @@ expression: results
       },
       {
         "name": "BenchmarkBoolSlice::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkBoolSlice::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkBoolSlice::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -170,7 +170,7 @@ expression: results
       },
       {
         "name": "BenchmarkEquivalentMapAccess::10_int_attributes",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::10_int_attributes",
+        "uri": "attribute/benchmark_test.go::BenchmarkEquivalentMapAccess::10_int_attributes",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -181,7 +181,7 @@ expression: results
       },
       {
         "name": "BenchmarkEquivalentMapAccess::10_string_attributes",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::10_string_attributes",
+        "uri": "attribute/benchmark_test.go::BenchmarkEquivalentMapAccess::10_string_attributes",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -192,7 +192,7 @@ expression: results
       },
       {
         "name": "BenchmarkEquivalentMapAccess::1_int_attribute",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::1_int_attribute",
+        "uri": "attribute/benchmark_test.go::BenchmarkEquivalentMapAccess::1_int_attribute",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -203,7 +203,7 @@ expression: results
       },
       {
         "name": "BenchmarkEquivalentMapAccess::1_string_attribute",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::1_string_attribute",
+        "uri": "attribute/benchmark_test.go::BenchmarkEquivalentMapAccess::1_string_attribute",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -214,7 +214,7 @@ expression: results
       },
       {
         "name": "BenchmarkEquivalentMapAccess::Empty",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkEquivalentMapAccess::Empty",
+        "uri": "attribute/benchmark_test.go::BenchmarkEquivalentMapAccess::Empty",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -225,7 +225,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::AllDropped::NewSetWithFiltered",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::AllDropped::NewSetWithFiltered",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::AllDropped::NewSetWithFiltered",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -236,7 +236,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::AllDropped::Set.Filter",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::AllDropped::Set.Filter",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::AllDropped::Set.Filter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -247,7 +247,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::Filtered::NewSetWithFiltered",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::Filtered::NewSetWithFiltered",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::Filtered::NewSetWithFiltered",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -258,7 +258,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::Filtered::Set.Filter",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::Filtered::Set.Filter",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::Filtered::Set.Filter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -269,7 +269,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::NoFilter::NewSetWithFiltered",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFilter::NewSetWithFiltered",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::NoFilter::NewSetWithFiltered",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -280,7 +280,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::NoFilter::Set.Filter",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFilter::Set.Filter",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::NoFilter::Set.Filter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -291,7 +291,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::NoFiltered::NewSetWithFiltered",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFiltered::NewSetWithFiltered",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::NoFiltered::NewSetWithFiltered",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -302,7 +302,7 @@ expression: results
       },
       {
         "name": "BenchmarkFiltering::NoFiltered::Set.Filter",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkFiltering::NoFiltered::Set.Filter",
+        "uri": "attribute/set_test.go::BenchmarkFiltering::NoFiltered::Set.Filter",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -313,7 +313,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64::AsFloat64",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::AsFloat64",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64::AsFloat64",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -324,7 +324,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -335,7 +335,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -346,7 +346,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -357,7 +357,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64Slice::AsFloat64Slice",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::AsFloat64Slice",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64Slice::AsFloat64Slice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -368,7 +368,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64Slice::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64Slice::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -379,7 +379,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64Slice::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64Slice::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -390,7 +390,7 @@ expression: results
       },
       {
         "name": "BenchmarkFloat64Slice::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkFloat64Slice::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkFloat64Slice::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -401,7 +401,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64::AsInt64",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::AsInt64",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64::AsInt64",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -412,7 +412,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -423,7 +423,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -434,7 +434,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -445,7 +445,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64Slice::AsInt64Slice",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::AsInt64Slice",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64Slice::AsInt64Slice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -456,7 +456,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64Slice::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64Slice::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -467,7 +467,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64Slice::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64Slice::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -478,7 +478,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt64Slice::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt64Slice::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt64Slice::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -489,7 +489,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -500,7 +500,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -511,7 +511,7 @@ expression: results
       },
       {
         "name": "BenchmarkInt::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkInt::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkInt::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -522,7 +522,7 @@ expression: results
       },
       {
         "name": "BenchmarkIntSlice::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkIntSlice::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkIntSlice::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -533,7 +533,7 @@ expression: results
       },
       {
         "name": "BenchmarkIntSlice::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkIntSlice::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkIntSlice::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -544,7 +544,7 @@ expression: results
       },
       {
         "name": "BenchmarkIntSlice::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkIntSlice::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkIntSlice::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -555,7 +555,7 @@ expression: results
       },
       {
         "name": "BenchmarkNewSet",
-        "uri": "attribute/codspeed/set_test.go::BenchmarkNewSet",
+        "uri": "attribute/set_test.go::BenchmarkNewSet",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -566,7 +566,7 @@ expression: results
       },
       {
         "name": "BenchmarkString::AsString",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::AsString",
+        "uri": "attribute/benchmark_test.go::BenchmarkString::AsString",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -577,7 +577,7 @@ expression: results
       },
       {
         "name": "BenchmarkString::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkString::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -588,7 +588,7 @@ expression: results
       },
       {
         "name": "BenchmarkString::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkString::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -599,7 +599,7 @@ expression: results
       },
       {
         "name": "BenchmarkString::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkString::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkString::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -610,7 +610,7 @@ expression: results
       },
       {
         "name": "BenchmarkStringSlice::AsStringSlice",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::AsStringSlice",
+        "uri": "attribute/benchmark_test.go::BenchmarkStringSlice::AsStringSlice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -621,7 +621,7 @@ expression: results
       },
       {
         "name": "BenchmarkStringSlice::Emit",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::Emit",
+        "uri": "attribute/benchmark_test.go::BenchmarkStringSlice::Emit",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -632,7 +632,7 @@ expression: results
       },
       {
         "name": "BenchmarkStringSlice::KeyValue",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::KeyValue",
+        "uri": "attribute/benchmark_test.go::BenchmarkStringSlice::KeyValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -643,7 +643,7 @@ expression: results
       },
       {
         "name": "BenchmarkStringSlice::Value",
-        "uri": "attribute/codspeed/benchmark_test.go::BenchmarkStringSlice::Value",
+        "uri": "attribute/benchmark_test.go::BenchmarkStringSlice::Value",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -666,7 +666,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkExtract::BogusVersion",
-        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkExtract::BogusVersion",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::BogusVersion",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -677,7 +677,7 @@ expression: results
       },
       {
         "name": "BenchmarkExtract::FutureAdditionalData",
-        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkExtract::FutureAdditionalData",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::FutureAdditionalData",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -688,7 +688,7 @@ expression: results
       },
       {
         "name": "BenchmarkExtract::Sampled",
-        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkExtract::Sampled",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::Sampled",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -699,7 +699,7 @@ expression: results
       },
       {
         "name": "BenchmarkInject::SampledSpanContext",
-        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkInject::SampledSpanContext",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkInject::SampledSpanContext",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -710,7 +710,7 @@ expression: results
       },
       {
         "name": "BenchmarkInject::WithoutSpanContext",
-        "uri": "propagation/codspeed/trace_context_benchmark_test.go::BenchmarkInject::WithoutSpanContext",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkInject::WithoutSpanContext",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

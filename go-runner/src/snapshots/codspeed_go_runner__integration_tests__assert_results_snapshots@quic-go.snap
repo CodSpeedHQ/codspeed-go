@@ -681,7 +681,7 @@ expression: results
     "benchmarks": [
       {
         "name": "BenchmarkHandshake",
-        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkHandshake",
+        "uri": "integrationtests/self/benchmark_test.go::BenchmarkHandshake",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -692,7 +692,7 @@ expression: results
       },
       {
         "name": "BenchmarkStreamChurn",
-        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkStreamChurn",
+        "uri": "integrationtests/self/benchmark_test.go::BenchmarkStreamChurn",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -703,7 +703,7 @@ expression: results
       },
       {
         "name": "BenchmarkTransfer::500_kb",
-        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkTransfer::500_kb",
+        "uri": "integrationtests/self/benchmark_test.go::BenchmarkTransfer::500_kb",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -714,7 +714,7 @@ expression: results
       },
       {
         "name": "BenchmarkTransfer::51200_kb",
-        "uri": "integrationtests/self/codspeed/benchmark_test.go::BenchmarkTransfer::51200_kb",
+        "uri": "integrationtests/self/benchmark_test.go::BenchmarkTransfer::51200_kb",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

@@ -14,40 +14,6 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkAdd",
-        "uri": "example/external/codspeed/math_test.go::BenchmarkAdd",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkMultiply",
-        "uri": "example/external/codspeed/math_test.go::BenchmarkMultiply",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
         "name": "BenchmarkBufferRead",
         "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferRead",
         "config": {
@@ -128,6 +94,29 @@ expression: results
       {
         "name": "BenchmarkExample",
         "uri": "example/very/nested/module/example_test.go::BenchmarkExample",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkExternalFib",
+        "uri": "example/external/external_test.go::BenchmarkExternalFib",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
