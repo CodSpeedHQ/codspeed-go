@@ -153,6 +153,27 @@ expression: packages
     "raw_package": "[raw_package]",
     "benchmarks": [
       {
+        "name": "BenchmarkAdd",
+        "module_path": "example/external",
+        "import_alias": "benchmarkadd_8141020470883116639",
+        "qualified_name": "benchmarkadd_8141020470883116639.BenchmarkAdd",
+        "file_path": "external/math_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkMultiply",
+        "module_path": "example/external",
+        "import_alias": "benchmarkmultiply_8141020470883116639",
+        "qualified_name": "benchmarkmultiply_8141020470883116639.BenchmarkMultiply",
+        "file_path": "external/math_test.go",
+        "is_external": true
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
         "name": "BenchmarkBufferRead",
         "module_path": "example/sub-packages",
         "import_alias": "benchmarkbufferread_2338334068071879025",

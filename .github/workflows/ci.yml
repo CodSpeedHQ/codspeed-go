@@ -67,7 +67,7 @@ jobs:
     runs-on: codspeed-macro
     strategy:
       matrix:
-        target: [example, example/compat, example/timing, example/very/nested/module]
+        target: [example, example/compat, example/timing, example/very/nested/module, example/external]
     steps:
       - uses: actions/checkout@v4
         with:
