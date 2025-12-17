@@ -145,6 +145,22 @@ impl Patcher {
             "\"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest\"",
         );
 
+        // Replace logr + subpackages
+        for logr_pkg in &["testr", "funcr", "slogr", "benchmark", "testing"] {
+            find_replace_range(
+                &format!("github.com/go-logr/logr/{}", logr_pkg),
+                &format!("\"github.com/CodSpeedHQ/codspeed-go/pkg/logr/{logr_pkg}\""),
+            );
+        }
+        find_replace_range(
+            "github.com/go-logr/logr",
+            "\"github.com/CodSpeedHQ/codspeed-go/pkg/logr\"",
+        );
+        find_replace_range(
+            "github.com/go-logr/stdr",
+            "\"github.com/CodSpeedHQ/codspeed-go/pkg/stdr\"",
+        );
+
         // Apply replacements in reverse order to avoid shifting positions
         for (range, replacement) in replacements
             .into_iter()
