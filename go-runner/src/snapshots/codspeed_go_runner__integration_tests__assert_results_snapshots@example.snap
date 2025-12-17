@@ -293,8 +293,41 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkLogrTestr",
+        "uri": "example/compat/logr_test.go::BenchmarkLogrTestr",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
         "name": "BenchmarkQuicktest",
         "uri": "example/compat/quicktest_test.go::BenchmarkQuicktest",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStdr",
+        "uri": "example/compat/stdr_test.go::BenchmarkStdr",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkStdrWithName",
+        "uri": "example/compat/stdr_test.go::BenchmarkStdrWithName",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

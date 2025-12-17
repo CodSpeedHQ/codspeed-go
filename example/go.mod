@@ -4,6 +4,7 @@ go 1.24.3
 
 require (
 	github.com/frankban/quicktest v1.14.6
+	github.com/go-logr/logr v1.4.3
 	github.com/stretchr/testify v1.11.1
 	github.com/thejerf/slogassert v0.3.4
 )

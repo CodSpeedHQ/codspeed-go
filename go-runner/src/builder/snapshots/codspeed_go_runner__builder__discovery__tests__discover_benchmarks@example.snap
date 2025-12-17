@@ -116,6 +116,14 @@ expression: packages
     "raw_package": "[raw_package]",
     "benchmarks": [
       {
+        "name": "BenchmarkLogrTestr",
+        "module_path": "example/compat",
+        "import_alias": "benchmarklogrtestr_3904647701036713533",
+        "qualified_name": "benchmarklogrtestr_3904647701036713533.BenchmarkLogrTestr",
+        "file_path": "compat/logr_test.go",
+        "is_external": false
+      },
+      {
         "name": "BenchmarkQuicktest",
         "module_path": "example/compat",
         "import_alias": "benchmarkquicktest_3904647701036713533",
@@ -129,6 +137,22 @@ expression: packages
         "import_alias": "benchmarkwithslogassert_3904647701036713533",
         "qualified_name": "benchmarkwithslogassert_3904647701036713533.BenchmarkWithSlogAssert",
         "file_path": "compat/slogassert_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkStdr",
+        "module_path": "example/compat",
+        "import_alias": "benchmarkstdr_3904647701036713533",
+        "qualified_name": "benchmarkstdr_3904647701036713533.BenchmarkStdr",
+        "file_path": "compat/stdr_test.go",
+        "is_external": false
+      },
+      {
+        "name": "BenchmarkStdrWithName",
+        "module_path": "example/compat",
+        "import_alias": "benchmarkstdrwithname_3904647701036713533",
+        "qualified_name": "benchmarkstdrwithname_3904647701036713533.BenchmarkStdrWithName",
+        "file_path": "compat/stdr_test.go",
         "is_external": false
       },
       {
