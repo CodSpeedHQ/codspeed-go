@@ -4,7 +4,13 @@ use std::io;
 use std::path::{Path, PathBuf};
 
 pub fn copy_dir_recursively(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> {
-    let excludes = vec!["node_modules".into(), "target".into()];
+    let excludes = if cfg!(test) {
+        // Since we copy the whole .git directory for each test, we would also copy the target folder.
+        // Use path separator to match only the directory, not files like "target.go" or "target_impl.go"
+        vec!["target/".into()]
+    } else {
+        vec![]
+    };
     let includes = vec![];
     dircpy::copy_dir_advanced(src, dst, true, true, true, excludes, includes)?;
     Ok(())

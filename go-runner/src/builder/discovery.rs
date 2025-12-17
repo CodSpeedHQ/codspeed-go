@@ -378,6 +378,7 @@ mod tests {
     #[case::example_with_main("example-with-main")]
     #[case::example_with_dot_go_folder("example-with-dot-go-folder")]
     #[case::example_with_test_package("example-with-test-package")]
+    #[case::example_with_excluded_names("example-with-excluded-names")]
     #[test_log::test]
     fn test_discover_benchmarks(#[case] project_name: &str) {
         let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))

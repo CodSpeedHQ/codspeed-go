@@ -1,0 +1,19 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkProcessData",
+        "module_path": "example-with-excluded-names",
+        "import_alias": "benchmarkprocessdata_11906522046485331356",
+        "qualified_name": "benchmarkprocessdata_11906522046485331356.BenchmarkProcessData",
+        "file_path": "main_test.go",
+        "is_external": false
+      }
+    ]
+  }
+]
