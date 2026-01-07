@@ -83,6 +83,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::example_with_test_package("example-with-test-package")]
 #[case::example_with_replace("example-with-replace")]
 #[case::example_with_excluded_names("example-with-excluded-names")]
+#[case::example_logr_type_mismatch("example-logr-type-mismatch")]
 #[test_log::test]
 fn test_build_and_run(#[case] project_name: &str) {
     let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
