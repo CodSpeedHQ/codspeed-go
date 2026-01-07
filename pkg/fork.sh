@@ -9,8 +9,15 @@ function replace_in_go_files() {
 function fix_project() {
     rm -rf .git go.mod go.sum
 
-    replace_in_go_files '"testing"' 'testing "github.com/CodSpeedHQ/codspeed-go/compat/testing"'
-    replace_in_go_files '"testing/slogtest"' 'slogtest "github.com/CodSpeedHQ/codspeed-go/compat/testing/slogtest"'
+    # Replace imports with patterns that only match in import statements
+    # Match "testing" at start of line (after whitespace) to avoid string literals
+    find . -type f -name "*.go" -exec sed -i 's/^[[:space:]]*"testing"$/testing "github.com\/CodSpeedHQ\/codspeed-go\/testing\/testing"/g' {} +
+    find . -type f -name "*.go" -exec sed -i 's/^[[:space:]]*"testing")/testing "github.com\/CodSpeedHQ\/codspeed-go\/testing\/testing")/g' {} +
+    find . -type f -name "*.go" -exec sed -i 's/^[[:space:]]*"testing",/testing "github.com\/CodSpeedHQ\/codspeed-go\/testing\/testing",/g' {} +
+
+    find . -type f -name "*.go" -exec sed -i 's/^[[:space:]]*"testing\/slogtest"$/slogtest "github.com\/CodSpeedHQ\/codspeed-go\/testing\/testing\/slogtest"/g' {} +
+    find . -type f -name "*.go" -exec sed -i 's/^[[:space:]]*"testing\/slogtest")/slogtest "github.com\/CodSpeedHQ\/codspeed-go\/testing\/testing\/slogtest")/g' {} +
+    find . -type f -name "*.go" -exec sed -i 's/^[[:space:]]*"testing\/slogtest",/slogtest "github.com\/CodSpeedHQ\/codspeed-go\/testing\/testing\/slogtest",/g' {} +
 
     go mod tidy
     go fmt ./...
@@ -25,5 +32,19 @@ popd
 git clone -b v1.14.6 https://github.com/frankban/quicktest
 pushd quicktest
 replace_in_go_files '"github.com/frankban/quicktest' '"github.com/CodSpeedHQ/codspeed-go/pkg/quicktest'
+fix_project
+popd
+
+git clone -b v1.4.3 https://github.com/go-logr/logr.git
+pushd logr
+replace_in_go_files '"github.com/go-logr/logr' '"github.com/CodSpeedHQ/codspeed-go/pkg/logr'
+fix_project
+popd
+
+git clone -b v1.2.2 https://github.com/go-logr/stdr.git
+pushd stdr
+replace_in_go_files '"github.com/go-logr/stdr' '"github.com/CodSpeedHQ/codspeed-go/pkg/stdr'
+# stdr imports logr, so we need to replace those imports too
+replace_in_go_files '"github.com/go-logr/logr' '"github.com/CodSpeedHQ/codspeed-go/pkg/logr'
 fix_project
 popd
