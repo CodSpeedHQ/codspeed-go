@@ -19,7 +19,7 @@ limitations under the License.
 
 package testr
 
-import "testing"
+import testing "github.com/CodSpeedHQ/codspeed-go/testing/testing"
 
 func TestLoggerTestingF(_ *testing.T) {
 	f := &testing.F{}
