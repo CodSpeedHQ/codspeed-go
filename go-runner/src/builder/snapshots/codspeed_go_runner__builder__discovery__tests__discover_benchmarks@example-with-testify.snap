@@ -1,0 +1,19 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkWithTestifySuite",
+        "module_path": "example-with-testify/metric",
+        "import_alias": "benchmarkwithtestifysuite_14340558256714831592",
+        "qualified_name": "benchmarkwithtestifysuite_14340558256714831592.BenchmarkWithTestifySuite",
+        "file_path": "metric/benchmark_test.go",
+        "is_external": false
+      }
+    ]
+  }
+]

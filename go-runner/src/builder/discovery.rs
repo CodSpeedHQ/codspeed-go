@@ -453,6 +453,7 @@ mod tests {
     #[case::example_with_test_package("example-with-test-package")]
     #[case::example_with_excluded_names("example-with-excluded-names")]
     #[case::example_external_test_unexported_access("example-external-test-unexported-access")]
+    #[case::example_with_testify("example-with-testify")]
     #[test_log::test]
     fn test_discover_benchmarks(#[case] project_name: &str) {
         let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))

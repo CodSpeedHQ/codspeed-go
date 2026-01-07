@@ -85,6 +85,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::example_with_excluded_names("example-with-excluded-names")]
 #[case::example_logr_type_mismatch("example-logr-type-mismatch")]
 #[case::example_external_test_unexported_access("example-external-test-unexported-access")]
+#[case::example_with_testify("example-with-testify")]
 #[test_log::test]
 fn test_build_and_run(#[case] project_name: &str) {
     let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
