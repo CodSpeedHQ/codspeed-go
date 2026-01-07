@@ -354,6 +354,19 @@ expression: packages
         "file_path": "zapcore/tee_logger_bench_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "buffered_write_syncer_bench_test.go",
+      "buffered_write_syncer_test.go",
+      "clock_test.go",
+      "entry_test.go",
+      "json_encoder_impl_test.go",
+      "leak_test.go",
+      "level_strings_test.go",
+      "level_test.go",
+      "memory_encoder_test.go",
+      "write_syncer_bench_test.go",
+      "write_syncer_test.go"
     ]
   },
   {

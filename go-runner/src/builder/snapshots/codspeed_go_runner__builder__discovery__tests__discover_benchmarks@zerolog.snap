@@ -107,6 +107,17 @@ expression: packages
         "file_path": "console_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "array_test.go",
+      "benchmark_test.go",
+      "ctx_test.go",
+      "event_test.go",
+      "hook_test.go",
+      "log_test.go",
+      "sampler_test.go",
+      "syslog_test.go",
+      "writer_test.go"
     ]
   },
   {

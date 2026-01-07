@@ -110,6 +110,9 @@ expression: packages
         "file_path": "attribute/set_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "filter_test.go"
     ]
   },
   {

@@ -117,6 +117,20 @@ impl CodspeedContext {
             // They're now package main and will be built from the subdirectory
             self.patcher
                 .rename_and_move_test_files(&test_file_paths, &codspeed_dir)?;
+
+            // Also rename internal test files in place so they are accessible in
+            // the tests during `go build`. This allows external tests to call
+            // functions defined in internal test files (e.g., mylib.SetTestState()).
+            let internal_test_paths: Vec<PathBuf> = package
+                .internal_test_files()
+                .iter()
+                .map(|f| package_path.join(f))
+                .collect();
+            self.patcher.rename_test_files(&internal_test_paths)?;
+            info!(
+                "Renamed {} internal test files for external test package",
+                internal_test_paths.len()
+            );
         } else {
             // For internal test packages: rename _test.go to _codspeed.go in place
             self.patcher.rename_test_files(&test_file_paths)?;

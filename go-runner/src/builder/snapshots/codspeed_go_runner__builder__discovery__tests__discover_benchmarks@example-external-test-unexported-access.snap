@@ -1,0 +1,43 @@
+---
+source: go-runner/src/builder/discovery.rs
+expression: packages
+---
+[
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkSomething",
+        "module_path": "example-external-test-unexported-access",
+        "import_alias": "benchmarksomething_16535781784731887632",
+        "qualified_name": "benchmarksomething_16535781784731887632.BenchmarkSomething",
+        "file_path": "internal_test.go",
+        "is_external": false
+      }
+    ]
+  },
+  {
+    "raw_package": "[raw_package]",
+    "benchmarks": [
+      {
+        "name": "BenchmarkPublicFunction",
+        "module_path": "example-external-test-unexported-access",
+        "import_alias": "benchmarkpublicfunction_16535781784731887632",
+        "qualified_name": "benchmarkpublicfunction_16535781784731887632.BenchmarkPublicFunction",
+        "file_path": "main_test.go",
+        "is_external": true
+      },
+      {
+        "name": "BenchmarkPublicFunctionMultiple",
+        "module_path": "example-external-test-unexported-access",
+        "import_alias": "benchmarkpublicfunctionmultiple_16535781784731887632",
+        "qualified_name": "benchmarkpublicfunctionmultiple_16535781784731887632.BenchmarkPublicFunctionMultiple",
+        "file_path": "main_test.go",
+        "is_external": true
+      }
+    ],
+    "internal_test_files": [
+      "internal_test.go"
+    ]
+  }
+]

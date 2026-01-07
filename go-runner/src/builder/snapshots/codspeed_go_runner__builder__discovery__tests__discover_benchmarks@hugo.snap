@@ -256,6 +256,9 @@ expression: packages
         "file_path": "helpers/url_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "emoji_test.go"
     ]
   },
   {
@@ -428,6 +431,9 @@ expression: packages
         "file_path": "hugolib/doctree/nodeshiftree_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "dimensions_test.go"
     ]
   },
   {
@@ -483,6 +489,10 @@ expression: packages
         "file_path": "identity/identity_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "predicate_identity_test.go",
+      "question_test.go"
     ]
   },
   {
@@ -612,6 +622,9 @@ expression: packages
         "file_path": "markup/goldmark/goldmark_integration_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "autoid_test.go"
     ]
   },
   {
@@ -785,6 +798,9 @@ expression: packages
         "file_path": "related/related_integration_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "inverted_index_test.go"
     ]
   },
   {
@@ -819,6 +835,9 @@ expression: packages
         "file_path": "resources/image_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "resource_test.go"
     ]
   },
   {
@@ -1327,6 +1346,9 @@ expression: packages
         "file_path": "tpl/tplimpl/templatestore_integration_test.go",
         "is_external": true
       }
+    ],
+    "internal_test_files": [
+      "templatedescriptor_test.go"
     ]
   },
   {

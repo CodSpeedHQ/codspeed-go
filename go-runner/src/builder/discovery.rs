@@ -248,24 +248,84 @@ impl GoBenchmark {
 pub struct BenchmarkPackage {
     raw_package: GoPackage,
     pub benchmarks: Vec<GoBenchmark>,
+
+    /// Internal test files that should be renamed alongside external test files.
+    /// For external test packages (package foo_test), this contains files from
+    /// the companion internal test package (package foo in *_test.go files).
+    /// These files define helper functions that external tests depend on.
+    ///
+    /// This field will only be set/used for external tests.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    internal_test_files: Vec<String>,
 }
 
 impl BenchmarkPackage {
-    fn new(package: GoPackage, benchmarks: Vec<GoBenchmark>) -> Self {
+    fn new(
+        package: GoPackage,
+        benchmarks: Vec<GoBenchmark>,
+        internal_test_files: Vec<String>,
+    ) -> Self {
         Self {
             raw_package: package,
             benchmarks,
+            internal_test_files,
         }
+    }
+
+    /// Returns the internal test files that should be renamed for this package.
+    pub fn internal_test_files(&self) -> &[String] {
+        &self.internal_test_files
     }
 
     pub fn from_project(
         go_project_path: &Path,
         packages: &[String],
     ) -> anyhow::Result<Vec<BenchmarkPackage>> {
+        use std::collections::HashMap;
+
         let mut raw_packages = Self::run_go_list(go_project_path, packages)?;
 
         // Sort packages by import path to ensure deterministic order
         raw_packages.sort_by(|a, b| a.import_path.cmp(&b.import_path));
+
+        // Pre-pass: Find internal test helper files from ForTest packages that have no benchmarks.
+        // These are internal test files (package foo) that external tests (package foo_test) may depend on.
+        // Key: (dir, for_test) -> internal test files (TestGoFiles)
+        let mut helper_tests: HashMap<(PathBuf, String), Vec<String>> = HashMap::new();
+        for pkg in &raw_packages {
+            // Skip external test packages - we only want internal test packages
+            if pkg.is_external_test_package() {
+                continue;
+            }
+
+            // Must have ForTest field (indicates this is a test package)
+            let Some(for_test) = &pkg.for_test else {
+                continue;
+            };
+
+            // Must be a test executable
+            if !pkg.import_path.ends_with(".test]") {
+                continue;
+            }
+
+            // Must have internal test files (TestGoFiles)
+            let Some(test_go_files) = &pkg.test_go_files else {
+                continue;
+            };
+            if test_go_files.is_empty() {
+                continue;
+            }
+
+            // This is a helper-only internal test package - store its TestGoFiles
+            debug!(
+                "Found internal test helper files for {}: {:?}",
+                for_test, test_go_files
+            );
+            helper_tests
+                .entry((pkg.dir.clone(), for_test.clone()))
+                .or_default()
+                .extend(test_go_files.clone());
+        }
 
         let mut packages = Vec::new();
         for package in raw_packages {
@@ -318,7 +378,20 @@ impl BenchmarkPackage {
                 continue;
             }
 
-            packages.push(BenchmarkPackage::new(package, benchmarks));
+            // For external test packages, attach any internal helper test files
+            let internal_helpers = if package.is_external_test_package() {
+                if let Some(for_test) = &package.for_test {
+                    helper_tests
+                        .get(&(package.dir.clone(), for_test.clone()))
+                        .cloned()
+                        .unwrap_or_default()
+                } else {
+                    Vec::new()
+                }
+            } else {
+                Vec::new()
+            };
+            packages.push(BenchmarkPackage::new(package, benchmarks, internal_helpers));
         }
 
         Ok(packages)
@@ -379,6 +452,7 @@ mod tests {
     #[case::example_with_dot_go_folder("example-with-dot-go-folder")]
     #[case::example_with_test_package("example-with-test-package")]
     #[case::example_with_excluded_names("example-with-excluded-names")]
+    #[case::example_external_test_unexported_access("example-external-test-unexported-access")]
     #[test_log::test]
     fn test_discover_benchmarks(#[case] project_name: &str) {
         let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
