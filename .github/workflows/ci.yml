@@ -18,13 +18,12 @@ jobs:
         with:
           extra_args: --all-files
 
-  tests:
+  tests-unit:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         go-version: ['1.24.x', '1.25.x']
     env:
-      # Needed for the quic-go test
       GOEXPERIMENT: ${{ matrix.go-version == '1.24.x' && 'synctest' || '' }}
     steps:
       - uses: actions/checkout@v4
@@ -35,14 +34,48 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - uses: taiki-e/install-action@cargo-nextest
-
       - uses: moonrepo/setup-rust@v1
-      - run: |
-          cd go-runner
-          cargo nextest run --all
+      - name: Run unit and discovery tests
+        run: cargo nextest run --lib -E 'not test(~integration_tests)'
+        working-directory: go-runner
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
+  tests-integration:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: ['1.24.x', '1.25.x']
+        shard:
+          - name: hugo
+            filter: "test(~hugo)"
+          - name: caddy
+            filter: "test(~caddy)"
+          - name: large
+            filter: "test(~fzf) | test(~opentelemetry) | test(~golang_benchmarks)"
+          - name: medium
+            filter: "test(~zerolog) | test(~zap) | test(~fuego) | test(~cli_runtime) | test(~quic)"
+          - name: examples
+            filter: "test(~example)"
+    env:
+      GOEXPERIMENT: ${{ matrix.go-version == '1.24.x' && 'synctest' || '' }}
+    name: integration (${{ matrix.go-version }}, ${{ matrix.shard.name }})
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: true
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go-version }}
+      - uses: taiki-e/install-action@cargo-nextest
+      - uses: moonrepo/setup-rust@v1
+      - name: Run integration tests (${{ matrix.shard.name }})
+        run: cargo nextest run -E '${{ matrix.shard.filter }}'
+        working-directory: go-runner
+        env:
+          CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
   verify-fork-scripts:
     runs-on: ubuntu-latest
@@ -118,7 +151,8 @@ jobs:
     if: always()
     needs:
       - lint
-      - tests
+      - tests-unit
+      - tests-integration
       - verify-fork-scripts
       - compat-integration-test-walltime
       - go-runner-benchmarks
