@@ -161,6 +161,18 @@ impl Patcher {
             "\"github.com/CodSpeedHQ/codspeed-go/pkg/stdr\"",
         );
 
+        // Replace testify + subpackages
+        for testify_pkg in &["assert", "require", "mock", "suite", "http"] {
+            find_replace_range(
+                &format!("github.com/stretchr/testify/{}", testify_pkg),
+                &format!("\"github.com/CodSpeedHQ/codspeed-go/pkg/testify/{testify_pkg}\""),
+            );
+        }
+        find_replace_range(
+            "github.com/stretchr/testify",
+            "\"github.com/CodSpeedHQ/codspeed-go/pkg/testify\"",
+        );
+
         // Apply replacements in reverse order to avoid shifting positions
         for (range, replacement) in replacements
             .into_iter()
@@ -483,6 +495,15 @@ import (
 )
 "#;
 
+    const IMPORT_TESTIFY: &str = r#"package main
+import (
+    "testing"
+
+    "github.com/stretchr/testify/assert"
+    "github.com/stretchr/testify/require"
+)
+"#;
+
     #[rstest]
     #[case("single_import_replacement", SINGLE_IMPORT)]
     #[case("multiline_import_replacement", MULTILINE_IMPORT)]
@@ -500,6 +521,7 @@ import (
     )]
     #[case("package_main", PACKAGE_MAIN)]
     #[case("many_testing_imports", MANY_TESTING_IMPORTS)]
+    #[case("import_testify", IMPORT_TESTIFY)]
     fn test_patch_go_source(#[case] test_name: &str, #[case] source: &str) {
         let mut result = source.to_string();
 
