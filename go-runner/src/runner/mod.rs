@@ -5,7 +5,7 @@ use tempfile::TempDir;
 
 mod overlay;
 
-pub fn run_cmd<P: AsRef<Path>>(
+fn run_cmd<P: AsRef<Path>>(
     profile_dir: P,
     dir: P,
     cli: &Cli,
@@ -22,9 +22,15 @@ pub fn run_cmd<P: AsRef<Path>>(
         &cli.bench,
         "-benchtime",
         &cli.benchtime,
+        // Dont' run tests, only benchmarks
+        "-run=^$",
     ]);
     cmd.args(&cli.packages);
     cmd.current_dir(dir);
+
+    // Create isolated Go caches to avoid conflicts when tests run concurrently
+    cmd.env("GOCACHE", _dir.path().join("gocache"));
+    cmd.env("GOMODCACHE", _dir.path().join("gomodcache"));
 
     Ok((_dir, cmd))
 }
