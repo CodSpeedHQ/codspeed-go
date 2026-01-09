@@ -78,21 +78,6 @@ type InternalBenchmark struct {
 	F    func(b *B)
 }
 
-type codspeed struct {
-	instrument_hooks *InstrumentHooks
-
-	codspeedTimePerRoundNs []time.Duration
-	codspeedItersPerRound  []int64
-
-	startTimestamp  uint64
-	startTimestamps []uint64
-	stopTimestamps  []uint64
-
-	// Indicates whether a measurement has been saved already. This aims to prevent saving measurements
-	// twice, because `b.Loop()` saves them internally as well but is also called from runN
-	savedMeasurement bool
-}
-
 // B is a type passed to [Benchmark] functions to manage benchmark
 // timing and control the number of iterations.
 //
@@ -148,21 +133,6 @@ type B struct {
 	}
 }
 
-// StartTimer starts timing a test. This function is called automatically
-// before a benchmark starts, but it can also be used to resume timing after
-// a call to [B.StopTimer].
-func (b *B) StartTimerWithoutMarker() {
-	if !b.timerOn {
-		// runtime.ReadMemStats(&memStats)
-		// b.startAllocs = memStats.Mallocs
-		// b.startBytes = memStats.TotalAlloc
-		b.start = highPrecisionTimeNow()
-		b.timerOn = true
-		b.savedMeasurement = false
-		// b.loop.i &^= loopPoisonTimer
-	}
-}
-
 func (b *B) StartTimer() {
 	timerOn := b.timerOn
 
@@ -171,52 +141,6 @@ func (b *B) StartTimer() {
 	if !timerOn {
 		b.startTimestamp = CurrentTimestamp()
 	}
-}
-
-// StopTimer stops timing a test. This can be used to pause the timer
-// while performing steps that you don't want to measure.
-func (b *B) StopTimerWithoutMarker() {
-	if b.timerOn {
-		timeSinceStart := highPrecisionTimeSince(b.start)
-		b.duration += timeSinceStart
-		// runtime.ReadMemStats(&memStats)
-		// b.netAllocs += memStats.Mallocs - b.startAllocs
-		// b.netBytes += memStats.TotalAlloc - b.startBytes
-		b.timerOn = false
-		// If we hit B.Loop with the timer stopped, fail.
-		// b.loop.i |= loopPoisonTimer
-	}
-}
-
-func (b *B) SaveMeasurement() {
-	if b.savedMeasurement {
-		return
-	}
-	b.savedMeasurement = true
-
-	// WARN: This function must not be called if the timer is on, because we
-	// would read an incomplete b.duration value.
-	if b.timerOn {
-		panic("SaveMeasurement called with timer on")
-	}
-
-	// For b.N loops: This will be called in runN which sets b.N to the number of iterations.
-	// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
-	// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
-	// the number of iterations for this round.
-	timeSinceStart := highPrecisionTimeSince(b.start)
-
-	// If this gets called from b.Loop(), we have to take the duration compared to the previous StartTimer,
-	// if it's called from runN, we can use b.duration
-	duration := time.Duration(0)
-	if b.N == 0 {
-		duration = timeSinceStart
-	} else {
-		duration = b.duration
-	}
-
-	b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
-	b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, duration)
 }
 
 func (b *B) StopTimer() {
@@ -256,17 +180,6 @@ func (b *B) ResetTimer() {
 	// Clear CodSpeed timestamp data
 	b.codspeedItersPerRound = b.codspeedItersPerRound[:0]
 	b.codspeedTimePerRoundNs = b.codspeedTimePerRoundNs[:0]
-	b.startTimestamps = b.startTimestamps[:0]
-	b.stopTimestamps = b.stopTimestamps[:0]
-}
-
-func (b *B) sendAccumulatedTimestamps() {
-	for i := 0; i < len(b.startTimestamps); i++ {
-		b.instrument_hooks.AddBenchmarkTimestamps(
-			b.startTimestamps[i],
-			b.stopTimestamps[i],
-		)
-	}
 	b.startTimestamps = b.startTimestamps[:0]
 	b.stopTimestamps = b.stopTimestamps[:0]
 }

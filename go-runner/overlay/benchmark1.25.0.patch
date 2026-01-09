@@ -1,0 +1,298 @@
+--- benchmark.go	2026-01-09 11:36:51.153087761 +0100
++++ overlay/benchmark1.25.go	2026-01-09 11:58:31.662387782 +0100
+@@ -93,6 +93,7 @@
+ // affecting benchmark results.
+ type B struct {
+ 	common
++	codspeed
+ 	importPath       string // import path of the package containing the benchmark
+ 	bstate           *benchState
+ 	N                int
+@@ -132,31 +133,24 @@
+ 	}
+ }
+
+-// StartTimer starts timing a test. This function is called automatically
+-// before a benchmark starts, but it can also be used to resume timing after
+-// a call to [B.StopTimer].
+ func (b *B) StartTimer() {
+-	if !b.timerOn {
+-		runtime.ReadMemStats(&memStats)
+-		b.startAllocs = memStats.Mallocs
+-		b.startBytes = memStats.TotalAlloc
+-		b.start = highPrecisionTimeNow()
+-		b.timerOn = true
+-		b.loop.i &^= loopPoisonTimer
++	timerOn := b.timerOn
++
++	b.StartTimerWithoutMarker()
++
++	if !timerOn {
++		b.startTimestamp = CurrentTimestamp()
+ 	}
+ }
+
+-// StopTimer stops timing a test. This can be used to pause the timer
+-// while performing steps that you don't want to measure.
+ func (b *B) StopTimer() {
+-	if b.timerOn {
+-		b.duration += highPrecisionTimeSince(b.start)
+-		runtime.ReadMemStats(&memStats)
+-		b.netAllocs += memStats.Mallocs - b.startAllocs
+-		b.netBytes += memStats.TotalAlloc - b.startBytes
+-		b.timerOn = false
+-		// If we hit B.Loop with the timer stopped, fail.
+-		b.loop.i |= loopPoisonTimer
++	endTimestamp := CurrentTimestamp()
++	timerOn := b.timerOn
++
++	b.StopTimerWithoutMarker()
++
++	if timerOn {
++		b.AddBenchmarkMarkers(endTimestamp)
+ 	}
+ }
+
+@@ -176,10 +170,18 @@
+ 		b.startAllocs = memStats.Mallocs
+ 		b.startBytes = memStats.TotalAlloc
+ 		b.start = highPrecisionTimeNow()
++
++		b.startTimestamp = CurrentTimestamp()
+ 	}
+ 	b.duration = 0
+ 	b.netAllocs = 0
+ 	b.netBytes = 0
++
++	// Clear CodSpeed timestamp data
++	b.codspeedItersPerRound = b.codspeedItersPerRound[:0]
++	b.codspeedTimePerRoundNs = b.codspeedTimePerRoundNs[:0]
++	b.startTimestamps = b.startTimestamps[:0]
++	b.stopTimestamps = b.stopTimestamps[:0]
+ }
+
+ // SetBytes records the number of bytes processed in a single operation.
+@@ -195,6 +197,11 @@
+
+ // runN runs a single benchmark for the specified number of iterations.
+ func (b *B) runN(n int) {
++	b.__codspeed_root_frame__runN(n)
++}
++
++//go:noinline
++func (b *B) __codspeed_root_frame__runN(n int) {
+ 	benchmarkLock.Lock()
+ 	defer benchmarkLock.Unlock()
+ 	ctx, cancelCtx := context.WithCancel(context.Background())
+@@ -218,6 +225,7 @@
+ 	b.StartTimer()
+ 	b.benchFunc(b)
+ 	b.StopTimer()
++	b.SaveMeasurement()
+ 	b.previousN = n
+ 	b.previousDuration = b.duration
+
+@@ -246,6 +254,8 @@
+ 	}()
+ 	<-b.signal
+ 	if b.failed {
++		// This case can happen with a `b.Loop()` benchmark if any of the iterations fail
++		ensureBenchmarkIsStopped(b)
+ 		fmt.Fprintf(b.w, "%s--- FAIL: %s\n%s", b.chatty.prefix(), b.name, b.output)
+ 		return false
+ 	}
+@@ -274,6 +284,8 @@
+ // subbenchmarks. b must not have subbenchmarks.
+ func (b *B) run() {
+ 	labelsOnce.Do(func() {
++		fmt.Fprintf(b.w, "Running with CodSpeed (mode: walltime)\n")
++
+ 		fmt.Fprintf(b.w, "goos: %s\n", runtime.GOOS)
+ 		fmt.Fprintf(b.w, "goarch: %s\n", runtime.GOARCH)
+ 		if b.importPath != "" {
+@@ -344,18 +356,48 @@
+ 				b.runN(b.benchTime.n)
+ 			}
+ 		} else {
+-			d := b.benchTime.d
+-			for n := int64(1); !b.failed && b.duration < d && n < 1e9; {
++			warmupD := b.benchTime.d / 10
++			warmupN := int64(1)
++			for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
+ 				last := n
+ 				// Predict required iterations.
+-				goalns := d.Nanoseconds()
++				goalns := warmupD.Nanoseconds()
+ 				prevIters := int64(b.N)
+ 				n = int64(predictN(goalns, prevIters, b.duration.Nanoseconds(), last))
+ 				b.runN(int(n))
++				warmupN = n
+ 			}
++
++			// Reset the fields from the warmup run
++			b.ResetTimer()
++
++			// Final run:
++			benchD := b.benchTime.d
++			benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
++
++			// When we have a very slow benchmark (e.g. taking 500ms), we have to:
++			// 1. Reduce the number of rounds to not slow down the process (e.g. by executing a 1s bench 100 times)
++			// 2. Not end up with roundN of 0 when dividing benchN (which can be < 100) by rounds
++			const minRounds = 100
++			var rounds int
++			var roundN int
++			if benchN < minRounds {
++				rounds = benchN
++				roundN = 1
++			} else {
++				rounds = minRounds
++				roundN = benchN / int(rounds)
++			}
++
++			b.codspeed.instrument_hooks.StartBenchmark()
++			for range rounds {
++				b.runN(int(roundN))
++			}
++			b.codspeed.instrument_hooks.StopBenchmark()
++			b.sendAccumulatedTimestamps()
+ 		}
+ 	}
+-	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.extra}
++	b.result = BenchmarkResult{b.N, b.duration, b.bytes, b.netAllocs, b.netBytes, b.codspeedTimePerRoundNs, b.codspeedItersPerRound, b.extra}
+ }
+
+ // Elapsed returns the measured elapsed time of the benchmark.
+@@ -408,9 +450,9 @@
+
+ func (b *B) loopSlowPath() bool {
+ 	// Consistency checks
+-	if !b.timerOn {
+-		b.Fatal("B.Loop called with timer stopped")
+-	}
++	// if !b.timerOn {
++	// 	b.Fatal("B.Loop called with timer stopped")
++	// }
+ 	if b.loop.i&loopPoisonMask != 0 {
+ 		panic(fmt.Sprintf("unknown loop stop condition: %#x", b.loop.i))
+ 	}
+@@ -426,7 +468,9 @@
+ 		}
+ 		// Within a b.Loop loop, we don't use b.N (to avoid confusion).
+ 		b.N = 0
++		b.codspeed.instrument_hooks.StartBenchmark()
+ 		b.ResetTimer()
++		b.StartTimerWithoutMarker()
+
+ 		// Start the next iteration.
+ 		b.loop.i++
+@@ -448,13 +492,28 @@
+ 		more = b.stopOrScaleBLoop()
+ 	}
+ 	if !more {
+-		b.StopTimer()
++		// NOTE: We could move the endTimestamp capturing further up or even into the Loop() function
++		// but this will result in a huge performance degradation since the C FFI calls are expensive.
++		//
++		// The only downside of having this here, is that there's a small chance of perf sampling the
++		// benchmark framework code which already happens anyway because we only emit 1 pair of
++		// start/stop markers per benchmark to minimize overhead and allow full flamegraphs.
++		endTimestamp := CurrentTimestamp()
++
++		// Edge case: The timer is stopped in b.Loop() which prevents any further calls to
++		// StopTimer() from adding the benchmark markers. We have to manually submit them here,
++		// once the benchmark loop is done.
++		b.AddBenchmarkMarkers(endTimestamp)
++		b.codspeed.instrument_hooks.StopBenchmark()
++		b.sendAccumulatedTimestamps()
++
+ 		// Commit iteration count
+ 		b.N = int(b.loop.n)
+ 		b.loop.done = true
+ 		return false
+ 	}
+
++	b.StartTimerWithoutMarker()
+ 	// Start the next iteration.
+ 	b.loop.i++
+ 	return true
+@@ -495,6 +554,8 @@
+ // whereas b.N-based benchmarks must run the benchmark function (and any
+ // associated setup and cleanup) several times.
+ func (b *B) Loop() bool {
++	b.StopTimerWithoutMarker()
++	b.SaveMeasurement()
+ 	// This is written such that the fast path is as fast as possible and can be
+ 	// inlined.
+ 	//
+@@ -509,6 +570,7 @@
+ 	//   path can do consistency checks and fail.
+ 	if b.loop.i < b.loop.n {
+ 		b.loop.i++
++		b.StartTimerWithoutMarker()
+ 		return true
+ 	}
+ 	return b.loopSlowPath()
+@@ -535,6 +597,9 @@
+ 	MemAllocs uint64        // The total number of memory allocations.
+ 	MemBytes  uint64        // The total number of bytes allocated.
+
++	CodspeedTimePerRoundNs []time.Duration
++	CodspeedItersPerRound  []int64
++
+ 	// Extra records additional metrics reported by ReportMetric.
+ 	Extra map[string]float64
+ }
+@@ -715,6 +780,9 @@
+ 			w:     os.Stdout,
+ 			bench: true,
+ 		},
++		codspeed: codspeed{
++			instrument_hooks: NewInstrumentHooks(),
++		},
+ 		importPath: importPath,
+ 		benchFunc: func(b *B) {
+ 			for _, Benchmark := range bs {
+@@ -724,6 +792,8 @@
+ 		benchTime: benchTime,
+ 		bstate:    bstate,
+ 	}
++	defer main.codspeed.instrument_hooks.Close()
++
+ 	if Verbose() {
+ 		main.chatty = newChattyPrinter(main.w)
+ 	}
+@@ -752,6 +822,7 @@
+ 						chatty: b.chatty,
+ 						bench:  true,
+ 					},
++					codspeed:  b.codspeed,
+ 					benchFunc: b.benchFunc,
+ 					benchTime: b.benchTime,
+ 				}
+@@ -760,6 +831,8 @@
+ 			}
+ 			r := b.doBench()
+ 			if b.failed {
++				ensureBenchmarkIsStopped(b)
++
+ 				// The output could be very long here, but probably isn't.
+ 				// We print it all, regardless, because we don't want to trim the reason
+ 				// the benchmark failed.
+@@ -767,6 +840,8 @@
+ 				continue
+ 			}
+ 			results := r.String()
++			saveCodspeedResults(b, r, benchName)
++
+ 			if b.chatty != nil {
+ 				fmt.Fprintf(b.w, "%-*s\t", s.maxLen, benchName)
+ 			}
+@@ -827,6 +902,7 @@
+ 			chatty:  b.chatty,
+ 			bench:   true,
+ 		},
++		codspeed:   b.codspeed,
+ 		importPath: b.importPath,
+ 		benchFunc:  f,
+ 		benchTime:  b.benchTime,

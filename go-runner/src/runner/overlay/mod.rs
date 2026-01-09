@@ -1,4 +1,5 @@
 use anyhow::{bail, ensure};
+use semver::Version;
 use std::{
     collections::HashMap,
     path::{Path, PathBuf},
@@ -9,10 +10,6 @@ use tempfile::TempDir;
 mod instrument_hooks;
 
 const OVERLAY_TEMPLATES: &[(&str, &str)] = &[
-    (
-        "benchmark.go",
-        include_str!("../../../overlay/benchmark.go"),
-    ),
     ("codspeed.go", include_str!("../../../overlay/codspeed.go")),
     (
         "instrument-hooks.go",
@@ -27,6 +24,16 @@ fn get_overlay_files(
     let instrument_hooks_dir = instrument_hooks::download_instrument_hooks(temp_dir)?;
 
     let mut files = HashMap::new();
+
+    // Select the appropriate benchmark file based on Go version
+    let content = if detect_go_version()? >= Version::new(1, 25, 0) {
+        include_str!("../../../overlay/benchmark1.25.0.go")
+    } else {
+        include_str!("../../../overlay/benchmark1.24.0.go")
+    };
+    files.insert("benchmark.go".to_string(), content.to_string());
+
+    // Add other overlay files
     for (file_name, content) in OVERLAY_TEMPLATES {
         let content = content
             .replace(
@@ -85,4 +92,19 @@ fn find_goroot() -> anyhow::Result<PathBuf> {
     }
 
     Ok(path)
+}
+
+fn detect_go_version() -> anyhow::Result<Version> {
+    let output = Command::new("go").args(["env", "GOVERSION"]).output()?;
+    if !output.status.success() {
+        bail!("Failed to get Go version");
+    }
+    let version_str = String::from_utf8_lossy(&output.stdout).trim().to_string();
+
+    // Remove "go" prefix (e.g., "go1.25.2" -> "1.25.2")
+    let version_str = version_str
+        .strip_prefix("go")
+        .ok_or_else(|| anyhow::anyhow!("Invalid Go version format: {}", version_str))?;
+
+    Ok(Version::parse(version_str)?)
 }
