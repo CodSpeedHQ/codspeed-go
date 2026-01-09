@@ -3,6 +3,7 @@ use rstest::rstest;
 use std::path::{Path, PathBuf};
 use tempfile::TempDir;
 
+use crate::prelude::*;
 use crate::results::walltime_results::WalltimeResults;
 
 fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
@@ -84,6 +85,14 @@ fn test_build_and_run(#[case] project_name: &str) {
         .join("testdata/projects")
         .join(project_name);
 
+    if !can_build_project(&project_dir) {
+        warn!(
+            "Skipping project {} because it requires a different Go version",
+            project_name
+        );
+        return;
+    }
+
     let temp_dir = TempDir::new().unwrap();
     let profile_dir = temp_dir.path().join("profile");
     let cli = crate::cli::Cli {
@@ -95,4 +104,55 @@ fn test_build_and_run(#[case] project_name: &str) {
     }
 
     assert_results_snapshots(&profile_dir, project_name);
+}
+
+fn can_build_project(project_dir: &Path) -> bool {
+    if let Some(required_version) = project_go_version(project_dir) {
+        let current_version = go_version().unwrap();
+        info!(
+            "Project requires Go {}, current version is {}",
+            required_version, current_version
+        );
+        required_version.matches(&current_version)
+    } else {
+        true
+    }
+}
+
+fn go_version() -> anyhow::Result<semver::Version> {
+    use anyhow::Context;
+
+    let output = std::process::Command::new("go").arg("version").output()?;
+    if !output.status.success() {
+        panic!("Failed to get Go version");
+    }
+    let output = String::from_utf8_lossy(&output.stdout);
+
+    // Example output: go version go1.24.9 linux/amd64
+    let go_version_str = output
+        .split_whitespace()
+        .nth(2)
+        .context("Failed to parse Go version")?
+        .strip_prefix("go")
+        .context("Failed to strip 'go' prefix")?;
+    Ok(semver::Version::parse(go_version_str)?)
+}
+
+// Check whether the go.mod expects a specific Go version, and skip the test if not met
+fn project_go_version(project_dir: &Path) -> Option<semver::VersionReq> {
+    let go_mod_path = project_dir.join("go.mod");
+    if !go_mod_path.exists() {
+        return None;
+    }
+
+    let go_mod_content = std::fs::read_to_string(go_mod_path).unwrap_or_default();
+    for line in go_mod_content.lines() {
+        let Some(version_str) = line.strip_prefix("go ") else {
+            continue;
+        };
+
+        return semver::VersionReq::parse(version_str).ok();
+    }
+
+    None
 }
