@@ -9,7 +9,6 @@ pub fn test_error_has_test_filename() {
         bench: "BenchmarkErrorFile".to_string(),
         benchtime: "1x".to_string(),
         packages: vec!["./...".to_string()],
-        dry_run: false,
     };
     let result = run_with_cli("tests/error_file.in", &cli);
     assert!(result.is_err(), "Expected an error but got success");

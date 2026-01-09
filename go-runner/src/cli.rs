@@ -16,9 +16,6 @@ pub struct Cli {
 
     /// Package patterns to run benchmarks for
     pub packages: Vec<String>,
-
-    /// Build benchmarks but don't execute them
-    pub dry_run: bool,
 }
 
 impl Default for Cli {
@@ -27,7 +24,6 @@ impl Default for Cli {
             bench: ".".into(),
             benchtime: "3s".into(),
             packages: vec!["./...".into()],
-            dry_run: false,
         }
     }
 }
@@ -108,9 +104,6 @@ UNSUPPORTED FLAGS (will be warned about):
                 }
                 s if s.starts_with("-benchtime=") => {
                     instance.benchtime = s.split_once('=').unwrap().1.to_string();
-                }
-                "--dry-run" => {
-                    instance.dry_run = true;
                 }
                 s if s.starts_with('-') => {
                     eprintln!(
@@ -221,33 +214,5 @@ mod tests {
         // Unknown flags now generate warnings but don't cause errors
         let result = str_to_iter("go-runner test -unknown");
         assert!(result.is_ok());
-    }
-
-    #[test]
-    fn test_cli_parse_dry_run_flag() {
-        let cli = str_to_iter("go-runner test --dry-run").unwrap();
-        assert!(cli.dry_run);
-
-        let cli = str_to_iter("go-runner test").unwrap();
-        assert!(!cli.dry_run);
-    }
-
-    #[test]
-    fn test_cli_parse_dry_run_with_other_flags() {
-        let cli =
-            str_to_iter("go-runner test --dry-run -bench=BenchmarkFoo -benchtime 5s").unwrap();
-        assert!(cli.dry_run);
-        assert_eq!(cli.bench, "BenchmarkFoo");
-        assert_eq!(cli.benchtime, "5s");
-    }
-
-    #[test]
-    fn test_cli_parse_dry_run_with_packages() {
-        let cli = str_to_iter("go-runner test --dry-run ./pkg1 ./pkg2").unwrap();
-        assert!(cli.dry_run);
-        assert_eq!(
-            cli.packages,
-            vec!["./pkg1".to_string(), "./pkg2".to_string()]
-        );
     }
 }
