@@ -19,9 +19,6 @@
 [submodule "go-runner/testdata/projects/cli-runtime"]
 	path = go-runner/testdata/projects/cli-runtime
 	url = https://github.com/kubernetes/cli-runtime.git
-[submodule "go-runner/testdata/projects/caddy"]
-	path = go-runner/testdata/projects/caddy
-	url = https://github.com/caddyserver/caddy
 [submodule "go-runner/testdata/projects/quic-go"]
 	path = go-runner/testdata/projects/quic-go
 	url = https://github.com/quic-go/quic-go
