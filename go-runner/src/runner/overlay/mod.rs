@@ -79,7 +79,7 @@ pub fn get_overlay_file(profile_dir: &Path) -> anyhow::Result<(TempDir, PathBuf)
     Ok((overlay_dir, overlay_file))
 }
 
-fn find_goroot() -> anyhow::Result<PathBuf> {
+pub fn find_goroot() -> anyhow::Result<PathBuf> {
     let output = Command::new("go").args(["env", "GOROOT"]).output()?;
     if !output.status.success() {
         bail!("Failed to find $GOROOT");
