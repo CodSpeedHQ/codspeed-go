@@ -57,6 +57,17 @@ expression: results
           "max_rounds": null
         },
         "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkFibonacci20",
+        "uri": "go-runner/testdata/projects/example-with-test-package/fib_external/fib_integration_test.go::BenchmarkFibonacci20",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
       }
     ]
   },
@@ -84,29 +95,6 @@ expression: results
       {
         "name": "BenchmarkFibonacci20",
         "uri": "go-runner/testdata/projects/example-with-test-package/fib/fib_test.go::BenchmarkFibonacci20",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkFibonacci20",
-        "uri": "go-runner/testdata/projects/example-with-test-package/fib_external/fib_integration_test.go::BenchmarkFibonacci20",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

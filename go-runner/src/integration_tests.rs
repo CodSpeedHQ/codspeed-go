@@ -3,7 +3,7 @@ use rstest::rstest;
 use std::path::{Path, PathBuf};
 use tempfile::TempDir;
 
-use crate::{results::walltime_results::WalltimeResults, utils::can_build_project};
+use crate::results::walltime_results::WalltimeResults;
 
 fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
     let glob_pattern = profile_dir.join("results");
@@ -88,18 +88,13 @@ fn test_build_and_run(#[case] project_name: &str) {
         .join("testdata/projects")
         .join(project_name);
 
-    if !can_build_project(&project_dir) {
-        eprintln!("Skipping test for project {project_name} due to Go version constraints.");
-        return;
-    }
-
     let temp_dir = TempDir::new().unwrap();
     let profile_dir = temp_dir.path().join("profile");
     let cli = crate::cli::Cli {
         benchtime: "1x".into(),
         ..Default::default()
     };
-    if let Err(error) = crate::run_benchmarks(&profile_dir, project_dir.as_path(), &cli) {
+    if let Err(error) = crate::run_benchmarks(&*profile_dir, project_dir.as_path(), &cli) {
         panic!("Benchmarks couldn't run: {error}");
     }
 

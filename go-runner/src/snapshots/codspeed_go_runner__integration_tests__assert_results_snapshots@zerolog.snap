@@ -488,19 +488,7 @@ expression: results
           "max_rounds": null
         },
         "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
+      },
       {
         "name": "BenchmarkContextAppend",
         "uri": "benchmark_test.go::BenchmarkContextAppend",

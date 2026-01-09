@@ -1,16 +1,13 @@
 use crate::{
-    builder::{BenchmarkPackage, templater::Templater},
     prelude::*,
     results::{raw_result::RawResult, walltime_results::WalltimeBenchmark},
 };
 use std::{collections::HashMap, path::Path};
 
-pub mod builder;
 pub mod cli;
 pub mod prelude;
 pub mod results;
 pub mod runner;
-pub(crate) mod utils;
 
 #[global_allocator]
 static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
@@ -21,68 +18,15 @@ mod integration_tests;
 /// Builds and runs the specified Go project benchmarks, writing results to the .codspeed folder.
 pub fn run_benchmarks<P: AsRef<Path>>(
     profile_dir: P,
-    project_dir: &Path,
+    project_dir: P,
     cli: &crate::cli::Cli,
 ) -> anyhow::Result<()> {
-    // 1. Build phase - Benchmark and package discovery
-    let packages = BenchmarkPackage::from_project(project_dir, &cli.packages)?;
-    info!("Discovered {} packages", packages.len());
-
-    let total_benchmarks: usize = packages.iter().map(|p| p.benchmarks.len()).sum();
-    info!("Total benchmarks discovered: {total_benchmarks}");
-
-    for package in &packages {
-        for benchmark in &package.benchmarks {
-            info!("Found {:30} in {:?}", benchmark.name, benchmark.file_path);
-        }
+    if let Err(error) = runner::run(&profile_dir, &project_dir, cli) {
+        bail!("Failed to run benchmarks: {error}");
     }
 
-    // 2. Generate codspeed runners, build binaries, and execute them
-    let templater = Templater::new();
-    let mut threads = Vec::with_capacity(packages.len());
-    for package in &packages {
-        info!("Generating custom runner for package: {}", package.name);
-        let ctx = templater.run(package, &profile_dir)?;
-
-        info!("Building binary for package: {}", package.name);
-
-        let binary_path = match builder::build_binary(ctx.runner_path()) {
-            Ok(binary_path) => binary_path,
-            Err(e) => {
-                if cfg!(test) {
-                    panic!("Failed to build {}: {e}", package.name);
-                } else {
-                    error!("Failed to build {}: {e}", package.name);
-                    continue;
-                }
-            }
-        };
-
-        if !cli.dry_run {
-            if let Err(error) = runner::run(
-                &binary_path,
-                &["-test.bench", &cli.bench, "-test.benchtime", &cli.benchtime],
-            ) {
-                error!("Failed to run benchmarks for {}: {error}", package.name);
-                continue;
-            }
-
-            // Collect the results in a new thread, to avoid blocking the main thread at the end. The
-            // conversions and computations can take a while when we have a lot of iterations.
-            let profile_dir = profile_dir.as_ref().to_path_buf();
-            threads.push(std::thread::spawn(move || {
-                collect_walltime_results(profile_dir.as_ref()).unwrap();
-            }));
-        } else {
-            info!("Skipping benchmark execution (dry-run mode)");
-        }
-    }
-
-    // Wait for all result collection threads to finish
-    threads.into_iter().for_each(|t| {
-        t.join()
-            .expect("Failed to join collect_walltime_results thread")
-    });
+    let profile_dir = profile_dir.as_ref().to_path_buf();
+    collect_walltime_results(&profile_dir).unwrap();
 
     Ok(())
 }

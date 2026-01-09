@@ -11,7 +11,7 @@ fn main() -> anyhow::Result<()> {
 
     let cli = Cli::parse();
     let profile_dir = std::env::var("CODSPEED_PROFILE_FOLDER").unwrap_or("/tmp".into());
-    codspeed_go_runner::run_benchmarks(profile_dir, Path::new("."), &cli)?;
+    codspeed_go_runner::run_benchmarks(Path::new(&profile_dir), Path::new("."), &cli)?;
 
     Ok(())
 }

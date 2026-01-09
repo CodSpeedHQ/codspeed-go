@@ -1,5 +1,5 @@
 use codspeed_go_runner::cli::Cli;
-use utils::{run_with_cli, run_with_cli_multi};
+use utils::run_with_cli;
 
 pub mod utils;
 
@@ -30,7 +30,7 @@ pub fn test_pkg_arg_all_packages() {
         packages: vec!["./...".to_string()],
         dry_run: false,
     };
-    let stdout = run_with_cli_multi("tests/pkg_arg.in", &cli).unwrap();
+    let stdout = run_with_cli("tests/pkg_arg.in", &cli).unwrap();
 
     // Should contain output from all benchmarks when using ./...
     assert!(stdout.contains("foo_bench_1"));
@@ -47,7 +47,7 @@ pub fn test_pkg_arg_multiple_packages() {
         packages: vec!["./foo".to_string(), "./bar".to_string()],
         dry_run: false,
     };
-    let stdout = run_with_cli_multi("tests/pkg_arg.in", &cli).unwrap();
+    let stdout = run_with_cli("tests/pkg_arg.in", &cli).unwrap();
 
     // Should contain output from both foo and bar packages
     assert!(stdout.contains("foo_bench_1"));

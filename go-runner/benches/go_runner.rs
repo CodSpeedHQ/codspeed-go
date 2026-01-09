@@ -2,34 +2,6 @@ use codspeed_go_runner::results::raw_result::RawResult;
 use std::time::Duration;
 use tempfile::TempDir;
 
-#[divan::bench(max_time = std::time::Duration::from_secs(5))]
-fn bench_go_runner(bencher: divan::Bencher) {
-    use std::path::PathBuf;
-    use tempfile::TempDir;
-
-    let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("testdata/projects/example");
-
-    bencher
-        .with_inputs(|| {
-            let temp_dir = TempDir::new().unwrap();
-            let profile_dir = temp_dir.path().join("profile");
-            let cli = codspeed_go_runner::cli::Cli {
-                packages: vec!["./...".into()],
-                dry_run: true,
-                ..Default::default()
-            };
-
-            (profile_dir, cli)
-        })
-        .bench_refs(|(profile_dir, cli)| {
-            if let Err(error) =
-                codspeed_go_runner::run_benchmarks(profile_dir, project_dir.as_path(), cli)
-            {
-                panic!("Benchmarks couldn't run: {error}");
-            }
-        });
-}
-
 const TIME_ENTRIES: [usize; 5] = [100_000, 500_000, 1_000_000, 5_000_000, 10_000_000];
 const FILE_COUNT: [usize; 3] = [5, 10, 25];
 

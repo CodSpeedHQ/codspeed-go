@@ -466,6 +466,17 @@ expression: results
         "stats": "[stats]"
       },
       {
+        "name": "BenchmarkJSONLogMarshalerFunc",
+        "uri": "zapcore/json_encoder_bench_test.go::BenchmarkJSONLogMarshalerFunc",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
         "name": "BenchmarkMultiWriteSyncer::2_discarder",
         "uri": "zapcore/write_syncer_bench_test.go::BenchmarkMultiWriteSyncer::2_discarder",
         "config": {
@@ -490,85 +501,6 @@ expression: results
       {
         "name": "BenchmarkMultiWriteSyncer::4_discarder_with_buffer",
         "uri": "zapcore/write_syncer_bench_test.go::BenchmarkMultiWriteSyncer::4_discarder_with_buffer",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkWriteSyncer::write_file_with_no_buffer",
-        "uri": "zapcore/write_syncer_bench_test.go::BenchmarkWriteSyncer::write_file_with_no_buffer",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkBuffers::ByteSlice",
-        "uri": "buffer/buffer_test.go::BenchmarkBuffers::ByteSlice",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkBuffers::BytesBuffer",
-        "uri": "buffer/buffer_test.go::BenchmarkBuffers::BytesBuffer",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkBuffers::CustomBuffer",
-        "uri": "buffer/buffer_test.go::BenchmarkBuffers::CustomBuffer",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkJSONLogMarshalerFunc",
-        "uri": "zapcore/json_encoder_bench_test.go::BenchmarkJSONLogMarshalerFunc",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -666,6 +598,17 @@ expression: results
         "stats": "[stats]"
       },
       {
+        "name": "BenchmarkWriteSyncer::write_file_with_no_buffer",
+        "uri": "zapcore/write_syncer_bench_test.go::BenchmarkWriteSyncer::write_file_with_no_buffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
         "name": "BenchmarkZapConsole",
         "uri": "zapcore/console_encoder_bench_test.go::BenchmarkZapConsole",
         "config": {
@@ -690,6 +633,51 @@ expression: results
       {
         "name": "BenchmarkZapJSONFloat32AndComplex64",
         "uri": "zapcore/json_encoder_bench_test.go::BenchmarkZapJSONFloat32AndComplex64",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkBuffers::ByteSlice",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::ByteSlice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBuffers::BytesBuffer",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::BytesBuffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBuffers::CustomBuffer",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::CustomBuffer",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
