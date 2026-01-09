@@ -14,8 +14,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkAdd",
-        "uri": "go-runner/testdata/projects/example-with-test-package/math_test.go::BenchmarkAdd",
+        "name": "BenchmarkFibonacci10",
+        "uri": "go-runner/testdata/projects/example-with-test-package/fib/fib_test.go::BenchmarkFibonacci10",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -25,8 +25,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkMultiply",
-        "uri": "go-runner/testdata/projects/example-with-test-package/math_test.go::BenchmarkMultiply",
+        "name": "BenchmarkFibonacci20",
+        "uri": "go-runner/testdata/projects/example-with-test-package/fib/fib_test.go::BenchmarkFibonacci20",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -82,8 +82,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkFibonacci10",
-        "uri": "go-runner/testdata/projects/example-with-test-package/fib/fib_test.go::BenchmarkFibonacci10",
+        "name": "BenchmarkAdd",
+        "uri": "go-runner/testdata/projects/example-with-test-package/math_test.go::BenchmarkAdd",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -93,8 +93,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkFibonacci20",
-        "uri": "go-runner/testdata/projects/example-with-test-package/fib/fib_test.go::BenchmarkFibonacci20",
+        "name": "BenchmarkMultiply",
+        "uri": "go-runner/testdata/projects/example-with-test-package/math_test.go::BenchmarkMultiply",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

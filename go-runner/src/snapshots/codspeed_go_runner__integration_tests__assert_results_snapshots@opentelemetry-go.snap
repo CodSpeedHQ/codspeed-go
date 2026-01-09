@@ -14,73 +14,6 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkAsFloat64Slice",
-        "uri": "attribute/internal/attribute_test.go::BenchmarkAsFloat64Slice",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkBoolSliceValue",
-        "uri": "attribute/internal/attribute_test.go::BenchmarkBoolSliceValue",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkFloat64SliceValue",
-        "uri": "attribute/internal/attribute_test.go::BenchmarkFloat64SliceValue",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkInt64SliceValue",
-        "uri": "attribute/internal/attribute_test.go::BenchmarkInt64SliceValue",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkStringSliceValue",
-        "uri": "attribute/internal/attribute_test.go::BenchmarkStringSliceValue",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
         "name": "BenchmarkBool::AsBool",
         "uri": "attribute/benchmark_test.go::BenchmarkBool::AsBool",
         "config": {
@@ -665,8 +598,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkExtract::BogusVersion",
-        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::BogusVersion",
+        "name": "BenchmarkAsFloat64Slice",
+        "uri": "attribute/internal/attribute_test.go::BenchmarkAsFloat64Slice",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -676,8 +609,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkExtract::FutureAdditionalData",
-        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::FutureAdditionalData",
+        "name": "BenchmarkBoolSliceValue",
+        "uri": "attribute/internal/attribute_test.go::BenchmarkBoolSliceValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -687,8 +620,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkExtract::Sampled",
-        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::Sampled",
+        "name": "BenchmarkFloat64SliceValue",
+        "uri": "attribute/internal/attribute_test.go::BenchmarkFloat64SliceValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -698,8 +631,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkInject::SampledSpanContext",
-        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkInject::SampledSpanContext",
+        "name": "BenchmarkInt64SliceValue",
+        "uri": "attribute/internal/attribute_test.go::BenchmarkInt64SliceValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -709,8 +642,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkInject::WithoutSpanContext",
-        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkInject::WithoutSpanContext",
+        "name": "BenchmarkStringSliceValue",
+        "uri": "attribute/internal/attribute_test.go::BenchmarkStringSliceValue",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -834,6 +767,73 @@ expression: results
       {
         "name": "BenchmarkStartEndSpanNoSDK",
         "uri": "internal/global/benchmark_test.go::BenchmarkStartEndSpanNoSDK",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkExtract::BogusVersion",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::BogusVersion",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExtract::FutureAdditionalData",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::FutureAdditionalData",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkExtract::Sampled",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkExtract::Sampled",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInject::SampledSpanContext",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkInject::SampledSpanContext",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkInject::WithoutSpanContext",
+        "uri": "propagation/trace_context_benchmark_test.go::BenchmarkInject::WithoutSpanContext",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

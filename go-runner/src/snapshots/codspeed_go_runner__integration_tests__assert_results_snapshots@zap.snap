@@ -455,6 +455,74 @@ expression: results
     },
     "benchmarks": [
       {
+        "name": "BenchmarkBuffers::ByteSlice",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::ByteSlice",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBuffers::BytesBuffer",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::BytesBuffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkBuffers::CustomBuffer",
+        "uri": "buffer/buffer_test.go::BenchmarkBuffers::CustomBuffer",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkTake",
+        "uri": "internal/stacktrace/stack_test.go::BenchmarkTake",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
         "name": "BenchmarkBufferedWriteSyncer::write_file_with_buffer",
         "uri": "zapcore/buffered_write_syncer_bench_test.go::BenchmarkBufferedWriteSyncer::write_file_with_buffer",
         "config": {
@@ -633,74 +701,6 @@ expression: results
       {
         "name": "BenchmarkZapJSONFloat32AndComplex64",
         "uri": "zapcore/json_encoder_bench_test.go::BenchmarkZapJSONFloat32AndComplex64",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkBuffers::ByteSlice",
-        "uri": "buffer/buffer_test.go::BenchmarkBuffers::ByteSlice",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkBuffers::BytesBuffer",
-        "uri": "buffer/buffer_test.go::BenchmarkBuffers::BytesBuffer",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkBuffers::CustomBuffer",
-        "uri": "buffer/buffer_test.go::BenchmarkBuffers::CustomBuffer",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkTake",
-        "uri": "internal/stacktrace/stack_test.go::BenchmarkTake",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,

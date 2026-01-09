@@ -24,7 +24,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
         .sorted_by_cached_key(|r| {
             r.benchmarks
                 .iter()
-                .map(|b| b.metadata.name.clone())
+                .map(|b| b.metadata.uri.clone())
                 .sorted()
                 .join(";")
         })
@@ -44,7 +44,7 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
     results.sort_by_cached_key(|r| {
         r.benchmarks
             .iter()
-            .map(|b| b.metadata.name.clone())
+            .map(|b| b.metadata.uri.clone())
             .sorted()
             .join(";")
     });

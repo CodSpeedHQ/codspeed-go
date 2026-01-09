@@ -14,8 +14,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkBufferRead",
-        "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferRead",
+        "name": "BenchmarkQuicktest",
+        "uri": "example/compat/quicktest_test.go::BenchmarkQuicktest",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -25,8 +25,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkBufferWrite",
-        "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferWrite",
+        "name": "BenchmarkTestifyWithNew",
+        "uri": "example/compat/testify_test.go::BenchmarkTestifyWithNew",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -36,8 +36,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkCounterWithMutex",
-        "uri": "example/sub-packages/buffer_test.go::BenchmarkCounterWithMutex",
+        "name": "BenchmarkTestifyWithT",
+        "uri": "example/compat/testify_test.go::BenchmarkTestifyWithT",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -47,53 +47,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkFSTestFS",
-        "uri": "example/sub-packages/buffer_test.go::BenchmarkFSTestFS",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkIOTestReader",
-        "uri": "example/sub-packages/buffer_test.go::BenchmarkIOTestReader",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      },
-      {
-        "name": "BenchmarkWriterFunc",
-        "uri": "example/sub-packages/buffer_test.go::BenchmarkWriterFunc",
-        "config": {
-          "warmup_time_ns": null,
-          "min_round_time_ns": null,
-          "max_time_ns": null,
-          "max_rounds": null
-        },
-        "stats": "[stats]"
-      }
-    ]
-  },
-  {
-    "creator": {
-      "name": "codspeed-go",
-      "version": "[version]",
-      "pid": "[pid]"
-    },
-    "instrument": {
-      "type": "walltime"
-    },
-    "benchmarks": [
-      {
-        "name": "BenchmarkExample",
-        "uri": "example/very/nested/module/example_test.go::BenchmarkExample",
+        "name": "BenchmarkWithSlogAssert",
+        "uri": "example/compat/slogassert_test.go::BenchmarkWithSlogAssert",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -293,8 +248,8 @@ expression: results
     },
     "benchmarks": [
       {
-        "name": "BenchmarkQuicktest",
-        "uri": "example/compat/quicktest_test.go::BenchmarkQuicktest",
+        "name": "BenchmarkBufferRead",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferRead",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -304,8 +259,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkTestifyWithNew",
-        "uri": "example/compat/testify_test.go::BenchmarkTestifyWithNew",
+        "name": "BenchmarkBufferWrite",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkBufferWrite",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -315,8 +270,8 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkTestifyWithT",
-        "uri": "example/compat/testify_test.go::BenchmarkTestifyWithT",
+        "name": "BenchmarkCounterWithMutex",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkCounterWithMutex",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -326,8 +281,30 @@ expression: results
         "stats": "[stats]"
       },
       {
-        "name": "BenchmarkWithSlogAssert",
-        "uri": "example/compat/slogassert_test.go::BenchmarkWithSlogAssert",
+        "name": "BenchmarkFSTestFS",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkFSTestFS",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkIOTestReader",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkIOTestReader",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
+        "name": "BenchmarkWriterFunc",
+        "uri": "example/sub-packages/buffer_test.go::BenchmarkWriterFunc",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
@@ -494,6 +471,29 @@ expression: results
       {
         "name": "BenchmarkSleep50ms_Loop",
         "uri": "example/timing/sleep_test.go::BenchmarkSleep50ms_Loop",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      }
+    ]
+  },
+  {
+    "creator": {
+      "name": "codspeed-go",
+      "version": "[version]",
+      "pid": "[pid]"
+    },
+    "instrument": {
+      "type": "walltime"
+    },
+    "benchmarks": [
+      {
+        "name": "BenchmarkExample",
+        "uri": "example/very/nested/module/example_test.go::BenchmarkExample",
         "config": {
           "warmup_time_ns": null,
           "min_round_time_ns": null,
