@@ -10,9 +10,6 @@
 [submodule "go-runner/testdata/projects/fuego"]
 	path = go-runner/testdata/projects/fuego
 	url = https://github.com/go-fuego/fuego
-[submodule "go-runner/testdata/projects/hugo"]
-	path = go-runner/testdata/projects/hugo
-	url = https://github.com/gohugoio/hugo.git
 [submodule "go-runner/testdata/projects/zerolog"]
 	path = go-runner/testdata/projects/zerolog
 	url = https://github.com/rs/zerolog

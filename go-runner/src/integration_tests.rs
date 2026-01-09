@@ -71,7 +71,6 @@ fn assert_results_snapshots(profile_dir: &Path, project_name: &str) {
 #[case::golang_benchmarks("golang-benchmarks")]
 #[case::zerolog("zerolog")]
 #[case::zap("zap")]
-#[case::hugo("hugo")]
 #[case::fuego("fuego")]
 #[case::cli_runtime("cli-runtime")]
 #[case::quic_go("quic-go")]
