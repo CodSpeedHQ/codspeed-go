@@ -26,6 +26,42 @@ type codspeed struct {
 	// Indicates whether a measurement has been saved already. This aims to prevent saving measurements
 	// twice, because `b.Loop()` saves them internally as well but is also called from runN
 	savedMeasurement bool
+
+	// The start time of the first b.Loop() call. This includes the benchmark execution
+	// time, including the overhead of start/stop the timer each loop iteration.
+	loopStartTime time.Time
+}
+
+const BenchMaxTimeMult = 3
+
+// Modified version of the `stopOrScaleLoop` function to also take into account the
+// overhead of start/stop the timer each loop iteration.
+//
+// If we have large setups/teardowns within the loop, they won't count as benchmark time
+// which could cause the benchmark to run for too long.
+func (b *B) stopOrScaleBLoopCodspeed() bool {
+	// The total duration must be at most N times the requested benchtime
+	actualT := time.Since(b.loopStartTime)
+	if actualT >= b.benchTime.d*BenchMaxTimeMult {
+		return false
+	}
+
+	t := b.Elapsed()
+	if t >= b.benchTime.d {
+		// We've reached the target
+		return false
+	}
+
+	// Loop scaling
+	goalns := b.benchTime.d.Nanoseconds()
+	prevIters := int64(b.loop.n)
+	b.loop.n = uint64(predictN(goalns, prevIters, actualT.Nanoseconds(), prevIters))
+	if b.loop.n&loopPoisonMask != 0 {
+		// The iteration count should never get this high, but if it did we'd be
+		// in big trouble.
+		panic("loop iteration target overflow")
+	}
+	return true
 }
 
 func findGitRoot() (string, error) {
@@ -267,4 +303,59 @@ func (b *B) StartTimerWithoutMarker() {
 		b.savedMeasurement = false
 		// b.loop.i &^= loopPoisonTimer
 	}
+}
+
+func runBenchmarkWithWarmup(b *B) {
+	warmupD := b.benchTime.d / 10
+	warmupN := int64(1)
+	for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
+		last := n
+		// Predict required iterations.
+		goalns := warmupD.Nanoseconds()
+		prevIters := int64(b.N)
+		n = int64(predictN(goalns, prevIters, b.duration.Nanoseconds(), last))
+
+		// IMPORTANT: We have to measure the _whole_ execution time, to also take into account the setup/teardown time, which
+		// can be executed inside the loop. We can't execute 10k runs of 1ms when the setup takes 10ms every time.
+		start := time.Now()
+		b.runN(int(n))
+		b.duration = time.Since(start)
+
+		warmupN = n
+	}
+
+	// Reset the fields from the warmup run
+	b.ResetTimer()
+
+	// Final run:
+	benchD := b.benchTime.d
+	benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
+
+	// When we have a very slow benchmark (e.g. taking 500ms), we have to:
+	// 1. Reduce the number of rounds to not slow down the process (e.g. by executing a 1s bench 100 times)
+	// 2. Not end up with roundN of 0 when dividing benchN (which can be < 100) by rounds
+	const minRounds = 100
+	var rounds int
+	var roundN int
+	if benchN < minRounds {
+		rounds = benchN
+		roundN = 1
+	} else {
+		rounds = minRounds
+		roundN = benchN / int(rounds)
+	}
+
+	benchStart := time.Now()
+	b.codspeed.instrument_hooks.StartBenchmark()
+	for range rounds {
+		b.runN(int(roundN))
+
+		// Ensure that we don't spend too much time running the benchmarks, bail if we exceed
+		// N times the requested benchtime. This is a failsafe, if the N prediction is flawed.
+		if time.Since(benchStart) > benchD*BenchMaxTimeMult {
+			break
+		}
+	}
+	b.codspeed.instrument_hooks.StopBenchmark()
+	b.sendAccumulatedTimestamps()
 }
