@@ -323,7 +323,13 @@ func runBenchmarkWithWarmup(b *B) {
 		goalns := warmupD.Nanoseconds()
 		prevIters := int64(b.N)
 		n = int64(predictN(goalns, prevIters, b.duration.Nanoseconds(), last))
+
+		// IMPORTANT: We have to measure the _whole_ execution time, to also take into account the setup/teardown time, which
+		// can be executed inside the loop. We can't execute 10k runs of 1ms when the setup takes 10ms every time.
+		start := time.Now()
 		b.runN(int(n))
+		b.duration = time.Since(start)
+
 		warmupN = n
 	}
 
@@ -348,9 +354,16 @@ func runBenchmarkWithWarmup(b *B) {
 		roundN = benchN / int(rounds)
 	}
 
+	benchStart := time.Now()
 	b.codspeed.instrument_hooks.StartBenchmark()
 	for range rounds {
 		b.runN(int(roundN))
+
+		// Ensure that we don't spend too much time running the benchmarks, bail if we exceed
+		// N times the requested benchtime. This is a failsafe, if the N prediction is flawed.
+		if time.Since(benchStart) > benchD*BenchMaxTimeMult {
+			break
+		}
 	}
 	b.codspeed.instrument_hooks.StopBenchmark()
 	b.sendAccumulatedTimestamps()
