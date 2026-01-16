@@ -313,3 +313,45 @@ func (b *B) StartTimerWithoutMarker() {
 		// b.loop.i &^= loopPoisonTimer
 	}
 }
+
+func runBenchmarkWithWarmup(b *B) {
+	warmupD := b.benchTime.d / 10
+	warmupN := int64(1)
+	for n := int64(1); !b.failed && b.duration < warmupD && n < 1e9; {
+		last := n
+		// Predict required iterations.
+		goalns := warmupD.Nanoseconds()
+		prevIters := int64(b.N)
+		n = int64(predictN(goalns, prevIters, b.duration.Nanoseconds(), last))
+		b.runN(int(n))
+		warmupN = n
+	}
+
+	// Reset the fields from the warmup run
+	b.ResetTimer()
+
+	// Final run:
+	benchD := b.benchTime.d
+	benchN := predictN(benchD.Nanoseconds(), int64(b.N), b.duration.Nanoseconds(), warmupN)
+
+	// When we have a very slow benchmark (e.g. taking 500ms), we have to:
+	// 1. Reduce the number of rounds to not slow down the process (e.g. by executing a 1s bench 100 times)
+	// 2. Not end up with roundN of 0 when dividing benchN (which can be < 100) by rounds
+	const minRounds = 100
+	var rounds int
+	var roundN int
+	if benchN < minRounds {
+		rounds = benchN
+		roundN = 1
+	} else {
+		rounds = minRounds
+		roundN = benchN / int(rounds)
+	}
+
+	b.codspeed.instrument_hooks.StartBenchmark()
+	for range rounds {
+		b.runN(int(roundN))
+	}
+	b.codspeed.instrument_hooks.StopBenchmark()
+	b.sendAccumulatedTimestamps()
+}
