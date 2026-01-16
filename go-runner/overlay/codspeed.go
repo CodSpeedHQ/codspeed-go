@@ -26,6 +26,51 @@ type codspeed struct {
 	// Indicates whether a measurement has been saved already. This aims to prevent saving measurements
 	// twice, because `b.Loop()` saves them internally as well but is also called from runN
 	savedMeasurement bool
+
+	// The start time of the first b.Loop() call. This includes the benchmark execution
+	// time, including the overhead of start/stop the timer each loop iteration.
+	loopStartTime time.Time
+}
+
+// This is used to determine the maximum time a benchmark is allowed to run, with the overhead of our
+// modifications in the testing package included. When using a benchtime=3s and multiplier of 3, the
+// benchmark can run at most 9s.
+const BenchMaxTimeMult = 3
+
+// Modified version of the `stopOrScaleLoop` function to also take into account the
+// overhead of start/stop the timer each loop iteration.
+//
+// If we have large setups/teardowns within the loop, they won't count as benchmark time
+// which could cause the benchmark to run for too long. If 10k iterations took 1s with
+// the upstream testing package, then it could take 5s with CodSpeed. To limit the overhead,
+// we exit early if we exceed the maximum time
+//
+// There are 2 differences compared to the upstream version:
+// 1. We check if we exceeded the time upon entry
+// 2. We use the _actual_ time to determine b.loop.n to avoid running too long
+func (b *B) stopOrScaleBLoopCodspeed() bool {
+	// The total duration must be at most N times the requested benchtime
+	actualT := time.Since(b.loopStartTime)
+	if actualT >= b.benchTime.d*BenchMaxTimeMult {
+		return false
+	}
+
+	t := b.Elapsed()
+	if t >= b.benchTime.d {
+		// We've reached the target
+		return false
+	}
+
+	// Loop scaling
+	goalns := b.benchTime.d.Nanoseconds()
+	prevIters := int64(b.loop.n)
+	b.loop.n = uint64(predictN(goalns, prevIters, actualT.Nanoseconds(), prevIters))
+	if b.loop.n&loopPoisonMask != 0 {
+		// The iteration count should never get this high, but if it did we'd be
+		// in big trouble.
+		panic("loop iteration target overflow")
+	}
+	return true
 }
 
 func findGitRoot() (string, error) {

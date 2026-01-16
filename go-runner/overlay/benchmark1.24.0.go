@@ -468,6 +468,7 @@ func (b *B) loopSlowPath() bool {
 		}
 		// Within a b.Loop loop, we don't use b.N (to avoid confusion).
 		b.N = 0
+		b.loopStartTime = time.Now()
 		b.codspeed.instrument_hooks.StartBenchmark()
 		b.ResetTimer()
 		b.StartTimerWithoutMarker()
@@ -489,7 +490,7 @@ func (b *B) loopSlowPath() bool {
 		more = false
 	} else {
 		// Handle fixed time case
-		more = b.stopOrScaleBLoop()
+		more = b.stopOrScaleBLoopCodspeed()
 	}
 	if !more {
 		// NOTE: We could move the endTimestamp capturing further up or even into the Loop() function
