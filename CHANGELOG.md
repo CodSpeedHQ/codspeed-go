@@ -5,12 +5,41 @@
 
 
 
+## [1.0.0] - 2026-01-20
+
+### <!-- 0 -->🚀 Features
+- Rewrite crate to use overlay files by @not-matthias
+
+### <!-- 1 -->🐛 Bug Fixes
+- Limit maximum b.N benchmark time by @not-matthias
+- Limit maximum `b.Loop()` execution time by @not-matthias
+- Check Go version compatibility before running tests by @not-matthias in [#49](https://github.com/CodSpeedHQ/codspeed-go/pull/49)
+- Bump minimum go version due to synctest usage by @not-matthias
+- Run tests using `go` executable by @not-matthias
+- Add support for go1.24 by @not-matthias
+- Sort snapshots using URI to have deterministic ordering by @not-matthias
+- Only execute benchmarks, exclude tests by @not-matthias
+
+### <!-- 2 -->🏗️ Refactor
+- Move shared logic to external file by @not-matthias
+
+### <!-- 7 -->⚙️ Internals
+- Update patch files by @not-matthias in [#50](https://github.com/CodSpeedHQ/codspeed-go/pull/50)
+- Remove caddy test by @not-matthias
+- Remove hugo test by @not-matthias
+- Remove dry-run by @not-matthias
+- Remove testing by @not-matthias
+- Remove example-codspeed by @not-matthias
+- Remove the forked pkgs by @not-matthias
+
+
 ## [0.6.2] - 2025-12-15
 
 ### <!-- 1 -->🐛 Bug Fixes
 - Remove codspeed folder used for integration tests by @not-matthias in [#45](https://github.com/CodSpeedHQ/codspeed-go/pull/45)
 
 ### <!-- 7 -->⚙️ Internals
+- Release v0.6.2 by @adriencaccia
 - Add example using integration test by @not-matthias
 
 
@@ -258,6 +287,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[1.0.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.2..v1.0.0
 [0.6.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.1..v0.6.2
 [0.6.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.0..v0.6.1
 [0.6.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.5.1..v0.6.0
