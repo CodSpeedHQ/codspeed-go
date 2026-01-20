@@ -23,6 +23,9 @@ fn run_cmd<P: AsRef<Path>>(
     let mut cmd = Command::new(go_binary);
     cmd.args([
         "test",
+        // Keep the test binary on disk after executing it. This is required by
+        // the runner to properly parse the symbols and debug info.
+        "-work",
         "-overlay",
         &overlay_file.to_string_lossy(),
         "-bench",
