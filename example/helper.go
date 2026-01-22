@@ -19,7 +19,7 @@ func expensiveOperation() uint64 {
 	}
 
 	// Expensive recursive computation that will dominate flamegraph
-	fibResult := recursiveFib(30)
+	fibResult := recursiveFib(15)
 
 	// More expensive work - sum the data
 	sum := uint64(0)
@@ -40,6 +40,6 @@ func doWork(n int) uint64 {
 
 func actualWork() uint64 {
 	time.Sleep(1 * time.Millisecond)
-	result := doWork(30)
+	result := doWork(15)
 	return 42 + result
 }
