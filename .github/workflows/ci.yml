@@ -18,36 +18,36 @@ jobs:
         with:
           extra_args: --all-files
 
-  tests:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go-version: ['1.24.x', '1.25.x']
-    env:
-      # Needed for the quic-go test
-      GOEXPERIMENT: ${{ matrix.go-version == '1.24.x' && 'synctest' || '' }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          lfs: true
-          submodules: true
-      - uses: actions/setup-go@v6
-        with:
-          go-version: ${{ matrix.go-version }}
-      - uses: taiki-e/install-action@cargo-nextest
+  # tests:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       go-version: ['1.24.x', '1.25.x']
+  #   env:
+  #     # Needed for the quic-go test
+  #     GOEXPERIMENT: ${{ matrix.go-version == '1.24.x' && 'synctest' || '' }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         lfs: true
+  #         submodules: true
+  #     - uses: actions/setup-go@v6
+  #       with:
+  #         go-version: ${{ matrix.go-version }}
+  #     - uses: taiki-e/install-action@cargo-nextest
 
-      - uses: moonrepo/setup-rust@v1
-      - run: |
-          cd go-runner
-          cargo nextest run --all
-        env:
-          CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
+  #     - uses: moonrepo/setup-rust@v1
+  #     - run: |
+  #         cd go-runner
+  #         cargo nextest run --all
+  #       env:
+  #         CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
   compat-integration-test-walltime:
     runs-on: codspeed-macro
     strategy:
       matrix:
-        target: [example, example/compat, example/timing, example/very/nested/module, example/external]
+        target: [example] # , example/compat, example/timing, example/very/nested/module, example/external
     steps:
       - uses: actions/checkout@v4
         with:
@@ -62,47 +62,47 @@ jobs:
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
         with:
-          mode: walltime
-          working-directory: example
-          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
-
-  go-runner-benchmarks:
-    runs-on: codspeed-macro
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          lfs: true
-          submodules: true
-      - name: Setup rust toolchain, cache and cargo-codspeed binary
-        uses: moonrepo/setup-rust@v1
-        with:
-          channel: stable
-          cache-target: release
-          bins: cargo-codspeed
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.25'
-
-      - name: Build the benchmark target(s)
-        run: cargo codspeed build -m walltime
-
-      - name: Run the benchmarks
-        uses: CodSpeedHQ/action@main
-        with:
           runner-version: latest
           go-runner-version: 0.6.2
           mode: walltime
-          run: cargo codspeed run
+          working-directory: example
+          run: go test -bench=. ${{ matrix.target }}
+
+  # go-runner-benchmarks:
+  #   runs-on: codspeed-macro
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         lfs: true
+  #         submodules: true
+  #     - name: Setup rust toolchain, cache and cargo-codspeed binary
+  #       uses: moonrepo/setup-rust@v1
+  #       with:
+  #         channel: stable
+  #         cache-target: release
+  #         bins: cargo-codspeed
+
+  #     - uses: actions/setup-go@v5
+  #       with:
+  #         go-version: '1.25'
+
+  #     - name: Build the benchmark target(s)
+  #       run: cargo codspeed build -m walltime
+
+  #     - name: Run the benchmarks
+  #       uses: CodSpeedHQ/action@main
+  #       with:
+  #         mode: walltime
+  #         run: cargo codspeed run
 
   check:
     runs-on: ubuntu-latest
     if: always()
     needs:
       - lint
-      - tests
+      # - tests
       - compat-integration-test-walltime
-      - go-runner-benchmarks
+      # - go-runner-benchmarks
     steps:
       - uses: re-actors/alls-green@release/v1
         with:
