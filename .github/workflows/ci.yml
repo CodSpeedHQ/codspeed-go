@@ -64,7 +64,7 @@ jobs:
           CODSPEED_LOG: debug
         with:
           runner-version: latest
-          go-runner-version: 0.6.2
+          # go-runner-version: 0.6.2
           mode: walltime
           working-directory: example
           run: go test -bench=. ${{ matrix.target }}
