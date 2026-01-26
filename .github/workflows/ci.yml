@@ -63,7 +63,7 @@ jobs:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
           CODSPEED_LOG: debug
         with:
-          runner-version: latest
+          runner-version: branch:cod-2110-use-github-actions-log-formatting-for-gosh-warning
           # go-runner-version: 0.6.2
           mode: walltime
           working-directory: example
