@@ -61,6 +61,7 @@ jobs:
         uses: CodSpeedHQ/action@main
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
+          CODSPEED_LOG: debug
         with:
           runner-version: latest
           go-runner-version: 0.6.2
