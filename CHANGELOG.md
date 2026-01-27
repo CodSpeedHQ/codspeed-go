@@ -5,6 +5,17 @@
 
 
 
+## [1.0.1] - 2026-01-27
+
+### <!-- 1 -->🐛 Bug Fixes
+- Disable stripping of symbols and debug information by @not-matthias in [#52](https://github.com/CodSpeedHQ/codspeed-go/pull/52)
+- Ensure test binary exists after execution by @not-matthias
+- Reduce fib computation workload by @not-matthias
+
+### <!-- 7 -->⚙️ Internals
+- Fix Cargo.lock after release by @adriencaccia
+
+
 ## [1.0.0] - 2026-01-20
 
 ### <!-- 0 -->🚀 Features
@@ -24,6 +35,7 @@
 - Move shared logic to external file by @not-matthias
 
 ### <!-- 7 -->⚙️ Internals
+- Release v1.0.0 by @adriencaccia
 - Update patch files by @not-matthias in [#50](https://github.com/CodSpeedHQ/codspeed-go/pull/50)
 - Remove caddy test by @not-matthias
 - Remove hugo test by @not-matthias
@@ -287,6 +299,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[1.0.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.0..v1.0.1
 [1.0.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.2..v1.0.0
 [0.6.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.1..v0.6.2
 [0.6.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.0..v0.6.1
