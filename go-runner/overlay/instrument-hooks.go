@@ -4,8 +4,8 @@ package testing
 #cgo CFLAGS: -I@@INSTRUMENT_HOOKS_DIR@@/includes -Wno-format -Wno-format-security
 #include "@@INSTRUMENT_HOOKS_DIR@@/dist/core.c"
 
-#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__249
-#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__250
+#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__247
+#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__248
 typedef struct instruments_root_InstrumentHooks__547 InstrumentHooks;
 */
 import "C"
