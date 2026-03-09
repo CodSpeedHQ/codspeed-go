@@ -68,6 +68,7 @@ jobs:
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
         with:
+          runner-version: branch:cod-2107-support-golang
           mode: ${{ matrix.mode }}
           working-directory: example
           run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
