@@ -44,6 +44,10 @@ fn run_cmd<P: AsRef<Path>>(
     cmd.env("GOCACHE", _dir.path().join("gocache"));
     cmd.env("GOMODCACHE", _dir.path().join("gomodcache"));
 
+    if let Ok(mode) = std::env::var("CODSPEED_RUNNER_MODE") {
+        cmd.env("CODSPEED_RUNNER_MODE", mode);
+    }
+
     Ok((_dir, cmd))
 }
 

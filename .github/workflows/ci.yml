@@ -43,11 +43,17 @@ jobs:
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
-  compat-integration-test-walltime:
-    runs-on: codspeed-macro
+  compat-integration-test:
     strategy:
       matrix:
         target: [example, example/compat, example/timing, example/very/nested/module, example/external]
+        mode: [memory] # , walltime]
+        include:
+          # - mode: walltime
+          #   runner: codspeed-macro
+          - mode: memory
+            runner: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -62,9 +68,11 @@ jobs:
         env:
           CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
         with:
-          mode: walltime
+          runner-version: branch:cod-2107-support-golang
+          mode: ${{ matrix.mode }}
           working-directory: example
           run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
+          upload-url: https://api.staging.preview.codspeed.io/upload
 
   go-runner-benchmarks:
     runs-on: codspeed-macro
@@ -99,7 +107,7 @@ jobs:
     needs:
       - lint
       - tests
-      - compat-integration-test-walltime
+      - compat-integration-test
       - go-runner-benchmarks
     steps:
       - uses: re-actors/alls-green@release/v1

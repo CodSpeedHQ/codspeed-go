@@ -13,6 +13,28 @@ import (
 	"time"
 )
 
+type codspeedRunnerMode string
+
+const (
+	modeWalltime   codspeedRunnerMode = "walltime"
+	modeSimulation codspeedRunnerMode = "simulation"
+	modeMemory     codspeedRunnerMode = "memory"
+)
+
+func getCodspeedRunnerMode() codspeedRunnerMode {
+	v := strings.ToLower(strings.TrimSpace(os.Getenv("CODSPEED_RUNNER_MODE")))
+	switch codspeedRunnerMode(v) {
+	case modeSimulation, modeMemory:
+		return codspeedRunnerMode(v)
+	default:
+		return modeWalltime
+	}
+}
+
+func isAnalysisMode() bool {
+	return getCodspeedRunnerMode() != modeWalltime
+}
+
 type codspeed struct {
 	instrument_hooks *InstrumentHooks
 
@@ -254,6 +276,9 @@ func (b *B) sendAccumulatedTimestamps() {
 }
 
 func (b *B) SaveMeasurement() {
+	if isAnalysisMode() {
+		return
+	}
 	if b.savedMeasurement {
 		return
 	}
@@ -312,6 +337,13 @@ func (b *B) StartTimerWithoutMarker() {
 		b.savedMeasurement = false
 		// b.loop.i &^= loopPoisonTimer
 	}
+}
+
+func runBenchmarkSingle(b *B) {
+	b.codspeed.instrument_hooks.StartBenchmark()
+	b.runN(1)
+	b.codspeed.instrument_hooks.StopBenchmark()
+	b.sendAccumulatedTimestamps()
 }
 
 func runBenchmarkWithWarmup(b *B) {
