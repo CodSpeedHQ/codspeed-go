@@ -71,6 +71,7 @@ jobs:
           mode: ${{ matrix.mode }}
           working-directory: example
           run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
+          upload-url: https://api.staging.preview.codspeed.io/upload
 
   go-runner-benchmarks:
     runs-on: codspeed-macro
