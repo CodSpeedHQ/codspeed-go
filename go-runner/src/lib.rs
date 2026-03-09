@@ -25,8 +25,11 @@ pub fn run_benchmarks<P: AsRef<Path>>(
         bail!("Failed to run benchmarks: {error}");
     }
 
-    let profile_dir = profile_dir.as_ref().to_path_buf();
-    collect_walltime_results(&profile_dir).unwrap();
+    let mode = std::env::var("CODSPEED_RUNNER_MODE").unwrap_or_else(|_| "walltime".into());
+    if mode == "walltime" {
+        let profile_dir = profile_dir.as_ref().to_path_buf();
+        collect_walltime_results(&profile_dir).unwrap();
+    }
 
     Ok(())
 }

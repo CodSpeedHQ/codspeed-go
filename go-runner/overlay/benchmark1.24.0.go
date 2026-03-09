@@ -284,7 +284,7 @@ var labelsOnce sync.Once
 // subbenchmarks. b must not have subbenchmarks.
 func (b *B) run() {
 	labelsOnce.Do(func() {
-		fmt.Fprintf(b.w, "Running with CodSpeed (mode: walltime)\n")
+		fmt.Fprintf(b.w, "Running with CodSpeed (mode: %s)\n", getCodspeedRunnerMode())
 
 		fmt.Fprintf(b.w, "goos: %s\n", runtime.GOOS)
 		fmt.Fprintf(b.w, "goarch: %s\n", runtime.GOARCH)
@@ -347,8 +347,9 @@ func (b *B) launch() {
 	// b.Loop does its own ramp-up logic so we just need to run it once.
 	// If b.loop.n is non zero, it means b.Loop has already run.
 	if b.loop.n == 0 {
-		// Run the benchmark for at least the specified amount of time.
-		if b.benchTime.n > 0 {
+		if isAnalysisMode() {
+			runBenchmarkSingle(b)
+		} else if b.benchTime.n > 0 {
 			// We already ran a single iteration in run1.
 			// If -benchtime=1x was requested, use that result.
 			// See https://golang.org/issue/32051.
@@ -421,7 +422,9 @@ func (b *B) loopSlowPath() bool {
 
 	if b.loop.n == 0 {
 		// It's the first call to b.Loop() in the benchmark function.
-		if b.benchTime.n > 0 {
+		if isAnalysisMode() {
+			b.loop.n = 1
+		} else if b.benchTime.n > 0 {
 			// Fixed iteration count.
 			b.loop.n = uint64(b.benchTime.n)
 		} else {
@@ -442,7 +445,9 @@ func (b *B) loopSlowPath() bool {
 
 	// Should we keep iterating?
 	var more bool
-	if b.benchTime.n > 0 {
+	if isAnalysisMode() {
+		more = false
+	} else if b.benchTime.n > 0 {
 		// The iteration count is fixed, so we should have run this many and now
 		// be done.
 		if b.loop.i != uint64(b.benchTime.n) {
