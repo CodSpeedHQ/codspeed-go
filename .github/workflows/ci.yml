@@ -47,12 +47,12 @@ jobs:
     strategy:
       matrix:
         target: [example, example/compat, example/timing, example/very/nested/module, example/external]
-        mode: [walltime] # , memory]
+        mode: [memory] # , walltime]
         include:
-          - mode: walltime
-            runner: codspeed-macro
-          # - mode: memory
-          #   runner: ubuntu-latest
+          # - mode: walltime
+          #   runner: codspeed-macro
+          - mode: memory
+            runner: ubuntu-latest
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
