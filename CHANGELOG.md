@@ -5,6 +5,15 @@
 
 
 
+## [1.0.2] - 2026-03-16
+
+### <!-- 1 -->🐛 Bug Fixes
+- Detect missing C compiler before building instrument hooks by @not-matthias
+
+### <!-- 3 -->📚 Documentation
+- Add AGENTS.md by @not-matthias in [#55](https://github.com/CodSpeedHQ/codspeed-go/pull/55)
+
+
 ## [1.0.1] - 2026-01-27
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -13,6 +22,7 @@
 - Reduce fib computation workload by @not-matthias
 
 ### <!-- 7 -->⚙️ Internals
+- Release v1.0.1 by @adriencaccia
 - Fix Cargo.lock after release by @adriencaccia
 
 
@@ -299,6 +309,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[1.0.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.1..v1.0.2
 [1.0.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.0..v1.0.1
 [1.0.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.2..v1.0.0
 [0.6.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.1..v0.6.2
