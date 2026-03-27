@@ -756,6 +756,7 @@ func runBenchmarks(importPath string, matchString func(pat, str string) (bool, e
 		bstate:    bstate,
 	}
 	defer main.codspeed.instrument_hooks.Close()
+	writeGoEnvironment(main.codspeed.instrument_hooks)
 
 	if Verbose() {
 		main.chatty = newChattyPrinter(main.w)

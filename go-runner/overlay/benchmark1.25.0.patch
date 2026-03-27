@@ -226,16 +226,17 @@
  		importPath: importPath,
  		benchFunc: func(b *B) {
  			for _, Benchmark := range bs {
-@@ -724,6 +755,8 @@
+@@ -724,6 +755,9 @@
  		benchTime: benchTime,
  		bstate:    bstate,
  	}
 +	defer main.codspeed.instrument_hooks.Close()
++	writeGoEnvironment(main.codspeed.instrument_hooks)
 +
  	if Verbose() {
  		main.chatty = newChattyPrinter(main.w)
  	}
-@@ -752,6 +785,7 @@
+@@ -752,6 +786,7 @@
  						chatty: b.chatty,
  						bench:  true,
  					},
@@ -243,7 +244,7 @@
  					benchFunc: b.benchFunc,
  					benchTime: b.benchTime,
  				}
-@@ -760,6 +794,8 @@
+@@ -760,6 +795,8 @@
  			}
  			r := b.doBench()
  			if b.failed {
@@ -252,7 +253,7 @@
  				// The output could be very long here, but probably isn't.
  				// We print it all, regardless, because we don't want to trim the reason
  				// the benchmark failed.
-@@ -767,6 +803,8 @@
+@@ -767,6 +804,8 @@
  				continue
  			}
  			results := r.String()
@@ -261,7 +262,7 @@
  			if b.chatty != nil {
  				fmt.Fprintf(b.w, "%-*s\t", s.maxLen, benchName)
  			}
-@@ -827,6 +865,7 @@
+@@ -827,6 +866,7 @@
  			chatty:  b.chatty,
  			bench:   true,
  		},

@@ -4,9 +4,9 @@ package testing
 #cgo CFLAGS: -I@@INSTRUMENT_HOOKS_DIR@@/includes -Wno-format -Wno-format-security
 #include "@@INSTRUMENT_HOOKS_DIR@@/dist/core.c"
 
-#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__249
-#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__250
-typedef struct instruments_root_InstrumentHooks__547 InstrumentHooks;
+#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__247
+#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__248
+typedef struct instrument_hooks_InstrumentHooks__547 InstrumentHooks;
 */
 import "C"
 import (
@@ -94,4 +94,25 @@ func (i *InstrumentHooks) AddBenchmarkTimestamps(startTimestamp, endTimestamp ui
 	pid := uint32(os.Getpid())
 	C.instrument_hooks_add_marker(i.hooks, C.uint32_t(pid), C.MARKER_TYPE_BENCHMARK_START, C.uint64_t(startTimestamp))
 	C.instrument_hooks_add_marker(i.hooks, C.uint32_t(pid), C.MARKER_TYPE_BENCHMARK_END, C.uint64_t(endTimestamp))
+}
+
+func (i *InstrumentHooks) SetEnvironment(sectionName, key, value string) {
+	if i.hooks == nil {
+		return
+	}
+	sectionNameC := C.CString(sectionName)
+	keyC := C.CString(key)
+	valueC := C.CString(value)
+	defer C.free(unsafe.Pointer(sectionNameC))
+	defer C.free(unsafe.Pointer(keyC))
+	defer C.free(unsafe.Pointer(valueC))
+
+	C.instrument_hooks_set_environment(i.hooks, (*C.uint8_t)(unsafe.Pointer(sectionNameC)), (*C.uint8_t)(unsafe.Pointer(keyC)), (*C.uint8_t)(unsafe.Pointer(valueC)))
+}
+
+func (i *InstrumentHooks) WriteEnvironment(pid uint32) {
+	if i.hooks == nil {
+		return
+	}
+	C.instrument_hooks_write_environment(i.hooks, C.uint32_t(pid))
 }

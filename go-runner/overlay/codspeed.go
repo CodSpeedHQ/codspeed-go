@@ -13,6 +13,11 @@ import (
 	"time"
 )
 
+func writeGoEnvironment(hooks *InstrumentHooks) {
+	hooks.SetEnvironment("go", "version", runtime.Version())
+	hooks.WriteEnvironment(uint32(os.Getpid()))
+}
+
 type codspeed struct {
 	instrument_hooks *InstrumentHooks
 
