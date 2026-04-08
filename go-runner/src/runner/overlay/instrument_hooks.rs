@@ -6,7 +6,7 @@ use tar::Archive;
 use tempfile::TempDir;
 
 const INSTRUMENT_HOOKS_REPO: &str = "CodSpeedHQ/instrument-hooks";
-const INSTRUMENT_HOOKS_COMMIT: &str = "e86719c70c9c0b1646db182a7c748230e243dace";
+const INSTRUMENT_HOOKS_COMMIT: &str = "0c971823b17cb5a3bbd0cce4411cbee2c6fe4317";
 
 /// Get the instrument-hooks directory, downloading if necessary
 /// Downloads to /tmp/codspeed-instrument-hooks-{commit}/
