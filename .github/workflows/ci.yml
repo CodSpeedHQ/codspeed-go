@@ -13,7 +13,7 @@ jobs:
         with:
           submodules: true
       - uses: actions/setup-go@v5
-      - uses: moonrepo/setup-rust@v1
+      - uses: ./.github/actions/rust-install
       - uses: pre-commit/action@v3.0.1
         with:
           extra_args: --all-files
@@ -36,7 +36,7 @@ jobs:
           go-version: ${{ matrix.go-version }}
       - uses: taiki-e/install-action@cargo-nextest
 
-      - uses: moonrepo/setup-rust@v1
+      - uses: ./.github/actions/rust-install
       - run: |
           cd go-runner
           cargo nextest run --all
@@ -60,9 +60,7 @@ jobs:
         with:
           submodules: true
       - uses: actions/setup-go@v5
-      - uses: moonrepo/setup-rust@v1
-        with:
-          cache-target: release
+      - uses: ./.github/actions/rust-install
 
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@main
@@ -72,25 +70,6 @@ jobs:
           mode: walltime
           working-directory: example
           run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
-
-  example-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-      - uses: actions/setup-go@v6
-        with:
-          go-version: '1.25.x'
-      - uses: moonrepo/setup-rust@v1
-        with:
-          cache-target: release
-
-      - name: Run the benchmarks
-        run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. example -benchtime=500ms
-        working-directory: example
-        env:
-          CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
 
   walltime-macos-test:
     runs-on: macos-latest
@@ -122,12 +101,9 @@ jobs:
         with:
           lfs: true
           submodules: true
-      - name: Setup rust toolchain, cache and cargo-codspeed binary
-        uses: moonrepo/setup-rust@v1
-        with:
-          channel: stable
-          cache-target: release
-          bins: cargo-codspeed
+      - uses: ./.github/actions/rust-install
+      - name: Install cargo-codspeed
+        run: cargo install cargo-codspeed
 
       - uses: actions/setup-go@v5
         with:

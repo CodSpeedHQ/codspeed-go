@@ -1,0 +1,10 @@
+name: "Install Rust toolchain"
+description: "Install the Rust toolchain from rust-toolchain.toml and cache cargo artifacts"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install rust-toolchain.toml
+      shell: bash
+      run: rustup show
+    - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
