@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: ['1.24.x', '1.25.x']
+        go-version: ["1.24.x", "1.25.x"]
     env:
       # Needed for the quic-go test
       GOEXPERIMENT: ${{ matrix.go-version == '1.24.x' && 'synctest' || '' }}
@@ -47,7 +47,14 @@ jobs:
     runs-on: codspeed-macro
     strategy:
       matrix:
-        target: [example, example/compat, example/timing, example/very/nested/module, example/external]
+        target:
+          [
+            example,
+            example/compat,
+            example/timing,
+            example/very/nested/module,
+            example/external,
+          ]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,6 +73,48 @@ jobs:
           working-directory: example
           run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. ${{ matrix.target }}
 
+  example-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.25.x'
+      - uses: moonrepo/setup-rust@v1
+        with:
+          cache-target: release
+
+      - name: Run the benchmarks
+        run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. example -benchtime=500ms
+        working-directory: example
+        env:
+          CODSPEED_GO_PKG_VERSION: ${{ github.head_ref || github.ref_name }}
+
+  walltime-macos-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.25.x"
+      - uses: ./.github/actions/rust-install
+      - run: cargo build --release
+
+      - name: Run the benchmarks
+        uses: CodSpeedHQ/action@main
+        env:
+          CODSPEED_SKIP_UPLOAD: "true"
+        with:
+          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. example -benchtime=500ms
+          working-directory: example
+          mode: walltime
+          # TODO: Remove this once the runner has been released with macos support
+          runner-version: branch:main
+
   go-runner-benchmarks:
     runs-on: codspeed-macro
     steps:
@@ -82,7 +131,7 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.25'
+          go-version: "1.25"
 
       - name: Build the benchmark target(s)
         run: cargo codspeed build -m walltime
@@ -100,6 +149,7 @@ jobs:
       - lint
       - tests
       - compat-integration-test-walltime
+      - walltime-macos-test
       - go-runner-benchmarks
     steps:
       - uses: re-actors/alls-green@release/v1
