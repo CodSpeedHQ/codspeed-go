@@ -6,7 +6,7 @@ use tar::Archive;
 use tempfile::TempDir;
 
 const INSTRUMENT_HOOKS_REPO: &str = "CodSpeedHQ/instrument-hooks";
-const INSTRUMENT_HOOKS_COMMIT: &str = "0c971823b17cb5a3bbd0cce4411cbee2c6fe4317";
+const INSTRUMENT_HOOKS_COMMIT: &str = "ecdf31a3afd0fb879823e40df65129ec823d374b";
 
 /// Get the instrument-hooks directory, downloading if necessary
 /// Downloads to /tmp/codspeed-instrument-hooks-{commit}/
@@ -14,7 +14,11 @@ pub fn download_instrument_hooks(temp_dir: &TempDir) -> Result<PathBuf> {
     // Allow overriding with a local path for development
     if let Ok(local_path) = std::env::var("CODSPEED_INSTRUMENT_HOOKS_DIR") {
         let path = PathBuf::from(local_path);
-        ensure!(path.exists(), "CODSPEED_INSTRUMENT_HOOKS_DIR path does not exist: {:?}", path);
+        ensure!(
+            path.exists(),
+            "CODSPEED_INSTRUMENT_HOOKS_DIR path does not exist: {:?}",
+            path
+        );
         debug!("Using local instrument-hooks at {:?}", path);
         return Ok(path);
     }

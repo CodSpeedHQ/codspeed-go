@@ -3,10 +3,6 @@ package testing
 /*
 #cgo CFLAGS: -I@@INSTRUMENT_HOOKS_DIR@@/includes -Wno-format -Wno-format-security
 #include "@@INSTRUMENT_HOOKS_DIR@@/dist/core.c"
-
-#define MARKER_TYPE_BENCHMARK_START c_MARKER_TYPE_BENCHMARK_START__247
-#define MARKER_TYPE_BENCHMARK_END c_MARKER_TYPE_BENCHMARK_END__248
-typedef struct instrument_hooks_InstrumentHooks__547 InstrumentHooks;
 */
 import "C"
 import (
@@ -51,7 +47,7 @@ func (i *InstrumentHooks) SetIntegration(name, version string) {
 	defer C.free(unsafe.Pointer(nameC))
 	defer C.free(unsafe.Pointer(versionC))
 
-	C.instrument_hooks_set_integration(i.hooks, (*C.uint8_t)(unsafe.Pointer(nameC)), (*C.uint8_t)(unsafe.Pointer(versionC)))
+	C.instrument_hooks_set_integration(i.hooks, nameC, versionC)
 }
 
 func (i *InstrumentHooks) StartBenchmark() {
@@ -66,14 +62,14 @@ func (i *InstrumentHooks) StopBenchmark() {
 	}
 }
 
-func (i *InstrumentHooks) SetExecutedBenchmark(pid uint32, name string) {
+func (i *InstrumentHooks) SetExecutedBenchmark(pid int32, name string) {
 	if i.hooks == nil {
 		return
 	}
 	nameC := C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 
-	C.instrument_hooks_set_executed_benchmark(i.hooks, C.uint(pid), (*C.uint8_t)(unsafe.Pointer(nameC)))
+	C.instrument_hooks_set_executed_benchmark(i.hooks, C.int32_t(pid), nameC)
 }
 
 func (i *InstrumentHooks) IsInstrumented() bool {
@@ -91,9 +87,9 @@ func (i *InstrumentHooks) AddBenchmarkTimestamps(startTimestamp, endTimestamp ui
 	if i.hooks == nil {
 		return
 	}
-	pid := uint32(os.Getpid())
-	C.instrument_hooks_add_marker(i.hooks, C.uint32_t(pid), C.MARKER_TYPE_BENCHMARK_START, C.uint64_t(startTimestamp))
-	C.instrument_hooks_add_marker(i.hooks, C.uint32_t(pid), C.MARKER_TYPE_BENCHMARK_END, C.uint64_t(endTimestamp))
+	pid := C.int32_t(os.Getpid())
+	C.instrument_hooks_add_marker(i.hooks, C.int32_t(pid), C.MARKER_TYPE_BENCHMARK_START, C.uint64_t(startTimestamp))
+	C.instrument_hooks_add_marker(i.hooks, C.int32_t(pid), C.MARKER_TYPE_BENCHMARK_END, C.uint64_t(endTimestamp))
 }
 
 func (i *InstrumentHooks) SetEnvironment(sectionName, key, value string) {
@@ -107,12 +103,12 @@ func (i *InstrumentHooks) SetEnvironment(sectionName, key, value string) {
 	defer C.free(unsafe.Pointer(keyC))
 	defer C.free(unsafe.Pointer(valueC))
 
-	C.instrument_hooks_set_environment(i.hooks, (*C.uint8_t)(unsafe.Pointer(sectionNameC)), (*C.uint8_t)(unsafe.Pointer(keyC)), (*C.uint8_t)(unsafe.Pointer(valueC)))
+	C.instrument_hooks_set_environment(i.hooks, sectionNameC, keyC, valueC)
 }
 
-func (i *InstrumentHooks) WriteEnvironment(pid uint32) {
+func (i *InstrumentHooks) WriteEnvironment(pid int32) {
 	if i.hooks == nil {
 		return
 	}
-	C.instrument_hooks_write_environment(i.hooks, C.uint32_t(pid))
+	C.instrument_hooks_write_environment(i.hooks, C.int32_t(pid))
 }

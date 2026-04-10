@@ -15,7 +15,7 @@ import (
 
 func writeGoEnvironment(hooks *InstrumentHooks) {
 	hooks.SetEnvironment("go", "version", runtime.Version())
-	hooks.WriteEnvironment(uint32(os.Getpid()))
+	hooks.WriteEnvironment(int32(os.Getpid()))
 }
 
 type codspeed struct {
@@ -244,7 +244,7 @@ func saveCodspeedResults(b *B, r BenchmarkResult, benchName string) {
 	defer file.Close()
 
 	// Send pid and executed benchmark to the runner
-	b.codspeed.instrument_hooks.SetExecutedBenchmark(uint32(os.Getpid()), benchUri)
+	b.codspeed.instrument_hooks.SetExecutedBenchmark(int32(os.Getpid()), benchUri)
 }
 
 func (b *B) sendAccumulatedTimestamps() {
