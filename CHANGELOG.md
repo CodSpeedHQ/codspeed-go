@@ -5,6 +5,15 @@
 
 
 
+## [1.1.0] - 2026-04-17
+
+### <!-- 0 -->🚀 Features
+- Collect Go toolchain environment information by @GuillaumeLagrange in [#57](https://github.com/CodSpeedHQ/codspeed-go/pull/57)
+
+### <!-- 7 -->⚙️ Internals
+- Bump instrument-hooks to collect runtime libraries by @GuillaumeLagrange in [#58](https://github.com/CodSpeedHQ/codspeed-go/pull/58)
+
+
 ## [1.0.2] - 2026-03-16
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -12,6 +21,9 @@
 
 ### <!-- 3 -->📚 Documentation
 - Add AGENTS.md by @not-matthias in [#55](https://github.com/CodSpeedHQ/codspeed-go/pull/55)
+
+### <!-- 7 -->⚙️ Internals
+- Release v1.0.2 by @adriencaccia
 
 
 ## [1.0.1] - 2026-01-27
@@ -309,6 +321,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[1.1.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.2..v1.1.0
 [1.0.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.1..v1.0.2
 [1.0.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.0..v1.0.1
 [1.0.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v0.6.2..v1.0.0
