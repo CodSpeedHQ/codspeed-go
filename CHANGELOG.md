@@ -5,12 +5,25 @@
 
 
 
+## [1.2.0] - 2026-04-28
+
+### <!-- 0 -->🚀 Features
+- Add apple darwin to the release pipeline by @GuillaumeLagrange in [#59](https://github.com/CodSpeedHQ/codspeed-go/pull/59)
+- Simplify C FFI integration and make it compatible with macos by @GuillaumeLagrange
+- Allow overriding instrument-hooks path via env var by @GuillaumeLagrange
+
+### <!-- 7 -->⚙️ Internals
+- Get rid of the moonrepo/setup-rust action by @GuillaumeLagrange
+- Add basic macos CI test by @GuillaumeLagrange
+
+
 ## [1.1.0] - 2026-04-17
 
 ### <!-- 0 -->🚀 Features
 - Collect Go toolchain environment information by @GuillaumeLagrange in [#57](https://github.com/CodSpeedHQ/codspeed-go/pull/57)
 
 ### <!-- 7 -->⚙️ Internals
+- Release v1.1.0 by @adriencaccia
 - Bump instrument-hooks to collect runtime libraries by @GuillaumeLagrange in [#58](https://github.com/CodSpeedHQ/codspeed-go/pull/58)
 
 
@@ -321,6 +334,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[1.2.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.2..v1.1.0
 [1.0.2]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.1..v1.0.2
 [1.0.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.0..v1.0.1
