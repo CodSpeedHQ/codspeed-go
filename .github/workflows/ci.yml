@@ -103,7 +103,7 @@ jobs:
           submodules: true
       - uses: ./.github/actions/rust-install
       - name: Install cargo-codspeed
-        run: cargo install cargo-codspeed
+        run: cargo install cargo-codspeed --locked
 
       - uses: actions/setup-go@v5
         with:
