@@ -1,7 +1,7 @@
 package testing
 
 /*
-#cgo CFLAGS: -I@@INSTRUMENT_HOOKS_DIR@@/includes -Wno-format -Wno-format-security
+#cgo CFLAGS: -I@@INSTRUMENT_HOOKS_DIR@@/includes -Wno-format -Wno-format-security -Wno-incompatible-pointer-types
 #include "@@INSTRUMENT_HOOKS_DIR@@/dist/core.c"
 */
 import "C"

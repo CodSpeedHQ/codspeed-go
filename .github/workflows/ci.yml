@@ -85,14 +85,12 @@ jobs:
 
       - name: Run the benchmarks
         uses: CodSpeedHQ/action@main
-        env:
-          CODSPEED_SKIP_UPLOAD: "true"
         with:
-          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=. example -benchtime=500ms
+          run: cargo r --release --manifest-path ../go-runner/Cargo.toml -- test -bench=BenchmarkFibonacciDarwin example -benchtime=500ms
           working-directory: example
           mode: walltime
-          # TODO: Remove this once the runner has been released with macos support
-          runner-version: branch:main
+          # TODO: Remove this once the runner has been released with the fix
+          runner-version: branch:cod-2762-samply-sigkills-dsymutil
 
   go-runner-benchmarks:
     runs-on: codspeed-macro
