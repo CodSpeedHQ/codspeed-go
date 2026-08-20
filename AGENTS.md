@@ -22,7 +22,7 @@ cargo test test_name_here
 
 Pre-commit hooks enforce: `go-mod-tidy`, `go-fmt`, `cargo fmt`, `cargo check --all-targets`, `clippy -D warnings`.
 
-CI tests against Go 1.24.x and 1.25.x. Go 1.24 tests require `GOEXPERIMENT=synctest`.
+CI tests against Go 1.24.x, 1.25.x, 1.26.x and 1.27.x. Go 1.24 tests require `GOEXPERIMENT=synctest`.
 
 ## Architecture
 
@@ -31,7 +31,7 @@ Rust workspace with a single crate: `go-runner/` (`codspeed-go-runner`), edition
 **Flow:** `main.rs` parses CLI args → `runner::run()` generates overlay + runs `go test` → Go benchmarks write raw JSON results to `$CODSPEED_PROFILE_FOLDER/raw_results/` → `collect_walltime_results()` aggregates into `results/{pid}.json`.
 
 **Overlay mechanism:** Three files are overlaid into `$GOROOT/src/testing/`:
-- `benchmark.go` — replaces the standard `testing.B` implementation (version-specific: 1.24 or 1.25+)
+- `benchmark.go` — replaces the standard `testing.B` implementation (version-specific: 1.24, 1.25 or 1.26+)
 - `codspeed.go` — CodSpeed measurement logic, result saving, `codspeed` struct with per-round measurements
 - `instrument-hooks.go` — cgo FFI bindings to the C instrument-hooks library (downloaded at runtime)
 

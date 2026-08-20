@@ -5,7 +5,7 @@ set -e
 # This downloads unpatched Go benchmark.go files and diffs them against our patched versions
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VERSIONS=("1.24.0" "1.25.0")
+VERSIONS=("1.24.0" "1.25.0" "1.26.0")
 
 for VERSION in "${VERSIONS[@]}"; do
     PATCH_FILE="$SCRIPT_DIR/benchmark${VERSION}.patch"

@@ -4,8 +4,8 @@ This directory contains CodSpeed instrumentation overlays for Go's standard `tes
 
 ## Files
 
-- `benchmark1.24.0.go`, `benchmark1.25.0.go` - Modified versions of Go's `testing/benchmark.go` with CodSpeed instrumentation
-- `benchmark1.24.0.patch`, `benchmark1.25.0.patch` - Patch files showing differences from upstream
+- `benchmark1.24.0.go`, `benchmark1.25.0.go`, `benchmark1.26.0.go` - Modified versions of Go's `testing/benchmark.go` with CodSpeed instrumentation
+- `benchmark1.24.0.patch`, `benchmark1.25.0.patch`, `benchmark1.26.0.patch` - Patch files showing differences from upstream
 - `codspeed.go` - CodSpeed-specific benchmark extensions
 - `instrument-hooks.go` - Bindings to the instrument-hooks library
 

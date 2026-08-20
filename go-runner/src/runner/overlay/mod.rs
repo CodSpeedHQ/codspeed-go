@@ -26,7 +26,10 @@ fn get_overlay_files(
     let mut files = HashMap::new();
 
     // Select the appropriate benchmark file based on Go version
-    let content = if detect_go_version()? >= Version::new(1, 25, 0) {
+    let go_version = detect_go_version()?;
+    let content = if go_version >= Version::new(1, 26, 0) {
+        include_str!("../../../overlay/benchmark1.26.0.go")
+    } else if go_version >= Version::new(1, 25, 0) {
         include_str!("../../../overlay/benchmark1.25.0.go")
     } else {
         include_str!("../../../overlay/benchmark1.24.0.go")
