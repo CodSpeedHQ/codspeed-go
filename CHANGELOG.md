@@ -5,6 +5,12 @@
 
 
 
+## [1.3.0] - 2026-08-24
+
+### <!-- 0 -->🚀 Features
+- Support go 1.26 and 1.27 by @not-matthias in [#66](https://github.com/CodSpeedHQ/codspeed-go/pull/66)
+
+
 ## [1.2.1] - 2026-06-24
 
 ### <!-- 1 -->🐛 Bug Fixes
@@ -14,6 +20,7 @@
 - Add darwin-only fibonacci benchmark for flamegraph testing by @not-matthias in [#61](https://github.com/CodSpeedHQ/codspeed-go/pull/61)
 
 ### <!-- 7 -->⚙️ Internals
+- Release v1.2.1 by @adriencaccia
 - Use latest runner-version for benchmarks by @not-matthias in [#65](https://github.com/CodSpeedHQ/codspeed-go/pull/65)
 - Bump instrument-hooks to d83209f for macos support by @not-matthias
 - Use --locked when installing cargo-codspeed by @GuillaumeLagrange in [#60](https://github.com/CodSpeedHQ/codspeed-go/pull/60)
@@ -349,6 +356,7 @@
 - Add pre-commit hook by @not-matthias
 
 
+[1.3.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.2.1..v1.3.0
 [1.2.1]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.2.0..v1.2.1
 [1.2.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/CodSpeedHQ/codspeed-go/compare/v1.0.2..v1.1.0
