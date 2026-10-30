@@ -214,6 +214,17 @@ expression: results
         "stats": "[stats]"
       },
       {
+        "name": "BenchmarkWithTeardownInLoopModern",
+        "uri": "example/setup_test.go::BenchmarkWithTeardownInLoopModern",
+        "config": {
+          "warmup_time_ns": null,
+          "min_round_time_ns": null,
+          "max_time_ns": null,
+          "max_rounds": null
+        },
+        "stats": "[stats]"
+      },
+      {
         "name": "BenchmarkWithoutStartupModern",
         "uri": "example/setup_test.go::BenchmarkWithoutStartupModern",
         "config": {

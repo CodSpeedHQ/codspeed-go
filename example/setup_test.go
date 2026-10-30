@@ -74,6 +74,18 @@ func BenchmarkWithOutlierMeasurementModern(b *testing.B) {
 	}
 }
 
+// The timer is restarted after the teardown, so the timed work is not the last timed segment of
+// the iteration.
+func BenchmarkWithTeardownInLoopModern(b *testing.B) {
+	for b.Loop() {
+		time.Sleep(1 * time.Millisecond)
+
+		b.StopTimer()
+		time.Sleep(10 * time.Millisecond)
+		b.StartTimer()
+	}
+}
+
 func BenchmarkWithoutStartupModern(b *testing.B) {
 	time.Sleep(10 * time.Millisecond)
 	b.ResetTimer()

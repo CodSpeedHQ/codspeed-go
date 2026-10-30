@@ -31,6 +31,10 @@ type codspeed struct {
 	// Indicates whether a measurement has been saved already. This aims to prevent saving measurements
 	// twice, because `b.Loop()` saves them internally as well but is also called from runN
 	savedMeasurement bool
+	// The value of b.duration when the previous round was saved. A round is the timed duration
+	// accumulated since then, so it includes every StartTimer/StopTimer segment of a b.Loop()
+	// iteration and not only the last one.
+	savedDuration time.Duration
 
 	// The start time of the first b.Loop() call. This includes the benchmark execution
 	// time, including the overhead of start/stop the timer each loop iteration.
@@ -274,16 +278,8 @@ func (b *B) SaveMeasurement() {
 	// For b.Loop() loops: loopSlowPath sets b.N to 0 to prevent b.N loops within b.Loop. However, since
 	// we're starting/stopping the timer for each iteration in the b.Loop() loop, we can use 1 as
 	// the number of iterations for this round.
-	timeSinceStart := highPrecisionTimeSince(b.start)
-
-	// If this gets called from b.Loop(), we have to take the duration compared to the previous StartTimer,
-	// if it's called from runN, we can use b.duration
-	duration := time.Duration(0)
-	if b.N == 0 {
-		duration = timeSinceStart
-	} else {
-		duration = b.duration
-	}
+	duration := b.duration - b.savedDuration
+	b.savedDuration = b.duration
 
 	b.codspeedItersPerRound = append(b.codspeedItersPerRound, max(int64(b.N), 1))
 	b.codspeedTimePerRoundNs = append(b.codspeedTimePerRoundNs, duration)
