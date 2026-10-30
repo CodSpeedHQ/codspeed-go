@@ -106,6 +106,46 @@ fn test_build_and_run(#[case] project_name: &str) {
     assert_results_snapshots(&profile_dir, project_name);
 }
 
+/// A `b.Loop()` round must include the timed work that runs before `b.StopTimer()`, even when
+/// `b.StartTimer()` is called again before the next `b.Loop()`.
+#[test_log::test]
+fn test_b_loop_round_includes_work_before_stop_timer() {
+    const BENCH_NAME: &str = "BenchmarkWithTeardownInLoopModern";
+    // The benchmark sleeps 1ms with the timer running in each iteration.
+    const MIN_ROUND_NS: f64 = 1_000_000.0;
+
+    let project_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("testdata/projects/example");
+    let temp_dir = TempDir::new().unwrap();
+    let profile_dir = temp_dir.path().join("profile");
+    let cli = crate::cli::Cli {
+        bench: format!("^{BENCH_NAME}$"),
+        benchtime: "1x".into(),
+        packages: vec![".".into()],
+    };
+    if let Err(error) = crate::run_benchmarks(&*profile_dir, project_dir.as_path(), &cli) {
+        panic!("Benchmarks couldn't run: {error}");
+    }
+
+    let results = std::fs::read_dir(profile_dir.join("results"))
+        .expect("Failed to read results directory")
+        .map(|entry| {
+            let file = std::fs::File::open(entry.unwrap().path()).unwrap();
+            serde_json::from_reader::<_, serde_json::Value>(file).unwrap()
+        })
+        .collect::<Vec<_>>();
+    let benchmark = results
+        .iter()
+        .flat_map(|result| result["benchmarks"].as_array().unwrap())
+        .find(|benchmark| benchmark["name"] == BENCH_NAME)
+        .expect("Benchmark result not found");
+
+    let min_ns = benchmark["stats"]["min_ns"].as_f64().unwrap();
+    assert!(
+        min_ns >= MIN_ROUND_NS,
+        "Round of {min_ns}ns does not include the timed work"
+    );
+}
+
 fn can_build_project(project_dir: &Path) -> bool {
     if let Some(required_version) = project_go_version(project_dir) {
         let current_version = go_version().unwrap();

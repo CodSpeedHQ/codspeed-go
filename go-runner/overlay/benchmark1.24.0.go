@@ -174,6 +174,7 @@ func (b *B) ResetTimer() {
 		b.startTimestamp = CurrentTimestamp()
 	}
 	b.duration = 0
+	b.savedDuration = 0
 	b.netAllocs = 0
 	b.netBytes = 0
 
