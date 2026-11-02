@@ -53,7 +53,7 @@
  	}
  }
 
-@@ -176,10 +170,18 @@
+@@ -176,10 +170,19 @@
  		b.startAllocs = memStats.Mallocs
  		b.startBytes = memStats.TotalAlloc
  		b.start = highPrecisionTimeNow()
@@ -61,6 +61,7 @@
 +		b.startTimestamp = CurrentTimestamp()
  	}
  	b.duration = 0
++	b.savedDuration = 0
  	b.netAllocs = 0
  	b.netBytes = 0
 +
@@ -72,7 +73,7 @@
  }
 
  // SetBytes records the number of bytes processed in a single operation.
-@@ -195,6 +197,11 @@
+@@ -195,6 +198,11 @@
 
  // runN runs a single benchmark for the specified number of iterations.
  func (b *B) runN(n int) {
@@ -84,7 +85,7 @@
  	benchmarkLock.Lock()
  	defer benchmarkLock.Unlock()
  	ctx, cancelCtx := context.WithCancel(context.Background())
-@@ -218,6 +225,7 @@
+@@ -218,6 +226,7 @@
  	b.StartTimer()
  	b.benchFunc(b)
  	b.StopTimer()
@@ -92,7 +93,7 @@
  	b.previousN = n
  	b.previousDuration = b.duration
 
-@@ -246,6 +254,8 @@
+@@ -246,6 +255,8 @@
  	}()
  	<-b.signal
  	if b.failed {
@@ -101,7 +102,7 @@
  		fmt.Fprintf(b.w, "%s--- FAIL: %s\n%s", b.chatty.prefix(), b.name, b.output)
  		return false
  	}
-@@ -274,6 +284,8 @@
+@@ -274,6 +285,8 @@
  // subbenchmarks. b must not have subbenchmarks.
  func (b *B) run() {
  	labelsOnce.Do(func() {
@@ -110,7 +111,7 @@
  		fmt.Fprintf(b.w, "goos: %s\n", runtime.GOOS)
  		fmt.Fprintf(b.w, "goarch: %s\n", runtime.GOARCH)
  		if b.importPath != "" {
-@@ -344,18 +356,10 @@
+@@ -344,18 +357,10 @@
  				b.runN(b.benchTime.n)
  			}
  		} else {
@@ -131,7 +132,7 @@
  }
 
  // Elapsed returns the measured elapsed time of the benchmark.
-@@ -408,9 +412,9 @@
+@@ -408,9 +413,9 @@
 
  func (b *B) loopSlowPath() bool {
  	// Consistency checks
@@ -144,7 +145,7 @@
  	if b.loop.i&loopPoisonMask != 0 {
  		panic(fmt.Sprintf("unknown loop stop condition: %#x", b.loop.i))
  	}
-@@ -426,7 +430,10 @@
+@@ -426,7 +431,10 @@
  		}
  		// Within a b.Loop loop, we don't use b.N (to avoid confusion).
  		b.N = 0
@@ -155,7 +156,7 @@
 
  		// Start the next iteration.
  		b.loop.i++
-@@ -445,16 +452,31 @@
+@@ -445,16 +453,31 @@
  		more = false
  	} else {
  		// Handle fixed time case
@@ -189,7 +190,7 @@
  	// Start the next iteration.
  	b.loop.i++
  	return true
-@@ -495,6 +517,8 @@
+@@ -495,6 +518,8 @@
  // whereas b.N-based benchmarks must run the benchmark function (and any
  // associated setup and cleanup) several times.
  func (b *B) Loop() bool {
@@ -198,7 +199,7 @@
  	// This is written such that the fast path is as fast as possible and can be
  	// inlined.
  	//
-@@ -509,6 +533,7 @@
+@@ -509,6 +534,7 @@
  	//   path can do consistency checks and fail.
  	if b.loop.i < b.loop.n {
  		b.loop.i++
@@ -206,7 +207,7 @@
  		return true
  	}
  	return b.loopSlowPath()
-@@ -535,6 +560,9 @@
+@@ -535,6 +561,9 @@
  	MemAllocs uint64        // The total number of memory allocations.
  	MemBytes  uint64        // The total number of bytes allocated.
 
@@ -216,7 +217,7 @@
  	// Extra records additional metrics reported by ReportMetric.
  	Extra map[string]float64
  }
-@@ -715,6 +743,9 @@
+@@ -715,6 +744,9 @@
  			w:     os.Stdout,
  			bench: true,
  		},
@@ -226,7 +227,7 @@
  		importPath: importPath,
  		benchFunc: func(b *B) {
  			for _, Benchmark := range bs {
-@@ -724,6 +755,9 @@
+@@ -724,6 +756,9 @@
  		benchTime: benchTime,
  		bstate:    bstate,
  	}
@@ -236,7 +237,7 @@
  	if Verbose() {
  		main.chatty = newChattyPrinter(main.w)
  	}
-@@ -752,6 +786,7 @@
+@@ -752,6 +787,7 @@
  						chatty: b.chatty,
  						bench:  true,
  					},
@@ -244,7 +245,7 @@
  					benchFunc: b.benchFunc,
  					benchTime: b.benchTime,
  				}
-@@ -760,6 +795,8 @@
+@@ -760,6 +796,8 @@
  			}
  			r := b.doBench()
  			if b.failed {
@@ -253,7 +254,7 @@
  				// The output could be very long here, but probably isn't.
  				// We print it all, regardless, because we don't want to trim the reason
  				// the benchmark failed.
-@@ -767,6 +804,8 @@
+@@ -767,6 +805,8 @@
  				continue
  			}
  			results := r.String()
@@ -262,7 +263,7 @@
  			if b.chatty != nil {
  				fmt.Fprintf(b.w, "%-*s\t", s.maxLen, benchName)
  			}
-@@ -827,6 +866,7 @@
+@@ -827,6 +867,7 @@
  			chatty:  b.chatty,
  			bench:   true,
  		},
