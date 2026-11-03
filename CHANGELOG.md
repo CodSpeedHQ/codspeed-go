@@ -5,6 +5,13 @@
 
 
 
+## [1.4.0] - 2026-11-03
+
+### <!-- 1 -->🐛 Bug Fixes
+- Drop the value of unsupported go test flags (#67) by @not-matthias in [#67](https://github.com/CodSpeedHQ/codspeed-go/pull/67)
+- Count all timed segments of a b.Loop() iteration (#69) by @not-matthias in [#69](https://github.com/CodSpeedHQ/codspeed-go/pull/69)
+
+
 ## [1.3.0] - 2026-08-24
 
 ### <!-- 0 -->🚀 Features
