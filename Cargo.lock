@@ -282,6 +282,7 @@ dependencies = [
  "codspeed-divan-compat",
  "env_logger",
  "flate2",
+ "getrandom 0.3.3",
  "glob",
  "insta",
  "itertools",
