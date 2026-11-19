@@ -28,7 +28,7 @@ CI tests against Go 1.24.x, 1.25.x, 1.26.x and 1.27.x. Go 1.24 tests require `GO
 
 Rust workspace with a single crate: `go-runner/` (`codspeed-go-runner`), edition 2024, toolchain 1.90.0.
 
-**Flow:** `main.rs` parses CLI args → `runner::run()` generates overlay + runs `go test` → Go benchmarks write raw JSON results to `$CODSPEED_PROFILE_FOLDER/raw_results/` → `collect_walltime_results()` aggregates into `results/{pid}.json`.
+**Flow:** `main.rs` parses CLI args → `runner::run()` generates overlay + runs `go test` → Go benchmarks write raw JSON results to `$CODSPEED_PROFILE_FOLDER/raw_results/` → `collect_walltime_results()` aggregates into `results/{pid}.json` and writes the rounds to `walltime_rounds/{pid}.json.gz`.
 
 **Overlay mechanism:** Three files are overlaid into `$GOROOT/src/testing/`:
 - `benchmark.go` — replaces the standard `testing.B` implementation (version-specific: 1.24, 1.25 or 1.26+)

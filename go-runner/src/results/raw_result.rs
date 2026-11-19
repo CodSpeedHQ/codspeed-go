@@ -33,8 +33,8 @@ impl RawResult {
                         WalltimeBenchmark::from_runtime_data(
                             json.name,
                             json.uri,
-                            &json.codspeed_iters_per_round,
-                            &json.codspeed_time_per_round_ns,
+                            json.codspeed_iters_per_round,
+                            json.codspeed_time_per_round_ns,
                             None,
                         ),
                     )
